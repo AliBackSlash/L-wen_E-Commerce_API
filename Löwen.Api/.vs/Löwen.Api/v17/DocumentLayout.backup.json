@@ -1,0 +1,421 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Api\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.api\\l\u00F6wen.domain\\entities\\wishlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|solutionrelative:l\u00F6wen.domain\\entities\\wishlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.api\\l\u00F6wen.domain\\entities\\userpaymentmethod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|solutionrelative:l\u00F6wen.domain\\entities\\userpaymentmethod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.api\\l\u00F6wen.domain\\entities\\producttag.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|solutionrelative:l\u00F6wen.domain\\entities\\producttag.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.api\\l\u00F6wen.domain\\entities\\productreview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|solutionrelative:l\u00F6wen.domain\\entities\\productreview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.api\\l\u00F6wen.domain\\entities\\productimage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|solutionrelative:l\u00F6wen.domain\\entities\\productimage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.api\\l\u00F6wen.domain\\entities\\productcategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|solutionrelative:l\u00F6wen.domain\\entities\\productcategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.api\\l\u00F6wen.domain\\entities\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|solutionrelative:l\u00F6wen.domain\\entities\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.api\\l\u00F6wen.domain\\entities\\orderitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|solutionrelative:l\u00F6wen.domain\\entities\\orderitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.api\\l\u00F6wen.domain\\entities\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|solutionrelative:l\u00F6wen.domain\\entities\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.api\\l\u00F6wen.domain\\entities\\notification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|solutionrelative:l\u00F6wen.domain\\entities\\notification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.api\\l\u00F6wen.domain\\entities\\image.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|solutionrelative:l\u00F6wen.domain\\entities\\image.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.api\\l\u00F6wen.domain\\entities\\customeraddress.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|solutionrelative:l\u00F6wen.domain\\entities\\customeraddress.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.api\\l\u00F6wen.domain\\entities\\cartitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|solutionrelative:l\u00F6wen.domain\\entities\\cartitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.api\\l\u00F6wen.domain\\entities\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|solutionrelative:l\u00F6wen.domain\\entities\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{862DA835-FE60-4657-B32E-EA3A6E9D18F3}|L\u00F6wen.Infrastructure\\L\u00F6wen.Infrastructure.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.api\\l\u00F6wen.infrastructure\\efcore\\context\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{862DA835-FE60-4657-B32E-EA3A6E9D18F3}|L\u00F6wen.Infrastructure\\L\u00F6wen.Infrastructure.csproj|solutionrelative:l\u00F6wen.infrastructure\\efcore\\context\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{862DA835-FE60-4657-B32E-EA3A6E9D18F3}|L\u00F6wen.Infrastructure\\L\u00F6wen.Infrastructure.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.api\\l\u00F6wen.infrastructure\\l\u00F6wen.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{862DA835-FE60-4657-B32E-EA3A6E9D18F3}|L\u00F6wen.Infrastructure\\L\u00F6wen.Infrastructure.csproj|solutionrelative:l\u00F6wen.infrastructure\\l\u00F6wen.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{862DA835-FE60-4657-B32E-EA3A6E9D18F3}|L\u00F6wen.Infrastructure\\L\u00F6wen.Infrastructure.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.api\\l\u00F6wen.infrastructure\\efcore\\identityuser\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{862DA835-FE60-4657-B32E-EA3A6E9D18F3}|L\u00F6wen.Infrastructure\\L\u00F6wen.Infrastructure.csproj|solutionrelative:l\u00F6wen.infrastructure\\efcore\\identityuser\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E843E3A7-CEED-4AB3-B8A1-8FE2739A0663}|L\u00F6wen.Api\\L\u00F6wen.Presentation.Api.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.api\\l\u00F6wen.api\\l\u00F6wen.presentation.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{E843E3A7-CEED-4AB3-B8A1-8FE2739A0663}|L\u00F6wen.Api\\L\u00F6wen.Presentation.Api.csproj|solutionrelative:l\u00F6wen.api\\l\u00F6wen.presentation.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.api\\l\u00F6wen.application\\l\u00F6wen.application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|solutionrelative:l\u00F6wen.application\\l\u00F6wen.application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E843E3A7-CEED-4AB3-B8A1-8FE2739A0663}|L\u00F6wen.Api\\L\u00F6wen.Api.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.api\\l\u00F6wen.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E843E3A7-CEED-4AB3-B8A1-8FE2739A0663}|L\u00F6wen.Api\\L\u00F6wen.Api.csproj|solutionrelative:l\u00F6wen.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E843E3A7-CEED-4AB3-B8A1-8FE2739A0663}|L\u00F6wen.Api\\L\u00F6wen.Api.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.api\\l\u00F6wen.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{E843E3A7-CEED-4AB3-B8A1-8FE2739A0663}|L\u00F6wen.Api\\L\u00F6wen.Api.csproj|solutionrelative:l\u00F6wen.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 13,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ProductTag.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Api\\L\u00F6wen.Domain\\Entities\\ProductTag.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Domain\\Entities\\ProductTag.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Api\\L\u00F6wen.Domain\\Entities\\ProductTag.cs",
+              "RelativeToolTip": "L\u00F6wen.Domain\\Entities\\ProductTag.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-01T15:13:43.381Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ProductImage.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Api\\L\u00F6wen.Domain\\Entities\\ProductImage.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Domain\\Entities\\ProductImage.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Api\\L\u00F6wen.Domain\\Entities\\ProductImage.cs",
+              "RelativeToolTip": "L\u00F6wen.Domain\\Entities\\ProductImage.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-01T15:13:40.378Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ProductCategory.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Api\\L\u00F6wen.Domain\\Entities\\ProductCategory.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Domain\\Entities\\ProductCategory.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Api\\L\u00F6wen.Domain\\Entities\\ProductCategory.cs",
+              "RelativeToolTip": "L\u00F6wen.Domain\\Entities\\ProductCategory.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-01T15:13:38.11Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Product.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Api\\L\u00F6wen.Domain\\Entities\\Product.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Domain\\Entities\\Product.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Api\\L\u00F6wen.Domain\\Entities\\Product.cs",
+              "RelativeToolTip": "L\u00F6wen.Domain\\Entities\\Product.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-01T15:13:33.092Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "OrderItem.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Api\\L\u00F6wen.Domain\\Entities\\OrderItem.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Domain\\Entities\\OrderItem.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Api\\L\u00F6wen.Domain\\Entities\\OrderItem.cs",
+              "RelativeToolTip": "L\u00F6wen.Domain\\Entities\\OrderItem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-01T15:13:30.837Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Image.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Api\\L\u00F6wen.Domain\\Entities\\Image.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Domain\\Entities\\Image.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Api\\L\u00F6wen.Domain\\Entities\\Image.cs",
+              "RelativeToolTip": "L\u00F6wen.Domain\\Entities\\Image.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-01T15:13:25.353Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "CartItem.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Api\\L\u00F6wen.Domain\\Entities\\CartItem.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Domain\\Entities\\CartItem.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Api\\L\u00F6wen.Domain\\Entities\\CartItem.cs*",
+              "RelativeToolTip": "L\u00F6wen.Domain\\Entities\\CartItem.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-01T15:13:10.979Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UserPaymentMethod.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Api\\L\u00F6wen.Domain\\Entities\\UserPaymentMethod.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Domain\\Entities\\UserPaymentMethod.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Api\\L\u00F6wen.Domain\\Entities\\UserPaymentMethod.cs",
+              "RelativeToolTip": "L\u00F6wen.Domain\\Entities\\UserPaymentMethod.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-01T15:10:40.508Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ProductReview.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Api\\L\u00F6wen.Domain\\Entities\\ProductReview.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Domain\\Entities\\ProductReview.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Api\\L\u00F6wen.Domain\\Entities\\ProductReview.cs",
+              "RelativeToolTip": "L\u00F6wen.Domain\\Entities\\ProductReview.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-01T15:10:33.858Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Order.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Api\\L\u00F6wen.Domain\\Entities\\Order.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Domain\\Entities\\Order.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Api\\L\u00F6wen.Domain\\Entities\\Order.cs",
+              "RelativeToolTip": "L\u00F6wen.Domain\\Entities\\Order.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-01T15:10:28.788Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Notification.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Api\\L\u00F6wen.Domain\\Entities\\Notification.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Domain\\Entities\\Notification.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Api\\L\u00F6wen.Domain\\Entities\\Notification.cs",
+              "RelativeToolTip": "L\u00F6wen.Domain\\Entities\\Notification.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-01T15:10:22.924Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "CustomerAddress.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Api\\L\u00F6wen.Domain\\Entities\\CustomerAddress.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Domain\\Entities\\CustomerAddress.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Api\\L\u00F6wen.Domain\\Entities\\CustomerAddress.cs",
+              "RelativeToolTip": "L\u00F6wen.Domain\\Entities\\CustomerAddress.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-01T15:10:17.689Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Cart.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Api\\L\u00F6wen.Domain\\Entities\\Cart.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Domain\\Entities\\Cart.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Api\\L\u00F6wen.Domain\\Entities\\Cart.cs",
+              "RelativeToolTip": "L\u00F6wen.Domain\\Entities\\Cart.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-01T15:10:12.502Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Wishlist.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Api\\L\u00F6wen.Domain\\Entities\\Wishlist.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Domain\\Entities\\Wishlist.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Api\\L\u00F6wen.Domain\\Entities\\Wishlist.cs",
+              "RelativeToolTip": "L\u00F6wen.Domain\\Entities\\Wishlist.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-01T15:09:20.896Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "AppUser.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Api\\L\u00F6wen.Infrastructure\\EFCore\\IdentityUser\\AppUser.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Infrastructure\\EFCore\\IdentityUser\\AppUser.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Api\\L\u00F6wen.Infrastructure\\EFCore\\IdentityUser\\AppUser.cs",
+              "RelativeToolTip": "L\u00F6wen.Infrastructure\\EFCore\\IdentityUser\\AppUser.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAABcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-01T15:02:16.874Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Api\\L\u00F6wen.Infrastructure\\EFCore\\Context\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Infrastructure\\EFCore\\Context\\AppDbContext.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Api\\L\u00F6wen.Infrastructure\\EFCore\\Context\\AppDbContext.cs",
+              "RelativeToolTip": "L\u00F6wen.Infrastructure\\EFCore\\Context\\AppDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-01T15:01:46.361Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "L\u00F6wen.Infrastructure",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Api\\L\u00F6wen.Infrastructure\\L\u00F6wen.Infrastructure.csproj",
+              "RelativeDocumentMoniker": "L\u00F6wen.Infrastructure\\L\u00F6wen.Infrastructure.csproj",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Api\\L\u00F6wen.Infrastructure\\L\u00F6wen.Infrastructure.csproj",
+              "RelativeToolTip": "L\u00F6wen.Infrastructure\\L\u00F6wen.Infrastructure.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-09-01T14:52:12.437Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "L\u00F6wen.Application",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Api\\L\u00F6wen.Application\\L\u00F6wen.Application.csproj",
+              "RelativeDocumentMoniker": "L\u00F6wen.Application\\L\u00F6wen.Application.csproj",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Api\\L\u00F6wen.Application\\L\u00F6wen.Application.csproj",
+              "RelativeToolTip": "L\u00F6wen.Application\\L\u00F6wen.Application.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-09-01T14:50:14.451Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "L\u00F6wen.Presentation.Api.csproj",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Api\\L\u00F6wen.Api\\L\u00F6wen.Presentation.Api.csproj",
+              "RelativeDocumentMoniker": "L\u00F6wen.Api\\L\u00F6wen.Presentation.Api.csproj",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Api\\L\u00F6wen.Api\\L\u00F6wen.Presentation.Api.csproj",
+              "RelativeToolTip": "L\u00F6wen.Api\\L\u00F6wen.Presentation.Api.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-09-01T14:47:45.156Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e506b91c-c606-466a-90a9-123d1d1e12b3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{e8b06f52-6d01-11d2-aa7d-00c04f990343}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Api\\L\u00F6wen.Api\\Program.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Api\\Program.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Api\\L\u00F6wen.Api\\Program.cs",
+              "RelativeToolTip": "L\u00F6wen.Api\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-01T14:42:58.843Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Api\\L\u00F6wen.Api\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "L\u00F6wen.Api\\Properties\\launchSettings.json",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Api\\L\u00F6wen.Api\\Properties\\launchSettings.json",
+              "RelativeToolTip": "L\u00F6wen.Api\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-09-01T14:39:22.891Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
