@@ -14,11 +14,16 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.14.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Löwen.Application\Löwen.Application.csproj" />
     <ProjectReference Include="..\Löwen.Domain\Löwen.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="EFCore\Repositories\" />
   </ItemGroup>
 
 </Project>

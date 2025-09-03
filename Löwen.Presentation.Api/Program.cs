@@ -1,5 +1,20 @@
+using FluentValidation;
+using Löwen.Application.Abstractions.IServices.IdentityServices;
+using Löwen.Application.Behaviors;
+using Löwen.Domain.Abstractions.IServices;
+using Löwen.Domain.JWT;
+using Löwen.Domain.StaticFilesHelpersClasses;
 using Löwen.Infrastructure.EFCore.Context;
+using Löwen.Infrastructure.EFCore.IdentityUser;
+using Löwen.Infrastructure.Services.EmailServices;
+using Löwen.Infrastructure.Services.IdentityServices;
+using Löwen.Presentation.API.Services;
+using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,10 +23,68 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+builder.Services.AddIdentity<AppUser, IdentityRole<Guid>>(options =>
+{
+    options.SignIn.RequireConfirmedEmail = true;
 
+})
+.AddEntityFrameworkStores<AppDbContext>()
+.AddDefaultTokenProviders();
+
+builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
+{
+    options.TokenLifespan = TimeSpan.FromHours(1);
+});
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddMediatR(cfg =>
+      cfg.RegisterServicesFromAssembly(typeof(IAppUserService).Assembly));
+
+// FluentValidation
+builder.Services.AddValidatorsFromAssembly(typeof(IAppUserService).Assembly);
+
+// Pipeline Behavior
+builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehavior<,>));
+
+
+
+
+// services.AddScoped(typeof(IBasRepository<,>) , typeof(BasRepository<,>));
+builder.Services.AddScoped<IAppUserService, AppUserService>();
+builder.Services.AddScoped<IEmailService, EmailService>();
+
+builder.Services.AddHttpContextAccessor();
+builder.Services.Configure<StaticFilesSettings>(
+builder.Configuration.GetSection("StaticFilesSettings"));
+
+builder.Configuration.GetSection("JWT").Get<JWT>();
+builder.Services.AddScoped<IFileService, FileService>();
+
+#region Configer JWT Bearer
+var JWTValues = builder.Configuration.GetSection("JWT").Get<JWT>();
+builder.Services.AddSingleton(JWTValues);
+builder.Services.AddAuthentication(op =>
+{
+    op.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    op.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(ops =>
+{
+    ops.RequireHttpsMetadata = false;
+    ops.SaveToken = false;
+    ops.TokenValidationParameters = new TokenValidationParameters()
+    {
+        ValidateLifetime = true,
+        ValidateIssuer = true,
+        ValidIssuer = JWTValues!.Issuer,
+        ValidateAudience = true,
+        ValidAudience = JWTValues!.Audience,
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JWTValues!.SigningKey))
+    };
+});
+
+#endregion
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

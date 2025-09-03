@@ -15,4 +15,8 @@
     <ProjectReference Include="..\Löwen.Domain\Löwen.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\AuthFeature\Queries\" />
+  </ItemGroup>
+
 </Project>

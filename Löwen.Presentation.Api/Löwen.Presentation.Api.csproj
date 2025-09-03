@@ -4,6 +4,7 @@
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+	<UserSecretsId>64b8937f-4ca0-4671-9d06-8560ef328de1</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,10 +17,6 @@
     </PackageReference>
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="9.0.4" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
   </ItemGroup>
 
   <ItemGroup>
