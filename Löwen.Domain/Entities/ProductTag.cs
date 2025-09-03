@@ -1,9 +1,11 @@
 ﻿namespace Löwen.Domain.Entities;
 
+// ProductTags Table
 public class ProductTag
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     public string? Tag { get; set; }
 
+    // Navigation property
     public ICollection<Product> Products { get; set; } = new List<Product>();
 }

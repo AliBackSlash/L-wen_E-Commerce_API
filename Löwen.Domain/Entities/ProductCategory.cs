@@ -1,12 +1,14 @@
 ﻿namespace Löwen.Domain.Entities;
 
+// ProductCategories Table
 public class ProductCategory
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     public string? Category { get; set; }
-    public string? ForGender { get; set; }
-    public int? AgeFrom { get; set; }
-    public int? AgeTo { get; set; }
+    public char Gender { get; set; }
+    public byte AgeFrom { get; set; }
+    public byte AgeTo { get; set; }
 
+    // Navigation property
     public ICollection<Product> Products { get; set; } = new List<Product>();
 }

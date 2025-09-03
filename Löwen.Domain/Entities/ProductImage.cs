@@ -1,11 +1,12 @@
 ﻿namespace Löwen.Domain.Entities;
 
+// ProductImages Table (Many-to-Many junction table)
 public class ProductImage
 {
-    public int Id { get; set; }
-    public int ProductId { get; set; }
-    public int ImageId { get; set; }
+    public Guid ProductId { get; set; }
+    public Guid ImageId { get; set; }
 
-    public Product Product { get; set; } = null!;
-    public Image Image { get; set; } = null!;
+    // Navigation properties
+    public Product? Product { get; set; }
+    public Image? Image { get; set; }
 }

@@ -1,12 +1,17 @@
-﻿namespace Löwen.Domain.Entities;
+﻿using Löwen.Domain.Enums;
 
+namespace Löwen.Domain.Entities;
+
+// AdminLogs Table
 public class AdminLog
 {
-    public int Id { get; set; }
-    public int AdminId { get; set; }
-    public int ProductId { get; set; }
-    public string? Action { get; set; }
+    public Guid Id { get; set; }
+    public Guid AdminId { get; set; }
+    public Guid ProductId { get; set; }
+    public ActionType ActionType { get; set; }
     public DateTime CreatedAt { get; set; }
 
-    public Product Product { get; set; } = null!;
+    // Navigation properties
+    public Product? Product { get; set; }
 }
+
