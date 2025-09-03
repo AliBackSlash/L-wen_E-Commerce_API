@@ -1,0 +1,286 @@
+﻿using Löwen.Application.Abstractions.IServices.IdentityServices;
+using Löwen.Domain.JWT;
+using Löwen.Domain.ErrorHandleClasses;
+using Löwen.Domain.Layer_Dtos.AppUser.request;
+using Löwen.Domain.Layer_Dtos.AppUser.response;
+using Löwen.Domain.Enums;
+using Löwen.Infrastructure.EFCore.IdentityUser;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Text;
+using Microsoft.AspNetCore.WebUtilities;
+namespace Löwen.Infrastructure.Services.IdentityServices;
+public class AppUserService(UserManager<AppUser> _userManager, JWT _jwt) : IAppUserService
+{
+
+    public async Task<Result<RegisterResponseDto>> RegisterAsync(RegisterUserDto reg_info, CancellationToken cancellationToken)
+    {
+       
+        AppUser user = new()
+        {
+            UserName = reg_info.UserName,
+            Email = reg_info.Email
+        };
+
+        var createResult = await _userManager.CreateAsync(user, reg_info.Password);
+        if (!createResult.Succeeded)
+            return Result.Failure<RegisterResponseDto>(new Error("Create Errors", string.Join(", ", createResult.Errors.Select(e => e.Description)), ErrorType.Create));
+
+        var Token = await _CreateJWTToken(user);
+
+        return Result.Success(new RegisterResponseDto(user.Id, await _CreateJWTToken(user)));
+    }
+    private async Task<string> _CreateJWTToken(AppUser appUser)
+    {
+        var userClaims = await _userManager.GetClaimsAsync(appUser);
+        var roles = await _userManager.GetRolesAsync(appUser);
+        var roleClaims = roles.Select(r => new Claim("roles", r)).ToList();
+
+        var claims = new List<Claim>
+    {
+        new Claim(JwtRegisteredClaimNames.Sub, appUser.UserName ?? ""),
+        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+        new Claim(JwtRegisteredClaimNames.Email, appUser.Email ?? ""),
+        new Claim(JwtRegisteredClaimNames.UniqueName, appUser.UserName ?? ""),
+        new Claim(JwtRegisteredClaimNames.NameId, appUser.Id.ToString()),
+    };
+
+        claims.AddRange(userClaims);
+        claims.AddRange(roleClaims);
+
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwt.SigningKey));
+        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+        var token = new JwtSecurityToken(
+            issuer: _jwt.Issuer,
+            audience: _jwt.Audience,
+            claims: claims,
+            expires: DateTime.UtcNow.AddMinutes(_jwt.Duration),
+            signingCredentials: creds
+        );
+
+        return new JwtSecurityTokenHandler().WriteToken(token);
+    }
+    private Task<(string? Email, string? UserName, List<string> Roles, DateTime Expiration)> _GetInfoFromToken(string token)
+    {
+        var handler = new JwtSecurityTokenHandler();
+        var jwtToken = handler.ReadJwtToken(token);
+
+        var userName = jwtToken.Claims
+            .FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.UniqueName)?.Value;
+
+        var email = jwtToken.Claims
+            .FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Email)?.Value;
+
+        var roles = jwtToken.Claims
+            .Where(c => c.Type == "roles")
+            .Select(c => c.Value)
+            .ToList();
+
+        var expiration = jwtToken.ValidTo;
+
+        return Task.FromResult((email, userName, roles, expiration));
+    }
+    public Result<string> GetUserIdFromToken(string token)
+    {
+        try
+        {
+            var handler = new JwtSecurityTokenHandler();
+            var jwtToken = handler.ReadJwtToken(token);
+            var userId = jwtToken.Claims
+            .FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.NameId)?.Value;
+
+            if (userId == null)
+                return Result.Failure<string>(new Error("Invalid Token", $"Can't take user id from token",ErrorType.Validation));
+
+            return Result.Success(userId);
+        }
+        catch (Exception ex)
+        {
+
+            return Result.Failure<string>(new Error("Invalid Token", $"Message: {ex}", ErrorType.Validation));
+        }
+    }
+    public async Task<Result<LoginResponseDto>> LoginAsync(LoginDto dto, CancellationToken cancellationToken)
+    {
+        var user = await _userManager.FindByEmailAsync(dto.UserNameOrEmail)
+                   ?? await _userManager.FindByNameAsync(dto.UserNameOrEmail);
+
+        if (user is null)
+            return Result.Failure<LoginResponseDto>(
+             new Error("User.InvalidCredentials", "Invalid username or password", ErrorType.Unauthorized));            
+
+        if (!await _userManager.IsEmailConfirmedAsync(user))
+            return Result.Failure<LoginResponseDto>(
+                new Error("User.EmailNotConfirmed", "You must confirm your email before logging in", ErrorType.Unauthorized));
+
+        if (await _userManager.CheckPasswordAsync(user, dto.Password!))
+        {
+            string token = await _CreateJWTToken(user);
+            var tokenInfo = await _GetInfoFromToken(token);
+            return Result.Success(new LoginResponseDto(token, tokenInfo.Email!, tokenInfo.UserName!, tokenInfo.Roles, tokenInfo.Expiration));
+        }
+
+        return Result.Failure<LoginResponseDto>(
+            new Error("User.InvalidCredentials", "Invalid username or password", ErrorType.Unauthorized));
+    }
+    public async Task<Result<string>> ConfirmEmailAsync(string userId,string token)
+    {
+
+        var user = await _userManager.FindByIdAsync(userId);
+        if (user is null)
+           return Result.Failure<string>(Error.NotFound("Not Found", $"User with id {userId} not found"));
+      
+        try
+        {
+            var ConfirmResult = await _userManager.ConfirmEmailAsync(user, Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(token)));
+
+            if (!ConfirmResult.Succeeded)
+                return Result.Failure<string>(new Error("Confirm Email Errors", string.Join(", ", ConfirmResult.Errors.Select(e => e.Description)), ErrorType.Create));
+
+            return Result.Success(await _CreateJWTToken(user));
+        }
+        catch (Exception)
+        {
+            return Result.Failure<string>(new Error("Invalid Token", "The input is not a valid Base-64 string as it contains a non-base 64 character", ErrorType.Validation));
+        }
+
+    }
+    public async Task<Result<string>> GenerateEmailConfirmationTokenAsync(string email)
+    {
+        AppUser? user = await _userManager.FindByEmailAsync(email);
+        if (user == null)
+            return Result.Failure<string>(new Error("(Generate Email Confirmation) User Not Found", "", ErrorType.NotFound));
+
+        var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+        var encodedToken = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(token));
+
+
+        if (string.IsNullOrEmpty(encodedToken))
+              return Result.Failure<string>(new Error("(Generate Email Confirmation) Error", "", ErrorType.NotFound));
+
+        return Result.Success($"https://localhost:7145/confirm-email?userId={user.Id}&token={encodedToken}");
+    }
+    public async Task<Result<bool>> IsEmailNotTakenAsync(string email)
+    {
+        if (await _userManager.FindByEmailAsync(email) is not null)
+            return Result.Failure<bool>(new Error("Validation error", "Invalid UserName Or Email", ErrorType.Validation));
+        return Result.Success(true);
+    }
+    public async Task<Result<bool>> IsUserNameNotTakenAsync(string userName)
+    {
+        if (await _userManager.FindByNameAsync(userName) is not null)
+            return Result.Failure<bool>(new Error("Validation error", "Invalid UserName Or Email", ErrorType.Validation));
+
+        return Result.Success(true);
+    }
+    public async Task<Result> AddUserToRoleAsync(Guid userId, UserRole role)
+    {
+        AppUser? user = await _userManager.FindByIdAsync(userId.ToString());
+        if (user == null)
+            return Result.Failure(new Error("(Add Role) User Not Found", "", ErrorType.NotFound));
+
+        var roleResult = await _userManager.AddToRoleAsync(user, role.ToString());
+        if (!roleResult.Succeeded)
+        {
+            await _userManager.DeleteAsync(user);
+            return Result.Failure<RegisterResponseDto>(new Error("Role Errors", string.Join(", ", roleResult.Errors.Select(e => e.Description)), ErrorType.Conflict));
+        }
+
+        return Result.Success();
+
+    }
+    public async Task<Result<bool>> DeleteUserAsync(Guid userId)
+    {
+        AppUser? user = await _userManager.FindByIdAsync(userId.ToString());
+        if (user == null)
+            return Result.Failure<bool>(new Error("(Delete User) User Not Found", "", ErrorType.NotFound));
+        var deleteResult = await _userManager.DeleteAsync(user);
+        if(deleteResult.Succeeded)
+            return Result.Success(true);
+
+        return Result.Failure<bool>(new Error("(Delete User) Errors", string.Join(", ", deleteResult.Errors.Select(e => e.Description)), ErrorType.Delete));
+    }
+    public async Task<Result<string>> ResetPasswordAsync(string Email,string token, string Password)
+    {
+        var user = await  _userManager.FindByEmailAsync(Email);
+        if (user is null)
+            return Result.Failure<string>(Error.NotFound("Not Found", $"User with email {Email} not found"));
+
+        try
+        {
+            var ChangeResult = await _userManager.ResetPasswordAsync(user, Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(token)), Password);
+
+            if (!ChangeResult.Succeeded)
+                return Result.Failure<string>(new Error("Reset password Errors", string.Join(", ", ChangeResult.Errors.Select(e => e.Description)), ErrorType.Create));
+
+            return Result.Success(await _CreateJWTToken(user));
+        }
+        catch (Exception  ex)
+        {
+            return Result.Failure<string>(new Error("Reset password Error", ex.Message, ErrorType.Validation));
+        }
+
+    }
+    public async Task<Result<string>> GenerateRestPasswordTokenAsync(string email)
+    {
+        AppUser? user = await _userManager.FindByEmailAsync(email);
+        if (user == null)
+            return Result.Failure<string>(new Error("(Generate Rest Password) User Not Found", "", ErrorType.NotFound));
+
+        var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+        var encodedToken = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(token));
+
+
+        if (string.IsNullOrEmpty(encodedToken))
+            return Result.Failure<string>(new Error("(Generate Email Confirmation) Error", "", ErrorType.NotFound));
+
+        return Result.Success($"https://localhost:7145/confirm-email?userId={user.Id}&token={encodedToken}");
+    }
+    public async Task<Result<string>> ChangePasswordAsync(string Id,string CurrentPassword, string Password)
+    {
+        var user = await _userManager.FindByIdAsync(Id);
+        if (user is null)
+            return Result.Failure<string>(Error.NotFound("Not Found", $"User with Id {Id} not found"));
+
+        try
+        {
+            var ChangeResult = await _userManager.ChangePasswordAsync(user, CurrentPassword, Password);
+
+            if (!ChangeResult.Succeeded)
+                return Result.Failure<string>(new Error("Change password Errors", string.Join(", ", ChangeResult.Errors.Select(e => e.Description)), ErrorType.Create));
+
+            return Result.Success(await _CreateJWTToken(user));
+        }
+        catch (Exception ex)
+        {
+            return Result.Failure<string>(new Error("Change password Error", ex.Message, ErrorType.Validation));
+        }
+    }
+    public async Task<Result> UpdateProfileImageAsync(string userId, string path, string rootPath)
+    {
+        //AppUser? user = await _userManager.FindByIdAsync(userId);
+        //if (user is null)
+        //    return Result.Failure(Error.NotFound("Not Found", $"User with id {userId} not found"));
+
+        //var deleteResult = PicturesChecker.RemoveOldPictureIfExists(Path.Combine(rootPath, user.profilePictureURL ?? "no path"));
+        //if (deleteResult.IsFailure)
+        //    return Result.Failure(deleteResult.Errors);
+
+        //user.profilePictureURL = path;
+
+        //await _userManager.UpdateAsync(user);
+        //var updateResult = await _userManager.UpdateAsync(user);
+        //if (!updateResult.Succeeded)
+        //    return Result.Failure<UpdateUserInfoResponseDto>(new Error("Update Errors", string.Join(", ", updateResult.Errors.Select(e => e.Description)), ErrorType.Create));
+
+        //return Result.Success();
+
+        throw new NotImplementedException();
+    }
+
+   
+}
+
