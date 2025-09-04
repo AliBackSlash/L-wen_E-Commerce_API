@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Löwen.Infrastructure", "L�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Löwen.Presentation.Api", "Löwen.Presentation.Api\Löwen.Presentation.Api.csproj", "{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{56DD4CD2-E1BA-4A65-A1CA-A69B6C13E058}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +40,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FA32805B-36E1-47A5-8F38-B91F6370EC61} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{04D4BF63-94E9-431C-810D-1956178F51B4} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{862DA835-FE60-4657-B32E-EA3A6E9D18F3} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E474DF89-3419-4C28-A176-1E34A7B12D08}

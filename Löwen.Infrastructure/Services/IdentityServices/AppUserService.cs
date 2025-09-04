@@ -1,18 +1,21 @@
 ﻿using Löwen.Application.Abstractions.IServices.IdentityServices;
-using Löwen.Domain.JWT;
+using Löwen.Domain.ConfigurationClasses.ApiSettings;
+using Löwen.Domain.ConfigurationClasses.JWT;
+using Löwen.Domain.ConfigurationClasses.StaticFilesHelpersClasses;
+using Löwen.Domain.Enums;
 using Löwen.Domain.ErrorHandleClasses;
 using Löwen.Domain.Layer_Dtos.AppUser.request;
 using Löwen.Domain.Layer_Dtos.AppUser.response;
-using Löwen.Domain.Enums;
 using Löwen.Infrastructure.EFCore.IdentityUser;
 using Microsoft.AspNetCore.Identity;
-using System.Security.Claims;
+using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Text;
-using Microsoft.AspNetCore.WebUtilities;
 namespace Löwen.Infrastructure.Services.IdentityServices;
-public class AppUserService(UserManager<AppUser> _userManager, JWT _jwt) : IAppUserService
+public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jwt, IOptions<ApiSettings> apiSettings) : IAppUserService
 {
 
     public async Task<Result<RegisterResponseDto>> RegisterAsync(RegisterUserDto reg_info, CancellationToken cancellationToken)
@@ -50,14 +53,14 @@ public class AppUserService(UserManager<AppUser> _userManager, JWT _jwt) : IAppU
         claims.AddRange(userClaims);
         claims.AddRange(roleClaims);
 
-        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwt.SigningKey));
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwt.Value.SigningKey));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
         var token = new JwtSecurityToken(
-            issuer: _jwt.Issuer,
-            audience: _jwt.Audience,
+            issuer: _jwt.Value.Issuer,
+            audience: _jwt.Value.Audience,
             claims: claims,
-            expires: DateTime.UtcNow.AddMinutes(_jwt.Duration),
+            expires: DateTime.UtcNow.AddMinutes(_jwt.Value.Duration),
             signingCredentials: creds
         );
 
@@ -161,7 +164,7 @@ public class AppUserService(UserManager<AppUser> _userManager, JWT _jwt) : IAppU
         if (string.IsNullOrEmpty(encodedToken))
               return Result.Failure<string>(new Error("(Generate Email Confirmation) Error", "", ErrorType.NotFound));
 
-        return Result.Success($"https://localhost:7145/confirm-email?userId={user.Id}&token={encodedToken}");
+        return Result.Success($"{apiSettings.Value.BaseUrl}/confirm-email?userId={user.Id}&token={encodedToken}");
     }
     public async Task<Result<bool>> IsEmailNotTakenAsync(string email)
     {
@@ -236,8 +239,8 @@ public class AppUserService(UserManager<AppUser> _userManager, JWT _jwt) : IAppU
 
         if (string.IsNullOrEmpty(encodedToken))
             return Result.Failure<string>(new Error("(Generate Email Confirmation) Error", "", ErrorType.NotFound));
-
-        return Result.Success($"https://localhost:7145/confirm-email?userId={user.Id}&token={encodedToken}");
+       
+        return Result.Success($"{apiSettings.Value.BaseUrl}/confirm-email?userId={user.Id}&token={encodedToken}");
     }
     public async Task<Result<string>> ChangePasswordAsync(string Id,string CurrentPassword, string Password)
     {
@@ -261,26 +264,56 @@ public class AppUserService(UserManager<AppUser> _userManager, JWT _jwt) : IAppU
     }
     public async Task<Result> UpdateProfileImageAsync(string userId, string path, string rootPath)
     {
-        //AppUser? user = await _userManager.FindByIdAsync(userId);
-        //if (user is null)
-        //    return Result.Failure(Error.NotFound("Not Found", $"User with id {userId} not found"));
+        AppUser? user = await _userManager.FindByIdAsync(userId);
+        if (user is null)
+            return Result.Failure(Error.NotFound("Not Found", $"User with id {userId} not found"));
 
-        //var deleteResult = PicturesChecker.RemoveOldPictureIfExists(Path.Combine(rootPath, user.profilePictureURL ?? "no path"));
-        //if (deleteResult.IsFailure)
-        //    return Result.Failure(deleteResult.Errors);
+        var deleteResult = PicturesChecker.RemoveOldPictureIfExists(Path.Combine(rootPath, user.ImagePath ?? "no path"));
+        if (deleteResult.IsFailure)
+            return Result.Failure(deleteResult.Errors);
 
-        //user.profilePictureURL = path;
+        user.ImagePath = path;
 
-        //await _userManager.UpdateAsync(user);
-        //var updateResult = await _userManager.UpdateAsync(user);
-        //if (!updateResult.Succeeded)
-        //    return Result.Failure<UpdateUserInfoResponseDto>(new Error("Update Errors", string.Join(", ", updateResult.Errors.Select(e => e.Description)), ErrorType.Create));
+        await _userManager.UpdateAsync(user);
+        var updateResult = await _userManager.UpdateAsync(user);
+        if (!updateResult.Succeeded)
+            return Result.Failure<UpdateUserInfoResponseDto>(new Error("Update Errors", string.Join(", ", updateResult.Errors.Select(e => e.Description)), ErrorType.Create));
 
-        //return Result.Success();
+        return Result.Success();
 
         throw new NotImplementedException();
     }
+    public async Task<Result<UpdateUserInfoResponseDto>> UpdateUserInfo(UpdateUserInfoDto dto)
+    {
+        AppUser? user = await _userManager.FindByIdAsync(dto.id);
+        if (user is null)
+            return Result.Failure<UpdateUserInfoResponseDto>(Error.NotFound("Not Found", $"User with id {dto.id} not found"));
 
-   
+        user.FName = dto.FName ?? user.FName;
+        user.MName = dto.MName ?? user.MName;
+        user.LName = dto.LName ?? user.LName;
+        user.PhoneNumber = dto.phoneNumber ?? user.PhoneNumber;
+        var updateResult = await _userManager.UpdateAsync(user);
+        if (!updateResult.Succeeded)
+            return Result.Failure<UpdateUserInfoResponseDto>(new Error("Update.Errors", string.Join(", ", updateResult.Errors.Select(e => e.Description)), ErrorType.Create));
+
+        return Result.Success(new UpdateUserInfoResponseDto(await _CreateJWTToken(user)));
+
+    }
+    public async Task<Result<GetUserByIdResponseDto>> GetUserById(string id)
+    {
+        var user = await _userManager.FindByIdAsync(id);
+        if (user == null)
+            return Result.Failure<GetUserByIdResponseDto>(new Error("(Add Role) User Not Found", "", ErrorType.NotFound));
+
+        return Result.Success(new GetUserByIdResponseDto
+        {
+            FName = user.FName,
+            MName = user.MName,
+            LName = user.LName,
+            ImagePath = user.ImagePath,
+            PhoneNumber = user.PhoneNumber
+        });
+    }
 }
 

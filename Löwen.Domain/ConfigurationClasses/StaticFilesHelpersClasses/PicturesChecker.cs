@@ -1,5 +1,5 @@
 ﻿using Löwen.Domain.ErrorHandleClasses;
-namespace Löwen.Domain.StaticFilesHelpersClasses;
+namespace Löwen.Domain.ConfigurationClasses.StaticFilesHelpersClasses;
 
 
 public static class PicturesChecker

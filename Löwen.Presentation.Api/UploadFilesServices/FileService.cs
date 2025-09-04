@@ -1,5 +1,5 @@
-﻿using Löwen.Domain.ErrorHandleClasses;
-using Löwen.Domain.StaticFilesHelpersClasses;
+﻿using Löwen.Domain.ConfigurationClasses.StaticFilesHelpersClasses;
+using Löwen.Domain.ErrorHandleClasses;
 using Löwen.Presentation.API.UploadFilesServices;
 using Microsoft.Extensions.Options;
 using System.Runtime;

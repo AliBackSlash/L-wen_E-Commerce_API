@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Löwen.Presentation.API.Controllers.v1.EmailsController
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/Email")]
     [ApiController]
     public class EmailController(ISender _sender) : ControllerBase
     {

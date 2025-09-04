@@ -1,4 +1,4 @@
-﻿namespace Löwen.Domain.JWT;
+﻿namespace Löwen.Domain.ConfigurationClasses.JWT;
 
 public class JWT
 {

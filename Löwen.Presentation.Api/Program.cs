@@ -2,8 +2,10 @@ using FluentValidation;
 using Löwen.Application.Abstractions.IServices.IdentityServices;
 using Löwen.Application.Behaviors;
 using Löwen.Domain.Abstractions.IServices;
-using Löwen.Domain.JWT;
-using Löwen.Domain.StaticFilesHelpersClasses;
+using Löwen.Domain.ConfigurationClasses.ApiSettings;
+using Löwen.Domain.ConfigurationClasses.JWT;
+using Löwen.Domain.ConfigurationClasses.Pagination;
+using Löwen.Domain.ConfigurationClasses.StaticFilesHelpersClasses;
 using Löwen.Infrastructure.EFCore.Context;
 using Löwen.Infrastructure.EFCore.IdentityUser;
 using Löwen.Infrastructure.Services.EmailServices;
@@ -58,7 +60,12 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.Configure<StaticFilesSettings>(
 builder.Configuration.GetSection("StaticFilesSettings"));
 
-builder.Configuration.GetSection("JWT").Get<JWT>();
+builder.Services.Configure<JWT>(builder.Configuration.GetSection("JWT"));
+
+builder.Services.Configure<ApiSettings>(
+    builder.Configuration.GetSection("ApiSettings"));
+
+builder.Services.Configure<PaginationSettings>(builder.Configuration.GetSection("PaginationSettings"));
 builder.Services.AddScoped<IFileService, FileService>();
 
 #region Configer JWT Bearer

@@ -1,4 +1,4 @@
-﻿namespace Löwen.Domain.StaticFilesHelpersClasses;
+﻿namespace Löwen.Domain.ConfigurationClasses.StaticFilesHelpersClasses;
 
 public class StaticFilesSettings
 {

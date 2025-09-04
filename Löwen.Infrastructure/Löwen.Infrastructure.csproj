@@ -22,8 +22,4 @@
     <ProjectReference Include="..\Löwen.Domain\Löwen.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="EFCore\Repositories\" />
-  </ItemGroup>
-
 </Project>
