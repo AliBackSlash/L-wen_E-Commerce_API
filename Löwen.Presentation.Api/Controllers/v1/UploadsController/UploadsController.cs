@@ -9,8 +9,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Löwen.Presentation.Api.Controllers.v1.UploadsController
 {
-    [Route("api/v1/Uploads")]
     [ApiController]
+    [ApiVersion("1.0")]
+    [Route("api/Uploads")]
     public class UploadsController(ISender _sender, IFileService fileService) : ControllerBase
     {
  

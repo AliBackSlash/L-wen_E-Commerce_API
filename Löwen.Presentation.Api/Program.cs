@@ -14,6 +14,8 @@ using Löwen.Presentation.API.Services;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -92,6 +94,17 @@ builder.Services.AddAuthentication(op =>
 });
 
 #endregion
+
+#region API versioning
+builder.Services.AddApiVersioning(option =>
+{
+    option.DefaultApiVersion = new ApiVersion(1, 0);
+    option.AssumeDefaultVersionWhenUnspecified = true;
+    option.ReportApiVersions = true;
+    option.ApiVersionReader = new MediaTypeApiVersionReader("v");
+});
+#endregion
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -1,5 +1,4 @@
-﻿using Löwen.Application.Features.AuthFeature.Commands.ConfirmEmailCommand;
-using Löwen.Application.Features.UserFeature.Commands.ChangePasswordCommand;
+﻿using Löwen.Application.Features.UserFeature.Commands.ChangePasswordCommand;
 using Löwen.Application.Features.UserFeature.Commands.UpdateUserInfoCommand;
 using Löwen.Application.Features.UserFeature.Queries;
 using Löwen.Domain.ErrorHandleClasses;
@@ -10,7 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Löwen.Presentation.Api.Controllers.v1.UsersController;
 [ApiController]
-[Route("api/v1/Users")]
+[ApiVersion("1.0")]
+[Route("api/Users")]
 public class UsersController(ISender _sender) : ControllerBase
 {
     [HttpGet("/{token}")]

@@ -8,12 +8,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Löwen.Presentation.API.Controllers.v1.EmailsController
 {
-    [Route("api/v1/Email")]
     [ApiController]
+    [ApiVersion("1.0")]
+    [Route("api/Email")]
     public class EmailController(ISender _sender) : ControllerBase
     {
         [HttpPost("send-confirmation-email-token")]
-        [ProducesResponseType<ConfirmEmailResponse>(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> ConfirmEmailAsync(string email)
@@ -24,7 +25,7 @@ namespace Löwen.Presentation.API.Controllers.v1.EmailsController
         }
 
         [HttpPost("send-Rest-Password-email-token")]
-        [ProducesResponseType<ConfirmEmailResponse>(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> RestPasswordemailAsync(string email)

@@ -15,7 +15,7 @@ using System.Net;
 
 namespace Löwen.Presentation.API.Controllers.v1.AuthController
 {
-    [Route("api/v1/Auth")]
+    [Route("api/Auth")]
     [ApiController]
     [AllowAnonymous]
     public class AuthController(ISender _sender ) : ControllerBase
