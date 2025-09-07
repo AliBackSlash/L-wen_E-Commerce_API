@@ -1,0 +1,212 @@
+﻿RootAdmin
+
+	AddAdmin
+
+	AssignRole (for existing user or admin)
+
+	RemoveAdmin
+
+	GetAdminByIdOrEmail
+
+	GetAllAdminsPaginationPaged
+
+Admin
+
+	AddProduct
+
+	UpdateProduct
+
+	RemoveProduct
+
+	GetUserById
+
+	GetUserByEmail
+
+	GetUsersPaged
+
+	SuspendUser (Deactivate / Activate User)
+
+	ManageCategories (Add / Update / Remove Category)
+
+	ManageTags (Add / Update / Remove Tag)
+
+User
+
+	UpdateUserInfo
+
+	UpdateUserImage
+
+	ChangePassword
+
+	VerifyOwnEmail
+
+	VerifyPhoneNumber
+
+	AddProductToWishlist
+
+	RemoveProductFromWishlist
+
+	AddLoveForProduct
+
+	RemoveLoveFromProduct
+
+	AddReviewForProduct
+
+	UpdateReviewForProduct
+
+	RemoveReviewFromProduct
+
+	GetMyOrders
+
+	GetMyWishlist
+
+	GetMyReviews
+
+Products
+
+	GetProductsByNamePaged
+
+	GetProductsByTypePaged
+
+	GetProductsByAgePaged
+
+	GetProductsByKindPaged
+
+	GetAllProductsPaged
+
+	GetProductById
+
+	GetProductByIdWithReviews
+
+	GetProductsByCategory
+
+	GetProductsByTag
+
+	GetTopRatedProducts
+
+	GetMostLovedProducts
+
+Cart
+
+	AddToCart
+
+	RemoveFromCart
+
+	UpdateCartItemQuantity
+
+	GetCartByUser
+
+Order
+
+	AddOrder
+
+	CancelOrder
+
+	GetOrderById
+
+	GetOrdersByUser
+
+	GetOrdersPaged (Admin/RootAdmin)
+
+Email
+
+	SendVerificationEmailForUser
+
+	SendResetPasswordForUser
+
+	SendVerificationOrder
+
+	SendCancelOrder
+
+Upload
+
+	UploadProfileImage
+
+	UploadProductImages
+
+	UploadCategoryImage
+
+Auth
+
+	Register
+
+	Login
+
+	ConfirmEmail
+
+	ResetPassword
+
+	RefreshToken
+
+	/*Logout*/
+
+Notifications
+
+	CreateNotification (System/Admin)
+
+	GetNotificationById
+
+	GetNotificationsByUser (Paged)
+
+	MarkNotificationAsRead
+
+	DeleteNotification
+
+UserPreferences
+
+	UpdateUserPreferences
+
+	GetUserPreferences
+
+Delivery
+
+	GetAssignedOrders
+
+	GetOrderById
+
+	UpdateOrderStatus
+
+
+Payment
+
+	AddPayment
+
+	GetPaymentById
+
+	GetPaymentsByOrder
+
+	UpdatePaymentStatus
+
+Coupon
+
+	AddCoupon
+
+	UpdateCoupon
+
+	RemoveCoupon
+
+	GetCouponById
+
+	GetCouponByCode
+
+	GetAllCouponsPaged
+
+	ApplyCouponToOrder
+
+	RemoveCouponFromOrder
+
+Discount
+
+	AddDiscount
+
+	UpdateDiscount
+
+	RemoveDiscount
+
+	GetDiscountById
+
+	GetAllDiscountsPaged
+
+	AssignDiscountToProduct
+
+	RemoveDiscountFromProduct

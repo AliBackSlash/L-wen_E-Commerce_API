@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Löwen.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class initailMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -53,6 +53,41 @@ namespace Löwen.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Coupon",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "gen_random_uuid()"),
+                    Code = table.Column<string>(type: "varchar", maxLength: 50, nullable: true),
+                    DiscountType = table.Column<short>(type: "smallint", nullable: false),
+                    DiscountValue = table.Column<decimal>(type: "numeric(18,2)", nullable: true),
+                    StartDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    IsActive = table.Column<bool>(type: "boolean", nullable: false, defaultValueSql: "true"),
+                    UsageLimit = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Coupon", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Discount",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "gen_random_uuid()"),
+                    Name = table.Column<string>(type: "varchar", maxLength: 100, nullable: false),
+                    DiscountType = table.Column<short>(type: "smallint", nullable: false),
+                    DiscountValue = table.Column<decimal>(type: "numeric(18,2)", nullable: true),
+                    StartDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    IsActive = table.Column<bool>(type: "boolean", nullable: false, defaultValueSql: "true")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Discount", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -268,6 +303,59 @@ namespace Löwen.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "OrderCoupon",
+                columns: table => new
+                {
+                    OrderId = table.Column<Guid>(type: "uuid", nullable: false),
+                    CouponId = table.Column<Guid>(type: "uuid", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderCoupon", x => new { x.OrderId, x.CouponId });
+                    table.ForeignKey(
+                        name: "FK_OrderCoupon_Coupon_CouponId",
+                        column: x => x.CouponId,
+                        principalTable: "Coupon",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_OrderCoupon_Orders_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "Orders",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Payment",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "gen_random_uuid()"),
+                    OrderId = table.Column<Guid>(type: "uuid", nullable: false),
+                    Amount = table.Column<decimal>(type: "numeric(18,2)", nullable: false),
+                    PaymentMethod = table.Column<short>(type: "smallint", nullable: false),
+                    TransactionId = table.Column<string>(type: "varchar", maxLength: 100, nullable: true),
+                    Status = table.Column<short>(type: "smallint", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "NOW() AT TIME ZONE 'utc'"),
+                    OrderId1 = table.Column<Guid>(type: "uuid", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Payment", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Payment_Orders_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "Orders",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Payment_Orders_OrderId1",
+                        column: x => x.OrderId1,
+                        principalTable: "Orders",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AdminLogs",
                 columns: table => new
                 {
@@ -323,6 +411,24 @@ namespace Löwen.Infrastructure.Migrations
                         name: "FK_OrderItems_Orders_OrderId",
                         column: x => x.OrderId,
                         principalTable: "Orders",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProductDiscount",
+                columns: table => new
+                {
+                    ProductId = table.Column<Guid>(type: "uuid", nullable: false),
+                    DiscountId = table.Column<Guid>(type: "uuid", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductDiscount", x => new { x.ProductId, x.DiscountId });
+                    table.ForeignKey(
+                        name: "FK_ProductDiscount_Discount_DiscountId",
+                        column: x => x.DiscountId,
+                        principalTable: "Discount",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -491,6 +597,12 @@ namespace Löwen.Infrastructure.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Coupon_Code",
+                table: "Coupon",
+                column: "Code",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_CustomerAddresses_UserId",
                 table: "CustomerAddresses",
                 column: "UserId");
@@ -501,6 +613,11 @@ namespace Löwen.Infrastructure.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_OrderCoupon_CouponId",
+                table: "OrderCoupon",
+                column: "CouponId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_OrderItems_ProductId",
                 table: "OrderItems",
                 column: "ProductId");
@@ -509,6 +626,22 @@ namespace Löwen.Infrastructure.Migrations
                 name: "IX_Orders_UserId",
                 table: "Orders",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Payment_OrderId",
+                table: "Payment",
+                column: "OrderId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Payment_OrderId1",
+                table: "Payment",
+                column: "OrderId1");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductDiscount_DiscountId",
+                table: "ProductDiscount",
+                column: "DiscountId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductImages_ImageId",
@@ -564,6 +697,14 @@ namespace Löwen.Infrastructure.Migrations
             migrationBuilder.AddForeignKey(
                 name: "FK_OrderItems_Products_ProductId",
                 table: "OrderItems",
+                column: "ProductId",
+                principalTable: "Products",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Cascade);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_ProductDiscount_Products_ProductId",
+                table: "ProductDiscount",
                 column: "ProductId",
                 principalTable: "Products",
                 principalColumn: "Id",
@@ -629,7 +770,16 @@ namespace Löwen.Infrastructure.Migrations
                 name: "Notifications");
 
             migrationBuilder.DropTable(
+                name: "OrderCoupon");
+
+            migrationBuilder.DropTable(
                 name: "OrderItems");
+
+            migrationBuilder.DropTable(
+                name: "Payment");
+
+            migrationBuilder.DropTable(
+                name: "ProductDiscount");
 
             migrationBuilder.DropTable(
                 name: "ProductImages");
@@ -647,7 +797,13 @@ namespace Löwen.Infrastructure.Migrations
                 name: "Carts");
 
             migrationBuilder.DropTable(
+                name: "Coupon");
+
+            migrationBuilder.DropTable(
                 name: "Orders");
+
+            migrationBuilder.DropTable(
+                name: "Discount");
 
             migrationBuilder.DropTable(
                 name: "Images");

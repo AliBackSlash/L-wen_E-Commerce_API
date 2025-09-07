@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Löwen.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250903204234_Initial")]
-    partial class Initial
+    [Migration("20250907134246_initailMigration")]
+    partial class initailMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -95,6 +95,45 @@ namespace Löwen.Infrastructure.Migrations
                     b.ToTable("CartItems");
                 });
 
+            modelBuilder.Entity("Löwen.Domain.Entities.Coupon", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasDefaultValueSql("gen_random_uuid()");
+
+                    b.Property<string>("Code")
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar");
+
+                    b.Property<short>("DiscountType")
+                        .HasColumnType("smallint");
+
+                    b.Property<decimal?>("DiscountValue")
+                        .HasColumnType("numeric(18, 2)");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValueSql("true");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int?>("UsageLimit")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Code")
+                        .IsUnique();
+
+                    b.ToTable("Coupon");
+                });
+
             modelBuilder.Entity("Löwen.Domain.Entities.CustomerAddress", b =>
                 {
                     b.Property<Guid>("Id")
@@ -117,6 +156,40 @@ namespace Löwen.Infrastructure.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("CustomerAddresses");
+                });
+
+            modelBuilder.Entity("Löwen.Domain.Entities.Discount", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasDefaultValueSql("gen_random_uuid()");
+
+                    b.Property<short>("DiscountType")
+                        .HasColumnType("smallint");
+
+                    b.Property<decimal?>("DiscountValue")
+                        .HasColumnType("numeric(18, 2)");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValueSql("true");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Discount");
                 });
 
             modelBuilder.Entity("Löwen.Domain.Entities.Image", b =>
@@ -188,6 +261,21 @@ namespace Löwen.Infrastructure.Migrations
                     b.ToTable("Orders");
                 });
 
+            modelBuilder.Entity("Löwen.Domain.Entities.OrderCoupon", b =>
+                {
+                    b.Property<Guid>("OrderId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("CouponId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("OrderId", "CouponId");
+
+                    b.HasIndex("CouponId");
+
+                    b.ToTable("OrderCoupon");
+                });
+
             modelBuilder.Entity("Löwen.Domain.Entities.OrderItem", b =>
                 {
                     b.Property<Guid>("OrderId")
@@ -207,6 +295,47 @@ namespace Löwen.Infrastructure.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("OrderItems");
+                });
+
+            modelBuilder.Entity("Löwen.Domain.Entities.Payment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasDefaultValueSql("gen_random_uuid()");
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("numeric(18, 2)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("NOW() AT TIME ZONE 'utc'");
+
+                    b.Property<Guid>("OrderId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("OrderId1")
+                        .HasColumnType("uuid");
+
+                    b.Property<short>("PaymentMethod")
+                        .HasColumnType("smallint");
+
+                    b.Property<short>("Status")
+                        .HasColumnType("smallint");
+
+                    b.Property<string>("TransactionId")
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId")
+                        .IsUnique();
+
+                    b.HasIndex("OrderId1");
+
+                    b.ToTable("Payment");
                 });
 
             modelBuilder.Entity("Löwen.Domain.Entities.Product", b =>
@@ -273,6 +402,21 @@ namespace Löwen.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ProductCategories");
+                });
+
+            modelBuilder.Entity("Löwen.Domain.Entities.ProductDiscount", b =>
+                {
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("DiscountId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("ProductId", "DiscountId");
+
+                    b.HasIndex("DiscountId");
+
+                    b.ToTable("ProductDiscount");
                 });
 
             modelBuilder.Entity("Löwen.Domain.Entities.ProductImage", b =>
@@ -645,6 +789,25 @@ namespace Löwen.Infrastructure.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Löwen.Domain.Entities.OrderCoupon", b =>
+                {
+                    b.HasOne("Löwen.Domain.Entities.Coupon", "Coupon")
+                        .WithMany("OrderCoupons")
+                        .HasForeignKey("CouponId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Löwen.Domain.Entities.Order", "Order")
+                        .WithMany("OrderCoupons")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Coupon");
+
+                    b.Navigation("Order");
+                });
+
             modelBuilder.Entity("Löwen.Domain.Entities.OrderItem", b =>
                 {
                     b.HasOne("Löwen.Domain.Entities.Order", "Order")
@@ -664,6 +827,21 @@ namespace Löwen.Infrastructure.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("Löwen.Domain.Entities.Payment", b =>
+                {
+                    b.HasOne("Löwen.Domain.Entities.Order", "Order")
+                        .WithOne()
+                        .HasForeignKey("Löwen.Domain.Entities.Payment", "OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Löwen.Domain.Entities.Order", null)
+                        .WithMany("Payments")
+                        .HasForeignKey("OrderId1");
+
+                    b.Navigation("Order");
+                });
+
             modelBuilder.Entity("Löwen.Domain.Entities.Product", b =>
                 {
                     b.HasOne("Löwen.Domain.Entities.ProductCategory", "Category")
@@ -681,6 +859,25 @@ namespace Löwen.Infrastructure.Migrations
                     b.Navigation("Category");
 
                     b.Navigation("Tag");
+                });
+
+            modelBuilder.Entity("Löwen.Domain.Entities.ProductDiscount", b =>
+                {
+                    b.HasOne("Löwen.Domain.Entities.Discount", "Discount")
+                        .WithMany("ProductDiscounts")
+                        .HasForeignKey("DiscountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Löwen.Domain.Entities.Product", "Product")
+                        .WithMany("ProductDiscounts")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Discount");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("Löwen.Domain.Entities.ProductImage", b =>
@@ -799,6 +996,16 @@ namespace Löwen.Infrastructure.Migrations
                     b.Navigation("CartItems");
                 });
 
+            modelBuilder.Entity("Löwen.Domain.Entities.Coupon", b =>
+                {
+                    b.Navigation("OrderCoupons");
+                });
+
+            modelBuilder.Entity("Löwen.Domain.Entities.Discount", b =>
+                {
+                    b.Navigation("ProductDiscounts");
+                });
+
             modelBuilder.Entity("Löwen.Domain.Entities.Image", b =>
                 {
                     b.Navigation("ProductImages");
@@ -806,7 +1013,11 @@ namespace Löwen.Infrastructure.Migrations
 
             modelBuilder.Entity("Löwen.Domain.Entities.Order", b =>
                 {
+                    b.Navigation("OrderCoupons");
+
                     b.Navigation("OrderItems");
+
+                    b.Navigation("Payments");
                 });
 
             modelBuilder.Entity("Löwen.Domain.Entities.Product", b =>
@@ -814,6 +1025,8 @@ namespace Löwen.Infrastructure.Migrations
                     b.Navigation("CartItems");
 
                     b.Navigation("OrderItems");
+
+                    b.Navigation("ProductDiscounts");
 
                     b.Navigation("ProductImages");
 
