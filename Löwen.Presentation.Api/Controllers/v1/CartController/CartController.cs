@@ -1,53 +1,44 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Löwen.Presentation.Api.Controllers.v1.OrderController
+namespace Löwen.Presentation.Api.Controllers.v1.CartController
 {
     [ApiController]
     [ApiVersion("1.0")]
     [Route("api/[controller]")]
-    public class OrderController : ControllerBase
+    public class CartController : ControllerBase
     {
-        [HttpPost("add-order")]
+        [HttpPost("add-to-cart")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> AddOrder()
+        public async Task<IActionResult> AddToCart()
         {
             throw new NotImplementedException();
         }
 
-        [HttpPost("cancel-order")]
+        [HttpDelete("remove-from-cart")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> CancelOrder()
+        public async Task<IActionResult> RemoveFromCart()
         {
             throw new NotImplementedException();
         }
 
-        [HttpGet("get-order-by-id")]
+        [HttpPut("update-cart-item-quantity")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetOrderById()
+        public async Task<IActionResult> UpdateCartItemQuantity()
         {
             throw new NotImplementedException();
         }
 
-        [HttpGet("get-orders-by-user")]
+        [HttpGet("get-cart-by-user")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetOrdersByUser()
-        {
-            throw new NotImplementedException();
-        }
-
-        [HttpGet("get-orders-paged")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetOrdersPaged()
+        public async Task<IActionResult> GetCartByUser()
         {
             throw new NotImplementedException();
         }

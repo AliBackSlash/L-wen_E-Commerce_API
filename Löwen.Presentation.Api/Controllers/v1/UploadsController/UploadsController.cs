@@ -35,5 +35,23 @@ namespace Löwen.Presentation.Api.Controllers.v1.UploadsController
             return result.ToActionResult();
 
         }
+        [HttpPost("upload-product-images")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> UploadProductImages()
+        {
+            throw new NotImplementedException();
+        }
+
+        [HttpPost("upload-category-image")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> UploadCategoryImage()
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

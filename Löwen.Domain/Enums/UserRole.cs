@@ -2,5 +2,5 @@
 
 public enum UserRole
 {
-    User = 0,Admin,RootAdmin
+    User = 0, MainAdmin, Admin,RootAdmin, Delivery
 }

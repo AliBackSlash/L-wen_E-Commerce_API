@@ -8,6 +8,8 @@ public class AppUser : IdentityUser<Guid>
     public string? FName { get; set; }
     public string? MName { get; set; }
     public string? LName { get; set; }
+    public char Gender { get; set; }
+    public DateOnly DatefBirth { get; set; }
     public string? ImagePath { get; set; }
     
     public ICollection<CustomerAddress> CustomerAddresses { get; set; } = new List<CustomerAddress>();

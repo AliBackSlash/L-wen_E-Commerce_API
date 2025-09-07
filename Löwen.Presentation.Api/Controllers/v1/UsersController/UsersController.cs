@@ -49,4 +49,132 @@ public class UsersController(ISender _sender) : ControllerBase
 
         return result.ToActionResult();
     }
+
+    [HttpPut("update-user-info")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> UpdateUserInfo()
+    {
+        throw new NotImplementedException();
+    }
+
+    [HttpPut("update-user-image")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> UpdateUserImage()
+    {
+        throw new NotImplementedException();
+    }
+
+
+    [HttpPost("verify-own-email")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> VerifyOwnEmail()
+    {
+        throw new NotImplementedException();
+    }
+
+    [HttpPost("verify-phone-number")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> VerifyPhoneNumber()
+    {
+        throw new NotImplementedException();
+    }
+
+    [HttpPost("add-product-to-wishlist")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> AddProductToWishlist()
+    {
+        throw new NotImplementedException();
+    }
+
+    [HttpDelete("remove-product-from-wishlist")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> RemoveProductFromWishlist()
+    {
+        throw new NotImplementedException();
+    }
+
+    [HttpPost("add-love-for-product")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> AddLoveForProduct()
+    {
+        throw new NotImplementedException();
+    }
+
+    [HttpDelete("remove-love-from-product")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> RemoveLoveFromProduct()
+    {
+        throw new NotImplementedException();
+    }
+
+    [HttpPost("add-review-for-product")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> AddReviewForProduct()
+    {
+        throw new NotImplementedException();
+    }
+
+    [HttpPut("update-review-for-product")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> UpdateReviewForProduct()
+    {
+        throw new NotImplementedException();
+    }
+
+    [HttpDelete("remove-review-from-product")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> RemoveReviewFromProduct()
+    {
+        throw new NotImplementedException();
+    }
+
+    [HttpGet("get-my-orders")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> GetMyOrders()
+    {
+        throw new NotImplementedException();
+    }
+
+    [HttpGet("get-my-wishlist")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> GetMyWishlist()
+    {
+        throw new NotImplementedException();
+    }
+
+    [HttpGet("get-my-reviews")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> GetMyReviews()
+    {
+        throw new NotImplementedException();
+    }
+
 }

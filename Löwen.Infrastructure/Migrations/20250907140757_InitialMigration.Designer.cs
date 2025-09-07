@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Löwen.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250907134246_initailMigration")]
-    partial class initailMigration
+    [Migration("20250907140757_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -519,6 +519,9 @@ namespace Löwen.Infrastructure.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("text");
 
+                    b.Property<DateOnly>("DatefBirth")
+                        .HasColumnType("Date");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)");
@@ -529,6 +532,9 @@ namespace Löwen.Infrastructure.Migrations
                     b.Property<string>("FName")
                         .HasMaxLength(50)
                         .HasColumnType("varchar");
+
+                    b.Property<char>("Gender")
+                        .HasColumnType("Char(1)");
 
                     b.Property<string>("ImagePath")
                         .HasMaxLength(2048)

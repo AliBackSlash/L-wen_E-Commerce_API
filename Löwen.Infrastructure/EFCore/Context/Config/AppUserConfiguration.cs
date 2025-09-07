@@ -13,6 +13,8 @@ public class AppUserConfiguration : IEntityTypeConfiguration<AppUser>
         builder.Property(u => u.FName).HasMaxLength(50).HasColumnType("varchar");
         builder.Property(u => u.MName).HasMaxLength(50).HasColumnType("varchar");
         builder.Property(u => u.LName).HasMaxLength(50).HasColumnType("varchar");
+        builder.Property(u => u.Gender).HasColumnType("Char(1)");
+        builder.Property(u => u.DatefBirth).HasColumnType("Date");
         builder.Property(u => u.ImagePath).HasMaxLength(2048).HasColumnType("varchar");
 
         // Relationships
