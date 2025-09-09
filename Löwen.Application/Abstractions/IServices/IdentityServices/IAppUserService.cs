@@ -16,6 +16,7 @@ public interface IAppUserService
     Task<Result<bool>> IsEmailNotTakenAsync(string email);
     Task<Result<bool>> IsUserNameNotTakenAsync(string userName);
     Task<Result> AddUserToRoleAsync(Guid userId, UserRole role);
+    Task<Result<Guid>> AddAdminAsync(AddAdminDto dto);
     Task<Result<string>> GenerateEmailConfirmationTokenAsync(string email);
     Task<Result<string>> GenerateRestPasswordTokenAsync(string email);
     Task<Result<string>> ResetPasswordAsync(string Email, string token, string Password);

@@ -1,6 +1,17 @@
 @Löwen.Api_HostAddress = http://localhost:5244
 
-GET {{Löwen.Api_HostAddress}}/weatherforecast/
-Accept: application/json
+//RootAdmin Endpoints
+POST https://localhost:7197/api/RootAdmin/add-admin
+Content-Type: application/json
 
-###
+{
+  "email": "ae1378032@gmail.com",
+  "userName": "string",
+  "password": "Alxcvbnxcv1!",
+  "fName": "Ali",
+  "mName": null,
+  "lName": "Elsaied",
+  "DateOfBirth": "2004-09-09",
+  "phoneNumber": "01096897418",
+  "gender": "s"
+}

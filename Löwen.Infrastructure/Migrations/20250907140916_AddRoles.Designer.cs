@@ -519,7 +519,7 @@ namespace Löwen.Infrastructure.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("text");
 
-                    b.Property<DateOnly>("DatefBirth")
+                    b.Property<DateOnly>("DateOfBirth")
                         .HasColumnType("Date");
 
                     b.Property<string>("Email")

@@ -35,7 +35,7 @@ namespace Löwen.Infrastructure.Migrations
                     MName = table.Column<string>(type: "varchar", maxLength: 50, nullable: true),
                     LName = table.Column<string>(type: "varchar", maxLength: 50, nullable: true),
                     Gender = table.Column<char>(type: "Char(1)", nullable: false),
-                    DatefBirth = table.Column<DateOnly>(type: "Date", nullable: false),
+                    DateOfBirth = table.Column<DateOnly>(type: "Date", nullable: false),
                     ImagePath = table.Column<string>(type: "varchar", maxLength: 2048, nullable: true),
                     UserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),

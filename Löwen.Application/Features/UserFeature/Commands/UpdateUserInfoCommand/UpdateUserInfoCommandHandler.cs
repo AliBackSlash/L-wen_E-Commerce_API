@@ -14,7 +14,7 @@ internal class UpdateUserInfoCommandHandler(IAppUserService userService) : IComm
             return Result.Failure<UpdateUserInfoCommandResponse>(id.Errors);
 
         var createResult = await userService.UpdateUserInfo
-            (new(id.Value,command.fName,command.mName,command.lName,command.phoneNumber));
+            (new(id.Value,command.fName,command.mName,command.lName,command.DateOfBirth,command.PhoneNumber, command.Gender));
 
         if (createResult.IsFailure)
             return Result.Failure<UpdateUserInfoCommandResponse>(createResult.Errors);

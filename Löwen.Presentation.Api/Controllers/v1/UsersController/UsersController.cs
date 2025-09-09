@@ -31,7 +31,7 @@ public class UsersController(ISender _sender) : ControllerBase
     public async Task<IActionResult> UpdateUserInfo([FromBody] UpdateUserModel request)
     {
         Result<UpdateUserInfoCommandResponse> result = await _sender.Send(new UpdateUserInfoCommand
-            (request.token, request.FName, request.MName, request.LName, request.phoneNumber));
+            (request.token, request.FName, request.MName, request.LName,request.DateOfBirth, request.PhoneNumber,request.Gender));
 
         return result.ToActionResult();
     }

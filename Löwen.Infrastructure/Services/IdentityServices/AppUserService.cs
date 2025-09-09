@@ -31,8 +31,6 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
         if (!createResult.Succeeded)
             return Result.Failure<RegisterResponseDto>(new Error("Create Errors", string.Join(", ", createResult.Errors.Select(e => e.Description)), ErrorType.Create));
 
-        var Token = await _CreateJWTToken(user);
-
         return Result.Success(new RegisterResponseDto(user.Id, await _CreateJWTToken(user)));
     }
     private async Task<string> _CreateJWTToken(AppUser appUser)
@@ -293,6 +291,9 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
         user.MName = dto.MName ?? user.MName;
         user.LName = dto.LName ?? user.LName;
         user.PhoneNumber = dto.phoneNumber ?? user.PhoneNumber;
+        user.DateOfBirth = dto.DateOfBirth ?? user.DateOfBirth;
+        user.Gender = dto.Gender ?? user.Gender;
+
         var updateResult = await _userManager.UpdateAsync(user);
         if (!updateResult.Succeeded)
             return Result.Failure<UpdateUserInfoResponseDto>(new Error("Update.Errors", string.Join(", ", updateResult.Errors.Select(e => e.Description)), ErrorType.Create));
@@ -314,6 +315,29 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
             ImagePath = user.ImagePath,
             PhoneNumber = user.PhoneNumber
         });
+    }
+
+    public async Task<Result<Guid>> AddAdminAsync(AddAdminDto dto)
+    {
+        AppUser user = new()
+        {
+            Email = dto.Email,
+            UserName = dto.UserName,
+            PhoneNumber = dto.phoneNumber,
+            FName = dto.FName,
+            MName = dto.MName,
+            LName= dto.LName,
+            Gender = dto.Gender,
+            DateOfBirth = dto.DateOfBirth,
+            
+
+        };
+
+        var createResult = await _userManager.CreateAsync(user, dto.Password);
+        if (!createResult.Succeeded)
+            return Result.Failure<Guid>(new Error("Create Errors", string.Join(", ", createResult.Errors.Select(e => e.Description)), ErrorType.Create));
+
+        return Result.Success(user.Id);
     }
 }
 

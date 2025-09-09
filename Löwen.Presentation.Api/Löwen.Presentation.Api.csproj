@@ -36,7 +36,6 @@
     <Folder Include="Controllers\v1\PaymentController\Models\" />
     <Folder Include="Controllers\v1\ProductController\Models\" />
     <Folder Include="Controllers\v1\AdminController\Models\" />
-    <Folder Include="Controllers\v1\RootAdminController\Models\" />
   </ItemGroup>
 
 </Project>

@@ -3,6 +3,7 @@ using System;
 using Löwen.Infrastructure.EFCore.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Löwen.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250909171255_EditUsersTable")]
+    partial class EditUsersTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,7 +52,7 @@ namespace Löwen.Infrastructure.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("AdminLogs", (string)null);
+                    b.ToTable("AdminLogs");
                 });
 
             modelBuilder.Entity("Löwen.Domain.Entities.Cart", b =>
@@ -71,7 +74,7 @@ namespace Löwen.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Carts", (string)null);
+                    b.ToTable("Carts");
                 });
 
             modelBuilder.Entity("Löwen.Domain.Entities.CartItem", b =>
@@ -89,7 +92,7 @@ namespace Löwen.Infrastructure.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("CartItems", (string)null);
+                    b.ToTable("CartItems");
                 });
 
             modelBuilder.Entity("Löwen.Domain.Entities.Coupon", b =>
@@ -128,7 +131,7 @@ namespace Löwen.Infrastructure.Migrations
                     b.HasIndex("Code")
                         .IsUnique();
 
-                    b.ToTable("Coupon", (string)null);
+                    b.ToTable("Coupon");
                 });
 
             modelBuilder.Entity("Löwen.Domain.Entities.CustomerAddress", b =>
@@ -152,7 +155,7 @@ namespace Löwen.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("CustomerAddresses", (string)null);
+                    b.ToTable("CustomerAddresses");
                 });
 
             modelBuilder.Entity("Löwen.Domain.Entities.Discount", b =>
@@ -186,7 +189,7 @@ namespace Löwen.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Discount", (string)null);
+                    b.ToTable("Discount");
                 });
 
             modelBuilder.Entity("Löwen.Domain.Entities.Image", b =>
@@ -203,7 +206,7 @@ namespace Löwen.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Images", (string)null);
+                    b.ToTable("Images");
                 });
 
             modelBuilder.Entity("Löwen.Domain.Entities.Notification", b =>
@@ -229,7 +232,7 @@ namespace Löwen.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Notifications", (string)null);
+                    b.ToTable("Notifications");
                 });
 
             modelBuilder.Entity("Löwen.Domain.Entities.Order", b =>
@@ -255,7 +258,7 @@ namespace Löwen.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("Löwen.Domain.Entities.OrderCoupon", b =>
@@ -270,7 +273,7 @@ namespace Löwen.Infrastructure.Migrations
 
                     b.HasIndex("CouponId");
 
-                    b.ToTable("OrderCoupon", (string)null);
+                    b.ToTable("OrderCoupon");
                 });
 
             modelBuilder.Entity("Löwen.Domain.Entities.OrderItem", b =>
@@ -291,7 +294,7 @@ namespace Löwen.Infrastructure.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderItems", (string)null);
+                    b.ToTable("OrderItems");
                 });
 
             modelBuilder.Entity("Löwen.Domain.Entities.Payment", b =>
@@ -332,7 +335,7 @@ namespace Löwen.Infrastructure.Migrations
 
                     b.HasIndex("OrderId1");
 
-                    b.ToTable("Payment", (string)null);
+                    b.ToTable("Payment");
                 });
 
             modelBuilder.Entity("Löwen.Domain.Entities.Product", b =>
@@ -372,7 +375,7 @@ namespace Löwen.Infrastructure.Migrations
 
                     b.HasIndex("TagId");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("Löwen.Domain.Entities.ProductCategory", b =>
@@ -398,7 +401,7 @@ namespace Löwen.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProductCategories", (string)null);
+                    b.ToTable("ProductCategories");
                 });
 
             modelBuilder.Entity("Löwen.Domain.Entities.ProductDiscount", b =>
@@ -413,7 +416,7 @@ namespace Löwen.Infrastructure.Migrations
 
                     b.HasIndex("DiscountId");
 
-                    b.ToTable("ProductDiscount", (string)null);
+                    b.ToTable("ProductDiscount");
                 });
 
             modelBuilder.Entity("Löwen.Domain.Entities.ProductImage", b =>
@@ -428,7 +431,7 @@ namespace Löwen.Infrastructure.Migrations
 
                     b.HasIndex("ImageId");
 
-                    b.ToTable("ProductImages", (string)null);
+                    b.ToTable("ProductImages");
                 });
 
             modelBuilder.Entity("Löwen.Domain.Entities.ProductReview", b =>
@@ -462,7 +465,7 @@ namespace Löwen.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("ProductReviews", (string)null);
+                    b.ToTable("ProductReviews");
                 });
 
             modelBuilder.Entity("Löwen.Domain.Entities.ProductTag", b =>
@@ -484,7 +487,7 @@ namespace Löwen.Infrastructure.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductTags", (string)null);
+                    b.ToTable("ProductTags");
                 });
 
             modelBuilder.Entity("Löwen.Domain.Entities.Wishlist", b =>
@@ -499,7 +502,7 @@ namespace Löwen.Infrastructure.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Wishlist", (string)null);
+                    b.ToTable("Wishlist");
                 });
 
             modelBuilder.Entity("Löwen.Infrastructure.EFCore.IdentityUser.AppUser", b =>
