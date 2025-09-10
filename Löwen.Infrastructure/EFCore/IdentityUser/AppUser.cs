@@ -11,6 +11,8 @@ public class AppUser : IdentityUser<Guid>
     public char Gender { get; set; }
     public DateOnly DateOfBirth { get; set; }
     public string? ImagePath { get; set; }
+    public bool IsDeleted { get; set; }
+    public DateTime? DeletedAt { get; set; }
     
     public ICollection<CustomerAddress> CustomerAddresses { get; set; } = new List<CustomerAddress>();
     public ICollection<Cart> Carts { get; set; } = new List<Cart>();

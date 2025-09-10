@@ -153,7 +153,7 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
     {
         AppUser? user = await _userManager.FindByEmailAsync(email);
         if (user == null)
-            return Result.Failure<string>(new Error("(Generate Email Confirmation) User Not Found", "", ErrorType.NotFound));
+            return Result.Failure<string>(new Error("(Generate Email Confirmation) Not Found", "", ErrorType.NotFound));
 
         var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
         var encodedToken = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(token));
@@ -177,27 +177,81 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
 
         return Result.Success(true);
     }
-    public async Task<Result> AddUserToRoleAsync(Guid userId, UserRole role)
+    public async Task<Result> AssignUserToRoleAsync(Guid userId, UserRole role)
     {
         AppUser? user = await _userManager.FindByIdAsync(userId.ToString());
         if (user == null)
-            return Result.Failure(new Error("(Add Role) User Not Found", "", ErrorType.NotFound));
+            return Result.Failure(new Error("(Add Role) Not Found", "", ErrorType.NotFound));
 
         var roleResult = await _userManager.AddToRoleAsync(user, role.ToString());
         if (!roleResult.Succeeded)
         {
-            await _userManager.DeleteAsync(user);
             return Result.Failure<RegisterResponseDto>(new Error("Role Errors", string.Join(", ", roleResult.Errors.Select(e => e.Description)), ErrorType.Conflict));
         }
 
         return Result.Success();
 
     }
-    public async Task<Result<bool>> DeleteUserAsync(Guid userId)
+    public async Task<Result> RemoveRoleFromUserAsync(Guid userId, UserRole role)
     {
         AppUser? user = await _userManager.FindByIdAsync(userId.ToString());
         if (user == null)
-            return Result.Failure<bool>(new Error("(Delete User) User Not Found", "", ErrorType.NotFound));
+            return Result.Failure(new Error("(Remove Role)", "Not Found", ErrorType.NotFound));
+
+        if(!await _userManager.IsInRoleAsync(user,role.ToString()))
+            return Result.Failure(new Error("(Remove Role)", "User not have this role", ErrorType.NotFound));
+
+
+        var roleResult = await _userManager.RemoveFromRoleAsync(user, role.ToString());
+        if (!roleResult.Succeeded)
+        {
+            return Result.Failure<RegisterResponseDto>(new Error("Role Errors", string.Join(", ", roleResult.Errors.Select(e => e.Description)), ErrorType.Conflict));
+        }
+
+        return Result.Success();
+
+    }
+    public async Task<Result> MarkAsDeletedAsync(Guid userId)
+    {
+        AppUser? user = await _userManager.FindByIdAsync(userId.ToString());
+        if (user == null)
+            return Result.Failure<bool>(new Error("(Mark As Deleted)", "Not Found", ErrorType.NotFound));
+        
+        if (user.IsDeleted)
+            return Result.Failure(new Error("(Activate Marked As Deleted)", "User already marked as deleted", ErrorType.NotFound));
+
+        user.IsDeleted = true;
+        user.DeletedAt = DateTime.UtcNow;
+
+        var updateResult = await _userManager.UpdateAsync(user);
+        if (!updateResult.Succeeded)
+            return Result.Failure(new Error("(Mark As Deleted)", string.Join(", ", updateResult.Errors.Select(e => e.Description)), ErrorType.Create));
+
+        return Result.Success();
+    }
+    public async Task<Result> ActivateMarkedAsDeletedAsync(Guid userId)
+    {
+        AppUser? user = await _userManager.FindByIdAsync(userId.ToString());
+        if (user == null)
+            return Result.Failure(new Error("(Activate Marked As Deleted)", "Not Found", ErrorType.NotFound));
+
+        if(!user.IsDeleted)
+            return Result.Failure(new Error("(Activate Marked As Deleted)", "User already Active", ErrorType.NotFound));
+
+        user.IsDeleted = false;
+        user.DeletedAt = null;
+
+        var updateResult = await _userManager.UpdateAsync(user);
+        if (!updateResult.Succeeded)
+            return Result.Failure(new Error("(Activate Marked As Deleted)", string.Join(", ", updateResult.Errors.Select(e => e.Description)), ErrorType.Create));
+
+        return Result.Success();
+    }
+    public async Task<Result<bool>> RemoveUserAsync(Guid userId)
+    {
+        AppUser? user = await _userManager.FindByIdAsync(userId.ToString());
+        if (user == null)
+            return Result.Failure<bool>(new Error("(Delete User)", "Not Found", ErrorType.NotFound));
         var deleteResult = await _userManager.DeleteAsync(user);
         if(deleteResult.Succeeded)
             return Result.Success(true);
@@ -229,7 +283,7 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
     {
         AppUser? user = await _userManager.FindByEmailAsync(email);
         if (user == null)
-            return Result.Failure<string>(new Error("(Generate Rest Password) User Not Found", "", ErrorType.NotFound));
+            return Result.Failure<string>(new Error("(Generate Rest Password) Not Found", "", ErrorType.NotFound));
 
         var token = await _userManager.GeneratePasswordResetTokenAsync(user);
         var encodedToken = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(token));
@@ -301,17 +355,23 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
         return Result.Success(new UpdateUserInfoResponseDto(await _CreateJWTToken(user)));
 
     }
-    public async Task<Result<GetUserByIdResponseDto>> GetUserById(string id)
+    public async Task<Result<GetUserByIdResponseDto>> GetUserById(string id,UserRole role = UserRole.User)
     {
         var user = await _userManager.FindByIdAsync(id);
-        if (user == null)
-            return Result.Failure<GetUserByIdResponseDto>(new Error("(Add Role) User Not Found", "", ErrorType.NotFound));
+        
+        if (user == null || !await _userManager.IsInRoleAsync(user,role.ToString()))
+            return Result.Failure<GetUserByIdResponseDto>(new Error("(Get By Id)", "Not Found", ErrorType.NotFound));
+
+
+
 
         return Result.Success(new GetUserByIdResponseDto
         {
             FName = user.FName,
             MName = user.MName,
             LName = user.LName,
+            Gender = user.Gender,
+            DateOfBirth = user.DateOfBirth,
             ImagePath = user.ImagePath,
             PhoneNumber = user.PhoneNumber
         });

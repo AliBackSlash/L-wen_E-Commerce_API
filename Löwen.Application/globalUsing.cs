@@ -6,3 +6,5 @@ global using Löwen.Domain.ErrorHandleClasses;
 global using Löwen.Domain.Layer_Dtos.AppUser.request;
 global using Löwen.Domain.Layer_Dtos.AppUser.response;
 global using Löwen.Application.Messaging;
+global using Löwen.Domain.Enums;
+global using Löwen.Application.Abstractions.IServices.IdentityServices;

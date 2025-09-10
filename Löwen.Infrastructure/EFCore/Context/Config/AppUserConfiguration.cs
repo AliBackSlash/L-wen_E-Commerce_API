@@ -16,6 +16,8 @@ public class AppUserConfiguration : IEntityTypeConfiguration<AppUser>
         builder.Property(u => u.Gender).HasColumnType("Char(1)").HasDefaultValue("M");
         builder.Property(u => u.DateOfBirth).HasColumnType("Date");
         builder.Property(u => u.ImagePath).HasMaxLength(2048).HasColumnType("varchar");
+        builder.Property(u => u.IsDeleted).HasColumnType("Boolean").HasDefaultValue(false);
+        builder.Property(u => u.DeletedAt).HasColumnType("timestamp with time zone").IsRequired(false);
 
         // Relationships
 

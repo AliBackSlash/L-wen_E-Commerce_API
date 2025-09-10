@@ -6,5 +6,7 @@ public class GetUserByIdResponseDto
     public string? MName { get; set; }
     public string? LName { get; set; }
     public string? PhoneNumber { get; set; }
+    public char Gender {  get; set; }
+    public DateOnly DateOfBirth { get; set; }
     public string? ImagePath { get; set; }
 }

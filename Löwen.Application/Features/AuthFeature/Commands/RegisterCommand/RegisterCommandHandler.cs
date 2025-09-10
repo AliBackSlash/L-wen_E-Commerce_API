@@ -17,10 +17,10 @@ public class RegisterCommandHandler(IEmailService emailService, IAppUserService 
         var registerResult = await userService.RegisterAsync(new RegisterUserDto(command.Email, command.UserName, command.Password), cancellationToken);
         if (registerResult.IsFailure) return Result.Failure<RegisterCommandResponse>(registerResult.Errors);
 
-        var roleResult = await userService.AddUserToRoleAsync(registerResult.Value.Id, UserRole.User);
+        var roleResult = await userService.AssignUserToRoleAsync(registerResult.Value.Id, UserRole.User);
         if (roleResult.IsFailure)
         {
-            await userService.DeleteUserAsync(registerResult.Value.Id);
+            await userService.RemoveUserAsync(registerResult.Value.Id);
             return Result.Failure<RegisterCommandResponse>(roleResult.Errors);
         }
 
