@@ -1,13 +1,13 @@
 ﻿namespace Löwen.Application.Features.RootAdminFeatures.Queries.GetAdminById;
 
-public class GetAdminByIdQueryHandler(IAppUserService userService) : IQueryHandler<GetAdminByIdQuery, GetAdminByIdQueryResponse>
+public class GetAdminByIdQueryHandler(IAppUserService userService) : IQueryHandler<GetAdminByIdQuery, GetUserQueryResponse>
 {
-    public async Task<Result<GetAdminByIdQueryResponse>> Handle(GetAdminByIdQuery command, CancellationToken cancellationToken)
+    public async Task<Result<GetUserQueryResponse>> Handle(GetAdminByIdQuery command, CancellationToken cancellationToken)
     {
-        var GetResult = await userService.GetUserById(command.Id.ToString(),command.Role);
+        var GetResult = await userService.GetUserByIdAsync(command.Id.ToString(),command.Role);
         if (GetResult.IsFailure)
-            return Result.Failure<GetAdminByIdQueryResponse>(GetResult.Errors);
+            return Result.Failure<GetUserQueryResponse>(GetResult.Errors);
 
-        return Result.Success(GetAdminByIdQueryResponse.Map(GetResult.Value));
+        return Result.Success(GetUserQueryResponse.Map(GetResult.Value));
     }
 }

@@ -6,16 +6,19 @@ using Löwen.Domain.Enums;
 using Löwen.Domain.ErrorHandleClasses;
 using Löwen.Domain.Layer_Dtos.AppUser.request;
 using Löwen.Domain.Layer_Dtos.AppUser.response;
+using Löwen.Infrastructure.EFCore.Context;
 using Löwen.Infrastructure.EFCore.IdentityUser;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 namespace Löwen.Infrastructure.Services.IdentityServices;
-public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jwt, IOptions<ApiSettings> apiSettings) : IAppUserService
+public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jwt, IOptions<ApiSettings> apiSettings,AppDbContext context) : IAppUserService
 {
 
     public async Task<Result<RegisterResponseDto>> RegisterAsync(RegisterUserDto reg_info, CancellationToken cancellationToken)
@@ -335,7 +338,7 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
 
         throw new NotImplementedException();
     }
-    public async Task<Result<UpdateUserInfoResponseDto>> UpdateUserInfo(UpdateUserInfoDto dto)
+    public async Task<Result<UpdateUserInfoResponseDto>> UpdateUserInfoAsync(UpdateUserInfoDto dto)
     {
         AppUser? user = await _userManager.FindByIdAsync(dto.id);
         if (user is null)
@@ -355,28 +358,49 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
         return Result.Success(new UpdateUserInfoResponseDto(await _CreateJWTToken(user)));
 
     }
-    public async Task<Result<GetUserByIdResponseDto>> GetUserById(string id,UserRole role = UserRole.User)
+    public async Task<Result<GetUserResponseDto>> GetUserByIdAsync(string id,UserRole role = UserRole.User)
     {
         var user = await _userManager.FindByIdAsync(id);
         
         if (user == null || !await _userManager.IsInRoleAsync(user,role.ToString()))
-            return Result.Failure<GetUserByIdResponseDto>(new Error("(Get By Id)", "Not Found", ErrorType.NotFound));
+            return Result.Failure<GetUserResponseDto>(new Error("(Get By Id)", "Not Found", ErrorType.NotFound));
 
 
 
 
-        return Result.Success(new GetUserByIdResponseDto
+        return Result.Success(new GetUserResponseDto
         {
-            FName = user.FName,
+            UserName = user.UserName!,
+            FName = user.FName!,
             MName = user.MName,
-            LName = user.LName,
+            LName = user.LName!,
             Gender = user.Gender,
             DateOfBirth = user.DateOfBirth,
             ImagePath = user.ImagePath,
             PhoneNumber = user.PhoneNumber
         });
     }
+    public async Task<Result<GetUserResponseDto>> GetUserByEmailAsync(string email, UserRole role = UserRole.User)
+    {
+        var user = await _userManager.FindByEmailAsync(email);
 
+        if (user == null || !await _userManager.IsInRoleAsync(user, role.ToString()))
+            return Result.Failure<GetUserResponseDto>(new Error("(Get By Email)", "Not Found", ErrorType.NotFound));
+
+        return Result.Success(new GetUserResponseDto
+        {
+            UserName = user.UserName!,
+            FName = user.FName!,
+            MName = user.MName,
+            LName = user.LName!,
+            Gender = user.Gender,
+            DateOfBirth = user.DateOfBirth,
+            ImagePath = user.ImagePath,
+            PhoneNumber = user.PhoneNumber,
+            MarkedAsDeletedAt = user.DeletedAt
+
+        });
+    }
     public async Task<Result<Guid>> AddAdminAsync(AddAdminDto dto)
     {
         AppUser user = new()
@@ -398,6 +422,40 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
             return Result.Failure<Guid>(new Error("Create Errors", string.Join(", ", createResult.Errors.Select(e => e.Description)), ErrorType.Create));
 
         return Result.Success(user.Id);
+    }
+    public async Task<Result<List<GetUsersResponseDto>>> GetAllAsync(UserRole role = UserRole.User)
+    {
+        var users = from u in _userManager.Users
+                 join ur in context.UserRoles on u.Id equals ur.UserId
+                 join r in context.Roles on ur.RoleId equals r.Id
+                 where r.Name == role.ToString()
+                 orderby u.UserName
+                 select new {
+                     u.Id,
+                     u.UserName,
+                     u.FName,
+                     u.MName,
+                     u.LName,
+                     u.Gender,
+                     u.PhoneNumber,
+                     u.IsDeleted
+                 };
+        //var users = await _userManager.GetUsersInRoleAsync(role.ToString());
+        if (users == null)
+            return Result.Failure<List<GetUsersResponseDto>>(new Error("(Get All)", "Not Found", ErrorType.NotFound));
+        
+        return Result.Success(
+        users.Select(u => new GetUsersResponseDto
+        {
+            Id = u.Id,
+            UserName = u.UserName!,
+            FName = u.FName!,
+            MName = u.MName,
+            LName = u.LName!,
+            Gender = u.Gender,
+            PhoneNumber = u.PhoneNumber,
+            IsActive = u.IsDeleted
+        }).ToList());
     }
 }
 

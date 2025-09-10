@@ -4,7 +4,9 @@ using Löwen.Application.Features.RootAdminFeatures.Commands.AssignRole;
 using Löwen.Application.Features.RootAdminFeatures.Commands.MarkAsDeleted;
 using Löwen.Application.Features.RootAdminFeatures.Commands.RemoveAdminCommand;
 using Löwen.Application.Features.RootAdminFeatures.Commands.RemoveRoleFromUser;
+using Löwen.Application.Features.RootAdminFeatures.Queries.GetAdminByEmail;
 using Löwen.Application.Features.RootAdminFeatures.Queries.GetAdminById;
+using Löwen.Application.Features.RootAdminFeatures.Queries.GetAdmins;
 using Löwen.Application.Features.UserFeature.Queries;
 using Löwen.Domain.Enums;
 using Löwen.Presentation.Api.Controllers.v1.RootAdminController.Models;
@@ -96,27 +98,31 @@ namespace Löwen.Presentation.Api.Controllers.v1.RootAdminController
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetAdminById(Guid Id,UserRole role)
         {
-            Result<GetAdminByIdQueryResponse> result = await sender.Send(new GetAdminByIdQuery(Id, role));
+            Result<GetUserQueryResponse> result = await sender.Send(new GetAdminByIdQuery(Id, role));
 
             return result.ToActionResult();
         }
 
-        [HttpGet("admin-by-email/{Email}")]
+        [HttpGet("admin-by-email/{Email},{role:max(4)}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetAdminByEmail(string Email)
+        public async Task<IActionResult> GetAdminByEmail(string Email, UserRole role)
         {
-            throw new NotImplementedException();
+            Result<GetUserQueryResponse> result = await sender.Send(new GetAdminByEmailQuery(Email, role));
+
+            return result.ToActionResult();
         }
 
-        [HttpGet("admins")]
+        [HttpGet("admins/{role:max(4)}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetAdmins()
+        public async Task<IActionResult> GetAdmins(UserRole role)
         {
-            throw new NotImplementedException();
+            Result<List<GetUsersQueryResponse>> result = await sender.Send(new GetAdminsQuery(role));
+
+            return result.ToActionResult();
         }
 
     }

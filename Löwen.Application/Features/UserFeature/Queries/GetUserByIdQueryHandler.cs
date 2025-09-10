@@ -14,7 +14,7 @@ public class GetUserByIdQueryHandler(IAppUserService userService) : ICommandHand
         if (id.IsFailure)
             return Result.Failure<GetUserByIdQueryResponse>(id.Errors);
 
-        var user = await userService.GetUserById(id.Value);
+        var user = await userService.GetUserByIdAsync(id.Value);
         if (user.IsFailure)
             return Result.Failure<GetUserByIdQueryResponse>(user.Errors);
 

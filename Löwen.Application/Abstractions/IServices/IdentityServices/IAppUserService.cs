@@ -7,10 +7,12 @@ namespace Löwen.Application.Abstractions.IServices.IdentityServices;
 public interface IAppUserService
 {
     Task<Result<RegisterResponseDto>> RegisterAsync(RegisterUserDto dto, CancellationToken cancellationToken);
-    Task<Result<GetUserByIdResponseDto>> GetUserById(string id,UserRole role = UserRole.User);
+    Task<Result<GetUserResponseDto>> GetUserByIdAsync(string id,UserRole role = UserRole.User);
+    Task<Result<List<GetUsersResponseDto>>> GetAllAsync(UserRole role = UserRole.User);
+    Task<Result<GetUserResponseDto>> GetUserByEmailAsync(string email,UserRole role = UserRole.User);
     Result<string> GetUserIdFromToken(string token);
     Task<Result<LoginResponseDto>> LoginAsync(LoginDto dto, CancellationToken cancellationToken);
-    Task<Result<UpdateUserInfoResponseDto>> UpdateUserInfo(UpdateUserInfoDto dto);
+    Task<Result<UpdateUserInfoResponseDto>> UpdateUserInfoAsync(UpdateUserInfoDto dto);
     Task<Result<string>> ConfirmEmailAsync(string userId, string token);
     Task<Result<string>> ChangePasswordAsync(string Id, string CurrentPassword, string Password);
     Task<Result<bool>> IsEmailNotTakenAsync(string email);
