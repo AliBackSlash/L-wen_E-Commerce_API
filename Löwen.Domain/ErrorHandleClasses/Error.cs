@@ -25,7 +25,7 @@ public class Error
             new(code, description, ErrorType.InternalServer);
 
     public static Error NotFound(string code, string description) =>
-        new(code, description, ErrorType.NotFound);
+        new(code, description, ErrorType.Conflict);
 
     public static Error Conflict(string code, string description) =>
         new(code, description, ErrorType.Conflict);

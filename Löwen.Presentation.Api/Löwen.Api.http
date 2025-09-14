@@ -40,3 +40,48 @@ GET {{Löwen.Api_HostAddress}}/api/RootAdmin/admin-by-email/ae1378032@gmail.com,
 
 ###
 GET {{Löwen.Api_HostAddress}}/api/RootAdmin/admins/3
+###
+
+//Admin Endpoints
+
+POST {{Löwen.Api_HostAddress}}/api/Admin/add-category
+Content-Type: application/json
+{
+  "category": "string",
+  "gender": "M",
+  "ageFrom": 1,
+  "ageTo": 3
+}
+
+###
+PUT {{Löwen.Api_HostAddress}}/api/Admin/update-category
+Content-Type: application/json
+{
+  "id": "1e1c18bc-b7dd-4f36-98a9-09c9e54561cd",
+  "category":null,
+  "gender": null,
+  "ageFrom":null,
+  "ageTo": 5
+}
+
+###
+DELETE {{Löwen.Api_HostAddress}}/api/Admin/remove-category/1e2c18bc-b7dd-4f36-98a9-09c9e54561cd
+###
+
+
+//Admin Endpoints
+###
+POST {{Löwen.Api_HostAddress}}/api/Admin/add-Tag
+Content-Type: application/json
+{
+  "Tag": "#Men #modern #Style",
+  "productId": "210a36db-77b5-4f04-8be7-0c55fa95d7bc"
+}
+
+###
+PUT {{Löwen.Api_HostAddress}}/api/Admin/update-Tag/9dddf314-b433-4a15-a157-e4d11a7a5de5,"#dd"
+
+
+###
+DELETE {{Löwen.Api_HostAddress}}/api/Admin/remove-Tag/9dddf314-b433-4a15-a157-e4d11a7a5de5
+###

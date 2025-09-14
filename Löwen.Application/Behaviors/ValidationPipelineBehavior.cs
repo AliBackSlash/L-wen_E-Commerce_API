@@ -11,7 +11,7 @@ public class ValidationPipelineBehavior<TRequest, TResponse>(
     public async Task<TResponse> Handle(
         TRequest request,
         RequestHandlerDelegate<TResponse> next,
-        CancellationToken cancellationToken)
+        CancellationToken ct)
     {
         ValidationFailure[] validationFailures = await ValidateAsync(request).ConfigureAwait(false);
 

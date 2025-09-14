@@ -24,9 +24,9 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
                .IsRequired();
 
         // One-to-many relationship with ProductTag
-        builder.HasOne(p => p.Tag)
-               .WithMany(pt => pt.Products)
-               .HasForeignKey(p => p.TagId)
-               .IsRequired();
+        builder.HasOne(pt => pt.Tag)
+               .WithOne(p => p.Product)
+               .HasForeignKey<ProductTag>(p => p.ProductId)
+               .IsRequired(false);
     }
 }

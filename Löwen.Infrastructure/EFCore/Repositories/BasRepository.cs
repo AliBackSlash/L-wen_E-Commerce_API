@@ -12,38 +12,56 @@ public class BasRepository<TEntity, IdType>(AppDbContext _context) : IBasReposit
 {
     private readonly DbSet<TEntity> _dbSet = _context.Set<TEntity>();
 
-    public async Task<TEntity?> GetByIdAsync(IdType id, CancellationToken cancellationToken) => await _dbSet.FindAsync(id, cancellationToken);
-    public async Task<IEnumerable<TEntity>> GetAllAsync(CancellationToken cancellationToken) => await _dbSet.ToListAsync(cancellationToken);
-    public async Task AddAsync(TEntity entity, CancellationToken cancellationToken) => await _dbSet.AddAsync(entity, cancellationToken);
-    public void Update(TEntity entity) => _dbSet.Update(entity);
-    public void Delete(TEntity entity) => _dbSet.Remove(entity);
-    public async Task<Result<int>> SaveChangesAsync(CancellationToken cancellationToken)
+    public async Task<TEntity?> GetByIdAsync(IdType id, CancellationToken ct) => await _dbSet.FindAsync(id, ct);
+    public async Task<IEnumerable<TEntity>> GetAllAsync(CancellationToken ct) => await _dbSet.AsNoTracking().ToListAsync(ct);
+    public async Task<Result> AddAsync(TEntity entity, CancellationToken ct)
     {
         try
         {
-            var affectedRows = await _context.SaveChangesAsync(cancellationToken);
-            return Result.Success(affectedRows);
-        }
-        catch (DbUpdateException ex)
-        {
-            return Result.Failure<int>(Error.Conflict("Database.Update", ex.InnerException?.Message ?? ex.Message));
-        }
-        catch (ValidationException ex)
-        {
-            return Result.Failure<int>(Error.Conflict("Validation.Error", ex.Message));
+            await _dbSet.AddAsync(entity, ct);
+            await _context.SaveChangesAsync(ct);
+            return Result.Success();
         }
         catch (Exception ex)
         {
-            return Result.Failure<int>(Error.InternalServer("Unknown.Error", ex.Message));
+            return Result.Failure(new Error($"{nameof(TEntity)}.Add", ex.Message, ErrorType.InternalServer));
+        }
+        
+    }
+    public async Task<Result> UpdateAsync(TEntity entity, CancellationToken ct)
+    {
+        try
+        {
+            _dbSet.Update(entity);
+            await _context.SaveChangesAsync(ct);
+            return Result.Success();
+        }
+        catch (Exception ex)
+        {
+            return Result.Failure(new Error($"{nameof(TEntity)}.Update", ex.Message, ErrorType.InternalServer));
         }
     }
-    public async Task<PagedResult<TEntity>> GetPagedAsync(IQueryable<TEntity> query, PaginationParams paginationParams, CancellationToken cancellationToken = default)
+    public async Task<Result> DeleteAsync(TEntity entity, CancellationToken ct)
     {
-        var totalCount = await query.CountAsync(cancellationToken);
+        try
+        {
+            _dbSet.Remove(entity);
+            await _context.SaveChangesAsync(ct);
+            return Result.Success();
+        }
+        catch (Exception ex)
+        {
+            return Result.Failure(new Error($"{nameof(TEntity)}.Add", ex.Message, ErrorType.InternalServer));
+        }
+    }
+    public async Task<PagedResult<TEntity>> GetPagedAsync(IQueryable<TEntity> query, PaginationParams paginationParams, CancellationToken ct = default)
+    {
+        var totalCount = await query.CountAsync(ct);
         var items = await query
             .Skip(paginationParams.Skip)
             .Take(paginationParams.PageSize)
-            .ToListAsync(cancellationToken);
+            .AsNoTracking()
+            .ToListAsync(ct);
 
         
         return PagedResult<TEntity>.Create(items,totalCount,paginationParams.PageNumber,paginationParams.PageSize);

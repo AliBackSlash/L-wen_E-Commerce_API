@@ -1,10 +1,12 @@
-﻿using Löwen.Application.Abstractions.IServices.IdentityServices;
+﻿
+
+using Löwen.Domain.Abstractions.IServices.IAppUserServices;
 
 namespace Löwen.Application.Features.UserFeature.Commands.ChangePasswordCommand;
 
 internal class ChangePasswordCommandHandler(IAppUserService userService) : ICommandHandler<ChangePasswordCommand, ChangePasswordCommandResponse>
 {
-    public async Task<Result<ChangePasswordCommandResponse>> Handle(ChangePasswordCommand command, CancellationToken cancellationToken)
+    public async Task<Result<ChangePasswordCommandResponse>> Handle(ChangePasswordCommand command, CancellationToken ct)
     {
         var id = userService.GetUserIdFromToken(command.token);
         if(id.IsFailure)

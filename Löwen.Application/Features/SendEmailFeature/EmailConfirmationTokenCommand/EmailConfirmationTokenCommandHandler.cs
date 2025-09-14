@@ -1,17 +1,18 @@
-﻿using Löwen.Application.Abstractions.IServices.IdentityServices;
+﻿
 using Löwen.Application.Features.AuthFeature.Commands.RegisterCommand;
-using Löwen.Domain.Abstractions.IServices;
+using Löwen.Domain.Abstractions.IServices.IAppUserServices;
+using Löwen.Domain.Abstractions.IServices.IEmailServices;
 
 namespace Löwen.Application.Features.SendEmailFeature.EmailConfirmationTokenCommand;
 
 internal class EmailConfirmationTokenCommandHandler(IAppUserService userService,IEmailService emailService) : ICommandHandler<EmailConfirmationTokenCommand>
 {
-    public async Task<Result> Handle(EmailConfirmationTokenCommand command, CancellationToken cancellationToken)
+    public async Task<Result> Handle(EmailConfirmationTokenCommand command, CancellationToken ct)
     {
         var confirmationLink = await userService.GenerateEmailConfirmationTokenAsync(command.email);
         if (confirmationLink.IsFailure) return Result.Failure<RegisterCommandResponse>(confirmationLink.Errors);
 
-        var emailResult = await emailService.SendVerificationEmailAsync(command.email, confirmationLink.Value, cancellationToken);
+        var emailResult = await emailService.SendVerificationEmailAsync(command.email, confirmationLink.Value, ct);
         if (emailResult.IsFailure)
             return Result.Failure<RegisterCommandResponse>(
                 new Error("there are Confirm Email Errors", string.Join(", ", emailResult.Errors), ErrorType.ConfirmEmailError));

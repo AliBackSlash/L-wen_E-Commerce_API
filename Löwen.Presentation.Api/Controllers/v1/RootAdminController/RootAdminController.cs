@@ -1,27 +1,8 @@
-﻿using Löwen.Application.Features.RootAdminFeatures.Commands.ActivateMarkedAsDeleted;
-using Löwen.Application.Features.RootAdminFeatures.Commands.AddAdmin;
-using Löwen.Application.Features.RootAdminFeatures.Commands.AssignRole;
-using Löwen.Application.Features.RootAdminFeatures.Commands.MarkAsDeleted;
-using Löwen.Application.Features.RootAdminFeatures.Commands.RemoveAdminCommand;
-using Löwen.Application.Features.RootAdminFeatures.Commands.RemoveRoleFromUser;
-using Löwen.Application.Features.RootAdminFeatures.Queries.GetAdminByEmail;
-using Löwen.Application.Features.RootAdminFeatures.Queries.GetAdminById;
-using Löwen.Application.Features.RootAdminFeatures.Queries.GetAdmins;
-using Löwen.Application.Features.UserFeature.Queries;
-using Löwen.Domain.Enums;
-using Löwen.Presentation.Api.Controllers.v1.RootAdminController.Models;
-using Löwen.Presentation.API.Extensions;
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
-using System.Data;
-using System.Reflection;
-using System.Xml.Linq;
-
-namespace Löwen.Presentation.Api.Controllers.v1.RootAdminController
+﻿namespace Löwen.Presentation.Api.Controllers.v1.RootAdminController
 {
     [ApiController]
     [ApiVersion("1.0")]
-    [Route("api/[controller]")]
+    [Route("api/RootAdmin")]
     public class RootAdminController(ISender sender) : ControllerBase
     {
         [HttpPost("add-admin")]

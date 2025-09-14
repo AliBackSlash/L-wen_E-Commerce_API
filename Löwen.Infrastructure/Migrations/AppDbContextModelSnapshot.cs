@@ -363,14 +363,9 @@ namespace Löwen.Infrastructure.Migrations
                     b.Property<short>("StockQuantity")
                         .HasColumnType("smallint");
 
-                    b.Property<Guid>("TagId")
-                        .HasColumnType("uuid");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
-
-                    b.HasIndex("TagId");
 
                     b.ToTable("Products");
                 });
@@ -472,17 +467,18 @@ namespace Löwen.Infrastructure.Migrations
                         .HasColumnType("uuid")
                         .HasDefaultValueSql("gen_random_uuid()");
 
-                    b.Property<Guid?>("ProductId")
+                    b.Property<Guid>("ProductId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("Tag")
                         .IsRequired()
-                        .HasMaxLength(50)
+                        .HasMaxLength(100)
                         .HasColumnType("varchar");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("ProductId")
+                        .IsUnique();
 
                     b.ToTable("ProductTags");
                 });
@@ -863,15 +859,7 @@ namespace Löwen.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Löwen.Domain.Entities.ProductTag", "Tag")
-                        .WithMany("Products")
-                        .HasForeignKey("TagId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Category");
-
-                    b.Navigation("Tag");
                 });
 
             modelBuilder.Entity("Löwen.Domain.Entities.ProductDiscount", b =>
@@ -931,9 +919,11 @@ namespace Löwen.Infrastructure.Migrations
 
             modelBuilder.Entity("Löwen.Domain.Entities.ProductTag", b =>
                 {
-                    b.HasOne("Löwen.Domain.Entities.Product", null)
-                        .WithMany("ProductTags")
-                        .HasForeignKey("ProductId");
+                    b.HasOne("Löwen.Domain.Entities.Product", "Product")
+                        .WithOne("Tag")
+                        .HasForeignKey("Löwen.Domain.Entities.ProductTag", "ProductId");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("Löwen.Domain.Entities.Wishlist", b =>
@@ -1045,17 +1035,12 @@ namespace Löwen.Infrastructure.Migrations
 
                     b.Navigation("ProductReviews");
 
-                    b.Navigation("ProductTags");
+                    b.Navigation("Tag");
 
                     b.Navigation("Wishlists");
                 });
 
             modelBuilder.Entity("Löwen.Domain.Entities.ProductCategory", b =>
-                {
-                    b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("Löwen.Domain.Entities.ProductTag", b =>
                 {
                     b.Navigation("Products");
                 });

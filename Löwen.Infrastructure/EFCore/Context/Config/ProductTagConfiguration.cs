@@ -11,6 +11,6 @@ public class ProductTagConfiguration : IEntityTypeConfiguration<ProductTag>
     {
         builder.HasKey(pt => pt.Id);
         builder.Property(x => x.Id).HasColumnType("uuid").HasDefaultValueSql("gen_random_uuid()");
-        builder.Property(pt => pt.Tag).IsRequired().HasMaxLength(50).HasColumnType("varchar");
+        builder.Property(pt => pt.Tag).IsRequired().HasMaxLength(100).HasColumnType("varchar");
     }
 }

@@ -1,12 +1,83 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿
+using Löwen.Application.Features.AdminFeature.Commands.Tag.AddTag;
+using Löwen.Application.Features.AdminFeature.Commands.Tag.RemoveTag;
+using Löwen.Application.Features.AdminFeature.Commands.Tag.UpdateTag;
+using Löwen.Presentation.Api.Controllers.v1.AdminController.Models;
+using MediatR;
 
 namespace Löwen.Presentation.Api.Controllers.v1.AdminController
 {
     [ApiController]
     [ApiVersion("1.0")]
-    [Route("api/[controller]")]
-    public class AdminController : ControllerBase
+    [Route("api/Admin")]
+    public class AdminController(ISender sender) : ControllerBase
     {
+        [HttpPost("add-category")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> AddCategory([FromBody] AddCategoryModel request)
+        {
+            Result result = await sender.Send(new AddCategoryCommand(request.Category, request.Gender, request.AgeFrom, request.AgeTo));
+
+            return result.ToActionResult();
+        }
+
+        [HttpPut("update-category")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> UpdateCategory([FromBody] UpdateCategoryModel request)
+        {
+            Result result = await sender.Send(new UpdateCategoryCommand(request.Id,request.Category, request.Gender, request.AgeFrom, request.AgeTo));
+
+            return result.ToActionResult();
+        }
+
+        [HttpDelete("remove-category/{Id:guid}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> RemoveCategory(Guid Id)
+        {
+            Result result = await sender.Send(new RemoveCategoryCommand(Id));
+
+            return result.ToActionResult();
+        }
+
+        [HttpPost("add-tag")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> AddTag([FromBody] AddTagModel request)
+        {
+            Result result = await sender.Send(new AddTagCommand(request.Tag, request.productId));
+
+            return result.ToActionResult();
+        }
+
+        [HttpPut("update-tag/{Id},{tagName}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> UpdateTag(string Id,string tagName)
+        {
+            Result result = await sender.Send(new UpdateTagCommand(Id,tagName));
+
+            return result.ToActionResult();
+        }
+
+        [HttpDelete("remove-tag/{Id:guid}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> RemoveTag(Guid Id)
+        {
+            Result result = await sender.Send(new RemoveTagCommand(Id));
+
+            return result.ToActionResult();
+        }
+
         [HttpPost("add-product")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
@@ -79,59 +150,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
             throw new NotImplementedException();
         }
 
-        [HttpPost("add-category")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> AddCategory()
-        {
-            throw new NotImplementedException();
-        }
-
-        [HttpPut("update-category")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> UpdateCategory()
-        {
-            throw new NotImplementedException();
-        }
-
-        [HttpDelete("remove-category")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> RemoveCategory()
-        {
-            throw new NotImplementedException();
-        }
-
-        [HttpPost("add-tag")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> AddTag()
-        {
-            throw new NotImplementedException();
-        }
-
-        [HttpPut("update-tag")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> UpdateTag()
-        {
-            throw new NotImplementedException();
-        }
-
-        [HttpDelete("remove-tag")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> RemoveTag()
-        {
-            throw new NotImplementedException();
-        }
+      
 
     }
 }

@@ -1,24 +1,7 @@
-using FluentValidation;
-using Löwen.Application.Abstractions.IServices.IdentityServices;
-using Löwen.Application.Behaviors;
-using Löwen.Domain.Abstractions.IServices;
-using Löwen.Domain.ConfigurationClasses.ApiSettings;
-using Löwen.Domain.ConfigurationClasses.JWT;
-using Löwen.Domain.ConfigurationClasses.Pagination;
-using Löwen.Domain.ConfigurationClasses.StaticFilesHelpersClasses;
-using Löwen.Infrastructure.EFCore.Context;
-using Löwen.Infrastructure.EFCore.IdentityUser;
-using Löwen.Infrastructure.Services.EmailServices;
-using Löwen.Infrastructure.Services.IdentityServices;
-using Löwen.Presentation.API.Services;
-using MediatR;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Versioning;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
+using Löwen.Domain.Abstractions.IServices.IAppUserServices;
+using Löwen.Domain.Abstractions.IServices.IEmailServices;
+using Löwen.Domain.Abstractions.IServices.IEntitiesServices;
+using Löwen.Infrastructure.Services.EntityServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,10 +26,10 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddMediatR(cfg =>
-      cfg.RegisterServicesFromAssembly(typeof(IAppUserService).Assembly));
+      cfg.RegisterServicesFromAssembly(typeof(EntryPoint).Assembly));
 
 // FluentValidation
-builder.Services.AddValidatorsFromAssembly(typeof(IAppUserService).Assembly);
+builder.Services.AddValidatorsFromAssembly(typeof(EntryPoint).Assembly);
 
 // Pipeline Behavior
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehavior<,>));
@@ -57,6 +40,9 @@ builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationPip
 // services.AddScoped(typeof(IBasRepository<,>) , typeof(BasRepository<,>));
 builder.Services.AddScoped<IAppUserService, AppUserService>();
 builder.Services.AddScoped<IEmailService, EmailService>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IProductCategoryService, ProductCategoryService>();
+builder.Services.AddScoped<IProductTagService, ProductTagService>();
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.Configure<StaticFilesSettings>(

@@ -21,7 +21,7 @@ public class FileService(IWebHostEnvironment _env, IHttpContextAccessor _httpCon
     private async Task<Result<string>> SaveFileAsync(IFormFile file, string folder, short maxSizeKb)
     {
         if (file == null || file.Length == 0)
-            return Result.Failure<string>(new Error("Upload", "File is empty", ErrorType.NotFound));
+            return Result.Failure<string>(new Error("Upload", "File is empty", ErrorType.Conflict));
 
         try
         {

@@ -1,14 +1,15 @@
-﻿using Löwen.Application.Abstractions.IServices.IdentityServices;
+﻿
 using Löwen.Application.Features.AuthFeature.Commands.RegisterCommand;
 using Löwen.Application.Features.UserFeature.Commands.UpdateUserInfoCommand;
-using Löwen.Domain.Abstractions.IServices;
+using Löwen.Domain.Abstractions.IServices.IAppUserServices;
+using Löwen.Domain.Abstractions.IServices.IEmailServices;
 using Löwen.Domain.Enums;
 
 namespace Löwen.Application.Features.RootAdminFeatures.Commands.AddAdmin;
 
 public class AddAdminCommandHandler(IAppUserService userService,IEmailService emailService) : ICommandHandler<AddAdminCommand>
 {
-    public async Task<Result> Handle(AddAdminCommand command, CancellationToken cancellationToken)
+    public async Task<Result> Handle(AddAdminCommand command, CancellationToken ct)
     {
         var checkEmail = await userService.IsEmailNotTakenAsync(command.Email);
         if (checkEmail.IsFailure) return Result.Failure(checkEmail.Errors);
@@ -30,7 +31,7 @@ public class AddAdminCommandHandler(IAppUserService userService,IEmailService em
         var confirmationLink = await userService.GenerateEmailConfirmationTokenAsync(command.Email);
         if (confirmationLink.IsFailure) return Result.Failure(confirmationLink.Errors);
 
-        var emailResult = await emailService.SendVerificationEmailAsync(command.Email, confirmationLink.Value, cancellationToken);
+        var emailResult = await emailService.SendVerificationEmailAsync(command.Email, confirmationLink.Value, ct);
         if (emailResult.IsFailure)
             return Result.Failure(
                 new Error("there are Confirm Email Errors", string.Join(", ", emailResult.Errors), ErrorType.ConfirmEmailError));

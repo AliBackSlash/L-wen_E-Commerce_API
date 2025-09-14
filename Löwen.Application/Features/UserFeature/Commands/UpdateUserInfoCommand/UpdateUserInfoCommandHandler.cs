@@ -1,5 +1,6 @@
-﻿using Löwen.Application.Abstractions.IServices.IdentityServices;
+﻿
 using Löwen.Application.Features.UserFeature.Commands.ChangePasswordCommand;
+using Löwen.Domain.Abstractions.IServices.IAppUserServices;
 using Löwen.Domain.Entities;
 using System.Xml.Linq;
 
@@ -7,7 +8,7 @@ namespace Löwen.Application.Features.UserFeature.Commands.UpdateUserInfoCommand
 
 internal class UpdateUserInfoCommandHandler(IAppUserService userService) : ICommandHandler<UpdateUserInfoCommand, UpdateUserInfoCommandResponse>
 {
-    public async Task<Result<UpdateUserInfoCommandResponse>> Handle(UpdateUserInfoCommand command, CancellationToken cancellationToken)
+    public async Task<Result<UpdateUserInfoCommandResponse>> Handle(UpdateUserInfoCommand command, CancellationToken ct)
     {
         var id = userService.GetUserIdFromToken(command.token);
         if (id.IsFailure)

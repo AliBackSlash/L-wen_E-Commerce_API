@@ -1,4 +1,4 @@
-﻿using Löwen.Domain.Abstractions.IServices;
+﻿using Löwen.Domain.Abstractions.IServices.IEmailServices;
 using Löwen.Domain.ErrorHandleClasses;
 using Microsoft.Extensions.Configuration;
 using System.Net;
@@ -8,7 +8,7 @@ namespace Löwen.Infrastructure.Services.EmailServices;
 
 public class EmailService(IConfiguration _config) : IEmailService
 {
-    private async Task<Result> SendEmailAsync(string to, string subject, string body, CancellationToken cancellationToken = default)
+    private async Task<Result> SendEmailAsync(string to, string subject, string body, CancellationToken ct = default)
     {
         try
         {
@@ -32,7 +32,7 @@ public class EmailService(IConfiguration _config) : IEmailService
 
             mailMessage.To.Add(to);
 
-            await client.SendMailAsync(mailMessage, cancellationToken);
+            await client.SendMailAsync(mailMessage, ct);
 
             return Result.Success(); 
         }
@@ -64,7 +64,7 @@ public class EmailService(IConfiguration _config) : IEmailService
        
     }
 
-    public async Task<Result<int>> SendOTPCodeAsync(string To, CancellationToken cancellationToken, string Subject = "Löwen – Your Password Reset Code")
+    public async Task<Result<int>> SendOTPCodeAsync(string To, CancellationToken ct, string Subject = "Löwen – Your Password Reset Code")
     {
         int OTPCode = Random.Shared.Next(100000, 999999);
         var result = await PrepareHTMLBodyAsync("EmailTemplates", "OTPCode.html", "{{otpCode}}", OTPCode.ToString());
@@ -72,14 +72,14 @@ public class EmailService(IConfiguration _config) : IEmailService
         if (result.IsFailure)
             return Result.Failure<int>(result.Errors);
 
-        var sendResult = await SendEmailAsync(To, Subject, result.Value, cancellationToken);
+        var sendResult = await SendEmailAsync(To, Subject, result.Value, ct);
 
         if (sendResult.IsFailure)
             return Result.Failure<int>(sendResult.Errors);
 
         return Result.Success(OTPCode);
     }
-    public async Task<Result<int>> SendRestPasswordTokenAsync(string To,string token, CancellationToken cancellationToken, string Subject = "Löwen – Reset Your Password")
+    public async Task<Result<int>> SendRestPasswordTokenAsync(string To,string token, CancellationToken ct, string Subject = "Löwen – Reset Your Password")
     {
         int OTPCode = Random.Shared.Next(100000, 999999);
         var result = await PrepareHTMLBodyAsync("EmailTemplates", "ChangePassword.html", "{{resetPasswordLink}}", token);
@@ -87,14 +87,14 @@ public class EmailService(IConfiguration _config) : IEmailService
         if (result.IsFailure)
             return Result.Failure<int>(result.Errors);
 
-        var sendResult = await SendEmailAsync(To, Subject, result.Value, cancellationToken);
+        var sendResult = await SendEmailAsync(To, Subject, result.Value, ct);
 
         if (sendResult.IsFailure)
             return Result.Failure<int>(sendResult.Errors);
         
         return Result.Success(OTPCode);
     }
-    public async Task<Result> SendVerificationEmailAsync(string To, string Token, CancellationToken cancellationToken, string Subject = "Confirm your account")
+    public async Task<Result> SendVerificationEmailAsync(string To, string Token, CancellationToken ct, string Subject = "Confirm your account")
     {
 
         var result = await PrepareHTMLBodyAsync("EmailTemplates", "ConfirmEmail.html", "{{confirmationLink}}", Token);
@@ -102,6 +102,6 @@ public class EmailService(IConfiguration _config) : IEmailService
         if (result.IsFailure)
             return result;
 
-        return await SendEmailAsync(To, Subject, result.Value, cancellationToken);
+        return await SendEmailAsync(To, Subject, result.Value, ct);
     }
 }

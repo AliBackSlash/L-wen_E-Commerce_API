@@ -1,4 +1,4 @@
-﻿using Löwen.Application.Abstractions.IServices.IdentityServices;
+﻿using Löwen.Domain.Abstractions.IServices.IAppUserServices;
 using Löwen.Domain.ConfigurationClasses.ApiSettings;
 using Löwen.Domain.ConfigurationClasses.JWT;
 using Löwen.Domain.ConfigurationClasses.StaticFilesHelpersClasses;
@@ -10,10 +10,8 @@ using Löwen.Infrastructure.EFCore.Context;
 using Löwen.Infrastructure.EFCore.IdentityUser;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.WebUtilities;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -21,7 +19,7 @@ namespace Löwen.Infrastructure.Services.IdentityServices;
 public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jwt, IOptions<ApiSettings> apiSettings,AppDbContext context) : IAppUserService
 {
 
-    public async Task<Result<RegisterResponseDto>> RegisterAsync(RegisterUserDto reg_info, CancellationToken cancellationToken)
+    public async Task<Result<RegisterResponseDto>> RegisterAsync(RegisterUserDto reg_info, CancellationToken ct)
     {
        
         AppUser user = new()
@@ -107,7 +105,7 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
             return Result.Failure<string>(new Error("Invalid Token", $"Message: {ex}", ErrorType.Validation));
         }
     }
-    public async Task<Result<LoginResponseDto>> LoginAsync(LoginDto dto, CancellationToken cancellationToken)
+    public async Task<Result<LoginResponseDto>> LoginAsync(LoginDto dto, CancellationToken ct)
     {
         var user = await _userManager.FindByEmailAsync(dto.UserNameOrEmail)
                    ?? await _userManager.FindByNameAsync(dto.UserNameOrEmail);
@@ -156,14 +154,14 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
     {
         AppUser? user = await _userManager.FindByEmailAsync(email);
         if (user == null)
-            return Result.Failure<string>(new Error("(Generate Email Confirmation) Not Found", "", ErrorType.NotFound));
+            return Result.Failure<string>(new Error("(Generate Email Confirmation) Not Found", "", ErrorType.Conflict));
 
         var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
         var encodedToken = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(token));
 
 
         if (string.IsNullOrEmpty(encodedToken))
-              return Result.Failure<string>(new Error("(Generate Email Confirmation) Error", "", ErrorType.NotFound));
+              return Result.Failure<string>(new Error("(Generate Email Confirmation) Error", "", ErrorType.Conflict));
 
         return Result.Success($"{apiSettings.Value.BaseUrl}/confirm-email?userId={user.Id}&token={encodedToken}");
     }
@@ -184,7 +182,7 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
     {
         AppUser? user = await _userManager.FindByIdAsync(userId.ToString());
         if (user == null)
-            return Result.Failure(new Error("(Add Role) Not Found", "", ErrorType.NotFound));
+            return Result.Failure(new Error("(Add Role) Not Found", "", ErrorType.Conflict));
 
         var roleResult = await _userManager.AddToRoleAsync(user, role.ToString());
         if (!roleResult.Succeeded)
@@ -199,10 +197,10 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
     {
         AppUser? user = await _userManager.FindByIdAsync(userId.ToString());
         if (user == null)
-            return Result.Failure(new Error("(Remove Role)", "Not Found", ErrorType.NotFound));
+            return Result.Failure(new Error("(Remove Role)", "Not Found", ErrorType.Conflict));
 
         if(!await _userManager.IsInRoleAsync(user,role.ToString()))
-            return Result.Failure(new Error("(Remove Role)", "User not have this role", ErrorType.NotFound));
+            return Result.Failure(new Error("(Remove Role)", "User not have this role", ErrorType.Conflict));
 
 
         var roleResult = await _userManager.RemoveFromRoleAsync(user, role.ToString());
@@ -218,10 +216,10 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
     {
         AppUser? user = await _userManager.FindByIdAsync(userId.ToString());
         if (user == null)
-            return Result.Failure<bool>(new Error("(Mark As Deleted)", "Not Found", ErrorType.NotFound));
+            return Result.Failure<bool>(new Error("(Mark As Deleted)", "Not Found", ErrorType.Conflict));
         
         if (user.IsDeleted)
-            return Result.Failure(new Error("(Activate Marked As Deleted)", "User already marked as deleted", ErrorType.NotFound));
+            return Result.Failure(new Error("(Activate Marked As Deleted)", "User already marked as deleted", ErrorType.Conflict));
 
         user.IsDeleted = true;
         user.DeletedAt = DateTime.UtcNow;
@@ -236,10 +234,10 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
     {
         AppUser? user = await _userManager.FindByIdAsync(userId.ToString());
         if (user == null)
-            return Result.Failure(new Error("(Activate Marked As Deleted)", "Not Found", ErrorType.NotFound));
+            return Result.Failure(new Error("(Activate Marked As Deleted)", "Not Found", ErrorType.Conflict));
 
         if(!user.IsDeleted)
-            return Result.Failure(new Error("(Activate Marked As Deleted)", "User already Active", ErrorType.NotFound));
+            return Result.Failure(new Error("(Activate Marked As Deleted)", "User already Active", ErrorType.Conflict));
 
         user.IsDeleted = false;
         user.DeletedAt = null;
@@ -254,7 +252,7 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
     {
         AppUser? user = await _userManager.FindByIdAsync(userId.ToString());
         if (user == null)
-            return Result.Failure<bool>(new Error("(Delete User)", "Not Found", ErrorType.NotFound));
+            return Result.Failure<bool>(new Error("(Delete User)", "Not Found", ErrorType.Conflict));
         var deleteResult = await _userManager.DeleteAsync(user);
         if(deleteResult.Succeeded)
             return Result.Success(true);
@@ -286,14 +284,14 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
     {
         AppUser? user = await _userManager.FindByEmailAsync(email);
         if (user == null)
-            return Result.Failure<string>(new Error("(Generate Rest Password) Not Found", "", ErrorType.NotFound));
+            return Result.Failure<string>(new Error("(Generate Rest Password) Not Found", "", ErrorType.Conflict));
 
         var token = await _userManager.GeneratePasswordResetTokenAsync(user);
         var encodedToken = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(token));
 
 
         if (string.IsNullOrEmpty(encodedToken))
-            return Result.Failure<string>(new Error("(Generate Email Confirmation) Error", "", ErrorType.NotFound));
+            return Result.Failure<string>(new Error("(Generate Email Confirmation) Error", "", ErrorType.Conflict));
        
         return Result.Success($"{apiSettings.Value.BaseUrl}/confirm-email?userId={user.Id}&token={encodedToken}");
     }
@@ -363,7 +361,7 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
         var user = await _userManager.FindByIdAsync(id);
         
         if (user == null || !await _userManager.IsInRoleAsync(user,role.ToString()))
-            return Result.Failure<GetUserResponseDto>(new Error("(Get By Id)", "Not Found", ErrorType.NotFound));
+            return Result.Failure<GetUserResponseDto>(new Error("(Get By Id)", "Not Found", ErrorType.Conflict));
 
 
 
@@ -385,7 +383,7 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
         var user = await _userManager.FindByEmailAsync(email);
 
         if (user == null || !await _userManager.IsInRoleAsync(user, role.ToString()))
-            return Result.Failure<GetUserResponseDto>(new Error("(Get By Email)", "Not Found", ErrorType.NotFound));
+            return Result.Failure<GetUserResponseDto>(new Error("(Get By Email)", "Not Found", ErrorType.Conflict));
 
         return Result.Success(new GetUserResponseDto
         {
@@ -442,7 +440,7 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
                  };
         //var users = await _userManager.GetUsersInRoleAsync(role.ToString());
         if (users == null)
-            return Result.Failure<List<GetUsersResponseDto>>(new Error("(Get All)", "Not Found", ErrorType.NotFound));
+            return Result.Failure<List<GetUsersResponseDto>>(new Error("(Get All)", "Not Found", ErrorType.Conflict));
         
         return Result.Success(
         users.Select(u => new GetUsersResponseDto
