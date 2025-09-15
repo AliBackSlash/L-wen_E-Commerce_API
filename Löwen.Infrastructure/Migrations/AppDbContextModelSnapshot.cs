@@ -347,17 +347,18 @@ namespace Löwen.Infrastructure.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(1200)
+                        .HasColumnType("varchar");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(255)
+                        .HasMaxLength(70)
                         .HasColumnType("varchar");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("numeric(18, 2)");
 
-                    b.Property<byte>("Status")
+                    b.Property<short>("Status")
                         .HasColumnType("smallint");
 
                     b.Property<short>("StockQuantity")

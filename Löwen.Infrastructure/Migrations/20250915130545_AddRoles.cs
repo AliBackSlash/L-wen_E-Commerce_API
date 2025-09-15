@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Löwen.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class Add_Roles : Migration
+    public partial class AddRoles : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

@@ -11,8 +11,8 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
     {
         builder.HasKey(p => p.Id);
         builder.Property(x => x.Id).HasColumnType("uuid").HasDefaultValueSql("gen_random_uuid()");
-        builder.Property(p => p.Name).IsRequired().HasMaxLength(255).HasColumnType("varchar");
-        builder.Property(p => p.Description).IsRequired().HasColumnType("text");
+        builder.Property(p => p.Name).IsRequired().HasMaxLength(70).HasColumnType("varchar");
+        builder.Property(p => p.Description).IsRequired().HasMaxLength(1200).HasColumnType("varchar");
         builder.Property(p => p.Price).IsRequired().HasColumnType("numeric(18, 2)");
         builder.Property(p => p.StockQuantity).IsRequired().HasColumnType("smallint");
         builder.Property(p => p.Status).IsRequired().HasColumnType("smallint");

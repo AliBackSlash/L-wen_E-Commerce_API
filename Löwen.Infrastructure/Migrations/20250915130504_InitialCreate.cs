@@ -17,8 +17,8 @@ namespace Löwen.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Name = table.Column<string>(type: "character varying(30)", maxLength: 30, nullable: true),
-                    NormalizedName = table.Column<string>(type: "character varying(30)", maxLength: 30, nullable: true),
+                    Name = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
+                    NormalizedName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
@@ -311,11 +311,11 @@ namespace Löwen.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "gen_random_uuid()"),
-                    Name = table.Column<string>(type: "varchar", maxLength: 255, nullable: false),
-                    Description = table.Column<string>(type: "text", nullable: false),
+                    Name = table.Column<string>(type: "varchar", maxLength: 70, nullable: false),
+                    Description = table.Column<string>(type: "varchar", maxLength: 1200, nullable: false),
                     Price = table.Column<decimal>(type: "numeric(18,2)", nullable: false),
                     StockQuantity = table.Column<short>(type: "smallint", nullable: false),
-                    Status = table.Column<byte>(type: "smallint", nullable: false),
+                    Status = table.Column<short>(type: "smallint", nullable: false),
                     CategoryId = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>

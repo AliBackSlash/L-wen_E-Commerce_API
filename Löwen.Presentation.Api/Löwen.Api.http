@@ -68,9 +68,6 @@ Content-Type: application/json
 DELETE {{Löwen.Api_HostAddress}}/api/Admin/remove-category/1e2c18bc-b7dd-4f36-98a9-09c9e54561cd
 ###
 
-
-//Admin Endpoints
-###
 POST {{Löwen.Api_HostAddress}}/api/Admin/add-Tag
 Content-Type: application/json
 {
@@ -85,3 +82,30 @@ PUT {{Löwen.Api_HostAddress}}/api/Admin/update-Tag/9dddf314-b433-4a15-a157-e4d1
 ###
 DELETE {{Löwen.Api_HostAddress}}/api/Admin/remove-Tag/9dddf314-b433-4a15-a157-e4d11a7a5de5
 ###
+
+POST {{Löwen.Api_HostAddress}}/api/Admin/add-product
+Content-Type: application/json
+{
+  "name": "Product 1",
+  "description": "Product 1",
+  "price": 1423,
+  "stockQuantity": 222,
+  "status": 1,
+  "categoryId": "512813e2-5167-4dd5-891a-6e9544500033"
+}
+
+###
+PUT {{Löwen.Api_HostAddress}}/api/Admin/update-product
+Content-Type: application/josn
+{
+  "id": "string",
+  "name": null,
+  "description":null,
+  "price": null,
+  "stockQuantity": null,
+  "status": null,
+  "categoryId": null
+}
+
+###
+DELETE {{Löwen.Api_HostAddress}}/api/Admin/remove-product/c658e6f8-9c8c-46ab-a259-074bc91c97dc

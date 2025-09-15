@@ -5,10 +5,14 @@ public class AddProductCommandValidator : AbstractValidator<AddProductCommand>
 {
     public AddProductCommandValidator()
     {
-        RuleFor(x => x.Tag).NotEmpty().WithMessage("Tag is not null")
-            .MaximumLength(100).WithMessage("the max Tag length is 100 chars");
-      
-        RuleFor(x => x.productId).NotEmpty().WithMessage("Id is required")
-            .Must(x => Guid.TryParse(x, out _)).WithMessage("Enter a valid Guid for productId");
+        RuleFor(x => x.Name).NotEmpty().WithMessage("Product name is required")
+    .MaximumLength(70).WithMessage("the max Product name length is 70 chars");
+        RuleFor(x => x.Price).NotEmpty().WithMessage("Price is required");
+        RuleFor(x => x.Description).NotEmpty().WithMessage("Product Description is required")
+            .MaximumLength(1200).WithMessage("the max Description length is 1200 chars");
+        RuleFor(x => x.StockQuantity).NotEmpty().WithMessage("Stock Quantity is required")
+            .Must(x => x <= 32767).WithMessage("the max Stock Quantity is 32,767");
+        RuleFor(x => x.CategoryId).NotEmpty().WithMessage("Id is required")
+    .Must(x => Guid.TryParse(x, out _)).WithMessage("Enter a valid Guid Category Id");
     }
 }

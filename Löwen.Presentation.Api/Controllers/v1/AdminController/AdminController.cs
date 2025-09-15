@@ -1,9 +1,13 @@
 ﻿
+using Löwen.Application.Features.AdminFeature.Commands.Product.AddProduct;
+using Löwen.Application.Features.AdminFeature.Commands.Product.RemoveProduct;
+using Löwen.Application.Features.AdminFeature.Commands.Product.UpdateProduct;
 using Löwen.Application.Features.AdminFeature.Commands.Tag.AddTag;
 using Löwen.Application.Features.AdminFeature.Commands.Tag.RemoveTag;
 using Löwen.Application.Features.AdminFeature.Commands.Tag.UpdateTag;
 using Löwen.Presentation.Api.Controllers.v1.AdminController.Models;
 using MediatR;
+using System.Xml.Linq;
 
 namespace Löwen.Presentation.Api.Controllers.v1.AdminController
 {
@@ -79,30 +83,36 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
         }
 
         [HttpPost("add-product")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType<Result<Guid>>(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> AddProduct()
+        public async Task<IActionResult> AddProduct([FromBody] AddProductModel model)
         {
-            throw new NotImplementedException();
+            Result<Guid> result = await sender.Send(new AddProductCommand(model.Name, model.Description, model.Price, model.StockQuantity, model.Status, model.CategoryId));
+
+            return result.ToActionResult();
         }
 
         [HttpPut("update-product")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> UpdateProduct()
+        public async Task<IActionResult> UpdateProduct([FromBody] UpdateProductModel model)
         {
-            throw new NotImplementedException();
+            Result result = await sender.Send(new UpdateProductCommand(model.Id,model.Name, model.Description, model.Price, model.StockQuantity, model.Status, model.CategoryId));
+
+            return result.ToActionResult();
         }
 
-        [HttpDelete("remove-product")]
+        [HttpDelete("remove-product/{Id:guid}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> RemoveProduct()
+        public async Task<IActionResult> RemoveProduct(Guid Id)
         {
-            throw new NotImplementedException();
+            Result result = await sender.Send(new RemoveProductCommand(Id));
+
+            return result.ToActionResult();
         }
 
         [HttpGet("get-user-by-id")]

@@ -3,17 +3,19 @@ using Löwen.Domain.Entities;
 
 namespace Löwen.Application.Features.AdminFeature.Commands.Product.RemoveProduct;
 
-public class RemoveProductCommandHandler(IProductTagService tagService) : ICommandHandler<RemoveProductCommand>
+public class RemoveProductCommandHandler(IProductService productService) : ICommandHandler<RemoveProductCommand>
 {
     public async Task<Result> Handle(RemoveProductCommand command, CancellationToken ct)
     {
-        
-        var tag = await tagService.GetByIdAsync(command.Id, ct);
+       /* if(Guid.TryParse(command.Id,out Guid Id))
+            return Result.Failure(new Error("Tag.Delete", "Invalid guid Id", ErrorType.Conflict));
+*/
+        var tag = await productService.GetByIdAsync(command.Id, ct);
        
         if (tag == null)
-            return Result.Failure(new Error("Tag.Delete", "Tag not found", ErrorType.Conflict));
+            return Result.Failure(new Error("product.Delete", "product not found", ErrorType.Conflict));
 
-        var updateResult = await tagService.DeleteAsync(tag, ct);
+        var updateResult = await productService.DeleteAsync(tag, ct);
 
         if (updateResult.IsFailure)
             return Result.Failure(updateResult.Errors);

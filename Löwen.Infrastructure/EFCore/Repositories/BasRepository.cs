@@ -14,17 +14,17 @@ public class BasRepository<TEntity, IdType>(AppDbContext _context) : IBasReposit
 
     public async Task<TEntity?> GetByIdAsync(IdType id, CancellationToken ct) => await _dbSet.FindAsync(id, ct);
     public async Task<IEnumerable<TEntity>> GetAllAsync(CancellationToken ct) => await _dbSet.AsNoTracking().ToListAsync(ct);
-    public async Task<Result> AddAsync(TEntity entity, CancellationToken ct)
+    public async Task<Result<TEntity>> AddAsync(TEntity entity, CancellationToken ct)
     {
         try
         {
             await _dbSet.AddAsync(entity, ct);
             await _context.SaveChangesAsync(ct);
-            return Result.Success();
+            return Result.Success(entity);
         }
         catch (Exception ex)
         {
-            return Result.Failure(new Error($"{nameof(TEntity)}.Add", ex.Message, ErrorType.InternalServer));
+            return Result.Failure<TEntity>(new Error($"{nameof(TEntity)}.Add", ex.Message, ErrorType.InternalServer));
         }
         
     }

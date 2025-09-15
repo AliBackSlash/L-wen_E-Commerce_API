@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Löwen.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250914165249_Add_Roles")]
-    partial class Add_Roles
+    [Migration("20250915130545_AddRoles")]
+    partial class AddRoles
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -350,17 +350,18 @@ namespace Löwen.Infrastructure.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(1200)
+                        .HasColumnType("varchar");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(255)
+                        .HasMaxLength(70)
                         .HasColumnType("varchar");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("numeric(18, 2)");
 
-                    b.Property<byte>("Status")
+                    b.Property<short>("Status")
                         .HasColumnType("smallint");
 
                     b.Property<short>("StockQuantity")
