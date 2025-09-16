@@ -1,7 +1,30 @@
 @Löwen.Api_HostAddress = https://localhost:7197
 
+
+//Auth Endpoints
+###
+POST {{Löwen.Api_HostAddress}}/api/Auth/Register
+Content-Type: application/json
+{
+  "email": "ae1378032@gmail5.com",
+  "userName": "ali-05",
+  "password": "Ali1@.com"
+}
+###
+PUT {{Löwen.Api_HostAddress}}/api/Users/Update
+Content-Type: application/json
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbGktMDUiLCJqdGkiOiI1OTA0Yzc4Ni04OWVhLTQ1YzYtOGMyNC1jNjUyZGJmZmNmNTAiLCJlbWFpbCI6ImFlMTM3ODAzMkBnbWFpbDUuY29tIiwidW5pcXVlX25hbWUiOiJhbGktMDUiLCJuYW1laWQiOiIzZmUwOWJkNy02ZjAyLTQyZGMtOGY0Ni00NTE0YjkxMWZkM2YiLCJleHAiOjE3NTgwMjI2NzQsImlzcyI6IkxvY2FsSG9zdCIsImF1ZCI6IkxvY2FsSG9zdCJ9.E-4PQdjYeCkBFjledHx8rG_vXu31Hkq1l0EGZP42h0s"
+  ,"fName": "Ali5",
+  "mName": null,
+  "lName": "Elsaied5",
+  "dateOfBirth": "2005-09-16",
+  "phoneNumber": "01096897418",
+  "gender": "M"
+}
+###
+
 //RootAdmin Endpoints
-##
 POST {{Löwen.Api_HostAddress}}/api/RootAdmin/add-admin
 Content-Type: application/json
 
@@ -16,7 +39,6 @@ Content-Type: application/json
   "phoneNumber": "01096897418",
   "gender": "M"
 }
-
 ###
 POST {{Löwen.Api_HostAddress}}/api/RootAdmin/assign-role/7d68f512-05e3-49c6-8cc9-5fbeed6b00fc,2
 
@@ -27,7 +49,7 @@ DELETE {{Löwen.Api_HostAddress}}/api/RootAdmin/Remove-Role-From-User-admin/7d68
 DELETE {{Löwen.Api_HostAddress}}/api/RootAdmin/remove-admin/ab62424c-e406-42bb-97d1-7479ecc3dbce
 
 ###
-PUT {{Löwen.Api_HostAddress}}/api/RootAdmin/mark-admin-as-deleted/7d68f512-05e3-49c6-8cc9-5fbeed6b00fc
+PUT {{Löwen.Api_HostAddress}}/api/RootAdmin/mark-admin-as-deleted/3fe09bd7-6f02-42dc-8f46-4514b911fd3f
 
 ###
 PUT {{Löwen.Api_HostAddress}}/api/RootAdmin/activate-marked-as-deleted/7d68f512-05e3-49c6-8cc9-5fbeed6b00fc
@@ -96,16 +118,30 @@ Content-Type: application/json
 
 ###
 PUT {{Löwen.Api_HostAddress}}/api/Admin/update-product
-Content-Type: application/josn
+Content-Type: application/json
 {
-  "id": "string",
-  "name": null,
-  "description":null,
+  "id": "51a1018c-2029-46da-8044-6aa8f9ebc039",
+  "description": null,
   "price": null,
   "stockQuantity": null,
-  "status": null,
-  "categoryId": null
+  "status": 2,
+  "categoryId": "512813e2-5167-4dd5-891a-6e9544500033"
 }
 
 ###
-DELETE {{Löwen.Api_HostAddress}}/api/Admin/remove-product/c658e6f8-9c8c-46ab-a259-074bc91c97dc
+DELETE {{Löwen.Api_HostAddress}}/api/Admin/remove-product/51a1018c-2029-46da-8044-6aa8f9ebc039
+###
+
+###
+GET {{Löwen.Api_HostAddress}}/api/Admin/get-user-by-id/97eece48-71cb-4f31-b7be-b032cfb73779
+###
+GET {{Löwen.Api_HostAddress}}/api/Admin/get-user-by-email/ae1378032@gmail3.com
+###
+GET {{Löwen.Api_HostAddress}}/api/Admin/get-users-paged/3,2
+
+
+###
+PUT {{Löwen.Api_HostAddress}}/api/Admin/mark-user-as-deleted/3fe09bd7-6f02-42dc-8f46-4514b911fd3f
+
+###
+PUT {{Löwen.Api_HostAddress}}/api/Admin/activate-marked-user-as-deleted/3fe09bd7-6f02-42dc-8f46-4514b911fd3f

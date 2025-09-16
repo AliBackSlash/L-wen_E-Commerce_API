@@ -1,6 +1,6 @@
-﻿namespace Löwen.Application.Features.UserFeature.Queries;
+﻿namespace Löwen.Application.Features.UserFeature.Queries.GetUserByEmail;
 
-public class GetUserByIdQueryResponse
+public class GetUserByEmailQueryResponse
 {
     public string? FName { get; set; }
     public string? MName { get; set; }

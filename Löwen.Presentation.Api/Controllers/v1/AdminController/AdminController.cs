@@ -5,9 +5,16 @@ using Löwen.Application.Features.AdminFeature.Commands.Product.UpdateProduct;
 using Löwen.Application.Features.AdminFeature.Commands.Tag.AddTag;
 using Löwen.Application.Features.AdminFeature.Commands.Tag.RemoveTag;
 using Löwen.Application.Features.AdminFeature.Commands.Tag.UpdateTag;
-using Löwen.Presentation.Api.Controllers.v1.AdminController.Models;
-using MediatR;
-using System.Xml.Linq;
+using Löwen.Application.Features.AdminFeatures.Commands.ActivateMarkedAsDeleted;
+using Löwen.Application.Features.AdminFeatures.Commands.MarkAsDeleted;
+using Löwen.Application.Features.UserFeature.Queries.GetUserByEmail;
+using Löwen.Application.Features.UserFeature.Queries.GetUserById;
+using Löwen.Application.Features.UserFeature.Queries.GetUsers;
+using Löwen.Domain.Pagination;
+using Löwen.Presentation.Api.Controllers.v1.AdminController.Models.CategoryModels;
+using Löwen.Presentation.Api.Controllers.v1.AdminController.Models.ProductModels;
+using Löwen.Presentation.Api.Controllers.v1.AdminController.Models.TagModels;
+
 
 namespace Löwen.Presentation.Api.Controllers.v1.AdminController
 {
@@ -115,49 +122,59 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
             return result.ToActionResult();
         }
 
-        [HttpGet("get-user-by-id")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [HttpGet("get-user-by-id/{Id}")]
+        [ProducesResponseType<GetUserByIdQueryResponse>(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetUserById()
+        public async Task<IActionResult> GetUserById(string Id)
         {
-            throw new NotImplementedException();
+            Result<GetUserByIdQueryResponse> result = await sender.Send(new GetUserByIdQuery(Id));
+
+            return result.ToActionResult();
         }
 
-        [HttpGet("get-user-by-email")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [HttpGet("get-user-by-email/{email}")]
+        [ProducesResponseType<GetUserByEmailQueryResponse>(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetUserByEmail()
+        public async Task<IActionResult> GetUserByEmail(string email)
         {
-            throw new NotImplementedException();
+            Result<GetUserByEmailQueryResponse> result = await sender.Send(new GetUserByEmailQuery(email));
+
+            return result.ToActionResult();
         }
 
-        [HttpGet("get-users-paged")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [HttpGet("get-users-paged/{PageNumber},{PageSize}")]
+        [ProducesResponseType<PagedResult<GetUsersQueryResponse>>(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetUsersPaged()
+        public async Task<IActionResult> GetUsersPaged(int PageNumber, byte PageSize)
         {
-            throw new NotImplementedException();
+            Result<PagedResult<GetUsersQueryResponse>> result = await sender.Send(new GetUsersQuery(PageNumber, PageSize));
+
+            return result.ToActionResult();
         }
 
-        [HttpPost("Deactivate-user")]
+        [HttpPut("mark-user-as-deleted/{Id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> DeactivateUser()
+        public async Task<IActionResult> DeactivateUser(Guid Id)
         {
-            throw new NotImplementedException();
+            Result result = await sender.Send(new MarkUserAsDeletedCommand(Id));
+
+            return result.ToActionResult();
         }
 
-        [HttpPost("activate-user")]
+        [HttpPut("activate-marked-user-as-deleted/{Id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> ActivateUser()
+        public async Task<IActionResult> ActivateUser(Guid Id)
         {
-            throw new NotImplementedException();
+            Result result = await sender.Send(new ActivateMarkedUserAsDeletedCommand(Id));
+
+            return result.ToActionResult();
         }
 
       

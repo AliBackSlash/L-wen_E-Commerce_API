@@ -10,6 +10,7 @@ public class EmailService(IConfiguration _config) : IEmailService
 {
     private async Task<Result> SendEmailAsync(string to, string subject, string body, CancellationToken ct = default)
     {
+        return Result.Success();
         try
         {
             using var client = new SmtpClient

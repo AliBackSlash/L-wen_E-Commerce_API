@@ -6,6 +6,6 @@ public class ActivateMarkedAsDeletedCommandHandler(IAppUserService userService) 
 {
     public async Task<Result> Handle(ActivateMarkedAsDeletedCommand command, CancellationToken ct)
     {
-        return await userService.ActivateMarkedAsDeletedAsync(command.Id);
+        return await userService.ActivateMarkedAsDeletedAsync(command.Id, UserRole.Admin);
     }
 }

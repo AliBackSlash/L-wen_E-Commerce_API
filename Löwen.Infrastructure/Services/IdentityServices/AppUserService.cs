@@ -6,13 +6,16 @@ using Löwen.Domain.Enums;
 using Löwen.Domain.ErrorHandleClasses;
 using Löwen.Domain.Layer_Dtos.AppUser.request;
 using Löwen.Domain.Layer_Dtos.AppUser.response;
+using Löwen.Domain.Pagination;
 using Löwen.Infrastructure.EFCore.Context;
 using Löwen.Infrastructure.EFCore.IdentityUser;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 namespace Löwen.Infrastructure.Services.IdentityServices;
@@ -30,7 +33,7 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
 
         var createResult = await _userManager.CreateAsync(user, reg_info.Password);
         if (!createResult.Succeeded)
-            return Result.Failure<RegisterResponseDto>(new Error("Create Errors", string.Join(", ", createResult.Errors.Select(e => e.Description)), ErrorType.Create));
+            return Result.Failure<RegisterResponseDto>(new Error("AppUserService.RegisterAsync", string.Join(", ", createResult.Errors.Select(e => e.Description)), ErrorType.Create));
 
         return Result.Success(new RegisterResponseDto(user.Id, await _CreateJWTToken(user)));
     }
@@ -212,9 +215,13 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
         return Result.Success();
 
     }
-    public async Task<Result> MarkAsDeletedAsync(Guid userId)
+    public async Task<Result> MarkAsDeletedAsync(Guid userId, UserRole role)
     {
-        AppUser? user = await _userManager.FindByIdAsync(userId.ToString());
+        AppUser? user = await (from u in _userManager.Users
+                               join ur in context.UserRoles on u.Id equals ur.UserId
+                               join r in context.Roles on ur.RoleId equals r.Id
+                               where r.Name == role.ToString() && u.Id == userId
+                               select u).FirstOrDefaultAsync();
         if (user == null)
             return Result.Failure<bool>(new Error("(Mark As Deleted)", "Not Found", ErrorType.Conflict));
         
@@ -230,9 +237,15 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
 
         return Result.Success();
     }
-    public async Task<Result> ActivateMarkedAsDeletedAsync(Guid userId)
+    public async Task<Result> ActivateMarkedAsDeletedAsync(Guid userId, UserRole role)
     {
-        AppUser? user = await _userManager.FindByIdAsync(userId.ToString());
+
+        AppUser? user = await (from u in _userManager.Users
+                          join ur in context.UserRoles on u.Id equals ur.UserId
+                          join r in context.Roles on ur.RoleId equals r.Id
+                          where r.Name == role.ToString() && u.Id == userId
+                          select u).FirstOrDefaultAsync();
+
         if (user == null)
             return Result.Failure(new Error("(Activate Marked As Deleted)", "Not Found", ErrorType.Conflict));
 
@@ -427,7 +440,7 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
                  join ur in context.UserRoles on u.Id equals ur.UserId
                  join r in context.Roles on ur.RoleId equals r.Id
                  where r.Name == role.ToString()
-                 orderby u.UserName
+                 orderby u.UserName 
                  select new {
                      u.Id,
                      u.UserName,
@@ -438,9 +451,9 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
                      u.PhoneNumber,
                      u.IsDeleted
                  };
-        //var users = await _userManager.GetUsersInRoleAsync(role.ToString());
+
         if (users == null)
-            return Result.Failure<List<GetUsersResponseDto>>(new Error("(Get All)", "Not Found", ErrorType.Conflict));
+            return Result.Failure<List<GetUsersResponseDto>>(new Error("AppUserService.GetAllAsync", "Not Found", ErrorType.Conflict));
         
         return Result.Success(
         users.Select(u => new GetUsersResponseDto
@@ -455,5 +468,50 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
             IsActive = u.IsDeleted
         }).ToList());
     }
+    public async Task<Result<PagedResult<GetUsersResponseDto>>> GetAllAsync(PaginationParams Params,UserRole role = UserRole.User)
+    {
+        var query =
+            from u in _userManager.Users
+            join ur in context.UserRoles on u.Id equals ur.UserId
+            join r in context.Roles on ur.RoleId equals r.Id
+            where r.Name == role.ToString()
+            orderby u.UserName
+            select new
+            {
+                u.Id,
+                u.UserName,
+                u.FName,
+                u.MName,
+                u.LName,
+                u.Gender,
+                u.PhoneNumber,
+                u.IsDeleted
+            };
+
+        var totalCount = await query.CountAsync();
+
+        if (totalCount == 0)
+            return Result.Failure<PagedResult<GetUsersResponseDto>>(
+                new Error("AppUserService.GetAllAsync", "No users ound", ErrorType.Conflict));
+
+        var users = await query
+            .Skip(Params.Skip)
+            .Take(Params.PageSize)
+            .Select(u => new GetUsersResponseDto
+            {
+                Id = u.Id,
+                UserName = u.UserName!,
+                FName = u.FName!,
+                MName = u.MName,
+                LName = u.LName!,
+                Gender = u.Gender,
+                PhoneNumber = u.PhoneNumber,
+                IsActive = !u.IsDeleted
+            })
+            .ToListAsync();
+
+        return Result.Success(PagedResult<GetUsersResponseDto>.Create(users, totalCount, Params.PageNumber, Params.PageSize));
+    }
+
 }
 

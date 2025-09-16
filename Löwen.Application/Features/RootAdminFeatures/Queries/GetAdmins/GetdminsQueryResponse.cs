@@ -1,5 +1,5 @@
 ﻿namespace Löwen.Application.Features.RootAdminFeatures.Queries.GetAdmins;
-public class GetUsersQueryResponse
+public class GetdminsQueryResponse
 {
 
     public Guid Id { get; set; }
@@ -8,14 +8,14 @@ public class GetUsersQueryResponse
     public string? PhoneNumber { get; set; }
     public char Gender { get; set; }
     public bool? IsActive { get; set; }
-    private GetUsersQueryResponse() { }
+    private GetdminsQueryResponse() { }
 
-    public static GetUsersQueryResponse Map(GetUsersResponseDto dto)
+    public static GetdminsQueryResponse Map(GetUsersResponseDto dto)
     {
         if (dto is null)
             return null!;
 
-        return new GetUsersQueryResponse
+        return new GetdminsQueryResponse
         {
             Id = dto.Id,
             FullName = dto.FName + (string.IsNullOrWhiteSpace(dto.MName) ? " " : $" {dto.MName} ") + dto.LName,
@@ -27,7 +27,7 @@ public class GetUsersQueryResponse
         };
     }
 
-    public static List<GetUsersQueryResponse> Map(List<GetUsersResponseDto> dtos)
+    public static List<GetdminsQueryResponse> Map(List<GetUsersResponseDto> dtos)
     {
         if (dtos is null)
             return [];

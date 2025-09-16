@@ -1,6 +1,6 @@
 ﻿using Löwen.Application.Features.UserFeature.Commands.ChangePasswordCommand;
 using Löwen.Application.Features.UserFeature.Commands.UpdateUserInfoCommand;
-using Löwen.Application.Features.UserFeature.Queries;
+using Löwen.Application.Features.UserFeature.Queries.GetUserById;
 using Löwen.Domain.ErrorHandleClasses;
 using Löwen.Presentation.Api.Controllers.v1.UsersController.Models;
 using Löwen.Presentation.API.Extensions;

@@ -1,21 +1,14 @@
-﻿
-
-
-using Löwen.Application.Features.UserFeature.Commands.ChangePasswordCommand;
+﻿using Löwen.Application.Features.UserFeature.Commands.ChangePasswordCommand;
 using Löwen.Domain.Abstractions.IServices.IAppUserServices;
 
-namespace Löwen.Application.Features.UserFeature.Queries;
+namespace Löwen.Application.Features.UserFeature.Queries.GetUserById;
 
 public class GetUserByIdQueryHandler(IAppUserService userService) : ICommandHandler<GetUserByIdQuery, GetUserByIdQueryResponse>
 {
     public async Task<Result<GetUserByIdQueryResponse>> Handle(GetUserByIdQuery command, CancellationToken ct)
     {
-        var id =  userService.GetUserIdFromToken(command.token);
 
-        if (id.IsFailure)
-            return Result.Failure<GetUserByIdQueryResponse>(id.Errors);
-
-        var user = await userService.GetUserByIdAsync(id.Value);
+        var user = await userService.GetUserByIdAsync(command.Id);
         if (user.IsFailure)
             return Result.Failure<GetUserByIdQueryResponse>(user.Errors);
 

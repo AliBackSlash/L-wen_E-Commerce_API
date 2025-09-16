@@ -101,7 +101,7 @@
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetAdmins(UserRole role)
         {
-            Result<List<GetUsersQueryResponse>> result = await sender.Send(new GetAdminsQuery(role));
+            Result<List<GetdminsQueryResponse>> result = await sender.Send(new GetAdminsQuery(role));
 
             return result.ToActionResult();
         }
