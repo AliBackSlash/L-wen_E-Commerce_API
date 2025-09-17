@@ -31,6 +31,7 @@ public static class ResultExtensions
         return primaryError.Type switch
         {
             ErrorType.NotFound => new NotFoundObjectResult(errors),
+            ErrorType.Validation => new BadRequestObjectResult(errors),
             ErrorType.Conflict => new ConflictObjectResult(errors),
             ErrorType.ConfirmEmailError => new ConflictObjectResult(errors),
             ErrorType.BadRequest => new BadRequestObjectResult(errors),

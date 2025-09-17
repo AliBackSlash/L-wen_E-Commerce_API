@@ -41,7 +41,6 @@ public class FileService(IWebHostEnvironment _env, IHttpContextAccessor _httpCon
                 return Result.Failure<string>(new Error("Upload", "File signature mismatch", ErrorType.Validation));
 
             var fileName = Guid.NewGuid() + extension;
-
             var uploadPath = Path.Combine(_env.WebRootPath, folder);
             if (!Directory.Exists(uploadPath))
                 Directory.CreateDirectory(uploadPath);

@@ -24,3 +24,16 @@ Content-Type: application/json
   "password": "Ali1@.com1",
   "confermPassword": "Ali1@.com1"
 }
+
+###
+PUT https://localhost:7197/api/users/update-profile-image
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijk3ZWVjZTQ4LTcxY2ItNGYzMS1iN2JlLWIwMzJjZmI3Mzc3OSIsImp0aSI6ImFiMDkzNWYzLTdkNjQtNDY5YS1iMGQxLWM0OWVmMDNmMGI2NSIsImVtYWlsIjoiYWUxMzc4MDMyQGdtYWlsLmNvbSIsInVuaXF1ZV9uYW1lIjoiYWxpLTAxIiwicm9sZXMiOiJVc2VyIiwiZXhwIjoxNzU4MTMwMTkyLCJpc3MiOiJMb2NhbEhvc3QiLCJhdWQiOiJMb2NhbEhvc3QifQ.XZuEMZT1ZfPKK2ObDRicqHf3JgrUpqgBP4dElZlt7hs
+accept: */*
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="Image"; filename="Digitel view.jpg"
+Content-Type: image/jpeg
+
+< G:\photos\Digitel view.jpg
+--WebAppBoundary--

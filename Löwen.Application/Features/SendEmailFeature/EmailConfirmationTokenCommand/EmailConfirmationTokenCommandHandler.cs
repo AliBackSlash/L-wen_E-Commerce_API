@@ -1,6 +1,5 @@
 ﻿
 using Löwen.Application.Features.AuthFeature.Commands.RegisterCommand;
-using Löwen.Domain.Abstractions.IServices.IAppUserServices;
 using Löwen.Domain.Abstractions.IServices.IEmailServices;
 
 namespace Löwen.Application.Features.SendEmailFeature.EmailConfirmationTokenCommand;
