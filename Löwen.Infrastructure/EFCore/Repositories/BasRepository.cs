@@ -51,7 +51,7 @@ public class BasRepository<TEntity, IdType>(AppDbContext _context) : IBasReposit
         }
         catch (Exception ex)
         {
-            return Result.Failure(new Error($"{nameof(TEntity)}.Add", ex.Message, ErrorType.InternalServer));
+            return Result.Failure(new Error($"{nameof(TEntity)}.Delete", ex.Message, ErrorType.InternalServer));
         }
     }
     public async Task<PagedResult<TEntity>> GetPagedAsync(IQueryable<TEntity> query, PaginationParams paginationParams, CancellationToken ct = default)

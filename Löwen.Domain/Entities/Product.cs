@@ -16,10 +16,11 @@ public class Product
     // Navigation properties
     public ProductCategory? Category { get; set; }
     public ProductTag? Tag { get; set; }
-    public ICollection<ProductImage> ProductImages { get; set; } = new List<ProductImage>();
-    public ICollection<ProductReview> ProductReviews { get; set; } = new List<ProductReview>();
-    public ICollection<CartItem> CartItems { get; set; } = new List<CartItem>();
-    public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
-    public ICollection<Wishlist> Wishlists { get; set; } = new List<Wishlist>();
-    public ICollection<ProductDiscount> ProductDiscounts { get; set; } = new List<ProductDiscount>();
+    public ICollection<ProductImage> ProductImages { get; set; } = [];
+    public ICollection<ProductReview> ProductReviews { get; set; } = [];
+    public ICollection<CartItem> CartItems { get; set; } = [];
+    public ICollection<OrderItem> OrderItems { get; set; } = [];
+    public ICollection<Wishlist> Wishlists { get; set; } = [];
+    public ICollection<LoveProductUser> Loves { get; set; } = [];
+    public ICollection<ProductDiscount> ProductDiscounts { get; set; } = [];
 }

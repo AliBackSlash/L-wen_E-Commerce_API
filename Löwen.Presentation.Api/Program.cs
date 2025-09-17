@@ -43,6 +43,7 @@ builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IProductCategoryService, ProductCategoryService>();
 builder.Services.AddScoped<IProductTagService, ProductTagService>();
+builder.Services.AddScoped<IWishlistService, WishlistService>();
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.Configure<StaticFilesSettings>(

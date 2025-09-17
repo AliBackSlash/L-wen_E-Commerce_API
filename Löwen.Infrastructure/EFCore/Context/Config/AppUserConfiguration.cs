@@ -62,6 +62,12 @@ public class AppUserConfiguration : IEntityTypeConfiguration<AppUser>
                .HasForeignKey(w => w.UserId)
                .OnDelete(DeleteBehavior.Cascade)
                .IsRequired();
+       
+        builder.HasMany(w => w.Loves)
+               .WithOne()
+               .HasForeignKey(w => w.UserId)
+               .OnDelete(DeleteBehavior.Cascade)
+               .IsRequired();
 
         
     }

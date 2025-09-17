@@ -1,11 +1,14 @@
 ﻿using Löwen.Application.Features.SendEmailFeature.EmailConfirmationTokenCommand;
 using Löwen.Application.Features.UploadFeature.UpdateProfileImageCommand;
+using Löwen.Application.Features.UserFeature.Commands.AddToWishlist;
 using Löwen.Application.Features.UserFeature.Commands.ChangePasswordCommand;
+using Löwen.Application.Features.UserFeature.Commands.RemoveFromWishlist;
+using Löwen.Application.Features.UserFeature.Commands.RemoveLove;
 using Löwen.Application.Features.UserFeature.Commands.UpdateUserInfoCommand;
 using Löwen.Application.Features.UserFeature.Queries.GetUserById;
 using Löwen.Presentation.Api.Controllers.v1.UsersController.Models;
-using System.Security.Claims;
 using System.IO;
+using System.Security.Claims;
 namespace Löwen.Presentation.Api.Controllers.v1.UsersController;
 [ApiController]
 [ApiVersion("1.0")]
@@ -123,36 +126,64 @@ public class UsersController(ISender _sender, IFileService fileService) : Contro
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> AddProductToWishlist()
+    public async Task<IActionResult> AddProductToWishlist([FromBody] WishlistModel model )
     {
-        throw new NotImplementedException();
+        var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        if (string.IsNullOrEmpty(id))
+            return Result.Failure(new Error("api/users/add-product-to-wishlist", "Valid token is required", ErrorType.Unauthorized)).ToActionResult();
+
+        Result result = await _sender.Send(new AddLoveCommand(id, model.productId));
+
+        return result.ToActionResult();
     }
 
     [HttpDelete("remove-product-from-wishlist")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> RemoveProductFromWishlist()
+    public async Task<IActionResult> RemoveProductFromWishlist([FromBody] WishlistModel model)
     {
-        throw new NotImplementedException();
+        var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        if (string.IsNullOrEmpty(id))
+            return Result.Failure(new Error("api/users/remove-product-from-wishlist", "Valid token is required", ErrorType.Unauthorized)).ToActionResult();
+
+        Result result = await _sender.Send(new RemoveFromWishlistCommand(id, model.productId));
+
+        return result.ToActionResult();
     }
 
     [HttpPost("add-love-for-product")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> AddLoveForProduct()
+    public async Task<IActionResult> AddLoveForProduct([FromBody] LoveModel model)
     {
-        throw new NotImplementedException();
+        var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        if (string.IsNullOrEmpty(id))
+            return Result.Failure(new Error("api/users/add-love-for-product", "Valid token is required", ErrorType.Unauthorized)).ToActionResult();
+
+        Result result = await _sender.Send(new AddLoveCommand(id, model.productId));
+
+        return result.ToActionResult();
     }
 
     [HttpDelete("remove-love-from-product")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> RemoveLoveFromProduct()
+    public async Task<IActionResult> RemoveLoveFromProduct([FromBody] LoveModel model)
     {
-        throw new NotImplementedException();
+        var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        if (string.IsNullOrEmpty(id))
+            return Result.Failure(new Error("api/users/remove-love-from-product", "Valid token is required", ErrorType.Unauthorized)).ToActionResult();
+
+        Result result = await _sender.Send(new RemoveLoveCommand(id, model.productId));
+
+        return result.ToActionResult();
     }
 
     [HttpPost("add-review-for-product")]

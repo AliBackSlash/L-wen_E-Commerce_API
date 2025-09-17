@@ -14,13 +14,14 @@ public class AppUser : IdentityUser<Guid>
     public bool IsDeleted { get; set; }
     public DateTime? DeletedAt { get; set; }
     
-    public ICollection<CustomerAddress> CustomerAddresses { get; set; } = new List<CustomerAddress>();
-    public ICollection<Cart> Carts { get; set; } = new List<Cart>();
-    public ICollection<Order> Orders { get; set; } = new List<Order>();
-    public ICollection<ProductReview> ProductReviews { get; set; } = new List<ProductReview>();
-    public ICollection<AdminLog> AdminLogs { get; set; } = new List<AdminLog>();
-    public ICollection<Wishlist> Wishlists { get; set; } = new List<Wishlist>();
-    public ICollection<Notification> Notifications { get; set; } = new List<Notification>();
+    public ICollection<CustomerAddress> CustomerAddresses { get; set; } = [];
+    public ICollection<Cart> Carts { get; set; } = [];
+    public ICollection<Order> Orders { get; set; } = [];
+    public ICollection<ProductReview> ProductReviews { get; set; } = [];
+    public ICollection<AdminLog> AdminLogs { get; set; } = [];
+    public ICollection<Wishlist> Wishlists { get; set; } = [];
+    public ICollection<LoveProductUser> Loves { get; set; } = [];
+    public ICollection<Notification> Notifications { get; set; } = [];
 }
 
 
