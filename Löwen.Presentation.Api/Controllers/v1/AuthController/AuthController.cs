@@ -21,7 +21,7 @@ namespace Löwen.Presentation.API.Controllers.v1.AuthController
     public class AuthController(ISender _sender ) : ControllerBase
     {
 
-        [HttpPost("Register")]
+        [HttpPost("register")]
         [ProducesResponseType<RegisterCommandResponse>(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
@@ -32,7 +32,7 @@ namespace Löwen.Presentation.API.Controllers.v1.AuthController
             return result.ToActionResult();
         }
 
-        [HttpPost("Login")]
+        [HttpPost("login")]
         [ProducesResponseType<LoginCommandResponse>(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
@@ -43,7 +43,7 @@ namespace Löwen.Presentation.API.Controllers.v1.AuthController
             return result.ToActionResult();
         }
 
-        [HttpPost("Confirm-Email")]
+        [HttpPost("confirm-email")]
         [ProducesResponseType<ConfirmEmailResponse>(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
@@ -54,7 +54,7 @@ namespace Löwen.Presentation.API.Controllers.v1.AuthController
             return result.ToActionResult();
         }
 
-        [HttpPost("Rest-Password")]
+        [HttpPost("rest-password")]
         [ProducesResponseType<ConfirmEmailResponse>(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]

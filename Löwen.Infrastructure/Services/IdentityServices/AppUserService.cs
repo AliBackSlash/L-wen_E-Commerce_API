@@ -45,11 +45,10 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
 
         var claims = new List<Claim>
     {
-        new Claim(JwtRegisteredClaimNames.Sub, appUser.UserName ?? ""),
+        new Claim(ClaimTypes.NameIdentifier, appUser.Id.ToString() ?? ""),
         new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
         new Claim(JwtRegisteredClaimNames.Email, appUser.Email ?? ""),
         new Claim(JwtRegisteredClaimNames.UniqueName, appUser.UserName ?? ""),
-        new Claim(JwtRegisteredClaimNames.NameId, appUser.Id.ToString()),
     };
 
         claims.AddRange(userClaims);
@@ -381,6 +380,7 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
 
         return Result.Success(new GetUserResponseDto
         {
+            Email = user.Email!,
             UserName = user.UserName!,
             FName = user.FName!,
             MName = user.MName,
@@ -400,6 +400,7 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
 
         return Result.Success(new GetUserResponseDto
         {
+            Email = user.Email!,
             UserName = user.UserName!,
             FName = user.FName!,
             MName = user.MName,

@@ -11,8 +11,6 @@ public class AddCategoryCommandHandler(IProductCategoryService categoryService) 
         {
             Category = command.Category,
             Gender = command.Gender,
-            AgeFrom = command.AgeFrom,
-            AgeTo = command.AgeTo
         },ct);
 
         if (addResult.IsFailure)

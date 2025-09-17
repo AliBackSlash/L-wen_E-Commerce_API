@@ -2,6 +2,7 @@
 
 public class GetUserResponseDto
 {
+    public required string Email { get; set; }
     public required string UserName { get; set; }
     public required string FName { get; set; }
     public string? MName { get; set; }

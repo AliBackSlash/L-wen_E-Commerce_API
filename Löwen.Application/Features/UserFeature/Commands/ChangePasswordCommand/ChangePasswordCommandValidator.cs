@@ -4,9 +4,8 @@ public class ChangePasswordCommandValidator : AbstractValidator<ChangePasswordCo
 {
     public ChangePasswordCommandValidator()
     {
-         RuleFor(x => x.token)
-         .NotEmpty()
-         .WithMessage("token is required");
+        RuleFor(x => x.Id).NotEmpty().WithMessage("Id is required")
+            .Must(x => Guid.TryParse(x, out _)).WithMessage("Enter a valid Guid id");
 
         RuleFor(x => x.currentPassword).NotEmpty().WithMessage("Current password is required");
         RuleFor(x => x.newPassword)

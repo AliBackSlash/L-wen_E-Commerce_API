@@ -1,0 +1,42 @@
+@Löwen.Api_HostAddress = https://localhost:7197
+
+
+//RootAdmin Endpoints
+POST {{Löwen.Api_HostAddress}}/api/RootAdmin/add-admin
+Content-Type: application/json
+
+{
+  "email": "se1378032@gmail.com",
+  "userName": "ali@@@",
+  "password": "Alxcvbnxcv1!",
+  "fName": "Ali",
+  "mName": null,
+  "lName": "Elsaied",
+  "DateOfBirth": "2004-09-09",
+  "phoneNumber": "01096897418",
+  "gender": "M"
+}
+###
+POST {{Löwen.Api_HostAddress}}/api/RootAdmin/assign-role/7d68f512-05e3-49c6-8cc9-5fbeed6b00fc,2
+
+###
+DELETE {{Löwen.Api_HostAddress}}/api/RootAdmin/Remove-Role-From-User-admin/7d68f512-05e3-49c6-8cc9-5fbeed6b00fc,2
+
+###
+DELETE {{Löwen.Api_HostAddress}}/api/RootAdmin/remove-admin/ab62424c-e406-42bb-97d1-7479ecc3dbce
+
+###
+PUT {{Löwen.Api_HostAddress}}/api/RootAdmin/mark-admin-as-deleted/3fe09bd7-6f02-42dc-8f46-4514b911fd3f
+
+###
+PUT {{Löwen.Api_HostAddress}}/api/RootAdmin/activate-marked-as-deleted/7d68f512-05e3-49c6-8cc9-5fbeed6b00fc
+
+###
+GET {{Löwen.Api_HostAddress}}/api/RootAdmin/admin-by-id/7d68f512-05e3-49c6-8cc9-5fbeed6b00fc,1
+
+###
+GET {{Löwen.Api_HostAddress}}/api/RootAdmin/admin-by-email/ae1378032@gmail.com,2
+
+###
+GET {{Löwen.Api_HostAddress}}/api/RootAdmin/admins/3
+###

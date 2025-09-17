@@ -5,58 +5,79 @@ using Löwen.Domain.ErrorHandleClasses;
 using Löwen.Presentation.Api.Controllers.v1.UsersController.Models;
 using Löwen.Presentation.API.Extensions;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace Löwen.Presentation.Api.Controllers.v1.UsersController;
 [ApiController]
 [ApiVersion("1.0")]
-[Route("api/Users")]
+[Route("api/users")]
+//[Authorize(Roles = "User")]
 public class UsersController(ISender _sender) : ControllerBase
 {
-    [HttpGet("/{token}")]
+    [HttpGet("get-user-info")]
     [ProducesResponseType<GetUserByIdQueryResponse>(StatusCodes.Status200OK)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<Result>(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> UpdateUserInfo(string token)
+    public async Task<IActionResult> GetUserInfo()
     {
-        Result<GetUserByIdQueryResponse> result = await _sender.Send(new GetUserByIdQuery(token));
+        var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-        return result.ToActionResult();
-    }
+        if (string.IsNullOrEmpty(id))
+        {
+            Result auth = Result.Failure(new Error("api/users/get-user-info", "Valid token is required", ErrorType.Unauthorized));
+            return auth.ToActionResult();
+        }
 
-    [HttpPut("Update")]
-    [ProducesResponseType<UpdateUserInfoCommandResponse>(StatusCodes.Status200OK)]
-    [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> UpdateUserInfo([FromBody] UpdateUserModel request)
-    {
-        Result<UpdateUserInfoCommandResponse> result = await _sender.Send(new UpdateUserInfoCommand
-            (request.token, request.FName, request.MName, request.LName,request.DateOfBirth, request.PhoneNumber,request.Gender));
-
-        return result.ToActionResult();
-    }
-
-
-
-    [HttpPut("Change-Password")]
-    [ProducesResponseType<ChangePasswordCommandResponse>(StatusCodes.Status200OK)]
-    [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> ChangePasswordAsync([FromBody] ChangePasswordModel request)
-    {
-        Result<ChangePasswordCommandResponse> result = await _sender.Send(new ChangePasswordCommand(request.token, request.CurrentPassword,
-            request.Password, request.ConfermPassword));
+        Result<GetUserByIdQueryResponse> result = await _sender.Send(new GetUserByIdQuery(id));
 
         return result.ToActionResult();
     }
 
     [HttpPut("update-user-info")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType<UpdateUserInfoCommandResponse>(StatusCodes.Status200OK)]
+    [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<Result>(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> UpdateUserInfo([FromBody] UpdateUserModel request)
+    {
+        var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        if (string.IsNullOrEmpty(id))
+        {
+            Result auth = Result.Failure(new Error("api/users/update", "Valid token is required", ErrorType.Unauthorized));
+            return auth.ToActionResult();
+        }
+
+        Result<UpdateUserInfoCommandResponse> result = await _sender.Send(new UpdateUserInfoCommand
+            (id, request.FName, request.MName, request.LName,request.DateOfBirth, request.PhoneNumber,request.Gender));
+
+        return result.ToActionResult();
+    }
+
+
+
+    [HttpPut("change-password")]
+    [ProducesResponseType<ChangePasswordCommandResponse>(StatusCodes.Status200OK)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> UpdateUserInfo()
+    public async Task<IActionResult> ChangePasswordAsync([FromBody] ChangePasswordModel request)
     {
-        throw new NotImplementedException();
+        var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        if (string.IsNullOrEmpty(id))
+        {
+            Result auth = Result.Failure(new Error("api/users/change-password", "Valid token is required", ErrorType.Unauthorized));
+            return auth.ToActionResult();
+        }
+
+        Result<ChangePasswordCommandResponse> result = await _sender.Send(new ChangePasswordCommand(id, request.CurrentPassword,
+            request.Password, request.ConfermPassword));
+
+        return result.ToActionResult();
     }
 
     [HttpPut("update-user-image")]

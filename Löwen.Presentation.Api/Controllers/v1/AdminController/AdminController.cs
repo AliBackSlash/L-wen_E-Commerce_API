@@ -29,7 +29,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> AddCategory([FromBody] AddCategoryModel request)
         {
-            Result result = await sender.Send(new AddCategoryCommand(request.Category, request.Gender, request.AgeFrom, request.AgeTo));
+            Result result = await sender.Send(new AddCategoryCommand(request.Category, request.Gender));
 
             return result.ToActionResult();
         }
@@ -40,7 +40,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> UpdateCategory([FromBody] UpdateCategoryModel request)
         {
-            Result result = await sender.Send(new UpdateCategoryCommand(request.Id,request.Category, request.Gender, request.AgeFrom, request.AgeTo));
+            Result result = await sender.Send(new UpdateCategoryCommand(request.Id,request.Category, request.Gender));
 
             return result.ToActionResult();
         }

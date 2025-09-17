@@ -1,0 +1,85 @@
+@Löwen.Api_HostAddress = https://localhost:7197
+
+
+
+//Admin Endpoints
+
+POST {{Löwen.Api_HostAddress}}/api/Admin/add-category
+Content-Type: application/json
+{
+  "category": "string",
+  "gender": "M",
+  "ageFrom": 1,
+  "ageTo": 3
+}
+
+###
+PUT {{Löwen.Api_HostAddress}}/api/Admin/update-category
+Content-Type: application/json
+{
+  "id": "1e1c18bc-b7dd-4f36-98a9-09c9e54561cd",
+  "category":null,
+  "gender": null,
+  "ageFrom":null,
+  "ageTo": 5
+}
+
+###
+DELETE {{Löwen.Api_HostAddress}}/api/Admin/remove-category/1e2c18bc-b7dd-4f36-98a9-09c9e54561cd
+###
+
+POST {{Löwen.Api_HostAddress}}/api/Admin/add-Tag
+Content-Type: application/json
+{
+  "Tag": "#Men #modern #Style",
+  "productId": "210a36db-77b5-4f04-8be7-0c55fa95d7bc"
+}
+
+###
+PUT {{Löwen.Api_HostAddress}}/api/Admin/update-Tag/9dddf314-b433-4a15-a157-e4d11a7a5de5,"#dd"
+
+
+###
+DELETE {{Löwen.Api_HostAddress}}/api/Admin/remove-Tag/9dddf314-b433-4a15-a157-e4d11a7a5de5
+###
+
+POST {{Löwen.Api_HostAddress}}/api/Admin/add-product
+Content-Type: application/json
+{
+  "name": "Product 1",
+  "description": "Product 1",
+  "price": 1423,
+  "stockQuantity": 222,
+  "status": 1,
+  "categoryId": "512813e2-5167-4dd5-891a-6e9544500033"
+}
+
+###
+PUT {{Löwen.Api_HostAddress}}/api/Admin/update-product
+Content-Type: application/json
+{
+  "id": "51a1018c-2029-46da-8044-6aa8f9ebc039",
+  "description": null,
+  "price": null,
+  "stockQuantity": null,
+  "status": 2,
+  "categoryId": "512813e2-5167-4dd5-891a-6e9544500033"
+}
+
+###
+DELETE {{Löwen.Api_HostAddress}}/api/Admin/remove-product/51a1018c-2029-46da-8044-6aa8f9ebc039
+###
+
+###
+GET {{Löwen.Api_HostAddress}}/api/Admin/get-user-by-id/97eece48-71cb-4f31-b7be-b032cfb73779
+###
+GET {{Löwen.Api_HostAddress}}/api/Admin/get-user-by-email/ae1378032@gmail3.com
+###
+GET {{Löwen.Api_HostAddress}}/api/Admin/get-users-paged/3,2
+
+
+###
+PUT {{Löwen.Api_HostAddress}}/api/Admin/mark-user-as-deleted/3fe09bd7-6f02-42dc-8f46-4514b911fd3f
+
+###
+PUT {{Löwen.Api_HostAddress}}/api/Admin/activate-marked-user-as-deleted/3fe09bd7-6f02-42dc-8f46-4514b911fd3f

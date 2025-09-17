@@ -9,8 +9,7 @@ public class UpdateCategoryCommandValidator : AbstractValidator<UpdateCategoryCo
         RuleFor(x => x.Category).Must(x => x == null || x.Length <= 50).WithMessage("the max Tag length is 50 chars");
         RuleFor(x => x.Gender)
             .Must(x => x == null || x == 'M' || x == 'F').WithMessage("Gender input must be \'M\' or \'F\'");
-        RuleFor(x => x.AgeFrom).Must(x => x == null || x > 0 && x < 150).WithMessage("Enter a valid age");
-        RuleFor(x => x.AgeTo).Must(x => x == null || x > 0 && x < 150).WithMessage("Enter a valid age");
+
 
     }
 }

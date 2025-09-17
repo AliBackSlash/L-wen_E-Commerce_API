@@ -15,8 +15,7 @@ public class UpdateCategoryCommandHandler(IProductCategoryService categoryServic
 
         category.Category = command.Category ?? category.Category;
         category.Gender = command.Gender ?? category.Gender;
-        category.AgeFrom = command.AgeFrom ?? category.AgeFrom;
-        category.AgeTo = command.AgeTo ?? category.AgeTo;
+
      
         var updateResult = await categoryService.UpdateAsync(category, ct);
 
