@@ -14,5 +14,7 @@ public class AddProductCommandValidator : AbstractValidator<AddProductCommand>
             .Must(x => x <= 32767).WithMessage("the max Stock Quantity is 32,767");
         RuleFor(x => x.CategoryId).NotEmpty().WithMessage("Id is required")
     .Must(x => Guid.TryParse(x, out _)).WithMessage("Enter a valid Guid Category Id");
+        RuleFor(x => x.CreatedBy).NotEmpty().WithMessage("CreatedBy is required")
+    .Must(x => Guid.TryParse(x, out _)).WithMessage("Enter a valid Guid CreatedBy Id");
     }
 }

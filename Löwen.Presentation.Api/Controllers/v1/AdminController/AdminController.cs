@@ -14,6 +14,7 @@ using Löwen.Domain.Pagination;
 using Löwen.Presentation.Api.Controllers.v1.AdminController.Models.CategoryModels;
 using Löwen.Presentation.Api.Controllers.v1.AdminController.Models.ProductModels;
 using Löwen.Presentation.Api.Controllers.v1.AdminController.Models.TagModels;
+using System.Security.Claims;
 
 
 namespace Löwen.Presentation.Api.Controllers.v1.AdminController
@@ -95,7 +96,12 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> AddProduct([FromBody] AddProductModel model)
         {
-            Result<Guid> result = await sender.Send(new AddProductCommand(model.Name, model.Description, model.Price, model.StockQuantity, model.Status, model.CategoryId));
+            var createdBy = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (string.IsNullOrEmpty(createdBy))
+                return Result.Failure(new Error("api/Admin/add-product", "Valid token is required", ErrorType.Unauthorized)).ToActionResult();
+
+            Result<Guid> result = await sender.Send(new AddProductCommand(model.Name, model.Description, model.Price, model.StockQuantity, model.Status, model.CategoryId, createdBy));
 
             return result.ToActionResult();
         }

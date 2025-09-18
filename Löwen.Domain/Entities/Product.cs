@@ -11,7 +11,9 @@ public class Product
     public decimal Price { get; set; }
     public short StockQuantity { get; set; }
     public ProductStatus Status { get; set; }
+    public double LoveCount {  get; set; }
     public Guid CategoryId { get; set; }
+    public Guid CreatedBy { get; set; }
 
     // Navigation properties
     public ProductCategory? Category { get; set; }

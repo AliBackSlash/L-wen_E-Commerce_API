@@ -23,7 +23,7 @@ public class WishlistService(AppDbContext context) : IWishlistService
 
     public async Task<Result> DeleteAsync(Guid userId,Guid productId, CancellationToken ct)
     {
-        var wishlist = await context.Wishlist.Where(x => x.UserId == userId && x.ProductId == productId).FirstOrDefaultAsync();
+        var wishlist = await context.Wishlist.Where(x => x.UserId == userId && x.ProductId == productId).FirstOrDefaultAsync(ct);
         if (wishlist == null)
             return Result.Failure(new Error("WishlistService.Delete", "no wishlist found", ErrorType.Conflict));
 
@@ -39,5 +39,8 @@ public class WishlistService(AppDbContext context) : IWishlistService
         }
     }
 
-   
+    public async Task<bool> IsFoundAsync(Guid userId, Guid productId, CancellationToken ct) 
+        => await context.Wishlist.Where(x => x.UserId == userId && x.ProductId == productId).FirstOrDefaultAsync(ct) is not null;
+
+
 }

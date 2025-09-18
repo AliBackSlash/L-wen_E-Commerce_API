@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Löwen.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250917090536_RemoveAgesFromCategoryTable")]
-    partial class RemoveAgesFromCategoryTable
+    [Migration("20250918203505_AddProductLove_Trigger")]
+    partial class AddProductLove_Trigger
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -209,6 +209,21 @@ namespace Löwen.Infrastructure.Migrations
                     b.ToTable("Images");
                 });
 
+            modelBuilder.Entity("Löwen.Domain.Entities.LoveProductUser", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("UserId", "ProductId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("LovesProductUser");
+                });
+
             modelBuilder.Entity("Löwen.Domain.Entities.Notification", b =>
                 {
                     b.Property<Guid>("Id")
@@ -348,10 +363,18 @@ namespace Löwen.Infrastructure.Migrations
                     b.Property<Guid>("CategoryId")
                         .HasColumnType("uuid");
 
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(1200)
                         .HasColumnType("varchar");
+
+                    b.Property<double>("LoveCount")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("double precision")
+                        .HasDefaultValueSql("0");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -370,6 +393,8 @@ namespace Löwen.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("CreatedBy");
 
                     b.ToTable("Products");
                 });
@@ -443,8 +468,8 @@ namespace Löwen.Infrastructure.Migrations
                     b.Property<Guid>("ProductId")
                         .HasColumnType("uuid");
 
-                    b.Property<byte>("Rating")
-                        .HasColumnType("smallint");
+                    b.Property<char>("Rating")
+                        .HasColumnType("Char(1)");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
@@ -778,6 +803,23 @@ namespace Löwen.Infrastructure.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Löwen.Domain.Entities.LoveProductUser", b =>
+                {
+                    b.HasOne("Löwen.Domain.Entities.Product", "Product")
+                        .WithMany("Loves")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Löwen.Infrastructure.EFCore.IdentityUser.AppUser", null)
+                        .WithMany("Loves")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("Löwen.Domain.Entities.Notification", b =>
                 {
                     b.HasOne("Löwen.Infrastructure.EFCore.IdentityUser.AppUser", null)
@@ -855,6 +897,12 @@ namespace Löwen.Infrastructure.Migrations
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Löwen.Infrastructure.EFCore.IdentityUser.AppUser", null)
+                        .WithMany("Products")
+                        .HasForeignKey("CreatedBy")
+                        .OnDelete(DeleteBehavior.SetNull)
                         .IsRequired();
 
                     b.Navigation("Category");
@@ -1025,6 +1073,8 @@ namespace Löwen.Infrastructure.Migrations
                 {
                     b.Navigation("CartItems");
 
+                    b.Navigation("Loves");
+
                     b.Navigation("OrderItems");
 
                     b.Navigation("ProductDiscounts");
@@ -1051,11 +1101,15 @@ namespace Löwen.Infrastructure.Migrations
 
                     b.Navigation("CustomerAddresses");
 
+                    b.Navigation("Loves");
+
                     b.Navigation("Notifications");
 
                     b.Navigation("Orders");
 
                     b.Navigation("ProductReviews");
+
+                    b.Navigation("Products");
 
                     b.Navigation("Wishlists");
                 });

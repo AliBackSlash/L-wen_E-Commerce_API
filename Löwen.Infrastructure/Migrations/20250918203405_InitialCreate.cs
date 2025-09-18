@@ -112,9 +112,7 @@ namespace Löwen.Infrastructure.Migrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "gen_random_uuid()"),
                     Category = table.Column<string>(type: "varchar", maxLength: 100, nullable: false),
-                    Gender = table.Column<char>(type: "char(1)", nullable: false),
-                    AgeFrom = table.Column<byte>(type: "smallint", nullable: false),
-                    AgeTo = table.Column<byte>(type: "smallint", nullable: false)
+                    Gender = table.Column<char>(type: "char(1)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -316,11 +314,19 @@ namespace Löwen.Infrastructure.Migrations
                     Price = table.Column<decimal>(type: "numeric(18,2)", nullable: false),
                     StockQuantity = table.Column<short>(type: "smallint", nullable: false),
                     Status = table.Column<short>(type: "smallint", nullable: false),
-                    CategoryId = table.Column<Guid>(type: "uuid", nullable: false)
+                    LoveCount = table.Column<double>(type: "double precision", nullable: false, defaultValueSql: "0"),
+                    CategoryId = table.Column<Guid>(type: "uuid", nullable: false),
+                    CreatedBy = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Products_AspNetUsers_CreatedBy",
+                        column: x => x.CreatedBy,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "FK_Products_ProductCategories_CategoryId",
                         column: x => x.CategoryId,
@@ -435,6 +441,30 @@ namespace Löwen.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "LovesProductUser",
+                columns: table => new
+                {
+                    UserId = table.Column<Guid>(type: "uuid", nullable: false),
+                    ProductId = table.Column<Guid>(type: "uuid", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LovesProductUser", x => new { x.UserId, x.ProductId });
+                    table.ForeignKey(
+                        name: "FK_LovesProductUser_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_LovesProductUser_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "OrderItems",
                 columns: table => new
                 {
@@ -515,7 +545,7 @@ namespace Löwen.Infrastructure.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "gen_random_uuid()"),
                     ProductId = table.Column<Guid>(type: "uuid", nullable: false),
                     UserId = table.Column<Guid>(type: "uuid", nullable: false),
-                    Rating = table.Column<byte>(type: "smallint", nullable: false),
+                    Rating = table.Column<char>(type: "Char(1)", nullable: false),
                     Comment = table.Column<string>(type: "text", maxLength: 1000, nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "NOW() AT TIME ZONE 'utc'")
                 },
@@ -647,6 +677,11 @@ namespace Löwen.Infrastructure.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_LovesProductUser_ProductId",
+                table: "LovesProductUser",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Notifications_UserId",
                 table: "Notifications",
                 column: "UserId");
@@ -703,6 +738,11 @@ namespace Löwen.Infrastructure.Migrations
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Products_CreatedBy",
+                table: "Products",
+                column: "CreatedBy");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ProductTags_ProductId",
                 table: "ProductTags",
                 column: "ProductId",
@@ -740,6 +780,9 @@ namespace Löwen.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "CustomerAddresses");
+
+            migrationBuilder.DropTable(
+                name: "LovesProductUser");
 
             migrationBuilder.DropTable(
                 name: "Notifications");

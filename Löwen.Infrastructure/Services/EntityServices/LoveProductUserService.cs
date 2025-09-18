@@ -16,19 +16,19 @@ public class LoveProductUserService(AppDbContext context) : ILoveProductUserServ
         }
         catch (Exception ex)
         {
-            return Result.Failure(new Error("WishlistService.Add", ex.Message, ErrorType.InternalServer));
+            return Result.Failure(new Error("LoveProductUserService.Add", ex.Message, ErrorType.InternalServer));
         }
     }
 
     public async Task<Result> DeleteAsync(Guid userId, Guid productId, CancellationToken ct)
     {
-        var wishlist = await context.LovesProductUser.Where(x => x.UserId == userId && x.ProductId == productId).FirstOrDefaultAsync();
-        if (wishlist == null)
-            return Result.Failure(new Error("WishlistService.Delete", "no wishlist found", ErrorType.Conflict));
+        var LoveProduct = await context.LovesProductUser.Where(x => x.UserId == userId && x.ProductId == productId).FirstOrDefaultAsync();
+        if (LoveProduct == null)
+            return Result.Failure(new Error("LoveProductUserService.Delete", "no Love Product found", ErrorType.Conflict));
 
         try
         {
-            context.LovesProductUser.Remove(wishlist);
+            context.LovesProductUser.Remove(LoveProduct);
             await context.SaveChangesAsync(ct);
             return Result.Success();
         }
@@ -37,4 +37,6 @@ public class LoveProductUserService(AppDbContext context) : ILoveProductUserServ
             return Result.Failure(new Error("WishlistService.Add", ex.Message, ErrorType.InternalServer));
         }
     }
+    public async Task<bool> IsFoundAsync(Guid userId, Guid productId, CancellationToken ct)
+        => await context.LovesProductUser.Where(x => x.UserId == userId && x.ProductId == productId).FirstOrDefaultAsync(ct) is not null;
 }

@@ -56,6 +56,12 @@ public class AppUserConfiguration : IEntityTypeConfiguration<AppUser>
                .HasForeignKey(pr => pr.UserId)
                .OnDelete(DeleteBehavior.Cascade)
                .IsRequired();
+       
+        builder.HasMany(pr => pr.Products)
+               .WithOne()
+               .HasForeignKey(pr => pr.CreatedBy)
+               .OnDelete(DeleteBehavior.SetNull)
+               .IsRequired();
 
         builder.HasMany(w => w.Wishlists)
                .WithOne()

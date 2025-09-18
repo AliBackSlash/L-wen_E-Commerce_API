@@ -9,8 +9,6 @@ Content-Type: application/json
 {
   "category": "string",
   "gender": "M",
-  "ageFrom": 1,
-  "ageTo": 3
 }
 
 ###
@@ -44,6 +42,7 @@ DELETE {{Löwen.Api_HostAddress}}/api/Admin/remove-Tag/9dddf314-b433-4a15-a157-e4
 ###
 
 POST {{Löwen.Api_HostAddress}}/api/Admin/add-product
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjhmMmVmZDEwLTJkMWMtNDFlZS05YzRkLTJmN2Y1NDMxY2IxOCIsImp0aSI6Ijc4OTkzZDExLWY1OTctNDZlZS1iYTczLTdmZDcwMjJlY2RjNyIsImVtYWlsIjoiYWUxMzc4MDMyQGdtYWlsMS5jb20iLCJ1bmlxdWVfbmFtZSI6ImFsaS0wMSIsInJvbGVzIjoiVXNlciIsImV4cCI6MTc1ODIyOTg5MywiaXNzIjoiTG9jYWxIb3N0IiwiYXVkIjoiTG9jYWxIb3N0In0.36Espu6-bqs0oMqNABuYLhIGDVOvA_TBSwvnri4ficU
 Content-Type: application/json
 {
   "name": "Product 1",

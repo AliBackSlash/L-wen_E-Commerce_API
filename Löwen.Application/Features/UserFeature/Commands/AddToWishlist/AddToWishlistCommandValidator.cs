@@ -1,6 +1,6 @@
 ﻿namespace Löwen.Application.Features.UserFeature.Commands.AddToWishlist;
 
-public class AddToWishlistCommandValidator : AbstractValidator<AddLoveCommand>
+public class AddToWishlistCommandValidator : AbstractValidator<AddToWishlistCommand>
 {
     public AddToWishlistCommandValidator()
     {

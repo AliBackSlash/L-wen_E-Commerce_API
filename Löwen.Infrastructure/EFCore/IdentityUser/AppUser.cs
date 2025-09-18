@@ -18,6 +18,7 @@ public class AppUser : IdentityUser<Guid>
     public ICollection<Cart> Carts { get; set; } = [];
     public ICollection<Order> Orders { get; set; } = [];
     public ICollection<ProductReview> ProductReviews { get; set; } = [];
+    public ICollection<Product> Products { get; set; } = [];
     public ICollection<AdminLog> AdminLogs { get; set; } = [];
     public ICollection<Wishlist> Wishlists { get; set; } = [];
     public ICollection<LoveProductUser> Loves { get; set; } = [];

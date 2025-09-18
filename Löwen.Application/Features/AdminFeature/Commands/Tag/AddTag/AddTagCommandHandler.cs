@@ -9,7 +9,7 @@ public class AddTagCommandHandler(IProductTagService TagService,IProductService 
     {
         Guid ProductId = Guid.Parse(command.productId);
 
-        if (await productService.IsFound(ProductId, ct))
+        if (!await productService.IsFound(ProductId, ct))
             return Result.Failure(new Error("ProductTag.Add", $"Product with Id {command.productId} not found", ErrorType.Conflict));
 
         var addResult = await TagService.AddAsync(new ProductTag

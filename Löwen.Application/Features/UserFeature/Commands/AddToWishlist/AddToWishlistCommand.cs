@@ -1,3 +1,3 @@
 ﻿namespace Löwen.Application.Features.UserFeature.Commands.AddToWishlist;
 
-public record AddLoveCommand(string userId,string productId) : ICommand;
+public record AddToWishlistCommand(string userId,string productId) : ICommand;

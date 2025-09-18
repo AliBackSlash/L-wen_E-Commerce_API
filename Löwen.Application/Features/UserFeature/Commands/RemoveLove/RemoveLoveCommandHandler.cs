@@ -2,18 +2,17 @@
 
 namespace Löwen.Application.Features.UserFeature.Commands.RemoveLove;
 
-internal class RemoveLoveCommandHandler(IWishlistService wishlistService) : ICommandHandler<RemoveLoveCommand>
+internal class RemoveLoveCommandHandler(ILoveProductUserService loveProductUser) : ICommandHandler<RemoveLoveCommand>
 {
     public async Task<Result> Handle(RemoveLoveCommand command, CancellationToken ct)
     {
-        var createResult = await wishlistService.AddAsync(new Wishlist
-        {
-            UserId = Guid.Parse(command.userId),
-            ProductId = Guid.Parse(command.productId)
-        },ct);
+        var removeResult = await loveProductUser.DeleteAsync(
+            Guid.Parse(command.userId),
+            Guid.Parse(command.productId)
+        ,ct);
 
-        if (createResult.IsFailure)
-            return Result.Failure(createResult.Errors);
+        if (removeResult.IsFailure)
+            return Result.Failure(removeResult.Errors);
 
         return Result.Success();
         

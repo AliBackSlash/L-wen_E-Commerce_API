@@ -360,10 +360,18 @@ namespace Löwen.Infrastructure.Migrations
                     b.Property<Guid>("CategoryId")
                         .HasColumnType("uuid");
 
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(1200)
                         .HasColumnType("varchar");
+
+                    b.Property<double>("LoveCount")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("double precision")
+                        .HasDefaultValueSql("0");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -382,6 +390,8 @@ namespace Löwen.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("CreatedBy");
 
                     b.ToTable("Products");
                 });
@@ -455,8 +465,8 @@ namespace Löwen.Infrastructure.Migrations
                     b.Property<Guid>("ProductId")
                         .HasColumnType("uuid");
 
-                    b.Property<byte>("Rating")
-                        .HasColumnType("smallint");
+                    b.Property<char>("Rating")
+                        .HasColumnType("Char(1)");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
@@ -886,6 +896,12 @@ namespace Löwen.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Löwen.Infrastructure.EFCore.IdentityUser.AppUser", null)
+                        .WithMany("Products")
+                        .HasForeignKey("CreatedBy")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .IsRequired();
+
                     b.Navigation("Category");
                 });
 
@@ -1089,6 +1105,8 @@ namespace Löwen.Infrastructure.Migrations
                     b.Navigation("Orders");
 
                     b.Navigation("ProductReviews");
+
+                    b.Navigation("Products");
 
                     b.Navigation("Wishlists");
                 });

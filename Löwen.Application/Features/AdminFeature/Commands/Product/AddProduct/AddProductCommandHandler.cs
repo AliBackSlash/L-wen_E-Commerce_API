@@ -20,6 +20,7 @@ public class AddProductCommandHandler(IProductCategoryService categoryService,IP
            CategoryId = CategoryId,
            Description = command.Description,
            Status = command.Status,
+           CreatedBy = Guid.Parse(command.CreatedBy),
 
         }, ct);
 
