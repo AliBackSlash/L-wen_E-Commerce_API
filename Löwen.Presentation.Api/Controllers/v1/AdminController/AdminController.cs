@@ -1,23 +1,4 @@
-﻿
-using Löwen.Application.Features.AdminFeature.Commands.Product.AddProduct;
-using Löwen.Application.Features.AdminFeature.Commands.Product.RemoveProduct;
-using Löwen.Application.Features.AdminFeature.Commands.Product.UpdateProduct;
-using Löwen.Application.Features.AdminFeature.Commands.Tag.AddTag;
-using Löwen.Application.Features.AdminFeature.Commands.Tag.RemoveTag;
-using Löwen.Application.Features.AdminFeature.Commands.Tag.UpdateTag;
-using Löwen.Application.Features.AdminFeatures.Commands.ActivateMarkedAsDeleted;
-using Löwen.Application.Features.AdminFeatures.Commands.MarkAsDeleted;
-using Löwen.Application.Features.UserFeature.Queries.GetUserByEmail;
-using Löwen.Application.Features.UserFeature.Queries.GetUserById;
-using Löwen.Application.Features.UserFeature.Queries.GetUsers;
-using Löwen.Domain.Pagination;
-using Löwen.Presentation.Api.Controllers.v1.AdminController.Models.CategoryModels;
-using Löwen.Presentation.Api.Controllers.v1.AdminController.Models.ProductModels;
-using Löwen.Presentation.Api.Controllers.v1.AdminController.Models.TagModels;
-using System.Security.Claims;
-
-
-namespace Löwen.Presentation.Api.Controllers.v1.AdminController
+﻿namespace Löwen.Presentation.Api.Controllers.v1.AdminController
 {
     [ApiController]
     [ApiVersion("1.0")]

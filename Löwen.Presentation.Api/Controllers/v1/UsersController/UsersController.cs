@@ -1,15 +1,10 @@
-﻿using Löwen.Application.Features.SendEmailFeature.EmailConfirmationTokenCommand;
-using Löwen.Application.Features.UploadFeature.UpdateProfileImageCommand;
-using Löwen.Application.Features.UserFeature.Commands.AddLove;
-using Löwen.Application.Features.UserFeature.Commands.AddToWishlist;
-using Löwen.Application.Features.UserFeature.Commands.ChangePasswordCommand;
-using Löwen.Application.Features.UserFeature.Commands.RemoveFromWishlist;
-using Löwen.Application.Features.UserFeature.Commands.RemoveLove;
-using Löwen.Application.Features.UserFeature.Commands.UpdateUserInfoCommand;
-using Löwen.Application.Features.UserFeature.Queries.GetUserById;
-using Löwen.Presentation.Api.Controllers.v1.UsersController.Models;
-using System.IO;
-using System.Security.Claims;
+﻿using Löwen.Application.Features.UserFeature.Commands.ProductReviewOper.AddProductReview;
+using Löwen.Application.Features.UserFeature.Commands.ProductReviewOper.UpdateProductReview;
+using Löwen.Application.Features.UserFeature.Commands.UserInfoOper.ChangePassword;
+using Löwen.Application.Features.UserFeature.Commands.UserInfoOper.UpdateUserInfo;
+using Löwen.Application.Features.UserFeature.Commands.WishlistOper.RemoveProductReview;
+using Löwen.Domain.Entities;
+
 namespace Löwen.Presentation.Api.Controllers.v1.UsersController;
 [ApiController]
 [ApiVersion("1.0")]
@@ -191,29 +186,42 @@ public class UsersController(ISender _sender, IFileService fileService) : Contro
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> AddReviewForProduct()
+    public async Task<IActionResult> AddReviewForProduct([FromBody] AddProductReviewModel model)
     {
-        throw new NotImplementedException();
+        var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        if (string.IsNullOrEmpty(id))
+            return Result.Failure(new Error("api/users/add-review-for-product", "Valid token is required", ErrorType.Unauthorized)).ToActionResult();
+
+        Result result = await _sender.Send(new AddProductReviewCommand(id, model.productId, model.Rating, model.Review));
+
+        return result.ToActionResult();
     }
 
-    [HttpPut("edit-review-for-product")]
+    [HttpPut("update-review-for-product")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> EditReviewForProduct()
+    public async Task<IActionResult> EditReviewForProduct([FromBody] UpdateProductReviewModel model)
     {
-        throw new NotImplementedException();
+        Result result = await _sender.Send(new UpdateProductReviewCommand(model.productReviewId, model.Rating, model.Review));
+
+        return result.ToActionResult();
     }
 
-    [HttpDelete("remove-review-from-product")]
+    [HttpDelete("remove-review-from-product/{Id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> RemoveReviewFromProduct()
+    public async Task<IActionResult> RemoveReviewFromProduct(string Id)
     {
-        throw new NotImplementedException();
+        Result result = await _sender.Send(new RemoveProductReviewCommand(Id));
+
+        return result.ToActionResult();
     }
 
+
+    //Keep them after the order endpoint
     [HttpGet("get-my-orders")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]

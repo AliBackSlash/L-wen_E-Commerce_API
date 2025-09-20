@@ -1,7 +1,4 @@
-﻿using Löwen.Application.Features.UserFeature.Commands.ChangePasswordCommand;
-using Löwen.Domain.Abstractions.IServices.IAppUserServices;
-
-namespace Löwen.Application.Features.UserFeature.Queries.GetUserById;
+﻿namespace Löwen.Application.Features.UserFeature.Queries.GetUserById;
 
 public class GetUserByIdQueryHandler(IAppUserService userService) : ICommandHandler<GetUserByIdQuery, GetUserByIdQueryResponse>
 {

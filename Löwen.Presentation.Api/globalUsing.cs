@@ -41,3 +41,33 @@ global using Löwen.Presentation.API.Extensions;
 global using Löwen.Application.Features.AdminFeature.Commands.Category.AddCategory;
 global using Löwen.Application.Features.AdminFeature.Commands.Category.RemoveCategory;
 global using Löwen.Application.Features.AdminFeature.Commands.Category.UpdateCategory;
+global using Löwen.Application.Features.AdminFeature.Commands.Product.AddProduct;
+global using Löwen.Application.Features.AdminFeature.Commands.Product.RemoveProduct;
+global using Löwen.Application.Features.AdminFeature.Commands.Product.UpdateProduct;
+global using Löwen.Application.Features.AdminFeature.Commands.Tag.AddTag;
+global using Löwen.Application.Features.AdminFeature.Commands.Tag.RemoveTag;
+global using Löwen.Application.Features.AdminFeature.Commands.Tag.UpdateTag;
+global using Löwen.Application.Features.AdminFeatures.Commands.ActivateMarkedAsDeleted;
+global using Löwen.Application.Features.AdminFeatures.Commands.MarkAsDeleted;
+global using Löwen.Application.Features.UserFeature.Queries.GetUserByEmail;
+global using Löwen.Application.Features.UserFeature.Queries.GetUserById;
+global using Löwen.Application.Features.UserFeature.Queries.GetUsers;
+global using Löwen.Domain.Pagination;
+global using Löwen.Presentation.Api.Controllers.v1.AdminController.Models.CategoryModels;
+global using Löwen.Presentation.Api.Controllers.v1.AdminController.Models.ProductModels;
+global using Löwen.Presentation.Api.Controllers.v1.AdminController.Models.TagModels;
+global using System.Security.Claims;
+
+
+
+//Users
+
+global using Löwen.Application.Features.SendEmailFeature.EmailConfirmationTokenCommand;
+global using Löwen.Application.Features.UploadFeature.UpdateProfileImageCommand;
+global using Löwen.Application.Features.UserFeature.Commands.Love.AddLove;
+global using Löwen.Application.Features.UserFeature.Commands.WishlistOper.AddToWishlist;
+global using Löwen.Application.Features.UserFeature.Commands.UserInfoOper.ChangePassword;
+global using Löwen.Application.Features.UserFeature.Commands.WishlistOper.RemoveFromWishlist;
+global using Löwen.Application.Features.UserFeature.Commands.Love.RemoveLove;
+global using Löwen.Application.Features.UserFeature.Commands.UserInfoOper.UpdateUserInfo;
+global using Löwen.Presentation.Api.Controllers.v1.UsersController.Models;

@@ -9,5 +9,4 @@ global using Löwen.Domain.Layer_Dtos.AppUser.response;
 global using Löwen.Application.Messaging;
 global using Löwen.Domain.Enums;
 global using Löwen.Domain.Abstractions.IServices.IAppUserServices;
-
 public class EntryPoint;

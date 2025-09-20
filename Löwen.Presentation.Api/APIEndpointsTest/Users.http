@@ -55,3 +55,25 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hc
 ###
 DELETE {{Löwen.Api_HostAddress}}/remove-love-from-product/377e8919-3f4d-49da-bbd8-8c51ca37f527
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijk3ZWVjZTQ4LTcxY2ItNGYzMS1iN2JlLWIwMzJjZmI3Mzc3OSIsImp0aSI6ImExMWUzZTkwLTA3NmQtNGRjMi05MjhlLTUzMTNhOGU2YWMxNyIsImVtYWlsIjoiYWUxMzc4MDMyQGdtYWlsLmNvbSIsInVuaXF1ZV9uYW1lIjoiYWxpLTAxIiwicm9sZXMiOiJVc2VyIiwiZXhwIjoxNzU4MjI5MTIwLCJpc3MiOiJMb2NhbEhvc3QiLCJhdWQiOiJMb2NhbEhvc3QifQ.lKRRDfjGmEnLG-cKxCc4lUUIguBFghE57wS-bYwWp7E
+
+
+###
+POST {{Löwen.Api_HostAddress}}/add-review-for-product
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjhmMmVmZDEwLTJkMWMtNDFlZS05YzRkLTJmN2Y1NDMxY2IxOCIsImp0aSI6IjUwNWU0Yzc4LTRlMjYtNGY2Mi04NTZlLWJlN2VmNTQzNzlkOSIsImVtYWlsIjoiYWUxMzc4MDMyQGdtYWlsMS5jb20iLCJ1bmlxdWVfbmFtZSI6ImFsaS0wMSIsInJvbGVzIjoiVXNlciIsImV4cCI6MTc1ODM3MzQyNywiaXNzIjoiTG9jYWxIb3N0IiwiYXVkIjoiTG9jYWxIb3N0In0.KCJ8_RS6G6cq7E-kMmtkKPmYo90gAMKsPAHhfW6gFuI
+Content-Type: Application/json
+{
+  "productId": "f41ca530-ce12-4ca4-b468-80f5fc3da8db",
+  "rating": "3",
+  "review": "string"
+}
+###
+PUT {{Löwen.Api_HostAddress}}/update-review-for-product
+Content-Type: Application/json
+{
+  "productReviewId": "1146a90b-12d0-4021-83da-937eba6b59be",
+  "rating": "3",
+  "review": "Good"
+}
+
+###
+DELETE {{Löwen.Api_HostAddress}}/remove-review-from-product/1146a90b-12d0-4021-83da-937eba6b59be

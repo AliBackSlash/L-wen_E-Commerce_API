@@ -67,6 +67,4 @@ public class BasRepository<TEntity, IdType>(AppDbContext _context) : IBasReposit
         return PagedResult<TEntity>.Create(items,totalCount,paginationParams.PageNumber,paginationParams.PageSize);
        
     }
-
-   
 }

@@ -1,9 +1,6 @@
-﻿using Löwen.Application.Features.UserFeature.Commands.ChangePasswordCommand;
-using Löwen.Domain.Abstractions.IServices.IAppUserServices;
-using Löwen.Domain.ConfigurationClasses.Pagination;
+﻿using Löwen.Domain.ConfigurationClasses.Pagination;
 using Löwen.Domain.Pagination;
 using Microsoft.Extensions.Options;
-using System.Collections.Generic;
 
 namespace Löwen.Application.Features.UserFeature.Queries.GetUsers;
 

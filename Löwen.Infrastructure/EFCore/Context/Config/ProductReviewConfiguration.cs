@@ -12,7 +12,7 @@ public class ProductReviewConfiguration : IEntityTypeConfiguration<ProductReview
         builder.HasKey(pr => pr.Id);
         builder.Property(x => x.Id).HasColumnType("uuid").HasDefaultValueSql("gen_random_uuid()");
         builder.Property(pr => pr.Rating).IsRequired().HasColumnType("Char(1)");
-        builder.Property(pr => pr.Comment).HasMaxLength(1000).HasColumnType("text");
+        builder.Property(pr => pr.Review).IsRequired().HasMaxLength(1000).HasColumnType("VARCHAR");
         builder.Property(pr => pr.CreatedAt)
                .IsRequired()
                .HasColumnType("timestamp with time zone")

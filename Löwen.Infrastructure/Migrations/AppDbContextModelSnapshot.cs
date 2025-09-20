@@ -453,10 +453,6 @@ namespace Löwen.Infrastructure.Migrations
                         .HasColumnType("uuid")
                         .HasDefaultValueSql("gen_random_uuid()");
 
-                    b.Property<string>("Comment")
-                        .HasMaxLength(1000)
-                        .HasColumnType("text");
-
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
@@ -467,6 +463,11 @@ namespace Löwen.Infrastructure.Migrations
 
                     b.Property<char>("Rating")
                         .HasColumnType("Char(1)");
+
+                    b.Property<string>("Review")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("VARCHAR");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid");

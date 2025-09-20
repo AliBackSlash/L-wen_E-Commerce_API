@@ -7,7 +7,7 @@ public class ProductReview
     public Guid ProductId { get; set; }
     public Guid UserId { get; set; }
     public char Rating { get; set; }
-    public string? Comment { get; set; }
+    public string? Review { get; set; }
     public DateTime CreatedAt { get; set; }
 
     // Navigation properties

@@ -7,8 +7,8 @@
 POST {{Löwen.Api_HostAddress}}/api/Admin/add-category
 Content-Type: application/json
 {
-  "category": "string",
-  "gender": "M",
+  "category": "string1",
+  "gender": "M"
 }
 
 ###
@@ -42,7 +42,7 @@ DELETE {{Löwen.Api_HostAddress}}/api/Admin/remove-Tag/9dddf314-b433-4a15-a157-e4
 ###
 
 POST {{Löwen.Api_HostAddress}}/api/Admin/add-product
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjhmMmVmZDEwLTJkMWMtNDFlZS05YzRkLTJmN2Y1NDMxY2IxOCIsImp0aSI6Ijc4OTkzZDExLWY1OTctNDZlZS1iYTczLTdmZDcwMjJlY2RjNyIsImVtYWlsIjoiYWUxMzc4MDMyQGdtYWlsMS5jb20iLCJ1bmlxdWVfbmFtZSI6ImFsaS0wMSIsInJvbGVzIjoiVXNlciIsImV4cCI6MTc1ODIyOTg5MywiaXNzIjoiTG9jYWxIb3N0IiwiYXVkIjoiTG9jYWxIb3N0In0.36Espu6-bqs0oMqNABuYLhIGDVOvA_TBSwvnri4ficU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjhmMmVmZDEwLTJkMWMtNDFlZS05YzRkLTJmN2Y1NDMxY2IxOCIsImp0aSI6IjUwNWU0Yzc4LTRlMjYtNGY2Mi04NTZlLWJlN2VmNTQzNzlkOSIsImVtYWlsIjoiYWUxMzc4MDMyQGdtYWlsMS5jb20iLCJ1bmlxdWVfbmFtZSI6ImFsaS0wMSIsInJvbGVzIjoiVXNlciIsImV4cCI6MTc1ODM3MzQyNywiaXNzIjoiTG9jYWxIb3N0IiwiYXVkIjoiTG9jYWxIb3N0In0.KCJ8_RS6G6cq7E-kMmtkKPmYo90gAMKsPAHhfW6gFuI
 Content-Type: application/json
 {
   "name": "Product 1",
@@ -50,7 +50,7 @@ Content-Type: application/json
   "price": 1423,
   "stockQuantity": 222,
   "status": 1,
-  "categoryId": "512813e2-5167-4dd5-891a-6e9544500033"
+  "categoryId": "2ba39b96-22a9-40c4-8c5c-1651208f565b"
 }
 
 ###
