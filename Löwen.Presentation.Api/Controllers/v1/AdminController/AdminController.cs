@@ -11,6 +11,7 @@
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> AddCategory([FromBody] AddCategoryModel request)
         {
+
             Result result = await sender.Send(new AddCategoryCommand(request.Category, request.Gender));
 
             return result.ToActionResult();

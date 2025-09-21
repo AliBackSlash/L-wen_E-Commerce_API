@@ -17,7 +17,7 @@ public class GetUsersQueryHandler(IAppUserService userService,IOptions<Paginatio
         if (users.IsFailure)
             return Result.Failure<PagedResult<GetUsersQueryResponse>> (users.Errors);
 
-        return Result.Success(PagedResult<GetUsersQueryResponse>.Create(GetUsersQueryResponse.Map(users.Value.Items),users.Value.TotalPages,
+        return Result.Success(PagedResult<GetUsersQueryResponse>.Create(GetUsersQueryResponse.Map(users.Value.Items),users.Value.TotalCount,
             users.Value.PageNumber,users.Value.PageSize));
     }
 }

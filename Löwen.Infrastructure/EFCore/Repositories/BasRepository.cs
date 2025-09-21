@@ -13,9 +13,9 @@ public class BasRepository<TEntity, IdType>(AppDbContext _context) : IBasReposit
     private readonly DbSet<TEntity> _dbSet = _context.Set<TEntity>();
 
     public async Task<TEntity?> GetByIdAsync(IdType id, CancellationToken ct) => await _dbSet.FindAsync(id, ct);
-    public async Task<IEnumerable<TEntity>> GetAllAsync(CancellationToken ct) => await _dbSet.AsNoTracking().ToListAsync(ct);
     public async Task<Result<TEntity>> AddAsync(TEntity entity, CancellationToken ct)
     {
+        
         try
         {
             await _dbSet.AddAsync(entity, ct);
@@ -53,18 +53,5 @@ public class BasRepository<TEntity, IdType>(AppDbContext _context) : IBasReposit
         {
             return Result.Failure(new Error($"{nameof(TEntity)}.Delete", ex.Message, ErrorType.InternalServer));
         }
-    }
-    public async Task<PagedResult<TEntity>> GetPagedAsync(IQueryable<TEntity> query, PaginationParams paginationParams, CancellationToken ct = default)
-    {
-        var totalCount = await query.CountAsync(ct);
-        var items = await query
-            .Skip(paginationParams.Skip)
-            .Take(paginationParams.PageSize)
-            .AsNoTracking()
-            .ToListAsync(ct);
-
-        
-        return PagedResult<TEntity>.Create(items,totalCount,paginationParams.PageNumber,paginationParams.PageSize);
-       
     }
 }

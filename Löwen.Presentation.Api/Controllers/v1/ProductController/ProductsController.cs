@@ -1,13 +1,26 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Löwen.Application.Features.ProductFeature.Queries.GetAllProductPaged;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Löwen.Presentation.Api.Controllers.v1.ProductController
 {
     [ApiController]
     [ApiVersion("1.0")]
-    [Route("api/[controller]")]
-    public class ProductController : ControllerBase
+    [Route("api/Product")]
+    public class ProductController(ISender sender) : ControllerBase
     {
+        [HttpGet("get-all-products-paged/{PageNumber},{PageSize}")]
+        [ProducesResponseType<PagedResult<GetAllProductPagedQueryResponse>>(StatusCodes.Status200OK)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetAllProductsPaged(int PageNumber,byte PageSize)
+        {
+            Result<PagedResult<GetAllProductPagedQueryResponse>> result = await sender.Send(new GetAllProductPagedQuery(PageNumber, PageSize));
+
+            return result.ToActionResult();
+        }
+
+
         [HttpGet("get-products-by-name-paged")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
@@ -17,11 +30,11 @@ namespace Löwen.Presentation.Api.Controllers.v1.ProductController
             throw new NotImplementedException();
         }
 
-        [HttpGet("get-products-by-type-paged")]
+        [HttpGet("get-products-by-gender-paged")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetProductsByTypePaged()
+        public async Task<IActionResult> GetProductsByGenderPaged()
         {
             throw new NotImplementedException();
         }
@@ -44,29 +57,12 @@ namespace Löwen.Presentation.Api.Controllers.v1.ProductController
             throw new NotImplementedException();
         }
 
-        [HttpGet("get-all-products-paged")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetAllProductsPaged()
-        {
-            throw new NotImplementedException();
-        }
 
         [HttpGet("get-product-by-id")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetProductById()
-        {
-            throw new NotImplementedException();
-        }
-
-        [HttpGet("get-product-by-id-with-reviews")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetProductByIdWithReviews()
         {
             throw new NotImplementedException();
         }
@@ -107,5 +103,13 @@ namespace Löwen.Presentation.Api.Controllers.v1.ProductController
             throw new NotImplementedException();
         }
 
+        [HttpGet("get-products-with-all-filters")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetProductsWithAllFiltersPaged()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

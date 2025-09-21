@@ -1,8 +1,8 @@
-﻿namespace Löwen.Application.Features.UserFeature.Queries.GetUsers;
+﻿namespace Löwen.Application.Features.ProductFeature.Queries.GetAllProductPaged;
 
-public class GetUsersQueryValidator : AbstractValidator<GetUsersQuery>
+public class GetAllProductPagedQueryValidator : AbstractValidator<GetAllProductPagedQuery>
 {
-    public GetUsersQueryValidator()
+    public GetAllProductPagedQueryValidator()
     {
         RuleFor(x => x.PageNumber)
          .NotEmpty()
@@ -12,7 +12,5 @@ public class GetUsersQueryValidator : AbstractValidator<GetUsersQuery>
          .NotEmpty()
          .WithMessage("PageSize is required")
          .Must(x => x <= 255).WithMessage("Max page size of products is 255");
-
-
     }
 }

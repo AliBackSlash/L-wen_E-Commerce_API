@@ -5,6 +5,7 @@ namespace Löwen.Application.Features.AdminFeature.Commands.Category.AddCategory
 
 public class AddCategoryCommandHandler(IProductCategoryService categoryService) : ICommandHandler<AddCategoryCommand>
 {
+
     public async Task<Result> Handle(AddCategoryCommand command, CancellationToken ct)
     {
         var addResult = await categoryService.AddAsync(new ProductCategory

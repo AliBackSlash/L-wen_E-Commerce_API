@@ -491,10 +491,10 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
 
         var totalCount = await query.CountAsync();
 
-        if (totalCount == 0)
+       /* if (totalCount == 0)
             return Result.Failure<PagedResult<GetUsersResponseDto>>(
-                new Error("AppUserService.GetAllAsync", "No users ound", ErrorType.Conflict));
-
+                new Error("AppUserService.GetAllAsync", "No users found", ErrorType.Conflict));
+*/
         var users = await query
             .Skip(Params.Skip)
             .Take(Params.PageSize)

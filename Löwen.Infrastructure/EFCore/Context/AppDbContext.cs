@@ -29,6 +29,8 @@ public class AppDbContext : IdentityDbContext<AppUser, IdentityRole<Guid>, Guid>
     public DbSet<LoveProductUser> LovesProductUser => Set<LoveProductUser>();
     public DbSet<AdminLog> AdminLogs => Set<AdminLog>();
     public DbSet<Notification> Notifications => Set<Notification>();
+    public DbSet<Discount> Discounts => Set<Discount>();
+    public DbSet<ProductDiscount> ProductDiscounts => Set<ProductDiscount>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

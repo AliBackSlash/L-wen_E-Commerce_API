@@ -15,7 +15,7 @@ Content-Type: application/json
 PUT {{Löwen.Api_HostAddress}}/api/Admin/update-category
 Content-Type: application/json
 {
-  "id": "1e1c18bc-b7dd-4f36-98a9-09c9e54561cd",
+  "id": "2561fb26-c635-4330-9705-676e3676cf3a",
   "category":null,
   "gender": null,
   "ageFrom":null,
@@ -42,7 +42,7 @@ DELETE {{Löwen.Api_HostAddress}}/api/Admin/remove-Tag/9dddf314-b433-4a15-a157-e4
 ###
 
 POST {{Löwen.Api_HostAddress}}/api/Admin/add-product
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjhmMmVmZDEwLTJkMWMtNDFlZS05YzRkLTJmN2Y1NDMxY2IxOCIsImp0aSI6IjUwNWU0Yzc4LTRlMjYtNGY2Mi04NTZlLWJlN2VmNTQzNzlkOSIsImVtYWlsIjoiYWUxMzc4MDMyQGdtYWlsMS5jb20iLCJ1bmlxdWVfbmFtZSI6ImFsaS0wMSIsInJvbGVzIjoiVXNlciIsImV4cCI6MTc1ODM3MzQyNywiaXNzIjoiTG9jYWxIb3N0IiwiYXVkIjoiTG9jYWxIb3N0In0.KCJ8_RS6G6cq7E-kMmtkKPmYo90gAMKsPAHhfW6gFuI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjhmMmVmZDEwLTJkMWMtNDFlZS05YzRkLTJmN2Y1NDMxY2IxOCIsImp0aSI6ImU2OWZiZDM4LTFiMGMtNDE5Ny05ZTAxLThlMDkzMmI1NzUzNCIsImVtYWlsIjoiYWUxMzc4MDMyQGdtYWlsMS5jb20iLCJ1bmlxdWVfbmFtZSI6ImFsaS0wMSIsInJvbGVzIjoiVXNlciIsImV4cCI6MTc1ODM3NTYyNiwiaXNzIjoiTG9jYWxIb3N0IiwiYXVkIjoiTG9jYWxIb3N0In0.OWcJwMXHgnLSro_-YAD9zwr4dIGw9gKygq7uUKMy690
 Content-Type: application/json
 {
   "name": "Product 1",

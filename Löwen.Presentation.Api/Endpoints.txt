@@ -1,4 +1,4 @@
-﻿RootAdmin
+﻿RootAdmin ☑️
 
 	AddAdmin
 
@@ -10,7 +10,7 @@
 
 	GetAllAdminsPaginationPaged
 
-Admin
+Admin ☑️
 
 	AddProduct
 
@@ -30,7 +30,7 @@ Admin
 
 	ManageTags (Add / Update / Remove Tag)
 
-User
+User ☑️ => ✖️
 
 	UpdateUserInfo
 
@@ -56,11 +56,11 @@ User
 
 	RemoveReviewFromProduct
 
-	GetMyOrders
+	GetMyOrders ✖️
 
-	GetMyWishlist
+	GetMyWishlist ✖️
 
-	GetMyReviews
+	GetMyReviews ✖️
 
 Products
 
