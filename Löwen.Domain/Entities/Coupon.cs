@@ -10,7 +10,7 @@ public class Coupon
     public decimal? DiscountValue { get; set; }
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
-    public bool IsActive { get; set; }
+    public bool IsActive { get; set; } = true;
     public int? UsageLimit { get; set; }
 
     // 🔗 Relations

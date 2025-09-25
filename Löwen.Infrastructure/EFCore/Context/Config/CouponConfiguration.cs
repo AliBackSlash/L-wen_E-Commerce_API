@@ -23,7 +23,7 @@ public class CouponConfiguration : IEntityTypeConfiguration<Coupon>
         builder.Property(c => c.EndDate)
                .IsRequired()
                .HasColumnType("timestamp with time zone");
-        builder.Property(c => c.IsActive).IsRequired().HasColumnType("boolean").HasDefaultValueSql("true"); ;
+        builder.Property(c => c.IsActive).IsRequired().HasColumnType("boolean");
         builder.Property(c => c.UsageLimit).HasColumnType("integer");
 
         // Many-to-many relationship with Order (via OrderCoupon)

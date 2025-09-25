@@ -1,5 +1,5 @@
-﻿namespace Löwen.Domain.Layer_Dtos.Product;
-public class GetAllProductDto
+﻿namespace Löwen.Domain.Entities.EntityForMapFunctionsResultOnly.Product;
+public class GetProductResult
 {
     public required string Name { get; set; }
     public string? Description { get; set; }

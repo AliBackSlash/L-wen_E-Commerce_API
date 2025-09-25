@@ -12,12 +12,7 @@ public class PaymentConfiguration : IEntityTypeConfiguration<Payment>
         builder.HasKey(p => p.Id);
         builder.Property(p => p.Id).HasColumnType("uuid").HasDefaultValueSql("gen_random_uuid()");
 
-        // Foreign key to Order
         builder.Property(p => p.OrderId).IsRequired().HasColumnType("uuid");
-        builder.HasOne(p => p.Order)
-               .WithOne()
-               .HasForeignKey<Payment>(p => p.OrderId)
-               .IsRequired();
 
         builder.Property(p => p.Amount).IsRequired().HasColumnType("numeric(18, 2)");
         builder.Property(p => p.PaymentMethod).IsRequired().HasColumnType("smallint");
@@ -28,5 +23,11 @@ public class PaymentConfiguration : IEntityTypeConfiguration<Payment>
                .IsRequired()
                .HasColumnType("timestamp with time zone")
                .HasDefaultValueSql("NOW() AT TIME ZONE 'utc'");
+      
+        // Foreign key to Order
+        builder.HasOne(p => p.Order)
+               .WithOne(o => o.Payment)
+               .HasForeignKey<Payment>(p => p.OrderId)
+               .IsRequired();
     }
 }

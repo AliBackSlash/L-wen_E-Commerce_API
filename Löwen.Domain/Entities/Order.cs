@@ -12,6 +12,6 @@ public class Order
 
     // Navigation properties
     public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
-    public ICollection<Payment> Payments { get; set; } = new List<Payment>();
+    public Payment? Payment { get; set; }
     public ICollection<OrderCoupon> OrderCoupons { get; set; } = new List<OrderCoupon>();
 }

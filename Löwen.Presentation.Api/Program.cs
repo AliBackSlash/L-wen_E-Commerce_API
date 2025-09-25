@@ -1,7 +1,8 @@
-using Löwen.Domain.Abstractions.IServices.IAppUserServices;
-using Löwen.Domain.Abstractions.IServices.IEmailServices;
-using Löwen.Domain.Abstractions.IServices.IEntitiesServices;
-using Löwen.Infrastructure.Services.EntityServices;
+using LÃ¶wen.Domain.Abstractions.IServices.IAppUserServices;
+using LÃ¶wen.Domain.Abstractions.IServices.IEmailServices;
+using LÃ¶wen.Domain.Abstractions.IServices.IEntitiesServices;
+using LÃ¶wen.Domain.Entities;
+using LÃ¶wen.Infrastructure.Services.EntityServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -46,6 +47,8 @@ builder.Services.AddScoped<IProductTagService, ProductTagService>();
 builder.Services.AddScoped<IWishlistService, WishlistService>();
 builder.Services.AddScoped<ILoveProductUserService, LoveProductUserService>();
 builder.Services.AddScoped<IProductReviewService, ProductReviewService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IOrderItems, OrderItemService>();
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.Configure<StaticFilesSettings>(

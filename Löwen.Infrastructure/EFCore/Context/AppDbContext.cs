@@ -1,4 +1,5 @@
 ﻿using Löwen.Domain.Entities;
+using Löwen.Domain.Entities.EntityForMapFunctionsResultOnly.Product;
 using Löwen.Infrastructure.EFCore.Context.Config;
 using Löwen.Infrastructure.EFCore.IdentityUser;
 using Microsoft.AspNetCore.Identity;
@@ -32,9 +33,14 @@ public class AppDbContext : IdentityDbContext<AppUser, IdentityRole<Guid>, Guid>
     public DbSet<Discount> Discounts => Set<Discount>();
     public DbSet<ProductDiscount> ProductDiscounts => Set<ProductDiscount>();
 
+    #region Entities for map functions result
+    public DbSet<GetProductResult> getProductResults => Set<GetProductResult>();
+    #endregion
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppUserConfiguration).Assembly);
+        modelBuilder.Entity<GetProductResult>().HasNoKey().ToView(null);
         base.OnModelCreating(modelBuilder);
 
     }

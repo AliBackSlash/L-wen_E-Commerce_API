@@ -21,7 +21,7 @@ public class DiscountConfiguration : IEntityTypeConfiguration<Discount>
         builder.Property(d => d.EndDate)
                .IsRequired()
                .HasColumnType("timestamp with time zone");
-        builder.Property(d => d.IsActive).IsRequired().HasColumnType("boolean").HasDefaultValueSql("true");
+        builder.Property(d => d.IsActive).IsRequired().HasColumnType("boolean");
 
         // Many-to-many relationship with Product (via ProductDiscount)
         builder.HasMany(d => d.ProductDiscounts)

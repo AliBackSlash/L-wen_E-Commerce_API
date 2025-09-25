@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Security.Claims;
+using Löwen.Application.Features.UserFeature.Commands.Love.AddOrder;
 
 namespace Löwen.Presentation.Api.Controllers.v1.OrderController
 {
     [ApiController]
     [ApiVersion("1.0")]
-    [Route("api/[controller]")]
-    public class OrderController : ControllerBase
+    [Route("api/Order")]
+    public class OrderController(ISender sender) : ControllerBase
     {
         [HttpPost("add-order")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -13,7 +14,14 @@ namespace Löwen.Presentation.Api.Controllers.v1.OrderController
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> AddOrder()
         {
-            throw new NotImplementedException();
+            var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (string.IsNullOrEmpty(id))
+                return Result.Failure(new Error("api/Order/add-order", "Valid token is required", ErrorType.Unauthorized)).ToActionResult();
+
+            Result<string> result = await sender.Send(new AddOrderCommand(id));
+
+            return result.ToActionResult();
         }
 
         [HttpPost("cancel-order")]

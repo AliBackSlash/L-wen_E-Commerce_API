@@ -1,7 +1,7 @@
 ﻿using Löwen.Domain.Abstractions.IServices.IEntitiesServices;
 using Löwen.Domain.Entities;
+using Löwen.Domain.Entities.EntityForMapFunctionsResultOnly.Product;
 using Löwen.Domain.ErrorHandleClasses;
-using Löwen.Domain.Layer_Dtos.Product;
 using Löwen.Domain.Pagination;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,7 +9,12 @@ namespace Löwen.Infrastructure.Services.EntityServices;
 
 public class ProductService(AppDbContext _context) : BasRepository<Product, Guid>(_context), IProductService
 {
-    public async Task<Result<PagedResult<GetAllProductDto>>> GetProductsPaged(PaginationParams prm, CancellationToken ct)
+    public Task<Result<PagedResult<GetProductResult>>> GetAllProductPagedForRegisteredUsers(Guid userId, PaginationParams prm, CancellationToken ct)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async Task<Result<PagedResult<GetProductResult>>> GetProductsPaged(PaginationParams prm, CancellationToken ct)
     {
         var query = from p in _context.Products
                     join pd in _context.ProductDiscounts on p.Id equals pd.ProductId into productDiscounts
@@ -36,11 +41,11 @@ public class ProductService(AppDbContext _context) : BasRepository<Product, Guid
                         Rating = reviews.Any() ? reviews.Average(x => x.Rating) : 0,
                         ProductImagePath = i != null ? i.Path : null
                     };
-
+        var a = query.ToQueryString();
         var TotalCount = await query.CountAsync(ct);
         var products = await  query.Skip(prm.Skip)
             .Take(prm.PageSize)
-            .Select(p => new GetAllProductDto
+            .Select(p => new GetProductResult
             {
                 Name = p.Name,
                 Description = p.Description,
@@ -51,10 +56,15 @@ public class ProductService(AppDbContext _context) : BasRepository<Product, Guid
                 Rating = p.Rating,
                 ProductImages = p.ProductImagePath
             }).ToListAsync();
-        return Result.Success(PagedResult<GetAllProductDto>.Create(products, TotalCount, prm.PageNumber, prm.PageSize));
+        return Result.Success(PagedResult<GetProductResult>.Create(products, TotalCount, prm.PageNumber, prm.PageSize));
 
     }
 
     public async Task<bool> IsFound(Guid Id,CancellationToken ct) => await _context.Products.AnyAsync(t => t.Id == Id,ct);
+
+}
+
+public class OrderItemService(AppDbContext _context) : CollectionBasRepository<OrderItem,Guid>(_context), IOrderItems
+{
 
 }

@@ -1,6 +1,6 @@
-﻿using Löwen.Domain.Layer_Dtos.Product;
+﻿using Löwen.Domain.Entities.EntityForMapFunctionsResultOnly.Product;
 
-namespace Löwen.Application.Features.ProductFeature.Queries.GetAllProductPaged;
+namespace Löwen.Application.Features.ProductFeature.Queries;
 
 public class GetAllProductPagedQueryResponse
 {
@@ -15,7 +15,7 @@ public class GetAllProductPagedQueryResponse
 
     private GetAllProductPagedQueryResponse() { }
 
-    public static GetAllProductPagedQueryResponse Map(GetAllProductDto dto) => new GetAllProductPagedQueryResponse
+    public static GetAllProductPagedQueryResponse Map(GetProductResult dto) => new GetAllProductPagedQueryResponse
     {
         Name = dto.Name,
         Description = dto.Description,
@@ -28,7 +28,7 @@ public class GetAllProductPagedQueryResponse
 
     };
 
-    public static IEnumerable<GetAllProductPagedQueryResponse> Map(IEnumerable<GetAllProductDto> dto)
+    public static IEnumerable<GetAllProductPagedQueryResponse> Map(IEnumerable<GetProductResult> dto)
     {
         if (dto == null)
             return [];

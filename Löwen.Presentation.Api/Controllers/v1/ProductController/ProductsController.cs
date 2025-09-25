@@ -1,4 +1,5 @@
-﻿using Löwen.Application.Features.ProductFeature.Queries.GetAllProductPaged;
+﻿using Löwen.Application.Features.ProductFeature.Queries;
+using Löwen.Application.Features.ProductFeature.Queries.GetAllProductPaged;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

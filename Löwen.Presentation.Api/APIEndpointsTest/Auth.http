@@ -1,19 +1,20 @@
-@Löwen.Api_HostAddress = https://localhost:7197
+@LÃ¶wen_Api_HostAddress = https://localhost:7197
 
 
 //Auth Endpoints
 ###
-POST {{Löwen.Api_HostAddress}}/api/Auth/Register
+POST {{LÃ¶wen_Api_HostAddress}}/api/Auth/Register
 Content-Type: application/json
 {
-  "email": "ae1378032@gmail1.com",
-  "userName": "ali-01",
+  "email": "ae1378032@gmail.com",
+  "userName": "ali-01sdf",
   "password": "Ali1@.com1"
 }
 
 ###
-POST {{Löwen.Api_HostAddress}}/api/auth/login
+POST https://localhost:7197/api/auth/login
 Content-Type: application/json
+
 {
   "userNameOrEmail": "ali-01",
   "password": "Ali1@.com1"
