@@ -1,22 +1,25 @@
 ﻿using Löwen.Domain.Abstractions.IServices.IEntitiesServices;
-using Löwen.Domain.Entities;
-using static Löwen.Domain.ErrorHandleClasses.ErrorCodes;
-
 namespace Löwen.Application.Features.UserFeature.Commands.Love.AddOrder;
 
-internal class AddOrderCommandHandler(IOrderService orderService) : ICommandHandler<AddOrderCommand, string>
+internal class AddOrderCommandHandler(IOrderService orderService) : ICommandHandler<AddOrderCommand>
 {
-    public async Task<Result<string>> Handle(AddOrderCommand request, CancellationToken ct)
+    public async Task<Result> Handle(AddOrderCommand command, CancellationToken ct)
     {
         var createResult = await orderService.AddAsync(new Order
         {
-            UserId = Guid.Parse(request.UserId),
+            UserId = Guid.Parse(command.UserId),
             Status = OrderStatus.Pending,
+            OrderItems = command.items.Select(i => new OrderItem
+            {
+                ProductId = i.ProductId,
+                Quantity = i.Quantity,
+                PriceAtPurchase = i.PriceAtPurchase,
+            }).ToList()
         }, ct);
 
         if (createResult.IsFailure)
-            return Result.Failure<string>(createResult.Errors);
+            return Result.Failure(createResult.Errors);
 
-        return Result.Success(createResult.Value.Id.ToString());
+        return Result.Success();
     }
 }

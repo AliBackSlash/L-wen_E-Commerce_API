@@ -1,7 +1,43 @@
 @Löwen_Api_HostAddress = https://localhost:7197/api/Order
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjhmMmVmZDEwLTJkMWMtNDFlZS05YzRkLTJmN2Y1NDMxY2IxOCIsImp0aSI6Ijg4ZWJmNWYxLTM0M2QtNDA5ZC05OTM3LTNhNDQ5MjA0NDhkZCIsImVtYWlsIjoiYWUxMzc4MDMyQGdtYWlsMS5jb20iLCJ1bmlxdWVfbmFtZSI6ImFsaS0wMSIsInJvbGVzIjoiVXNlciIsImV4cCI6MTc1ODczNTYwMCwiaXNzIjoiTG9jYWxIb3N0IiwiYXVkIjoiTG9jYWxIb3N0In0.gnujMYTtJXMqkUKZ0o2SLIZR9hM8cN5UFk3Y1uPIYrs
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjhmMmVmZDEwLTJkMWMtNDFlZS05YzRkLTJmN2Y1NDMxY2IxOCIsImp0aSI6IjEwOTk4ZmU1LTdlYzYtNDgzNy05NTZmLTViMjI4MWI1ZDA5ZSIsImVtYWlsIjoiYWUxMzc4MDMyQGdtYWlsMS5jb20iLCJ1bmlxdWVfbmFtZSI6ImFsaS0wMSIsInJvbGVzIjoiVXNlciIsImV4cCI6MTc1ODgwNzU2MCwiaXNzIjoiTG9jYWxIb3N0IiwiYXVkIjoiTG9jYWxIb3N0In0.CMIMoYxUUE3WN34w4GoO2VFFNQKwdxB-ZQzDffv3Bn0
 //Order Endpoints
 
 ###
 POST {{Löwen_Api_HostAddress}}/add-order
 Authorization: Bearer {{token}}
+Content-Type : application/json
+
+{
+  "items": [
+    {
+      "productId": "128ebf90-5896-4e53-8a97-826c8173830a",
+      "quantity": 1,
+      "priceAtPurchase":110
+    },
+    {
+      "productId": "15649724-b6df-46b3-bab7-0121fe0841f6",
+      "quantity": 1,
+      "priceAtPurchase":110
+    },
+    {
+      "productId": "2d701353-4fac-4001-ae9a-35eda49eb1c0",
+      "quantity": 1,
+      "priceAtPurchase":110
+    }
+  ]
+}
+
+###
+PUT {{Löwen_Api_HostAddress}}/update-order-status/613e1447-ef9a-49d3-b4fc-4002b9af5b30,9
+Authorization: Bearer {{token}}
+
+###
+PUT {{Löwen_Api_HostAddress}}/update-order-items
+Authorization: Bearer {{token}}
+Content-Type : application/json
+{
+  "orderId": "e3185c73-9555-40c9-a5ca-fc518cb1bce2",
+  "productId": "128ebf90-5896-4e53-8a97-826c8173830a",
+  "quantity": 0,
+  "priceAtPurchase": 0
+}

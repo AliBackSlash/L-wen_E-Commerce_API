@@ -1,5 +1,10 @@
-﻿using System.Security.Claims;
-using Löwen.Application.Features.UserFeature.Commands.Love.AddOrder;
+﻿using Löwen.Application.Features.UserFeature.Commands.Love.AddOrder;
+using Löwen.Application.Features.UserFeature.Commands.Love.UpdateOrderItem;
+using Löwen.Application.Features.UserFeature.Commands.Love.UpdateOrderStatus;
+using Löwen.Domain.Layer_Dtos.Order;
+using Löwen.Presentation.Api.Controllers.v1.OrderController.Models;
+using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace Löwen.Presentation.Api.Controllers.v1.OrderController
 {
@@ -12,32 +17,50 @@ namespace Löwen.Presentation.Api.Controllers.v1.OrderController
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> AddOrder()
+        public async Task<IActionResult> AddOrder([FromBody] OrderItemModel model)
         {
+            if(model is null)
+                return Result.Failure(new Error("api/Order/add-order", "no order items found", ErrorType.BadRequest)).ToActionResult();
+
             var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             if (string.IsNullOrEmpty(id))
                 return Result.Failure(new Error("api/Order/add-order", "Valid token is required", ErrorType.Unauthorized)).ToActionResult();
 
-            Result<string> result = await sender.Send(new AddOrderCommand(id));
+            Result result = await sender.Send(new AddOrderCommand(id, model.Items));
 
             return result.ToActionResult();
         }
 
-        [HttpPost("cancel-order")]
+        [HttpPut("update-order-status/{Id},{Status}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> CancelOrder()
+        public async Task<IActionResult> UpdateOrderStatuse(string Id,OrderStatus Status)
         {
-            throw new NotImplementedException();
+            Result result = await sender.Send(new UpdateOrderStatusCommand(Id, Status));
+
+            return result.ToActionResult();
         }
 
-        [HttpGet("get-order-by-id")]
+
+        [HttpPut("update-order-items")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetOrderById()
+        public async Task<IActionResult> GetOrderDetails([FromBody] UpdateOrderItemModel model)
+        {
+            Result result = await sender.Send(new UpdateOrderItemCommand(model.OrderId, model.ProductId, model.Quantity, model.PriceAtPurchase));
+
+            return result.ToActionResult();
+        }
+
+
+        [HttpGet("get-order-details/{Id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetOrderDetails(Guid Id)
         {
             throw new NotImplementedException();
         }

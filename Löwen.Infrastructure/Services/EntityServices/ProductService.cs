@@ -64,7 +64,8 @@ public class ProductService(AppDbContext _context) : BasRepository<Product, Guid
 
 }
 
-public class OrderItemService(AppDbContext _context) : CollectionBasRepository<OrderItem,Guid>(_context), IOrderItems
+public class OrderItemService(AppDbContext _context) : BasRepository<OrderItem, Guid>(_context), IOrderItemsService
 {
-
+    public async Task<OrderItem> GetOrderItem(Guid orderId, Guid productId,CancellationToken ct) => await _context.OrderItems.
+        Where(oi => oi.OrderId == orderId && oi.ProductId == productId).FirstOrDefaultAsync(ct);
 }

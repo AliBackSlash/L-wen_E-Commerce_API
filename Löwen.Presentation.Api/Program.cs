@@ -48,7 +48,7 @@ builder.Services.AddScoped<IWishlistService, WishlistService>();
 builder.Services.AddScoped<ILoveProductUserService, LoveProductUserService>();
 builder.Services.AddScoped<IProductReviewService, ProductReviewService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
-builder.Services.AddScoped<IOrderItems, OrderItemService>();
+builder.Services.AddScoped<IOrderItemsService, OrderItemService>();
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.Configure<StaticFilesSettings>(

@@ -1,3 +1,5 @@
-﻿namespace Löwen.Application.Features.UserFeature.Commands.Love.AddOrder;
+﻿using Löwen.Domain.Layer_Dtos.Order;
 
-public record AddOrderCommand(string UserId) : ICommand<string>;
+namespace Löwen.Application.Features.UserFeature.Commands.Love.AddOrder;
+
+public record AddOrderCommand(string UserId,IEnumerable< OrderItemDto> items) : ICommand;
