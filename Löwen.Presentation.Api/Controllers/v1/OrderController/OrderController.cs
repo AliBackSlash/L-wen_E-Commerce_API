@@ -1,8 +1,11 @@
 ﻿
+using Löwen.Application.Features.OrderFeature.Queries.OrderDetailsResponse;
 using Löwen.Application.Features.UserFeature.Commands.AddOrder.AddOrder;
 using Löwen.Application.Features.UserFeature.Commands.UpdateOrderItem.UpdateOrderItem;
 using Löwen.Application.Features.UserFeature.Commands.UpdateOrderSataus.UpdateOrderStatus;
+using Löwen.Application.Features.UserFeature.Queries.GetAllOrders;
 using Löwen.Application.Features.UserFeature.Queries.GetOrderDetails;
+using Löwen.Application.Features.UserFeature.Queries.GetOrdersForUser;
 using Löwen.Presentation.Api.Controllers.v1.OrderController.Models;
 
 namespace Löwen.Presentation.Api.Controllers.v1.OrderController
@@ -18,7 +21,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.OrderController
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> AddOrder([FromBody] OrderItemModel model)
         {
-            if(model is null)
+            if (model is null)
                 return Result.Failure(new Error("api/Order/add-order", "no order items found", ErrorType.BadRequest)).ToActionResult();
 
             var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -35,7 +38,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.OrderController
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> UpdateOrderStatuse(string Id,OrderStatus Status)
+        public async Task<IActionResult> UpdateOrderStatuse(string Id, OrderStatus Status)
         {
             Result result = await sender.Send(new UpdateOrderStatusCommand(Id, Status));
 
@@ -66,24 +69,31 @@ namespace Löwen.Presentation.Api.Controllers.v1.OrderController
             return result.ToActionResult();
         }
 
-        [HttpGet("get-orders-by-user/{Id}")]
+        [HttpGet("get-orders-by-user/{PageNumber},{PageSize}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetOrdersByUser(string Id)
+        public async Task<IActionResult> GetOrdersByUser(int PageNumber, byte PageSize)
         {
-            Result<GetOrderDetailsQueryResponse> result = await sender.Send(new GetOrderDetailsQuery(Id));
+            var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (string.IsNullOrEmpty(id))
+                return Result.Failure(new Error("api/Order/get-orders-by-user", "Valid token is required", ErrorType.Unauthorized)).ToActionResult();
+
+            Result<PagedResult<GetOrderDetailsQueryResponse>> result = await sender.Send(new GetOrdersForUserQuery(id, PageNumber, PageSize));
 
             return result.ToActionResult();
         }
 
-        [HttpGet("get-orders-paged")]
+        [HttpGet("get-orders-paged/{PageNumber},{PageSize}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetOrdersPaged()
+        public async Task<IActionResult> GetOrdersPaged(int PageNumber, byte PageSize)
         {
-            throw new NotImplementedException();
+            Result<PagedResult<GetOrderDetailsQueryResponse>> result = await sender.Send(new GetAllOrdersQuery(PageNumber, PageSize));
+
+            return result.ToActionResult();
         }
 
     }

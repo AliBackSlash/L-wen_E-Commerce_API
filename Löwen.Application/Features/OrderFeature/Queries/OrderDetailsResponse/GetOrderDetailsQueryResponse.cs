@@ -1,6 +1,6 @@
 ﻿using Löwen.Domain.Layer_Dtos.Order;
 
-namespace Löwen.Application.Features.UserFeature.Queries.GetOrderDetails;
+namespace Löwen.Application.Features.OrderFeature.Queries.OrderDetailsResponse;
 
 public class GetOrderDetailsQueryResponse
 {
@@ -18,10 +18,15 @@ public class GetOrderDetailsQueryResponse
             Status = dto.Status,
             items = dto.items.Select(item => new OrderDetailsItems
             {
+                Path = item.Path,
                 ProductId = item.ProductId,
                 Quantity = item.Quantity,
                 PriceAtPurchase = item.PriceAtPurchase
             }).AsEnumerable()
         };
+    }
+    public static IEnumerable<GetOrderDetailsQueryResponse> map(IEnumerable<OrderDetailsDto> dto)
+    {
+       return dto.Select(i => map(i));
     }
 }
