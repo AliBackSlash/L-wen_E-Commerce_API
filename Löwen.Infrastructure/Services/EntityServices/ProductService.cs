@@ -41,7 +41,6 @@ public class ProductService(AppDbContext _context) : BasRepository<Product, Guid
                         Rating = reviews.Any() ? reviews.Average(x => x.Rating) : 0,
                         ProductImagePath = i != null ? i.Path : null
                     };
-        var a = query.ToQueryString();
         var TotalCount = await query.CountAsync(ct);
         var products = await  query.Skip(prm.Skip)
             .Take(prm.PageSize)

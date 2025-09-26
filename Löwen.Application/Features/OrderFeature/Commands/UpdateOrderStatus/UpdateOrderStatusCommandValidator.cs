@@ -1,4 +1,4 @@
-﻿namespace Löwen.Application.Features.UserFeature.Commands.Love.UpdateOrderStatus;
+﻿namespace Löwen.Application.Features.UserFeature.Commands.UpdateOrderSataus.UpdateOrderStatus;
 
 public class UpdateOrderStatusCommandValidator : AbstractValidator<UpdateOrderStatusCommand>
 {

@@ -1,10 +1,9 @@
-﻿using Löwen.Application.Features.UserFeature.Commands.Love.AddOrder;
-using Löwen.Application.Features.UserFeature.Commands.Love.UpdateOrderItem;
-using Löwen.Application.Features.UserFeature.Commands.Love.UpdateOrderStatus;
-using Löwen.Domain.Layer_Dtos.Order;
+﻿
+using Löwen.Application.Features.UserFeature.Commands.AddOrder.AddOrder;
+using Löwen.Application.Features.UserFeature.Commands.UpdateOrderItem.UpdateOrderItem;
+using Löwen.Application.Features.UserFeature.Commands.UpdateOrderSataus.UpdateOrderStatus;
+using Löwen.Application.Features.UserFeature.Queries.GetOrderDetails;
 using Löwen.Presentation.Api.Controllers.v1.OrderController.Models;
-using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 
 namespace Löwen.Presentation.Api.Controllers.v1.OrderController
 {
@@ -60,18 +59,22 @@ namespace Löwen.Presentation.Api.Controllers.v1.OrderController
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetOrderDetails(Guid Id)
+        public async Task<IActionResult> GetOrderDetails(string Id)
         {
-            throw new NotImplementedException();
+            Result<GetOrderDetailsQueryResponse> result = await sender.Send(new GetOrderDetailsQuery(Id));
+
+            return result.ToActionResult();
         }
 
-        [HttpGet("get-orders-by-user")]
+        [HttpGet("get-orders-by-user/{Id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetOrdersByUser()
+        public async Task<IActionResult> GetOrdersByUser(string Id)
         {
-            throw new NotImplementedException();
+            Result<GetOrderDetailsQueryResponse> result = await sender.Send(new GetOrderDetailsQuery(Id));
+
+            return result.ToActionResult();
         }
 
         [HttpGet("get-orders-paged")]

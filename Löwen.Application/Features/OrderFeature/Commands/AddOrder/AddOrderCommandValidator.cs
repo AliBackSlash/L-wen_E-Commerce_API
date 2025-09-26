@@ -1,4 +1,4 @@
-﻿namespace Löwen.Application.Features.UserFeature.Commands.Love.AddOrder;
+﻿namespace Löwen.Application.Features.UserFeature.Commands.AddOrder.AddOrder;
 
 public class AddOrderCommandValidator : AbstractValidator<AddOrderCommand>
 {

@@ -1,5 +1,5 @@
 ﻿using Löwen.Domain.Abstractions.IServices.IEntitiesServices;
-namespace Löwen.Application.Features.UserFeature.Commands.Love.UpdateOrderItem;
+namespace Löwen.Application.Features.UserFeature.Commands.UpdateOrderItem.UpdateOrderItem;
 
 internal class UpdateOrderItemCommandHandler(IOrderItemsService orderItemService) : ICommandHandler<UpdateOrderItemCommand>
 {

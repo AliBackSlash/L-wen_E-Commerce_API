@@ -41,3 +41,5 @@ Content-Type : application/json
   "quantity": 0,
   "priceAtPurchase": 0
 }
+###
+GET {{Löwen_Api_HostAddress}}/get-order-details/e3185c73-9555-40c9-a5ca-fc518cb1bce1
