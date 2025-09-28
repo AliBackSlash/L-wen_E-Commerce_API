@@ -13,7 +13,7 @@ internal class GetOrdersForUserQueryHandler(IOrderService orderIService,IOptions
         {
             maxPageSize = options.Value.maxPageSize,
             PageNumber = query.PageNumber,
-            PageSize = query.PageSize
+            Take = query.PageSize
         }, ct);
 
         return result.IsFailure ? Result.Failure<PagedResult<GetOrderDetailsQueryResponse>>(result.Errors)

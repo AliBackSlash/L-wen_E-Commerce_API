@@ -13,7 +13,7 @@ public class GetAllProductPagedQueryHandler(IProductService productService,IOpti
         var result = await productService.GetProductsPaged(new PaginationParams
         {
             maxPageSize = options.Value.maxPageSize,
-            PageSize = query.PageSize,
+            Take = query.PageSize,
             PageNumber = query.PageNumber
         }, ct);
 

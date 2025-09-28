@@ -32,9 +32,9 @@ public class OrderService(AppDbContext _context) : BasRepository<Order, Guid>(_c
                                  }).ToList()
                     };
         var totalCount = await query.CountAsync();
-        var orders = await query.Skip(parm.Skip).Take(parm.PageSize).ToListAsync(ct);
+        var orders = await query.Skip(parm.Skip).Take(parm.Take).ToListAsync(ct);
      
-        return Result.Success<PagedResult<OrderDetailsDto>>(PagedResult<OrderDetailsDto>.Create(orders, totalCount, parm.PageNumber, parm.PageSize));
+        return Result.Success<PagedResult<OrderDetailsDto>>(PagedResult<OrderDetailsDto>.Create(orders, totalCount, parm.PageNumber, parm.Take));
     }
 
     public async Task<Result<OrderDetailsDto>> GetOrderDetails(Guid Id, CancellationToken ct)
@@ -93,13 +93,13 @@ public class OrderService(AppDbContext _context) : BasRepository<Order, Guid>(_c
                                  }).ToList()
                     };
         var totalCount = await query.CountAsync();
-        var orders = await query.Skip(parm.Skip).Take(parm.PageSize).ToListAsync(ct);
+        var orders = await query.Skip(parm.Skip).Take(parm.Take).ToListAsync(ct);
 
         if (orders is null || !orders.Any())
             return Result.Failure<PagedResult<OrderDetailsDto>>(
                 new Error("IOrderService.GetOrdersForUser", $"no orders for user {userId}", ErrorType.Conflict));
 
-        return Result.Success<PagedResult<OrderDetailsDto>>(PagedResult<OrderDetailsDto>.Create(orders, totalCount, parm.PageNumber, parm.PageSize));
+        return Result.Success<PagedResult<OrderDetailsDto>>(PagedResult<OrderDetailsDto>.Create(orders, totalCount, parm.PageNumber, parm.Take));
     }
     
 

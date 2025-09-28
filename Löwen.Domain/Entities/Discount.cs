@@ -1,6 +1,4 @@
-﻿using Löwen.Domain.Enums;
-
-namespace Löwen.Domain.Entities;
+﻿namespace Löwen.Domain.Entities;
 
 public class Discount
 {

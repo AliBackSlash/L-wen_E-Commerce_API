@@ -13,7 +13,7 @@ public class GetAllProductPagedForRegisteredUsersQueryHandler(IProductService pr
         var result = await productService.GetAllProductPagedForRegisteredUsers(query.userId, new PaginationParams
         {
             maxPageSize = options.Value.maxPageSize,
-            PageSize = query.PageSize,
+            Take = query.PageSize,
             PageNumber = query.PageNumber
         }, ct);
 

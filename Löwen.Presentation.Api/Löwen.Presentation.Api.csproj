@@ -30,7 +30,6 @@
     <Folder Include="Controllers\v1\DeliveryController\Models\" />
     <Folder Include="Controllers\v1\NotificationController\Models\" />
     <Folder Include="Controllers\v1\CouponController\Models\" />
-    <Folder Include="Controllers\v1\DiscountController\Models\" />
     <Folder Include="Controllers\v1\CartController\Models\" />
     <Folder Include="Controllers\v1\PaymentController\Models\" />
     <Folder Include="Controllers\v1\ProductController\Models\" />

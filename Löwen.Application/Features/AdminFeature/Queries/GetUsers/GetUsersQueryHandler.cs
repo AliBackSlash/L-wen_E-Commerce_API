@@ -12,7 +12,7 @@ public class GetUsersQueryHandler(IAppUserService userService,IOptions<Paginatio
         {
             maxPageSize = PSettings.Value.maxPageSize,
             PageNumber = command.PageNumber,
-            PageSize = command.PageSize
+            Take = command.PageSize
         });
         if (users.IsFailure)
             return Result.Failure<PagedResult<GetUsersQueryResponse>> (users.Errors);

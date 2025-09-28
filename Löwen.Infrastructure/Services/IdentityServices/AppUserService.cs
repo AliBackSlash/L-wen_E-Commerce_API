@@ -497,7 +497,7 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
 */
         var users = await query
             .Skip(Params.Skip)
-            .Take(Params.PageSize)
+            .Take(Params.Take)
             .Select(u => new GetUsersResponseDto
             {
                 Id = u.Id,
@@ -511,7 +511,7 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
             })
             .ToListAsync();
 
-        return Result.Success(PagedResult<GetUsersResponseDto>.Create(users, totalCount, Params.PageNumber, Params.PageSize));
+        return Result.Success(PagedResult<GetUsersResponseDto>.Create(users, totalCount, Params.PageNumber, Params.Take));
     }
 
 }

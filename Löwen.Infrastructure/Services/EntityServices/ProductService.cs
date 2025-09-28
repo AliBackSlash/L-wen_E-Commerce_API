@@ -43,7 +43,7 @@ public class ProductService(AppDbContext _context) : BasRepository<Product, Guid
                     };
         var TotalCount = await query.CountAsync(ct);
         var products = await  query.Skip(prm.Skip)
-            .Take(prm.PageSize)
+            .Take(prm.Take)
             .Select(p => new GetProductResult
             {
                 Name = p.Name,
@@ -55,16 +55,10 @@ public class ProductService(AppDbContext _context) : BasRepository<Product, Guid
                 Rating = p.Rating,
                 ProductImages = p.ProductImagePath
             }).ToListAsync();
-        return Result.Success(PagedResult<GetProductResult>.Create(products, TotalCount, prm.PageNumber, prm.PageSize));
+        return Result.Success(PagedResult<GetProductResult>.Create(products, TotalCount, prm.PageNumber, prm.Take));
 
     }
 
-    public async Task<bool> IsFound(Guid Id,CancellationToken ct) => await _context.Products.AnyAsync(t => t.Id == Id,ct);
+    public async Task<bool> IsFound(Guid Id,CancellationToken ct) => await _dbSet.AnyAsync(t => t.Id == Id,ct);
 
-}
-
-public class OrderItemService(AppDbContext _context) : BasRepository<OrderItem, Guid>(_context), IOrderItemsService
-{
-    public async Task<OrderItem> GetOrderItem(Guid orderId, Guid productId,CancellationToken ct) => await _context.OrderItems.
-        Where(oi => oi.OrderId == orderId && oi.ProductId == productId).FirstOrDefaultAsync(ct);
 }

@@ -6,7 +6,7 @@ namespace Löwen.Infrastructure.EFCore.Repositories;
 
 public class BasRepository<TEntity, IdType>(AppDbContext _context) : IBasRepository<TEntity, IdType> where TEntity : class
 {
-    private readonly DbSet<TEntity> _dbSet = _context.Set<TEntity>();
+    protected readonly DbSet<TEntity> _dbSet = _context.Set<TEntity>();
 
     public async Task<TEntity?> GetByIdAsync(IdType id, CancellationToken ct) => await _dbSet.FindAsync(id, ct);
     public async Task<Result<TEntity>> AddAsync(TEntity entity, CancellationToken ct)

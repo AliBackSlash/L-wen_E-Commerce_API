@@ -2,5 +2,5 @@
 
 public interface IOrderItemsService : IBasRepository<OrderItem, Guid>
 {
-    Task<OrderItem> GetOrderItem(Guid orderId, Guid productId,CancellationToken ct);
+    Task<OrderItem> GetOrderItem(Guid orderId, Guid productId, CancellationToken ct);
 }
