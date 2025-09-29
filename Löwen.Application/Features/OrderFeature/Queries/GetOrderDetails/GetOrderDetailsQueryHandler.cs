@@ -1,7 +1,7 @@
 ﻿using Löwen.Application.Features.OrderFeature.Queries.OrderDetailsResponse;
 using Löwen.Domain.Abstractions.IServices.IEntitiesServices;
 
-namespace Löwen.Application.Features.UserFeature.Queries.GetOrderDetails;
+namespace Löwen.Application.Features.OrderFeature.Queries.GetOrderDetails;
 
 internal class GetOrderDetailsQueryHandler(IOrderService orderIService) : IQueryHandler<GetOrderDetailsQuery, GetOrderDetailsQueryResponse>
 {

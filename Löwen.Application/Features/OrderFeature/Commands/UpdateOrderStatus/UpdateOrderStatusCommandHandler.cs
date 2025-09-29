@@ -1,5 +1,5 @@
 ﻿using Löwen.Domain.Abstractions.IServices.IEntitiesServices;
-namespace Löwen.Application.Features.UserFeature.Commands.UpdateOrderSataus.UpdateOrderStatus;
+namespace Löwen.Application.Features.OrderFeature.Commands.UpdateOrderSataus.UpdateOrderStatus;
 
 internal class UpdateOrderStatusCommandHandler(IOrderService orderService) : ICommandHandler<UpdateOrderStatusCommand>
 {

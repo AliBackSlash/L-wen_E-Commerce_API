@@ -1,4 +1,4 @@
-﻿namespace Löwen.Application.Features.UserFeature.Queries.GetOrdersForUser;
+﻿namespace Löwen.Application.Features.OrderFeature.Queries.GetOrdersForUser;
 
 public class GetOrdersForUserQueryValidator : AbstractValidator<GetOrdersForUserQuery>
 {

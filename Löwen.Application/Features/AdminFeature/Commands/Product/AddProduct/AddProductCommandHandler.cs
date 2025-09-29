@@ -15,8 +15,8 @@ public class AddProductCommandHandler(IProductCategoryService categoryService,IP
         var addResult = await productService.AddAsync(new Domain.Entities.Product
         {
            Name = command.Name,
-           Price = command.Price,
-           StockQuantity = command.StockQuantity,
+/*           Price = command.Price,
+           StockQuantity = command.StockQuantity,*/
            CategoryId = CategoryId,
            Description = command.Description,
            Status = command.Status,

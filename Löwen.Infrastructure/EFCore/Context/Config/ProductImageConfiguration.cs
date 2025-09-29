@@ -10,16 +10,16 @@ public class ProductImageConfiguration : IEntityTypeConfiguration<ProductImage>
     public void Configure(EntityTypeBuilder<ProductImage> builder)
     {
         // Composite primary key
-        builder.HasKey(pi => new { pi.ProductId, pi.ImageId });
+        builder.HasKey(pi => new { pi.ProductVariantId, pi.ImageId });
 
         // Column types
-        builder.Property(pi => pi.ProductId).HasColumnType("uuid");
+        builder.Property(pi => pi.ProductVariant).HasColumnType("uuid");
         builder.Property(pi => pi.ImageId).HasColumnType("uuid");
 
         // Relationships
-        builder.HasOne(pi => pi.Product)
+        builder.HasOne(pi => pi.ProductVariant)
                .WithMany(p => p.ProductImages)
-               .HasForeignKey(pi => pi.ProductId)
+               .HasForeignKey(pi => pi.ProductVariantId)
                .IsRequired();
 
         builder.HasOne(pi => pi.Image)

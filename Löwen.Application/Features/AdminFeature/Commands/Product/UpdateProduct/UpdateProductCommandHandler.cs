@@ -21,8 +21,8 @@ public class UpdateProductCommandHandler(IProductService productService,IProduct
 
         product.Name = command.Name ?? product.Name;  
         product.Description = command.Description ?? product.Description;  
-        product.Price = command.Price ?? product.Price;  
-        product.StockQuantity = command.StockQuantity ?? product.StockQuantity;  
+/*        product.Price = command.Price ?? product.Price;  
+        product.StockQuantity = command.StockQuantity ?? product.StockQuantity;  */
         product.Status = command.Status ?? product.Status;  
 
 

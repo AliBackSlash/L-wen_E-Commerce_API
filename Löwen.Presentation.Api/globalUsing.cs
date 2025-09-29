@@ -51,7 +51,7 @@ global using Löwen.Application.Features.AdminFeatures.Commands.ActivateMarkedAs
 global using Löwen.Application.Features.AdminFeatures.Commands.MarkAsDeleted;
 global using Löwen.Application.Features.UserFeature.Queries.GetUserByEmail;
 global using Löwen.Application.Features.UserFeature.Queries.GetUserById;
-global using Löwen.Application.Features.UserFeature.Queries.GetUsers;
+global using Löwen.Application.Features.AdminFeature.Queries.GetUsers;
 global using Löwen.Domain.Pagination;
 global using Löwen.Presentation.Api.Controllers.v1.AdminController.Models.CategoryModels;
 global using Löwen.Presentation.Api.Controllers.v1.AdminController.Models.ProductModels;

@@ -1,3 +1,3 @@
-﻿namespace Löwen.Application.Features.UserFeature.Commands.UpdateOrderSataus.UpdateOrderStatus;
+﻿namespace Löwen.Application.Features.OrderFeature.Commands.UpdateOrderSataus.UpdateOrderStatus;
 
 public record UpdateOrderStatusCommand(string OrderId, OrderStatus Status) : ICommand;

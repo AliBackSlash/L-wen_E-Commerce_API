@@ -8,17 +8,17 @@ public class Product
     public Guid Id { get; set; }
     public required string Name { get; set; }
     public string? Description { get; set; }
-    public decimal Price { get; set; }
-    public short StockQuantity { get; set; }
     public ProductStatus Status { get; set; }
     public double LoveCount {  get; set; }
     public Guid CategoryId { get; set; }
     public Guid CreatedBy { get; set; }
 
+
     // Navigation properties
     public ProductCategory? Category { get; set; }
     public ProductTag? Tag { get; set; }
-    public ICollection<ProductImage> ProductImages { get; set; } = [];
+    public ICollection<ProductVariant> ProductVariants { get; set; } = [];
+
     public ICollection<ProductReview> ProductReviews { get; set; } = [];
     public ICollection<CartItem> CartItems { get; set; } = [];
     public ICollection<OrderItem> OrderItems { get; set; } = [];

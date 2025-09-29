@@ -3,7 +3,7 @@ using Löwen.Domain.Abstractions.IServices.IEntitiesServices;
 using Löwen.Domain.ConfigurationClasses.Pagination;
 using Microsoft.Extensions.Options;
 
-namespace Löwen.Application.Features.UserFeature.Queries.GetAllOrders;
+namespace Löwen.Application.Features.OrderFeature.Queries.GetAllOrders;
 
 internal class GetAllOrdersQueryHandler(IOrderService orderIService,IOptions<PaginationSettings> options) : IQueryHandler<GetAllOrdersQuery, PagedResult<GetOrderDetailsQueryResponse>>
 {

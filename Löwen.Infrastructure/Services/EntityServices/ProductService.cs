@@ -16,7 +16,7 @@ public class ProductService(AppDbContext _context) : BasRepository<Product, Guid
 
     public async Task<Result<PagedResult<GetProductResult>>> GetProductsPaged(PaginationParams prm, CancellationToken ct)
     {
-        var query = from p in _context.Products
+        var query = await _dbSet.ToListAsync();/*from p in _context.Products
                     join pd in _context.ProductDiscounts on p.Id equals pd.ProductId into productDiscounts
                     from pd in productDiscounts.DefaultIfEmpty()
 
@@ -40,9 +40,9 @@ public class ProductService(AppDbContext _context) : BasRepository<Product, Guid
                         Discount = d != null && d.IsActive == true? d.DiscountValue : 0,
                         Rating = reviews.Any() ? reviews.Average(x => x.Rating) : 0,
                         ProductImagePath = i != null ? i.Path : null
-                    };
-        var TotalCount = await query.CountAsync(ct);
-        var products = await  query.Skip(prm.Skip)
+                    };*/
+        var TotalCount = 0 /*await query.CountAsync(ct)*/;
+        IEnumerable<GetProductResult> products = [];/* await  query.Skip(prm.Skip)
             .Take(prm.Take)
             .Select(p => new GetProductResult
             {
@@ -54,7 +54,7 @@ public class ProductService(AppDbContext _context) : BasRepository<Product, Guid
                 Discount = p.Discount,
                 Rating = p.Rating,
                 ProductImages = p.ProductImagePath
-            }).ToListAsync();
+            }).ToListAsync();*/
         return Result.Success(PagedResult<GetProductResult>.Create(products, TotalCount, prm.PageNumber, prm.Take));
 
     }

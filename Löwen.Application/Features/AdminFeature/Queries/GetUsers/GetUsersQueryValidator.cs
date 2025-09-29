@@ -1,4 +1,4 @@
-﻿namespace Löwen.Application.Features.UserFeature.Queries.GetUsers;
+﻿namespace Löwen.Application.Features.AdminFeature.Queries.GetUsers;
 
 public class GetUsersQueryValidator : AbstractValidator<GetUsersQuery>
 {

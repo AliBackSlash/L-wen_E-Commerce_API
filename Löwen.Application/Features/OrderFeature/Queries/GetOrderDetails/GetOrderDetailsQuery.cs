@@ -1,5 +1,5 @@
 ﻿using Löwen.Application.Features.OrderFeature.Queries.OrderDetailsResponse;
 
-namespace Löwen.Application.Features.UserFeature.Queries.GetOrderDetails;
+namespace Löwen.Application.Features.OrderFeature.Queries.GetOrderDetails;
 
 public record GetOrderDetailsQuery(string orderId) : IQuery<GetOrderDetailsQueryResponse>;

@@ -12,3 +12,4 @@ public interface IOrderService : IBasRepository<Order, Guid>
     Task<Result<PagedResult<OrderDetailsDto>>> GetAllOrders(PaginationParams parm, CancellationToken ct);
 
 }
+

@@ -1,5 +1,5 @@
 ﻿using Löwen.Domain.Abstractions.IServices.IEntitiesServices;
-namespace Löwen.Application.Features.UserFeature.Commands.AddOrder.AddOrder;
+namespace Löwen.Application.Features.OrderFeature.Commands.AddOrder.AddOrder;
 
 internal class AddOrderCommandHandler(IOrderService orderService) : ICommandHandler<AddOrderCommand>
 {
