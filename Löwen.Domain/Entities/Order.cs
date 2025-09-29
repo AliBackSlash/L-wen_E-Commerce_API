@@ -11,7 +11,8 @@ public class Order
     public OrderStatus Status { get; set; }
 
     // Navigation properties
-    public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
     public Payment? Payment { get; set; }
-    public ICollection<OrderCoupon> OrderCoupons { get; set; } = new List<OrderCoupon>();
+    public ICollection<OrderItem> OrderItems { get; set; } = [];
+    public ICollection<OrderCoupon> OrderCoupons { get; set; } = [];
+    public ICollection<DeliveryOrder> DeliveryOrders { get; set; } = [];
 }

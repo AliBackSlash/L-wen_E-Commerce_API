@@ -13,7 +13,8 @@ public class AppUser : IdentityUser<Guid>
     public string? ImagePath { get; set; }
     public bool IsDeleted { get; set; }
     public DateTime? DeletedAt { get; set; }
-    
+
+    public ICollection<DeliveryOrder> DeliveryOrders { get; set; } = [];
     public ICollection<CustomerAddress> CustomerAddresses { get; set; } = [];
     public ICollection<Cart> Carts { get; set; } = [];
     public ICollection<Order> Orders { get; set; } = [];

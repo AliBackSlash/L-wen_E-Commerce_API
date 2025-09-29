@@ -75,6 +75,12 @@ public class AppUserConfiguration : IEntityTypeConfiguration<AppUser>
                .OnDelete(DeleteBehavior.Cascade)
                .IsRequired();
 
-        
+        builder.HasMany(o => o.DeliveryOrders)
+               .WithOne()
+               .HasForeignKey(o => o.DeliveryId)
+               .OnDelete(DeleteBehavior.Cascade)
+               .IsRequired();
+
+
     }
 }

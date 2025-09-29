@@ -18,13 +18,32 @@ public class ProductDiscountConfiguration : IEntityTypeConfiguration<ProductDisc
 
         // Relationships
         builder.HasOne(pd => pd.Product)
-               .WithMany(p => p.ProductDiscounts) // Assuming Product entity has ICollection<ProductDiscount>
+               .WithMany(p => p.ProductDiscounts) 
                .HasForeignKey(pd => pd.ProductId)
                .IsRequired();
 
         builder.HasOne(pd => pd.Discount)
                .WithMany(d => d.ProductDiscounts)
                .HasForeignKey(pd => pd.DiscountId)
+               .IsRequired();
+    }
+}
+public class DeliveryOrderConfiguration : IEntityTypeConfiguration<DeliveryOrder>
+{
+    public void Configure(EntityTypeBuilder<DeliveryOrder> builder)
+    {
+        // Composite primary key
+        builder.HasKey(po => new { po.DeliveryId, po.OrderId });
+
+        // Column types
+        builder.Property(po => po.DeliveryId).HasColumnType("uuid");
+        builder.Property(po => po.OrderId).HasColumnType("uuid");
+
+        // Relationships
+        builder.HasOne(pd => pd.Order)
+               .WithMany(p => p.DeliveryOrders) 
+               .HasForeignKey(pd => pd.OrderId)
+               .OnDelete(DeleteBehavior.Cascade)
                .IsRequired();
     }
 }

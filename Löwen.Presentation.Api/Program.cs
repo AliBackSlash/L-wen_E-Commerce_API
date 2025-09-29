@@ -49,6 +49,7 @@ builder.Services.AddScoped<ILoveProductUserService, LoveProductUserService>();
 builder.Services.AddScoped<IProductReviewService, ProductReviewService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IOrderItemsService, OrderItemService>();
+builder.Services.AddScoped<IDiscountService, DiscountService>();
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.Configure<StaticFilesSettings>(
