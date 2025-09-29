@@ -2,7 +2,7 @@
 
 public class ProductVariant
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 
     public Guid ProductId { get; set; }
     public Guid ColorId { get; set; }

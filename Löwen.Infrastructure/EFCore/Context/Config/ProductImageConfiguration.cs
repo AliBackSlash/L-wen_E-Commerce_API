@@ -13,7 +13,7 @@ public class ProductImageConfiguration : IEntityTypeConfiguration<ProductImage>
         builder.HasKey(pi => new { pi.ProductVariantId, pi.ImageId });
 
         // Column types
-        builder.Property(pi => pi.ProductVariant).HasColumnType("uuid");
+        builder.Property(pi => pi.ProductVariantId).HasColumnType("uuid");
         builder.Property(pi => pi.ImageId).HasColumnType("uuid");
 
         // Relationships
