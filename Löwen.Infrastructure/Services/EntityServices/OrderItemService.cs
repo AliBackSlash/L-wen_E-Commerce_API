@@ -1,4 +1,5 @@
 ﻿using Löwen.Domain.Abstractions.IServices.IEntitiesServices;
+using Löwen.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Löwen.Infrastructure.Services.EntityServices;

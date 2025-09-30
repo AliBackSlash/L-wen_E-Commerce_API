@@ -1,8 +1,8 @@
 ﻿namespace Löwen.Application.Features.CartFeature.Commands.UpdateCartItemQuantity;
 
-public class RemoveFromCartItemCommandValidator : AbstractValidator<RemoveFromCartItemCommand>
+public class UpdateCartItemQuantityCommandValidator : AbstractValidator<UpdateCartItemQuantityCommand>
 {
-  public RemoveFromCartItemCommandValidator()
+  public UpdateCartItemQuantityCommandValidator()
   {
     RuleFor(x => x.cartId)
         .NotEmpty().WithMessage("Id is required")

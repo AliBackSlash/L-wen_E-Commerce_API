@@ -32,6 +32,10 @@ public class AppDbContext : IdentityDbContext<AppUser, IdentityRole<Guid>, Guid>
     public DbSet<Notification> Notifications => Set<Notification>();
     public DbSet<Discount> Discounts => Set<Discount>();
     public DbSet<ProductDiscount> ProductDiscounts => Set<ProductDiscount>();
+    public DbSet<Coupon> Coupons => Set<Coupon>();
+    public DbSet<OrderCoupon> OrderCoupons => Set<OrderCoupon>();
+
+
 
     #region Entities for map functions result
     public DbSet<GetProductResult> getProductResults => Set<GetProductResult>();

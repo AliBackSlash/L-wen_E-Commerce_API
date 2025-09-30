@@ -26,6 +26,9 @@ public class CouponConfiguration : IEntityTypeConfiguration<Coupon>
         builder.Property(c => c.IsActive).IsRequired().HasColumnType("boolean");
         builder.Property(c => c.UsageLimit).HasColumnType("integer");
 
+        builder.ToTable(tb => tb.HasCheckConstraint("CK_Coupon_StartDate_EndDate", "\"StartDate\" < \"EndDate\""));
+
+
         // Many-to-many relationship with Order (via OrderCoupon)
         builder.HasMany(c => c.OrderCoupons)
                .WithOne(oc => oc.Coupon)

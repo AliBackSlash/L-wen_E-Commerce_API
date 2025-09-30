@@ -50,4 +50,5 @@ public class BasRepository<TEntity, IdType>(AppDbContext _context) : IBasReposit
             return Result.Failure(new Error($"{nameof(TEntity)}.Delete", ex.Message, ErrorType.InternalServer));
         }
     }
+
 }

@@ -14,5 +14,5 @@ public class Coupon
     public int? UsageLimit { get; set; }
 
     // 🔗 Relations
-    public ICollection<OrderCoupon> OrderCoupons { get; set; } = new List<OrderCoupon>();
+    public ICollection<OrderCoupon> OrderCoupons { get; set; } = [];
 }

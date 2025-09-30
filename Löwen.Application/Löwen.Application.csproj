@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <Folder Include="Features\AuthFeature\Queries\a\" />
+    <Folder Include="Features\CouponFeature\Queries\" />
   </ItemGroup>
 
 </Project>

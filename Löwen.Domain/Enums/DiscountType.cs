@@ -2,9 +2,9 @@
 
 public enum DiscountType
 {
-    Percentage,  
-    FixedAmount, 
+    Percentage,
+    FixedAmount,
     FreeShipping,
-    BuyOneGetOne,
+    //BuyOneGetOne,
      
 }
