@@ -1,16 +1,30 @@
 ﻿using Löwen.Domain.Abstractions.IServices.IEntitiesServices;
-using Löwen.Domain.Entities;
 using Löwen.Domain.ErrorHandleClasses;
 using Löwen.Domain.Layer_Dtos.Cart;
+using Löwen.Domain.Layer_Dtos.Delivery;
 using Löwen.Domain.Layer_Dtos.Order;
 using Löwen.Domain.Pagination;
 using Microsoft.EntityFrameworkCore;
-using static Löwen.Domain.ErrorHandleClasses.ErrorCodes;
 
 namespace Löwen.Infrastructure.Services.EntityServices;
 
 public class OrderService(AppDbContext _context) : BasRepository<Order, Guid>(_context), IOrderService
 {
+    public async Task<Result> AssignedOrdersToDelivery(IEnumerable<DeliveryOrder> dto, CancellationToken ct)
+    {
+        try
+        {
+            await _context.DeliveryOrders.AddRangeAsync(dto);
+
+            await _context.SaveChangesAsync(ct);
+            return Result.Success();
+        }
+        catch (Exception ex)
+        {
+            return Result.Failure(new Error($"IOrderService.AssignedOrdersToDelivery", ex.Message, ErrorType.InternalServer));
+        }
+    }
+
     public async Task<Result<PagedResult<OrderDetailsDto>>> GetAllOrders(PaginationParams parm, CancellationToken ct)
     {
         var query = from order in _context.Orders
@@ -131,7 +145,7 @@ public class CartService(AppDbContext _context) : BasRepository<Cart, Guid>(_con
         var ci = await _context.CartItems.Where(c => c.CartId == cartId && c.ProductId == productId).FirstOrDefaultAsync();
        
         if (ci is null)
-            return Result.Failure(new Error($"CartService.RemoveCartItem", "cart item not found", ErrorType.Conflict));
+            return Result.Failure(new Error($"ICartService.RemoveCartItem", "cart item not found", ErrorType.Conflict));
 
         try
         {
@@ -141,7 +155,7 @@ public class CartService(AppDbContext _context) : BasRepository<Cart, Guid>(_con
         }
         catch (Exception ex)
         {
-            return Result.Failure(new Error($"CartService.RemoveCartItem", ex.Message, ErrorType.InternalServer));
+            return Result.Failure(new Error($"ICartService.RemoveCartItem", ex.Message, ErrorType.InternalServer));
         }
     }
 
@@ -150,7 +164,7 @@ public class CartService(AppDbContext _context) : BasRepository<Cart, Guid>(_con
         var ci = await _context.CartItems.Where(c => c.CartId == cartId && c.ProductId == productId).FirstOrDefaultAsync();
 
         if (ci is null)
-            return Result.Failure(new Error($"CartService.UpdateCartItemQuantity", "cart item not found", ErrorType.Conflict));
+            return Result.Failure(new Error($"ICartService.UpdateCartItemQuantity", "cart item not found", ErrorType.Conflict));
 
         try
         {
@@ -161,7 +175,7 @@ public class CartService(AppDbContext _context) : BasRepository<Cart, Guid>(_con
         }
         catch (Exception ex)
         {
-            return Result.Failure(new Error($"CartService.UpdateCartItemQuantity", ex.Message, ErrorType.InternalServer));
+            return Result.Failure(new Error($"ICartService.UpdateCartItemQuantity", ex.Message, ErrorType.InternalServer));
         }
     }
 }

@@ -57,6 +57,7 @@ global using Löwen.Presentation.Api.Controllers.v1.AdminController.Models.Categ
 global using Löwen.Presentation.Api.Controllers.v1.AdminController.Models.ProductModels;
 global using Löwen.Presentation.Api.Controllers.v1.AdminController.Models.TagModels;
 global using System.Security.Claims;
+global using Löwen.Domain.Layer_Dtos.Delivery;
 
 
 

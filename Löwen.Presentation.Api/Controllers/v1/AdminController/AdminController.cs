@@ -1,4 +1,7 @@
-﻿namespace Löwen.Presentation.Api.Controllers.v1.AdminController
+﻿using Löwen.Application.Features.OrderFeature.Commands.AssignedOrdersToDelivery;
+using Löwen.Presentation.Api.Controllers.v1.AdminController.Models.DeliveryOrder;
+
+namespace Löwen.Presentation.Api.Controllers.v1.AdminController
 {
     [ApiController]
     [ApiVersion("1.0")]
@@ -115,6 +118,17 @@
         public async Task<IActionResult> RemoveProduct(Guid Id)
         {
             Result result = await sender.Send(new RemoveProductCommand(Id));
+
+            return result.ToActionResult();
+        }
+
+        [HttpDelete("assigned-orders-to-delivery")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> AssignedOrdersToDelivery([FromBody] AssignedOrdersToDeliveryModel model)
+        {
+            Result result = await sender.Send(new AssignedOrdersToDeliveryCommand(model.deliveryOrders));
 
             return result.ToActionResult();
         }
