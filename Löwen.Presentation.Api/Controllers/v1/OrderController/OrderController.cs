@@ -34,18 +34,6 @@ namespace Löwen.Presentation.Api.Controllers.v1.OrderController
             return result.ToActionResult();
         }
 
-        [HttpPut("update-order-status/{Id},{Status}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> UpdateOrderStatuse(string Id, OrderStatus Status)
-        {
-            Result result = await sender.Send(new UpdateOrderStatusCommand(Id, Status));
-
-            return result.ToActionResult();
-        }
-
-
         [HttpPut("update-order-items")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]

@@ -87,6 +87,15 @@
 
             return result.ToActionResult();
         }
+       
+        [HttpPost("upload-product-images")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> UploadProductImages()
+        {
+            throw new NotImplementedException();
+        }
 
         [HttpPut("update-product")]
         [ProducesResponseType(StatusCodes.Status200OK)]

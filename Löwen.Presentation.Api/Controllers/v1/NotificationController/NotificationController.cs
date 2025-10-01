@@ -34,15 +34,6 @@ namespace Löwen.Presentation.Api.Controllers.v1.NotificationController
             throw new NotImplementedException();
         }
 
-        [HttpPut("mark-notification-as-read")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> MarkNotificationAsRead()
-        {
-            throw new NotImplementedException();
-        }
-
         [HttpDelete("delete-notification")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]

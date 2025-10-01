@@ -1,1 +1,5 @@
-- DeleteCanceledOrders
+﻿- increase_product_love_count & decrease_product_love_count (Trigger) ☑️
+- DeleteCanceledOrders (background services)   ✖️
+
+- CK_Coupon_StartDate_EndDate (Check) ☑️
+- CK_Coupon_StartDate_EndDate (Check) ☑️

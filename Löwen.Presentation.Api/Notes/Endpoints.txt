@@ -10,7 +10,7 @@
 
 	GetAllAdminsPaginationPaged
 
-Admin ☑️
+Admin ☑️ => ✖️
 
 	AddProduct
 
@@ -29,6 +29,8 @@ Admin ☑️
 	ManageCategories (Add / Update / Remove Category)
 
 	ManageTags (Add / Update / Remove Tag)
+
+	upload-product-images ✖️
 
 User ☑️ => ✖️
 
@@ -62,7 +64,7 @@ User ☑️ => ✖️
 
 	GetMyReviews ✖️
 
-Products
+Products ✖️
 
 	GetProductsByNamePaged
 
@@ -86,7 +88,7 @@ Products
 
 	GetMostLovedProducts
 
-Cart
+Cart ☑️ => ✖️
 
 	AddToCart
 
@@ -94,21 +96,21 @@ Cart
 
 	UpdateCartItemQuantity
 
-	GetCartByUser
+	GetCartByUser ✖️
 
-Order
+Order ☑️ => ✖️
 
 	AddOrder
 
 	CancelOrder
 
-	GetOrderById
+	GetOrderById ✖️
 
-	GetOrdersByUser
+	GetOrdersByUser ✖️
 
-	GetOrdersPaged (Admin/RootAdmin)
+	GetOrdersPaged (Admin/RootAdmin) ✖️
 
-Email
+Email ☑️ => ✖️
 
 	SendVerificationEmailForUser
 
@@ -116,17 +118,9 @@ Email
 
 	SendVerificationOrder
 
-	SendCancelOrder
+	SendCancelOrder ✖️
 
-Upload
-
-	UploadProfileImage
-
-	UploadProductImages
-
-	UploadCategoryImage
-
-Auth
+Auth ☑️ => ✖️
 
 	Register
 
@@ -138,9 +132,9 @@ Auth
 
 	RefreshToken
 
-	/*Logout*/
+	/*Logout*/ ✖️
 
-Notifications
+Notifications ✖️
 
 	CreateNotification (System/Admin)
 
@@ -152,22 +146,20 @@ Notifications
 
 	DeleteNotification
 
-UserPreferences
+UserPreferences ✖️
 
 	UpdateUserPreferences
 
 	GetUserPreferences
 
-Delivery
+Delivery ☑️ => ✖️
 
-	GetAssignedOrders
+	GetAssignedOrders ✖️
 
-	GetOrderById
-
-	UpdateOrderStatus
+	UpdateOrderStatus 
 
 
-Payment
+Payment ✖️
 
 	AddPayment
 
@@ -177,7 +169,7 @@ Payment
 
 	UpdatePaymentStatus
 
-Coupon
+Coupon ☑️ => ✖️
 
 	AddCoupon
 
@@ -185,17 +177,17 @@ Coupon
 
 	RemoveCoupon
 
-	GetCouponById
+	GetCouponById ✖️
 
-	GetCouponByCode
+	GetCouponByCode ✖️
 
-	GetAllCouponsPaged
+	GetAllCouponsPaged ✖️
 
 	ApplyCouponToOrder
 
 	RemoveCouponFromOrder
 
-Discount
+Discount ☑️
 
 	AddDiscount
 
