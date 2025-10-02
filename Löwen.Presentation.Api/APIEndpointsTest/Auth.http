@@ -16,7 +16,7 @@ POST https://localhost:7197/api/auth/login
 Content-Type: application/json
 
 {
-  "userNameOrEmail": "ali-01",
+  "userNameOrEmail": "ali-01sdf",
   "password": "Ali1@.com1"
 }
 

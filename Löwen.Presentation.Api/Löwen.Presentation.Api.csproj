@@ -29,7 +29,6 @@
   <ItemGroup>
     <Folder Include="Controllers\v1\DeliveryController\Models\" />
     <Folder Include="Controllers\v1\NotificationController\Models\" />
-    <Folder Include="Controllers\v1\PaymentController\Models\" />
     <Folder Include="Controllers\v1\ProductController\Models\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>

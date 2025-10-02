@@ -1,4 +1,6 @@
-﻿namespace Löwen.Domain.Abstractions.IServices.IEntitiesServices;
+﻿using Löwen.Domain.Layer_Dtos.Payment;
+
+namespace Löwen.Domain.Abstractions.IServices.IEntitiesServices;
 
 public interface IOrderItemsService : IBasRepository<OrderItem, Guid>
 {
