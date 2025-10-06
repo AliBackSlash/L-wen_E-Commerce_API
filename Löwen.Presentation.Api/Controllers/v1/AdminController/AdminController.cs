@@ -86,7 +86,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
             if (string.IsNullOrEmpty(createdBy))
                 return Result.Failure(new Error("api/Admin/add-product", "Valid token is required", ErrorType.Unauthorized)).ToActionResult();
 
-            Result<Guid> result = await sender.Send(new AddProductCommand(model.Name, model.Description, model.Price, model.StockQuantity, model.Status, model.CategoryId, createdBy));
+            Result<Guid> result = await sender.Send(new AddProductCommand(model.Name, model.Description,model.Status, model.CategoryId, createdBy, model.VariantDtos));
 
             return result.ToActionResult();
         }

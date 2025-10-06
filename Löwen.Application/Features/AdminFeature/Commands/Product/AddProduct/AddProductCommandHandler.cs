@@ -15,12 +15,18 @@ public class AddProductCommandHandler(IProductCategoryService categoryService,IP
         var addResult = await productService.AddAsync(new Domain.Entities.Product
         {
            Name = command.Name,
-/*           Price = command.Price,
-           StockQuantity = command.StockQuantity,*/
            CategoryId = CategoryId,
            Description = command.Description,
            Status = command.Status,
            CreatedBy = Guid.Parse(command.CreatedBy),
+           ProductVariants = command.VariantDtos.Select(v => new ProductVariant
+           {
+               ColorId = v.ColorId,
+               SizeId = v.SizeId,
+               Price = v.Price,
+               StockQuantity = v.StockQuantity,
+           }).ToList(),
+           
 
         }, ct);
 

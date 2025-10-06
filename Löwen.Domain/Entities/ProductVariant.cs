@@ -14,6 +14,5 @@ public class ProductVariant
     public Product Product { get; set; } = null!;
     public Color Color { get; set; } = null!;
     public Size? Size { get; set; }
-    public ICollection<ProductImage> ProductImages { get; set; } = [];
 
 }

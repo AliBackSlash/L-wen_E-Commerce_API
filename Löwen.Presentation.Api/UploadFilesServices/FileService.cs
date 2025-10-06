@@ -86,7 +86,7 @@ public class FileService(IWebHostEnvironment _env, IHttpContextAccessor _httpCon
         return Result.Success(new UploadResponse { CurrentRootPath = _env.WebRootPath, ImagePathWithoutRootPath = saveResult.Value });
     }
 
-    public async Task<Result<List<string>>?> UploadPostImagesAsync(List<IFormFile> files)
+    public async Task<Result<List<string>>?> UploadProoductImagesAsync(List<IFormFile> files)
     {
         var urls = new List<string>();
 

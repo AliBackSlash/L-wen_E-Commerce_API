@@ -3,6 +3,7 @@ using System;
 using Löwen.Infrastructure.EFCore.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Löwen.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251006152311_addSomeSeedData")]
+    partial class addSomeSeedData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -397,12 +400,7 @@ namespace Löwen.Infrastructure.Migrations
                         .HasMaxLength(2048)
                         .HasColumnType("varchar");
 
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uuid");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
 
                     b.ToTable("Images");
                 });
@@ -619,6 +617,21 @@ namespace Löwen.Infrastructure.Migrations
                     b.HasIndex("DiscountId");
 
                     b.ToTable("ProductDiscounts");
+                });
+
+            modelBuilder.Entity("Löwen.Domain.Entities.ProductImage", b =>
+                {
+                    b.Property<Guid>("ProductVariantId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("ImageId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("ProductVariantId", "ImageId");
+
+                    b.HasIndex("ImageId");
+
+                    b.ToTable("ProductImages");
                 });
 
             modelBuilder.Entity("Löwen.Domain.Entities.ProductReview", b =>
@@ -1107,17 +1120,6 @@ namespace Löwen.Infrastructure.Migrations
                     b.Navigation("Order");
                 });
 
-            modelBuilder.Entity("Löwen.Domain.Entities.Image", b =>
-                {
-                    b.HasOne("Löwen.Domain.Entities.Product", "Product")
-                        .WithMany("Images")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("Löwen.Domain.Entities.LoveProductUser", b =>
                 {
                     b.HasOne("Löwen.Domain.Entities.Product", "Product")
@@ -1236,6 +1238,25 @@ namespace Löwen.Infrastructure.Migrations
                     b.Navigation("Discount");
 
                     b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("Löwen.Domain.Entities.ProductImage", b =>
+                {
+                    b.HasOne("Löwen.Domain.Entities.Image", "Image")
+                        .WithMany("ProductImages")
+                        .HasForeignKey("ImageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Löwen.Domain.Entities.ProductVariant", "ProductVariant")
+                        .WithMany("ProductImages")
+                        .HasForeignKey("ProductVariantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Image");
+
+                    b.Navigation("ProductVariant");
                 });
 
             modelBuilder.Entity("Löwen.Domain.Entities.ProductReview", b =>
@@ -1379,6 +1400,11 @@ namespace Löwen.Infrastructure.Migrations
                     b.Navigation("ProductDiscounts");
                 });
 
+            modelBuilder.Entity("Löwen.Domain.Entities.Image", b =>
+                {
+                    b.Navigation("ProductImages");
+                });
+
             modelBuilder.Entity("Löwen.Domain.Entities.Order", b =>
                 {
                     b.Navigation("DeliveryOrders");
@@ -1393,8 +1419,6 @@ namespace Löwen.Infrastructure.Migrations
             modelBuilder.Entity("Löwen.Domain.Entities.Product", b =>
                 {
                     b.Navigation("CartItems");
-
-                    b.Navigation("Images");
 
                     b.Navigation("Loves");
 
@@ -1414,6 +1438,11 @@ namespace Löwen.Infrastructure.Migrations
             modelBuilder.Entity("Löwen.Domain.Entities.ProductCategory", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("Löwen.Domain.Entities.ProductVariant", b =>
+                {
+                    b.Navigation("ProductImages");
                 });
 
             modelBuilder.Entity("Löwen.Domain.Entities.Size", b =>

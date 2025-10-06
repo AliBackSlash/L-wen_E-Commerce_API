@@ -23,7 +23,6 @@ public class AppDbContext : IdentityDbContext<AppUser, IdentityRole<Guid>, Guid>
     public DbSet<CartItem> CartItems => Set<CartItem>();
     public DbSet<OrderItem> OrderItems => Set<OrderItem>();
     public DbSet<Image> Images => Set<Image>();
-    public DbSet<ProductImage> ProductImages => Set<ProductImage>();
     public DbSet<ProductTag> ProductTags => Set<ProductTag>();
     public DbSet<ProductReview> ProductReviews => Set<ProductReview>();
     public DbSet<Wishlist> Wishlist => Set<Wishlist>();

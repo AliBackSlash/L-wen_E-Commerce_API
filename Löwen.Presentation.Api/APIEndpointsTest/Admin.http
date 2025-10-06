@@ -1,5 +1,5 @@
 @Löwen.Api_HostAddress = https://localhost:7197
-
+@tken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImE3NmIxNzRlLTgyMGItNGUwNS04YzRmLWI3MzVmZDk1NTExNCIsImp0aSI6ImZkZjk0M2NkLTdhYWYtNDQ4Zi1iNjAzLTNkYmNjNWJkNDk4MCIsImVtYWlsIjoiYWUxMzc4MDMyQGdtYWlsLmNvbSIsInVuaXF1ZV9uYW1lIjoiYWxpLTAxc2RmIiwicm9sZXMiOiJVc2VyIiwiZXhwIjoxNzU5NzY2NzgyLCJpc3MiOiJMb2NhbEhvc3QiLCJhdWQiOiJMb2NhbEhvc3QifQ._KyPZGIKgkgJ7Z1xM3Mqau6bfnF50W3Xm1--tKouScw
 
 
 //Admin Endpoints
@@ -42,15 +42,33 @@ DELETE {{Löwen.Api_HostAddress}}/api/Admin/remove-Tag/9dddf314-b433-4a15-a157-e4
 ###
 
 POST {{Löwen.Api_HostAddress}}/api/Admin/add-product
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjhmMmVmZDEwLTJkMWMtNDFlZS05YzRkLTJmN2Y1NDMxY2IxOCIsImp0aSI6ImU2OWZiZDM4LTFiMGMtNDE5Ny05ZTAxLThlMDkzMmI1NzUzNCIsImVtYWlsIjoiYWUxMzc4MDMyQGdtYWlsMS5jb20iLCJ1bmlxdWVfbmFtZSI6ImFsaS0wMSIsInJvbGVzIjoiVXNlciIsImV4cCI6MTc1ODM3NTYyNiwiaXNzIjoiTG9jYWxIb3N0IiwiYXVkIjoiTG9jYWxIb3N0In0.OWcJwMXHgnLSro_-YAD9zwr4dIGw9gKygq7uUKMy690
+Authorization: Bearer {{tken}}
 Content-Type: application/json
 {
-  "name": "Product 1",
-  "description": "Product 1",
-  "price": 1423,
-  "stockQuantity": 222,
-  "status": 1,
-  "categoryId": "2ba39b96-22a9-40c4-8c5c-1651208f565b"
+ "name": "string",
+  "description": "string",
+  "status": 0,
+  "categoryId": "90cf1501-d384-42ed-99b1-84b6b465e35e",
+  "variantDtos": [
+    {
+      "colorId": "00000000-0000-0000-0000-000000000001",
+      "sizeId": "f1a1f6a1-0001-4a6b-9b1a-000000000001",
+      "price": 0,
+      "stockQuantity": 0
+    },
+    {
+      "colorId": "00000000-0000-0000-0000-000000000001",
+      "sizeId": "f1a1f6a1-0001-4a6b-9b1a-000000000001",
+      "price": 0,
+      "stockQuantity": 0
+    },
+    {
+      "colorId": "00000000-0000-0000-0000-000000000001",
+      "sizeId": "f1a1f6a1-0001-4a6b-9b1a-000000000001",
+      "price": 0,
+      "stockQuantity": 0
+    }
+  ]
 }
 
 ###

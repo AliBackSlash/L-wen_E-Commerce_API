@@ -18,7 +18,7 @@ public class Product
     public ProductCategory? Category { get; set; }
     public ProductTag? Tag { get; set; }
     public ICollection<ProductVariant> ProductVariants { get; set; } = [];
-
+    public ICollection<Image> Images { get; set; } = [];
     public ICollection<ProductReview> ProductReviews { get; set; } = [];
     public ICollection<CartItem> CartItems { get; set; } = [];
     public ICollection<OrderItem> OrderItems { get; set; } = [];

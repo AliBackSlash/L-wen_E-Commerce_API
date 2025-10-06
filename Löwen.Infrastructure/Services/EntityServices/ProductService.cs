@@ -62,3 +62,40 @@ public class ProductService(AppDbContext _context) : BasRepository<Product, Guid
     public async Task<bool> IsFound(Guid Id,CancellationToken ct) => await _dbSet.AnyAsync(t => t.Id == Id,ct);
 
 }
+
+public class ProductImges(AppDbContext _context) : IProductImges
+{
+    private readonly DbSet<Image> _db = _context.Set<Image>();
+
+    public async Task<Result<Image?>> GetImageByPath(string path, CancellationToken ct)
+        => await _db.Where(i => i.Path == path).FirstOrDefaultAsync();
+    public async Task<Result> AddRangeAsync(IEnumerable<Image> images, CancellationToken ct)
+    {
+        try
+        {
+            await _db.AddRangeAsync(images,ct);
+            await _context.SaveChangesAsync(ct);
+            return Result.Success();
+        }
+        catch (Exception ex)
+        {
+            return Result.Failure(new Error($"IProductImges.AddRangeAsync", ex.Message, ErrorType.InternalServer));
+        }
+    }
+
+
+
+    public async Task<Result> UpdateAsync(Image image, CancellationToken ct)
+    {
+        try
+        {
+             _db.Update(image, ct);
+            await _context.SaveChangesAsync(ct);
+            return Result.Success();
+        }
+        catch (Exception ex)
+        {
+            return Result.Failure(new Error($"IProductImges.UpdateAsync", ex.Message, ErrorType.InternalServer));
+        }
+    }
+}

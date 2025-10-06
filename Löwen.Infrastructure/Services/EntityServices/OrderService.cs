@@ -40,8 +40,8 @@ public class OrderService(AppDbContext _context) : BasRepository<Order, Guid>(_c
                                      ProductId = item.ProductId,
                                      Quantity = item.Quantity,
                                      PriceAtPurchase = item.PriceAtPurchase,
-                                     Path = (from pi in _context.ProductImages
-                                             join img in _context.Images on pi.ImageId equals img.Id
+                                     Path = (from pi in _context.Images
+                                             join img in _context.Images on pi.Id equals img.Id
                                              //where pi.ProductId == item.ProductId
                                              orderby img.IsMain descending
                                              select img.Path).FirstOrDefault()
@@ -68,8 +68,8 @@ public class OrderService(AppDbContext _context) : BasRepository<Order, Guid>(_c
                                      ProductId = item.ProductId,
                                      Quantity = item.Quantity,
                                      PriceAtPurchase = item.PriceAtPurchase,
-                                     Path = (from pi in _context.ProductImages
-                                             join img in _context.Images on pi.ImageId equals img.Id
+                                     Path = (from pi in _context.Images
+                                             join img in _context.Images on pi.Id equals img.Id
                                           //   where pi.ProductId == item.ProductId
                                              orderby img.IsMain descending
                                              select img.Path).FirstOrDefault()
@@ -101,8 +101,8 @@ public class OrderService(AppDbContext _context) : BasRepository<Order, Guid>(_c
                                      ProductId = item.ProductId,
                                      Quantity = item.Quantity,
                                      PriceAtPurchase = item.PriceAtPurchase,
-                                     Path = (from pi in _context.ProductImages
-                                             join img in _context.Images on pi.ImageId equals img.Id
+                                     Path = (from pi in _context.Images
+                                             join img in _context.Images on pi.Id equals img.Id
                                             // where pi.ProductId == item.ProductId
                                              orderby img.IsMain descending
                                              select img.Path).FirstOrDefault()

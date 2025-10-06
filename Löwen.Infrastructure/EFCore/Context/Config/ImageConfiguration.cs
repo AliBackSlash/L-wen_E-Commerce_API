@@ -11,7 +11,13 @@ public class ImageConfiguration : IEntityTypeConfiguration<Image>
     {
         builder.HasKey(i => i.Id);
         builder.Property(x => x.Id).HasColumnType("uuid").HasDefaultValueSql("gen_random_uuid()");
+        builder.Property(x => x.ProductId).HasColumnType("uuid");
         builder.Property(i => i.Path).IsRequired().HasMaxLength(2048).HasColumnType("varchar");
         builder.Property(i => i.IsMain).IsRequired().HasColumnType("Boolean");
+
+        builder.HasOne(pi => pi.Product)
+       .WithMany(p => p.Images)
+       .HasForeignKey(pi => pi.ProductId)
+       .IsRequired();
     }
 }

@@ -12,7 +12,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.PaymentController
     [Route("api/Payment")]
     public class PaymentController(ISender sender) : ControllerBase
     {
-        [HttpPost("add-payment")]
+        
         [HttpGet("get-payment-by-id")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
@@ -30,7 +30,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.PaymentController
         {
             throw new NotImplementedException();
         }
-
+        [HttpPost("add-payment")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]

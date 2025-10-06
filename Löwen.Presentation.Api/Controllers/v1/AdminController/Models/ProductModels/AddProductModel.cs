@@ -1,3 +1,6 @@
-﻿namespace Löwen.Presentation.Api.Controllers.v1.AdminController.Models.ProductModels;
+﻿using Löwen.Domain.Layer_Dtos.Product;
 
-public record AddProductModel(string Name, string? Description, decimal Price, short StockQuantity, ProductStatus Status, string CategoryId);
+namespace Löwen.Presentation.Api.Controllers.v1.AdminController.Models.ProductModels;
+
+public record AddProductModel(string Name, string? Description,
+    ProductStatus Status, string CategoryId,IEnumerable<ProductVariantDto> VariantDtos);
