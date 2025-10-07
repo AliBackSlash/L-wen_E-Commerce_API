@@ -1,4 +1,6 @@
-﻿using Löwen.Application.Features.OrderFeature.Commands.AssignedOrdersToDelivery;
+﻿using Löwen.Application.Features.AdminFeature.Commands.Product.AddProductImages;
+using Löwen.Application.Features.OrderFeature.Commands.AssignedOrdersToDelivery;
+using Löwen.Domain.Layer_Dtos.Product;
 using Löwen.Presentation.Api.Controllers.v1.AdminController.Models.DeliveryOrder;
 
 namespace Löwen.Presentation.Api.Controllers.v1.AdminController
@@ -6,7 +8,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
     [ApiController]
     [ApiVersion("1.0")]
     [Route("api/Admin")]
-    public class AdminController(ISender sender) : ControllerBase
+    public class AdminController(ISender sender,IFileService fileService) : ControllerBase
     {
         [HttpPost("add-category")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -91,13 +93,37 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
             return result.ToActionResult();
         }
        
-        [HttpPost("upload-product-images")]
+        [HttpPost("upload-product-images/{ProductId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> UploadProductImages()
+        public async Task<IActionResult> UploadProductImages(Guid ProductId, [FromForm] UploudPruductImagesModel model)
         {
-            throw new NotImplementedException();
+            if (model.Uplouds.Count(x => x.IsMain) != 1)
+                return Result.Failure(new Error("Admin.UploadProductImages", 
+                    "You should select one image for product to be main image.", ErrorType.Conflict)).ToActionResult();
+
+            var UploudResult = await fileService.UploadProoductImagesAsync(model.Uplouds);
+            if (UploudResult.IsFailure)
+               return UploudResult.ToActionResult();
+
+            List<AddProductImagesDto> images
+                = new ();
+
+            foreach (var i in UploudResult.Value)
+            {
+                images.Add(new AddProductImagesDto
+                {
+                    ProductId = ProductId,
+                    Path = i.Path,
+                    IsMain = i.IsMain,
+                });
+            }
+
+            Result result = await sender.Send(new AddProductImagesCommand(images));
+
+            return result.ToActionResult();
+
         }
 
         [HttpPut("update-product")]

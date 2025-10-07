@@ -2,6 +2,7 @@
 using Löwen.Domain.ErrorHandleClasses;
 using Löwen.Presentation.API.UploadFilesServices;
 using Microsoft.Extensions.Options;
+using System;
 using System.Runtime;
 
 namespace Löwen.Presentation.API.Services;
@@ -86,18 +87,32 @@ public class FileService(IWebHostEnvironment _env, IHttpContextAccessor _httpCon
         return Result.Success(new UploadResponse { CurrentRootPath = _env.WebRootPath, ImagePathWithoutRootPath = saveResult.Value });
     }
 
-    public async Task<Result<List<string>>?> UploadProoductImagesAsync(List<IFormFile> files)
+    public async Task<Result<IEnumerable<(bool IsMain, string Path)>>> UploadProoductImagesAsync(IEnumerable<UploudPruductImages> files)
     {
-        var urls = new List<string>();
-
-        foreach (var file in files)
+        var urls = new List<(bool IsMain, string Path)>();
+        Result<string> result = Result.Failure<string>(new Error("IFileService.UploadProoductImagesAsync","Initial error",ErrorType.Conflict));
+        try
         {
-            var url = await SaveFileAsync(file, _settings.CurrentValue.ProductImages_FileName, _settings.CurrentValue.MaxProductImageSize);
-            if (url != null)
-                urls.Add(url.Value);
-        }
 
-        return urls;
+            foreach (var file in files)
+            {
+                result = await SaveFileAsync(file.image, _settings.CurrentValue.ProductImages_FileName, _settings.CurrentValue.MaxProductImageSize);
+                if (result.IsSuccess)
+                    urls.Add((file.IsMain, result.Value));
+                else
+                    throw new Exception();
+            }
+
+            return urls;
+        }
+        catch (Exception)
+        {
+            foreach (var url in urls)
+            {
+                File.Delete(Path.Combine(_env.ContentRootPath, "wwwroot", url.Path));
+            }
+            return Result.Failure<IEnumerable<(bool IsMain, string Path)>>(result.Errors);
+        }
     }
 
 }

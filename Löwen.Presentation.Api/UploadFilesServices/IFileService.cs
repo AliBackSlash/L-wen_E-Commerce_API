@@ -6,5 +6,5 @@ namespace Löwen.Presentation.API.Services;
 public interface IFileService
 {
     Task<Result<UploadResponse>> UploadProfileImageAsync(IFormFile file);
-    Task<Result<List<string>>?> UploadProoductImagesAsync(List<IFormFile> files);
+    Task<Result<IEnumerable<(bool IsMain,string Path)>>> UploadProoductImagesAsync(IEnumerable<UploudPruductImages> files);
 }

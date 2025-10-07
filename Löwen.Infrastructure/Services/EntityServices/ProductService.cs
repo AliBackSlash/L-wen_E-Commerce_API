@@ -89,8 +89,8 @@ public class ProductImges(AppDbContext _context) : IProductImges
     {
         try
         {
-             _db.Update(image, ct);
-            await _context.SaveChangesAsync(ct);
+            // _db.Update(image, ct);
+            //await _context.SaveChangesAsync(ct);
             return Result.Success();
         }
         catch (Exception ex)
