@@ -10,7 +10,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.UsersController;
 [ApiVersion("1.0")]
 [Route("api/users")]
 //[Authorize(Roles = "User")]
-public class UsersController(ISender _sender, IFileService fileService) : ControllerBase
+public class UsersController(ISender _sender) : ControllerBase
 {
     [HttpGet("get-user-info")]
     [ProducesResponseType<GetUserByIdQueryResponse>(StatusCodes.Status200OK)]
@@ -73,7 +73,7 @@ public class UsersController(ISender _sender, IFileService fileService) : Contro
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> UpdateProfileImage(IFormFile Image)
+    public async Task<IActionResult> UpdateProfileImage(IFormFile Image,IFileService fileService)
     {
         var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
@@ -88,10 +88,10 @@ public class UsersController(ISender _sender, IFileService fileService) : Contro
         if (UploadResult.IsFailure)
             return UploadResult.ToActionResult();
 
-        Result result = await _sender.Send(new UpdateProfileImageCommand(id, UploadResult.Value.ImagePathWithoutRootPath, UploadResult.Value.CurrentRootPath));
+        Result result = await _sender.Send(new UpdateProfileImageCommand(id, UploadResult.Value.ImageName, UploadResult.Value.CurrentRootPath));
 
-        if(result.IsFailure)
-           System.IO.File.Delete(Path.Combine(UploadResult.Value.CurrentRootPath, UploadResult.Value.ImagePathWithoutRootPath));
+        if (result.IsFailure)
+            fileService.DeleteFile(UploadResult.Value.ImageName,false);
 
         return result.ToActionResult();
 

@@ -1,9 +1,13 @@
 ﻿using Löwen.Domain.Abstractions.IServices.IEntitiesServices;
+using Löwen.Domain.ConfigurationClasses.StaticFilesHelpersClasses;
 using Löwen.Domain.Entities;
 using Löwen.Domain.Entities.EntityForMapFunctionsResultOnly.Product;
 using Löwen.Domain.ErrorHandleClasses;
 using Löwen.Domain.Pagination;
+using Löwen.Infrastructure.EFCore.Context.Config;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using System.IO;
 
 namespace Löwen.Infrastructure.Services.EntityServices;
 
@@ -67,8 +71,6 @@ public class ProductImges(AppDbContext _context) : IProductImges
 {
     private readonly DbSet<Image> _db = _context.Set<Image>();
 
-    public async Task<Result<Image?>> GetImageByPath(string path, CancellationToken ct)
-        => await _db.Where(i => i.Path == path).FirstOrDefaultAsync();
     public async Task<Result> AddRangeAsync(IEnumerable<Image> images, CancellationToken ct)
     {
         try
@@ -79,23 +81,28 @@ public class ProductImges(AppDbContext _context) : IProductImges
         }
         catch (Exception ex)
         {
-            return Result.Failure(new Error($"IProductImges.AddRangeAsync", ex.Message, ErrorType.InternalServer));
+
+            return Result.Failure(new Error($"IProductImges.AddRangeAsync", ex.InnerException.Message, ErrorType.Conflict));
         }
     }
 
 
 
-    public async Task<Result> UpdateAsync(Image image, CancellationToken ct)
+    public async Task<Result> DeleteAsync(string imageName, CancellationToken ct)
     {
+        //make sure to make another image to be main or not accept thr remove operation
+        var image = await _db.Where(i => i.Path == imageName).FirstOrDefaultAsync();
+        if ((image is null))
+              return Result.Failure(new Error("IProductImges.DeleteAsync", $"no image with name {imageName} found", ErrorType.InternalServer));
         try
         {
-            // _db.Update(image, ct);
-            //await _context.SaveChangesAsync(ct);
+             _db.Remove(image);
+            await _context.SaveChangesAsync(ct);
             return Result.Success();
         }
         catch (Exception ex)
         {
-            return Result.Failure(new Error($"IProductImges.UpdateAsync", ex.Message, ErrorType.InternalServer));
+            return Result.Failure(new Error("IProductImges.DeleteAsync", ex.InnerException.Message, ErrorType.InternalServer));
         }
     }
 }

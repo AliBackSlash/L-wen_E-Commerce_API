@@ -7,7 +7,7 @@ using System.Runtime;
 
 namespace Löwen.Presentation.API.Services;
 
-public class FileService(IWebHostEnvironment _env, IHttpContextAccessor _httpContextAccessor,IOptionsMonitor<StaticFilesSettings> _settings) : IFileService
+public class FileService(IWebHostEnvironment _env,IOptionsMonitor<StaticFilesSettings> _settings) : IFileService
 {
 
     private static readonly Dictionary<string, List<byte[]>> _fileSignatures = new()
@@ -54,7 +54,7 @@ public class FileService(IWebHostEnvironment _env, IHttpContextAccessor _httpCon
             }
 
 
-            return Result.Success(Path.Combine(folder, fileName).Replace("\\", "/"));
+            return Result.Success(fileName);
 
         }
         catch (Exception ex)
@@ -84,7 +84,7 @@ public class FileService(IWebHostEnvironment _env, IHttpContextAccessor _httpCon
         if (saveResult.IsFailure)
             return Result.Failure<UploadResponse>(saveResult.Errors);
 
-        return Result.Success(new UploadResponse { CurrentRootPath = _env.WebRootPath, ImagePathWithoutRootPath = saveResult.Value });
+        return Result.Success(new UploadResponse { CurrentRootPath = _env.WebRootPath, ImageName = saveResult.Value });
     }
 
     public async Task<Result<IEnumerable<(bool IsMain, string Path)>>> UploadProoductImagesAsync(IEnumerable<UploudPruductImages> files)
@@ -107,12 +107,62 @@ public class FileService(IWebHostEnvironment _env, IHttpContextAccessor _httpCon
         }
         catch (Exception)
         {
-            foreach (var url in urls)
-            {
-                File.Delete(Path.Combine(_env.ContentRootPath, "wwwroot", url.Path));
-            }
+            DeleteFiles(urls.Select(x => x.Path));
             return Result.Failure<IEnumerable<(bool IsMain, string Path)>>(result.Errors);
         }
+    }
+
+    public Result DeleteFile(string fileName, bool IsProductImage = true)
+    {
+        if (string.IsNullOrWhiteSpace(fileName))
+            return Result.Failure(new Error("IFileService.DeleteFile", "File name is null or empty", ErrorType.Validation));
+
+        try
+        {
+            var folder = IsProductImage
+                ? _settings.CurrentValue.ProductImages_FileName
+                : _settings.CurrentValue.ProfileImages_FileName;
+
+            var fullPath = Path.Combine(_env.WebRootPath ?? string.Empty, folder ?? string.Empty, fileName);
+
+            if (!File.Exists(fullPath))
+                return Result.Failure(new Error("IFileService.DeleteFile", $"File not found: {fileName}", ErrorType.NotFound));
+
+            File.Delete(fullPath);
+
+            // Verify deletion
+            if (File.Exists(fullPath))
+                return Result.Failure(new Error("IFileService.DeleteFile", $"Failed to delete file: {fileName}", ErrorType.InternalServer));
+
+            return Result.Success();
+        }
+        catch (Exception ex)
+        {
+            return Result.Failure(new Error("IFileService.DeleteFile", ex.Message, ErrorType.InternalServer));
+        }
+    }
+
+    public Result DeleteFiles(IEnumerable<string> files, bool IsProductImage = true)
+    {
+        if (files == null || !files.Any())
+            return Result.Failure(new Error("IFileService.DeleteFile", "No files provided", ErrorType.Validation));
+
+        var aggregatedErrors = new List<Error>();
+
+        foreach (var fileName in files)
+        {
+            var result = DeleteFile(fileName, IsProductImage);
+           
+            if (result.IsFailure && result.Errors != null)
+            {
+                aggregatedErrors.AddRange(result.Errors);
+            }
+        }
+
+        if (aggregatedErrors.Any())
+            return Result.Failure(aggregatedErrors);
+
+        return Result.Success();
     }
 
 }

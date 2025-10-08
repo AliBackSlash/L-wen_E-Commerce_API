@@ -1,14 +1,16 @@
 ﻿using Löwen.Application.Features.AdminFeature.Commands.Product.AddProductImages;
+using Löwen.Application.Features.AdminFeature.Commands.Product.DeleteProductImages;
 using Löwen.Application.Features.OrderFeature.Commands.AssignedOrdersToDelivery;
 using Löwen.Domain.Layer_Dtos.Product;
 using Löwen.Presentation.Api.Controllers.v1.AdminController.Models.DeliveryOrder;
+using Microsoft.Extensions.Options;
 
 namespace Löwen.Presentation.Api.Controllers.v1.AdminController
 {
     [ApiController]
     [ApiVersion("1.0")]
     [Route("api/Admin")]
-    public class AdminController(ISender sender,IFileService fileService) : ControllerBase
+    public class AdminController(ISender sender, IFileService fileService) : ControllerBase
     {
         [HttpPost("add-category")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -97,12 +99,13 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> UploadProductImages(Guid ProductId, [FromForm] UploudPruductImagesModel model)
+        public async Task<IActionResult> UploadProductImages(Guid ProductId, [FromForm] UploudPruductImagesModel model
+           )
         {
-            if (model.Uplouds.Count(x => x.IsMain) != 1)
+           /* if (model.Uplouds.Count(x => x.IsMain) != 1)
                 return Result.Failure(new Error("Admin.UploadProductImages", 
                     "You should select one image for product to be main image.", ErrorType.Conflict)).ToActionResult();
-
+*/
             var UploudResult = await fileService.UploadProoductImagesAsync(model.Uplouds);
             if (UploudResult.IsFailure)
                return UploudResult.ToActionResult();
@@ -122,8 +125,25 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
 
             Result result = await sender.Send(new AddProductImagesCommand(images));
 
+            if (result.IsFailure)
+                fileService.DeleteFiles(UploudResult.Value.Select(x => x.Path));
+
             return result.ToActionResult();
 
+        }
+
+        [HttpDelete("remove-product-image/{imagePath}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> UpdateProduct(string imagePath)
+        {
+            Result result = await sender.Send(new DeleteProductImagesCommand(imagePath));
+          
+            if (result.IsFailure)
+                fileService.DeleteFile(imagePath);
+
+            return result.ToActionResult();
         }
 
         [HttpPut("update-product")]
