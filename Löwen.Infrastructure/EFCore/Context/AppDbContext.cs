@@ -24,6 +24,7 @@ public class AppDbContext : IdentityDbContext<AppUser, IdentityRole<Guid>, Guid>
     public DbSet<OrderItem> OrderItems => Set<OrderItem>();
     public DbSet<Image> Images => Set<Image>();
     public DbSet<ProductTag> ProductTags => Set<ProductTag>();
+    public DbSet<ProductVariant> ProductVariants => Set<ProductVariant>();
     public DbSet<ProductReview> ProductReviews => Set<ProductReview>();
     public DbSet<Wishlist> Wishlist => Set<Wishlist>();
     public DbSet<LoveProductUser> LovesProductUser => Set<LoveProductUser>();

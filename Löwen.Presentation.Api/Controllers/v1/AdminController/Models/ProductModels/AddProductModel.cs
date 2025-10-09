@@ -3,4 +3,4 @@
 namespace Löwen.Presentation.Api.Controllers.v1.AdminController.Models.ProductModels;
 
 public record AddProductModel(string Name, string? Description,
-    ProductStatus Status, string CategoryId,IEnumerable<ProductVariantDto> VariantDtos);
+    ProductStatus Status, string CategoryId,string Tags,IEnumerable<ProductVariantDto> VariantDtos);

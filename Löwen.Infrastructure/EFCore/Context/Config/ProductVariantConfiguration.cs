@@ -11,7 +11,10 @@ public class ProductVariantConfiguration : IEntityTypeConfiguration<ProductVaria
         builder.Property(x => x.Id).HasColumnType("uuid").HasDefaultValueSql("gen_random_uuid()");
         builder.Property(p => p.Price).IsRequired().HasColumnType("numeric(18, 2)");
         builder.Property(p => p.StockQuantity).IsRequired().HasColumnType("smallint");
-       
+
+        builder.HasIndex(x => new { x.ProductId, x.SizeId }).IsUnique();
+        builder.HasIndex(x => new { x.ProductId, x.ColorId }).IsUnique();
+
         builder.HasOne(p => p.Product)
             .WithMany(x => x.ProductVariants)
             .HasForeignKey(x => x.ProductId)

@@ -19,6 +19,10 @@ public class AddProductCommandHandler(IProductCategoryService categoryService,IP
            Description = command.Description,
            Status = command.Status,
            CreatedBy = Guid.Parse(command.CreatedBy),
+           Tag = new ProductTag
+           {
+               Tag = command.Tags
+           },
            ProductVariants = command.VariantDtos.Select(v => new ProductVariant
            {
                ColorId = v.ColorId,

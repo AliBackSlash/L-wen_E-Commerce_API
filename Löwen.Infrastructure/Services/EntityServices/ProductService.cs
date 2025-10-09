@@ -3,6 +3,7 @@ using Löwen.Domain.ConfigurationClasses.StaticFilesHelpersClasses;
 using Löwen.Domain.Entities;
 using Löwen.Domain.Entities.EntityForMapFunctionsResultOnly.Product;
 using Löwen.Domain.ErrorHandleClasses;
+using Löwen.Domain.Layer_Dtos.Product;
 using Löwen.Domain.Pagination;
 using Löwen.Infrastructure.EFCore.Context.Config;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,65 @@ namespace Löwen.Infrastructure.Services.EntityServices;
 
 public class ProductService(AppDbContext _context) : BasRepository<Product, Guid>(_context), IProductService
 {
+    public async Task<Result> AddProductVariantAsync(Guid productId, ProductVariantDto productVariantDto, CancellationToken ct)
+    {
+        try
+        {
+            await _context.ProductVariants.AddAsync(new ProductVariant
+            {
+                ProductId = productId,
+                SizeId = productVariantDto.SizeId,
+                ColorId = productVariantDto.ColorId,
+                Price = productVariantDto.Price,
+                StockQuantity = productVariantDto.StockQuantity,
+            },ct);
+            await _context.SaveChangesAsync(ct);
+            return Result.Success();
+        }
+        catch (Exception ex)
+        {
+            return Result.Failure(new Error($"IProductService.AddProductVariant", ex.Message, ErrorType.InternalServer));
+        }
+    }
+    public async Task<Result> UpdateProductVariantAsync(Guid Id, UpdateProductVariantDto productVariantDto, CancellationToken ct)
+    {
+        var pv = await _context.ProductVariants.Where(x => x.Id == Id).FirstOrDefaultAsync(ct);
+        if (pv is null)
+            return Result.Failure(new Error("IProductService.UpdateProductVariant", "Variant not found", ErrorType.Conflict));
+        try
+        {
+            pv.SizeId = productVariantDto.SizeId ?? pv.SizeId;
+            pv.ColorId = productVariantDto.ColorId ?? pv.ColorId;
+            pv.Price = productVariantDto.Price ?? pv.Price;
+            pv.StockQuantity = productVariantDto.StockQuantity ?? pv.StockQuantity;
+
+            _context.ProductVariants.Update(pv);
+            await _context.SaveChangesAsync(ct);
+            return Result.Success();
+        }
+        catch (Exception ex)
+        {
+            return Result.Failure(new Error($"IProductService.UpdateProductVariant", ex.Message, ErrorType.InternalServer));
+        }
+    }
+
+    public async Task<Result> DeleteProductVariantAsync(Guid productVId, CancellationToken ct)
+    {
+        var pv = await _context.ProductVariants.Where(x => x.Id == productVId).FirstOrDefaultAsync(ct);
+        if (pv is null)
+            return Result.Failure(new Error("IProductService.DeleteProductVariant", "Variant not found", ErrorType.Conflict));
+        try
+        {
+            _context.ProductVariants.Remove(pv);
+            await _context.SaveChangesAsync(ct);
+            return Result.Success();
+        }
+        catch (Exception ex)
+        {
+            return Result.Failure(new Error("IProductService.DeleteProductVariant", ex.Message, ErrorType.InternalServer));
+        }
+    }
+
     public Task<Result<PagedResult<GetProductResult>>> GetAllProductPagedForRegisteredUsers(Guid userId, PaginationParams prm, CancellationToken ct)
     {
         throw new NotImplementedException();

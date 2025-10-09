@@ -1,8 +1,10 @@
 ﻿using Löwen.Application.Features.AdminFeature.Commands.Product.AddProductImages;
 using Löwen.Application.Features.AdminFeature.Commands.Product.DeleteProductImages;
+using Löwen.Application.Features.AdminFeature.Commands.Product.UpdateProductVariant;
 using Löwen.Application.Features.OrderFeature.Commands.AssignedOrdersToDelivery;
 using Löwen.Domain.Layer_Dtos.Product;
 using Löwen.Presentation.Api.Controllers.v1.AdminController.Models.DeliveryOrder;
+using MediatR;
 using Microsoft.Extensions.Options;
 
 namespace Löwen.Presentation.Api.Controllers.v1.AdminController
@@ -45,7 +47,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
 
             return result.ToActionResult();
         }
-
+        /*
         [HttpPost("add-tag")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
@@ -55,20 +57,20 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
             Result result = await sender.Send(new AddTagCommand(request.Tag, request.productId));
 
             return result.ToActionResult();
-        }
+        }*/
 
-        [HttpPut("update-tag/{Id},{tagName}")]
+        [HttpPut("update-tag/{productId},{tagName}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> UpdateTag(string Id,string tagName)
+        public async Task<IActionResult> UpdateTag(string productId, string tagName)
         {
-            Result result = await sender.Send(new UpdateTagCommand(Id,tagName));
+            Result result = await sender.Send(new UpdateTagCommand(productId, tagName));
 
             return result.ToActionResult();
         }
 
-        [HttpDelete("remove-tag/{Id:guid}")]
+        /*[HttpDelete("remove-tag/{Id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
@@ -77,7 +79,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
             Result result = await sender.Send(new RemoveTagCommand(Id));
 
             return result.ToActionResult();
-        }
+        }*/
 
         [HttpPost("add-product")]
         [ProducesResponseType<Result<Guid>>(StatusCodes.Status200OK)]
@@ -90,7 +92,8 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
             if (string.IsNullOrEmpty(createdBy))
                 return Result.Failure(new Error("api/Admin/add-product", "Valid token is required", ErrorType.Unauthorized)).ToActionResult();
 
-            Result<Guid> result = await sender.Send(new AddProductCommand(model.Name, model.Description,model.Status, model.CategoryId, createdBy, model.VariantDtos));
+            Result<Guid> result = await sender.Send(new AddProductCommand(model.Name, model.Description,model.Status, model.CategoryId, 
+                createdBy ,model.Tags, model.VariantDtos));
 
             return result.ToActionResult();
         }
@@ -152,7 +155,19 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> UpdateProduct([FromBody] UpdateProductModel model)
         {
-            Result result = await sender.Send(new UpdateProductCommand(model.Id,model.Name, model.Description, model.Price, model.StockQuantity, model.Status, model.CategoryId));
+            Result result = await sender.Send(new UpdateProductCommand(model.Id,model.Name, model.Description, model.Price,
+                model.StockQuantity, model.Status, model.CategoryId));
+
+            return result.ToActionResult();
+        }
+
+        [HttpPut("update-product-variant")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> UpdateProductVariant([FromBody] UpdateProductVariantModel model)
+        {
+            Result result = await sender.Send(new UpdateProductVariantCommand(model.ProductId,model.ColorId,model.SizeId,model.Price,model.StockQuantity));
 
             return result.ToActionResult();
         }

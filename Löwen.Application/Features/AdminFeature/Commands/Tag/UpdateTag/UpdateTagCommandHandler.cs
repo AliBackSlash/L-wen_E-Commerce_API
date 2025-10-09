@@ -7,7 +7,7 @@ public class UpdateTagCommandHandler(IProductTagService tagService) : ICommandHa
     public async Task<Result> Handle(UpdateTagCommand command, CancellationToken ct)
     {
         
-        var tag = await tagService.GetByIdAsync(Guid.Parse(command.Id), ct);
+        var tag = await tagService.GetByProductIdAsync(Guid.Parse(command.Id), ct);
        
         if (tag == null)
             return Result.Failure(new Error("ProductTag.Update", "Tag not found", ErrorType.Conflict));
