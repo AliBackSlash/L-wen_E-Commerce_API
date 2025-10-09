@@ -20,7 +20,7 @@ public class RegisterCommandHandler(IEmailService emailService, IAppUserService 
         var roleResult = await userService.AssignUserToRoleAsync(registerResult.Value.Id, UserRole.User);
         if (roleResult.IsFailure)
         {
-            await userService.RemoveUserAsync(registerResult.Value.Id);
+            await userService.RemoveUserAsync(registerResult.Value.Id.ToString());
             return Result.Failure<RegisterCommandResponse>(roleResult.Errors);
         }
 

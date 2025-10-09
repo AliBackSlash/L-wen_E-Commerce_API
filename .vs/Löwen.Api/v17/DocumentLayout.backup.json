@@ -3,8 +3,56 @@
   "WorkspaceRootPath": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{862DA835-FE60-4657-B32E-EA3A6E9D18F3}|L\u00F6wen.Infrastructure\\L\u00F6wen.Infrastructure.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.infrastructure\\migrations\\20251008115202_addck_mustthereonemainimageforproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{862DA835-FE60-4657-B32E-EA3A6E9D18F3}|L\u00F6wen.Infrastructure\\L\u00F6wen.Infrastructure.csproj|solutionrelative:l\u00F6wen.infrastructure\\migrations\\20251008115202_addck_mustthereonemainimageforproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.presentation.api\\controllers\\v1\\userscontroller\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|solutionrelative:l\u00F6wen.presentation.api\\controllers\\v1\\userscontroller\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.application\\features\\userfeature\\commands\\deleteuserimage\\deleteuserimagecommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|solutionrelative:l\u00F6wen.application\\features\\userfeature\\commands\\deleteuserimage\\deleteuserimagecommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.application\\features\\userfeature\\commands\\deleteuserimage\\deleteuserimagecommandvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|solutionrelative:l\u00F6wen.application\\features\\userfeature\\commands\\deleteuserimage\\deleteuserimagecommandvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.application\\features\\userfeature\\commands\\deleteuserimage\\deleteuserimagecommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|solutionrelative:l\u00F6wen.application\\features\\userfeature\\commands\\deleteuserimage\\deleteuserimagecommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.application\\features\\adminfeature\\commands\\product\\deleteproductimages\\deleteproductimagescommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|solutionrelative:l\u00F6wen.application\\features\\adminfeature\\commands\\product\\deleteproductimages\\deleteproductimagescommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.domain\\abstractions\\iservices\\iappuserservices\\iappuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|solutionrelative:l\u00F6wen.domain\\abstractions\\iservices\\iappuserservices\\iappuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{862DA835-FE60-4657-B32E-EA3A6E9D18F3}|L\u00F6wen.Infrastructure\\L\u00F6wen.Infrastructure.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.infrastructure\\services\\identityservices\\appuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{862DA835-FE60-4657-B32E-EA3A6E9D18F3}|L\u00F6wen.Infrastructure\\L\u00F6wen.Infrastructure.csproj|solutionrelative:l\u00F6wen.infrastructure\\services\\identityservices\\appuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.application\\features\\rootadminfeatures\\commands\\removeadmincommand\\removeadmincommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|solutionrelative:l\u00F6wen.application\\features\\rootadminfeatures\\commands\\removeadmincommand\\removeadmincommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.application\\features\\rootadminfeatures\\commands\\removeadmincommand\\removeadmincommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|solutionrelative:l\u00F6wen.application\\features\\rootadminfeatures\\commands\\removeadmincommand\\removeadmincommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.application\\features\\adminfeature\\commands\\product\\deleteproductimages\\deleteproductimagescommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|solutionrelative:l\u00F6wen.application\\features\\adminfeature\\commands\\product\\deleteproductimages\\deleteproductimagescommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.presentation.api\\controllers\\v1\\rootadmincontroller\\rootadmincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|solutionrelative:l\u00F6wen.presentation.api\\controllers\\v1\\rootadmincontroller\\rootadmincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.application\\features\\rootadminfeatures\\commands\\addadmin\\addadmincommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|solutionrelative:l\u00F6wen.application\\features\\rootadminfeatures\\commands\\addadmin\\addadmincommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.application\\features\\authfeature\\commands\\registercommand\\registercommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|solutionrelative:l\u00F6wen.application\\features\\authfeature\\commands\\registercommand\\registercommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{862DA835-FE60-4657-B32E-EA3A6E9D18F3}|L\u00F6wen.Infrastructure\\L\u00F6wen.Infrastructure.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.infrastructure\\services\\entityservices\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -15,12 +63,8 @@
       "RelativeMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|solutionrelative:l\u00F6wen.presentation.api\\controllers\\v1\\admincontroller\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.presentation.api\\controllers\\v1\\userscontroller\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|solutionrelative:l\u00F6wen.presentation.api\\controllers\\v1\\userscontroller\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.application\\features\\adminfeature\\commands\\product\\deleteproductimages\\deleteproductimagescommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|solutionrelative:l\u00F6wen.application\\features\\adminfeature\\commands\\product\\deleteproductimages\\deleteproductimagescommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{862DA835-FE60-4657-B32E-EA3A6E9D18F3}|L\u00F6wen.Infrastructure\\L\u00F6wen.Infrastructure.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.infrastructure\\migrations\\20251008115202_addck_mustthereonemainimageforproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{862DA835-FE60-4657-B32E-EA3A6E9D18F3}|L\u00F6wen.Infrastructure\\L\u00F6wen.Infrastructure.csproj|solutionrelative:l\u00F6wen.infrastructure\\migrations\\20251008115202_addck_mustthereonemainimageforproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.presentation.api\\uploadfilesservices\\fileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -29,14 +73,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.presentation.api\\uploadfilesservices\\ifileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|solutionrelative:l\u00F6wen.presentation.api\\uploadfilesservices\\ifileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.domain\\abstractions\\iservices\\ientitiesservices\\iproductimges.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|solutionrelative:l\u00F6wen.domain\\abstractions\\iservices\\ientitiesservices\\iproductimges.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.application\\features\\adminfeature\\commands\\product\\deleteproductimages\\deleteproductimagescommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|solutionrelative:l\u00F6wen.application\\features\\adminfeature\\commands\\product\\deleteproductimages\\deleteproductimagescommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.domain\\abstractions\\iservices\\ientitiesservices\\iproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -77,8 +113,86 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 11,
+          "SelectedChildIndex": 17,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DeleteUserImageCommandValidator.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\UserFeature\\Commands\\DeleteUserImage\\DeleteUserImageCommandValidator.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Application\\Features\\UserFeature\\Commands\\DeleteUserImage\\DeleteUserImageCommandValidator.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\UserFeature\\Commands\\DeleteUserImage\\DeleteUserImageCommandValidator.cs",
+              "RelativeToolTip": "L\u00F6wen.Application\\Features\\UserFeature\\Commands\\DeleteUserImage\\DeleteUserImageCommandValidator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-09T10:38:22.544Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DeleteUserImageCommand.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\UserFeature\\Commands\\DeleteUserImage\\DeleteUserImageCommand.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Application\\Features\\UserFeature\\Commands\\DeleteUserImage\\DeleteUserImageCommand.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\UserFeature\\Commands\\DeleteUserImage\\DeleteUserImageCommand.cs",
+              "RelativeToolTip": "L\u00F6wen.Application\\Features\\UserFeature\\Commands\\DeleteUserImage\\DeleteUserImageCommand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-09T10:29:31.019Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "RootAdminController.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\Controllers\\v1\\RootAdminController\\RootAdminController.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Presentation.Api\\Controllers\\v1\\RootAdminController\\RootAdminController.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\Controllers\\v1\\RootAdminController\\RootAdminController.cs",
+              "RelativeToolTip": "L\u00F6wen.Presentation.Api\\Controllers\\v1\\RootAdminController\\RootAdminController.cs",
+              "ViewState": "AgIAADMAAAAAAAAAAAAIwEMAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-09T10:29:16.865Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "RemoveAdminCommand.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\RootAdminFeatures\\Commands\\RemoveAdminCommand\\RemoveAdminCommand.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Application\\Features\\RootAdminFeatures\\Commands\\RemoveAdminCommand\\RemoveAdminCommand.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\RootAdminFeatures\\Commands\\RemoveAdminCommand\\RemoveAdminCommand.cs",
+              "RelativeToolTip": "L\u00F6wen.Application\\Features\\RootAdminFeatures\\Commands\\RemoveAdminCommand\\RemoveAdminCommand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-09T10:26:02.225Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "RemoveAdminCommandHandler.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\RootAdminFeatures\\Commands\\RemoveAdminCommand\\RemoveAdminCommandHandler.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Application\\Features\\RootAdminFeatures\\Commands\\RemoveAdminCommand\\RemoveAdminCommandHandler.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\RootAdminFeatures\\Commands\\RemoveAdminCommand\\RemoveAdminCommandHandler.cs",
+              "RelativeToolTip": "L\u00F6wen.Application\\Features\\RootAdminFeatures\\Commands\\RemoveAdminCommand\\RemoveAdminCommandHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-09T10:25:47.677Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AppUserService.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Infrastructure\\Services\\IdentityServices\\AppUserService.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Infrastructure\\Services\\IdentityServices\\AppUserService.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Infrastructure\\Services\\IdentityServices\\AppUserService.cs",
+              "RelativeToolTip": "L\u00F6wen.Infrastructure\\Services\\IdentityServices\\AppUserService.cs",
+              "ViewState": "AgIAAAYBAAAAAAAAAIA4wBIBAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-09T09:48:59.464Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:132:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
@@ -126,38 +240,12 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "20251008115202_AddCk_MustThereOneMainImageForProduct.cs",
-              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Infrastructure\\Migrations\\20251008115202_AddCk_MustThereOneMainImageForProduct.cs",
-              "RelativeDocumentMoniker": "L\u00F6wen.Infrastructure\\Migrations\\20251008115202_AddCk_MustThereOneMainImageForProduct.cs",
-              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Infrastructure\\Migrations\\20251008115202_AddCk_MustThereOneMainImageForProduct.cs",
-              "RelativeToolTip": "L\u00F6wen.Infrastructure\\Migrations\\20251008115202_AddCk_MustThereOneMainImageForProduct.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAQwCAAAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-08T13:05:03.91Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ProductService.cs",
-              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Infrastructure\\Services\\EntityServices\\ProductService.cs",
-              "RelativeDocumentMoniker": "L\u00F6wen.Infrastructure\\Services\\EntityServices\\ProductService.cs",
-              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Infrastructure\\Services\\EntityServices\\ProductService.cs",
-              "RelativeToolTip": "L\u00F6wen.Infrastructure\\Services\\EntityServices\\ProductService.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAIwFsAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-08T12:55:59.32Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "UsersController.cs",
               "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\Controllers\\v1\\UsersController\\UsersController.cs",
               "RelativeDocumentMoniker": "L\u00F6wen.Presentation.Api\\Controllers\\v1\\UsersController\\UsersController.cs",
-              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\Controllers\\v1\\UsersController\\UsersController.cs",
-              "RelativeToolTip": "L\u00F6wen.Presentation.Api\\Controllers\\v1\\UsersController\\UsersController.cs",
-              "ViewState": "AgIAADkAAAAAAAAAAAAowFwAAAAEAAAAAAAAAA==",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\Controllers\\v1\\UsersController\\UsersController.cs*",
+              "RelativeToolTip": "L\u00F6wen.Presentation.Api\\Controllers\\v1\\UsersController\\UsersController.cs*",
+              "ViewState": "AgIAAGMAAAAAAAAAAAAIwG8AAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-08T12:51:23.582Z",
               "EditorCaption": ""
@@ -165,32 +253,97 @@
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "DeleteProductImagesCommandHandler.cs",
-              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\AdminFeature\\Commands\\Product\\DeleteProductImages\\DeleteProductImagesCommandHandler.cs",
-              "RelativeDocumentMoniker": "L\u00F6wen.Application\\Features\\AdminFeature\\Commands\\Product\\DeleteProductImages\\DeleteProductImagesCommandHandler.cs",
-              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\AdminFeature\\Commands\\Product\\DeleteProductImages\\DeleteProductImagesCommandHandler.cs",
-              "RelativeToolTip": "L\u00F6wen.Application\\Features\\AdminFeature\\Commands\\Product\\DeleteProductImages\\DeleteProductImagesCommandHandler.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-08T12:23:03.806Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
               "Title": "DeleteProductImagesCommand.cs",
               "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\AdminFeature\\Commands\\Product\\DeleteProductImages\\DeleteProductImagesCommand.cs",
               "RelativeDocumentMoniker": "L\u00F6wen.Application\\Features\\AdminFeature\\Commands\\Product\\DeleteProductImages\\DeleteProductImagesCommand.cs",
               "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\AdminFeature\\Commands\\Product\\DeleteProductImages\\DeleteProductImagesCommand.cs",
               "RelativeToolTip": "L\u00F6wen.Application\\Features\\AdminFeature\\Commands\\Product\\DeleteProductImages\\DeleteProductImagesCommand.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAoAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAQAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-08T12:22:36.814Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "DeleteProductImagesCommandHandler.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\AdminFeature\\Commands\\Product\\DeleteProductImages\\DeleteProductImagesCommandHandler.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Application\\Features\\AdminFeature\\Commands\\Product\\DeleteProductImages\\DeleteProductImagesCommandHandler.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\AdminFeature\\Commands\\Product\\DeleteProductImages\\DeleteProductImagesCommandHandler.cs",
+              "RelativeToolTip": "L\u00F6wen.Application\\Features\\AdminFeature\\Commands\\Product\\DeleteProductImages\\DeleteProductImagesCommandHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T12:23:03.806Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DeleteUserImageCommandHandler.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\UserFeature\\Commands\\DeleteUserImage\\DeleteUserImageCommandHandler.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Application\\Features\\UserFeature\\Commands\\DeleteUserImage\\DeleteUserImageCommandHandler.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\UserFeature\\Commands\\DeleteUserImage\\DeleteUserImageCommandHandler.cs",
+              "RelativeToolTip": "L\u00F6wen.Application\\Features\\UserFeature\\Commands\\DeleteUserImage\\DeleteUserImageCommandHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-09T09:46:37.952Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IAppUserService.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Domain\\Abstractions\\IServices\\IAppUserServices\\IAppUserService.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Domain\\Abstractions\\IServices\\IAppUserServices\\IAppUserService.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Domain\\Abstractions\\IServices\\IAppUserServices\\IAppUserService.cs",
+              "RelativeToolTip": "L\u00F6wen.Domain\\Abstractions\\IServices\\IAppUserServices\\IAppUserService.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAIA7wB4AAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-09T09:47:42.889Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 11,
+              "Title": "AddAdminCommandHandler.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\RootAdminFeatures\\Commands\\AddAdmin\\AddAdminCommandHandler.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Application\\Features\\RootAdminFeatures\\Commands\\AddAdmin\\AddAdminCommandHandler.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\RootAdminFeatures\\Commands\\AddAdmin\\AddAdminCommandHandler.cs",
+              "RelativeToolTip": "L\u00F6wen.Application\\Features\\RootAdminFeatures\\Commands\\AddAdmin\\AddAdminCommandHandler.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAIwBYAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-09T10:25:19.341Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "RegisterCommandHandler.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\AuthFeature\\Commands\\RegisterCommand\\RegisterCommandHandler.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Application\\Features\\AuthFeature\\Commands\\RegisterCommand\\RegisterCommandHandler.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\AuthFeature\\Commands\\RegisterCommand\\RegisterCommandHandler.cs",
+              "RelativeToolTip": "L\u00F6wen.Application\\Features\\AuthFeature\\Commands\\RegisterCommand\\RegisterCommandHandler.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAIwBgAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-09T10:24:27.135Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "ProductService.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Infrastructure\\Services\\EntityServices\\ProductService.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Infrastructure\\Services\\EntityServices\\ProductService.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Infrastructure\\Services\\EntityServices\\ProductService.cs",
+              "RelativeToolTip": "L\u00F6wen.Infrastructure\\Services\\EntityServices\\ProductService.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAEQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T12:55:59.32Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
               "Title": "ProductService.cs",
               "DocumentMoniker": "C:\\Users\\ALI\\AppData\\Local\\SourceServer\\3537062d2bdd0bd8018a4de4ba9e6c7dcfcf815b435caad16b54937a3cda9952\\L\u00F6wen.Infrastructure\\Services\\EntityServices\\ProductService.cs",
               "ToolTip": "C:\\Users\\ALI\\AppData\\Local\\SourceServer\\3537062d2bdd0bd8018a4de4ba9e6c7dcfcf815b435caad16b54937a3cda9952\\L\u00F6wen.Infrastructure\\Services\\EntityServices\\ProductService.cs [Read Only]",
@@ -201,7 +354,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 23,
               "Title": "Users.http",
               "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\APIEndpointsTest\\Users.http",
               "RelativeDocumentMoniker": "L\u00F6wen.Presentation.Api\\APIEndpointsTest\\Users.http",
@@ -209,12 +362,11 @@
               "RelativeToolTip": "L\u00F6wen.Presentation.Api\\APIEndpointsTest\\Users.http",
               "ViewState": "AgIAABIAAAAAAAAAAAA1wBwAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
-              "WhenOpened": "2025-10-08T11:35:01.092Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-08T11:35:01.092Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 22,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\appsettings.json",
               "RelativeDocumentMoniker": "L\u00F6wen.Presentation.Api\\appsettings.json",
@@ -222,12 +374,11 @@
               "RelativeToolTip": "L\u00F6wen.Presentation.Api\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-10-07T18:17:25.637Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-07T18:17:25.637Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 16,
               "Title": "FileService.cs",
               "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\UploadFilesServices\\FileService.cs",
               "RelativeDocumentMoniker": "L\u00F6wen.Presentation.Api\\UploadFilesServices\\FileService.cs",
@@ -235,12 +386,11 @@
               "RelativeToolTip": "L\u00F6wen.Presentation.Api\\UploadFilesServices\\FileService.cs",
               "ViewState": "AgIAAHIAAAAAAAAAAAA0wG0AAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-07T18:07:11.479Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-07T18:07:11.479Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 24,
               "Title": "UploudPruductImagesModel.cs",
               "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\Controllers\\v1\\AdminController\\Models\\ProductModels\\UploudPruductImagesModel.cs",
               "RelativeDocumentMoniker": "L\u00F6wen.Presentation.Api\\Controllers\\v1\\AdminController\\Models\\ProductModels\\UploudPruductImagesModel.cs",
@@ -252,7 +402,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 17,
               "Title": "IFileService.cs",
               "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\UploadFilesServices\\IFileService.cs",
               "RelativeDocumentMoniker": "L\u00F6wen.Presentation.Api\\UploadFilesServices\\IFileService.cs",
@@ -260,12 +410,11 @@
               "RelativeToolTip": "L\u00F6wen.Presentation.Api\\UploadFilesServices\\IFileService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwAoAAABMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-07T16:35:07.225Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-07T16:35:07.225Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 25,
               "Title": "AddProductModel.cs",
               "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\Controllers\\v1\\AdminController\\Models\\ProductModels\\AddProductModel.cs",
               "RelativeDocumentMoniker": "L\u00F6wen.Presentation.Api\\Controllers\\v1\\AdminController\\Models\\ProductModels\\AddProductModel.cs",
@@ -277,33 +426,32 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 14,
               "Title": "AdminController.cs",
               "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\Controllers\\v1\\AdminController\\AdminController.cs",
               "RelativeDocumentMoniker": "L\u00F6wen.Presentation.Api\\Controllers\\v1\\AdminController\\AdminController.cs",
               "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\Controllers\\v1\\AdminController\\AdminController.cs",
               "RelativeToolTip": "L\u00F6wen.Presentation.Api\\Controllers\\v1\\AdminController\\AdminController.cs",
-              "ViewState": "AgIAAHsAAAAAAAAAAAAAwIYAAAATAAAAAAAAAA==",
+              "ViewState": "AgIAAHYAAAAAAAAAAAAgwJEAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-07T16:28:46.027Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "IProductImges.cs",
-              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Domain\\Abstractions\\IServices\\IEntitiesServices\\IProductImges.cs",
-              "RelativeDocumentMoniker": "L\u00F6wen.Domain\\Abstractions\\IServices\\IEntitiesServices\\IProductImges.cs",
-              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Domain\\Abstractions\\IServices\\IEntitiesServices\\IProductImges.cs",
-              "RelativeToolTip": "L\u00F6wen.Domain\\Abstractions\\IServices\\IEntitiesServices\\IProductImges.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAcAAAAuAAAAAAAAAA==",
+              "DocumentIndex": 15,
+              "Title": "20251008115202_AddCk_MustThereOneMainImageForProduct.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Infrastructure\\Migrations\\20251008115202_AddCk_MustThereOneMainImageForProduct.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Infrastructure\\Migrations\\20251008115202_AddCk_MustThereOneMainImageForProduct.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Infrastructure\\Migrations\\20251008115202_AddCk_MustThereOneMainImageForProduct.cs",
+              "RelativeToolTip": "L\u00F6wen.Infrastructure\\Migrations\\20251008115202_AddCk_MustThereOneMainImageForProduct.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAQwCAAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-06T16:46:51.215Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-08T13:05:03.91Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 18,
               "Title": "IProductService.cs",
               "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Domain\\Abstractions\\IServices\\IEntitiesServices\\IProductService.cs",
               "RelativeDocumentMoniker": "L\u00F6wen.Domain\\Abstractions\\IServices\\IEntitiesServices\\IProductService.cs",
@@ -311,12 +459,11 @@
               "RelativeToolTip": "L\u00F6wen.Domain\\Abstractions\\IServices\\IEntitiesServices\\IProductService.cs",
               "ViewState": "AgIAAAQAAAAAAAAAAADgvwwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-06T16:36:34.511Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-06T16:36:34.511Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 19,
               "Title": "ProductVariantDto.cs",
               "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Domain\\Layer_Dtos\\Product\\ProductVariantDto.cs",
               "RelativeDocumentMoniker": "L\u00F6wen.Domain\\Layer_Dtos\\Product\\ProductVariantDto.cs",
@@ -324,12 +471,11 @@
               "RelativeToolTip": "L\u00F6wen.Domain\\Layer_Dtos\\Product\\ProductVariantDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-06T16:35:10.613Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-06T16:35:10.613Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 21,
               "Title": "AddProductImagesCommandHandler.cs",
               "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\AdminFeature\\Commands\\Product\\AddProductImages\\AddProductImagesCommandHandler.cs",
               "RelativeDocumentMoniker": "L\u00F6wen.Application\\Features\\AdminFeature\\Commands\\Product\\AddProductImages\\AddProductImagesCommandHandler.cs",
@@ -337,8 +483,7 @@
               "RelativeToolTip": "L\u00F6wen.Application\\Features\\AdminFeature\\Commands\\Product\\AddProductImages\\AddProductImagesCommandHandler.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-06T16:30:09.941Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-06T16:30:09.941Z"
             }
           ]
         }

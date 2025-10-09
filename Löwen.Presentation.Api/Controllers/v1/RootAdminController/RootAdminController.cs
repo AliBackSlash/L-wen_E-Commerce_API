@@ -65,7 +65,7 @@
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> RemoveAdmin(Guid Id)
+        public async Task<IActionResult> RemoveAdmin(string Id)
         {
             Result result = await sender.Send(new RemoveAdminCommand(Id));
 

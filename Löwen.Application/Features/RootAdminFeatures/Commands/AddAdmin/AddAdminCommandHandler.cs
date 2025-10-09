@@ -19,7 +19,7 @@ public class AddAdminCommandHandler(IAppUserService userService,IEmailService em
         var roleResult = await userService.AssignUserToRoleAsync(createResult.Value, UserRole.Admin);
         if (roleResult.IsFailure)
         {
-            await userService.RemoveUserAsync(createResult.Value);
+            await userService.RemoveUserAsync(createResult.Value.ToString());
             return Result.Failure(roleResult.Errors);
         }
 

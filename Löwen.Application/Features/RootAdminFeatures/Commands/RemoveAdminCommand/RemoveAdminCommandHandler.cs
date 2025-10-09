@@ -6,6 +6,6 @@ public class RemoveAdminCommandHandler(IAppUserService userService) : ICommandHa
 {
     public async Task<Result> Handle(RemoveAdminCommand command, CancellationToken ct)
     {
-        return await userService.RemoveUserAsync(command.Id);
+        return await userService.RemoveUserAsync(command.Id.ToString());
     }
 }

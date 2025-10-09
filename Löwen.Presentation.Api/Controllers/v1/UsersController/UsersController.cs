@@ -1,4 +1,6 @@
-﻿using Löwen.Application.Features.UserFeature.Commands.ProductReviewOper.AddProductReview;
+﻿using Löwen.Application.Features.AdminFeature.Commands.Product.DeleteProductImages;
+using Löwen.Application.Features.UserFeature.Commands.DeleteUserImage;
+using Löwen.Application.Features.UserFeature.Commands.ProductReviewOper.AddProductReview;
 using Löwen.Application.Features.UserFeature.Commands.ProductReviewOper.UpdateProductReview;
 using Löwen.Application.Features.UserFeature.Commands.UserInfoOper.ChangePassword;
 using Löwen.Application.Features.UserFeature.Commands.UserInfoOper.UpdateUserInfo;
@@ -10,7 +12,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.UsersController;
 [ApiVersion("1.0")]
 [Route("api/users")]
 //[Authorize(Roles = "User")]
-public class UsersController(ISender _sender) : ControllerBase
+public class UsersController(ISender _sender, IFileService fileService) : ControllerBase
 {
     [HttpGet("get-user-info")]
     [ProducesResponseType<GetUserByIdQueryResponse>(StatusCodes.Status200OK)]
@@ -73,7 +75,7 @@ public class UsersController(ISender _sender) : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> UpdateProfileImage(IFormFile Image,IFileService fileService)
+    public async Task<IActionResult> UpdateProfileImage(IFormFile Image)
     {
         var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
@@ -98,6 +100,24 @@ public class UsersController(ISender _sender) : ControllerBase
     }
 
 
+    [HttpPut("remove-user-image")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> RemoveUserImage()
+    {
+        var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        if (string.IsNullOrEmpty(id))
+            return Result.Failure(new Error("api/users/update-profile-image", "Valid token is required", ErrorType.Unauthorized)).ToActionResult();
+
+        Result<string> result = await _sender.Send(new DeleteUserImageCommand(id));
+
+        if (result.IsSuccess)
+            fileService.DeleteFile(result.Value, false);
+
+        return result.ToActionResult();
+    }
     [HttpPost("verify-own-email/{email}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]

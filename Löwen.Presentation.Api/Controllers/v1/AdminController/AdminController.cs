@@ -136,11 +136,11 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> UpdateProduct(string imagePath)
+        public async Task<IActionResult> RemoveProductImage(string imagePath)
         {
             Result result = await sender.Send(new DeleteProductImagesCommand(imagePath));
           
-            if (result.IsFailure)
+            if (result.IsSuccess)
                 fileService.DeleteFile(imagePath);
 
             return result.ToActionResult();

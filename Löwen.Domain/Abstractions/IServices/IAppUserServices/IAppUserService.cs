@@ -17,8 +17,8 @@ public interface IAppUserService
     Task<Result<UpdateUserInfoResponseDto>> UpdateUserInfoAsync(UpdateUserInfoDto dto);
     Task<Result<string>> ConfirmEmailAsync(string userId, string token);
     Task<Result<string>> ChangePasswordAsync(string Id, string CurrentPassword, string Password);
-    Task<Result<bool>> IsEmailNotTakenAsync(string email);
-    Task<Result<bool>> IsUserNameNotTakenAsync(string userName);
+    Task<Result> IsEmailNotTakenAsync(string email);
+    Task<Result> IsUserNameNotTakenAsync(string userName);
     Task<Result> AssignUserToRoleAsync(Guid userId, UserRole role);
     Task<Result> RemoveRoleFromUserAsync(Guid userId, UserRole role);
     Task<Result> MarkAsDeletedAsync(Guid userId, UserRole role);
@@ -27,6 +27,7 @@ public interface IAppUserService
     Task<Result<string>> GenerateEmailConfirmationTokenAsync(string email);
     Task<Result<string>> GenerateRestPasswordTokenAsync(string email);
     Task<Result<string>> ResetPasswordAsync(string Email, string token, string Password);
-    Task<Result<bool>> RemoveUserAsync(Guid userId);
+    Task<Result> RemoveUserAsync(string userId);
+    Task<Result<string>> RemoveUserImageAsync(string userId);
     Task<Result> UpdateProfileImageAsync(string userId,string path, string rootPath);
 }

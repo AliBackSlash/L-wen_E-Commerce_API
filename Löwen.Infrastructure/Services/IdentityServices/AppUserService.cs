@@ -167,18 +167,18 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
 
         return Result.Success($"{apiSettings.Value.BaseUrl}/confirm-email?userId={user.Id}&token={encodedToken}");
     }
-    public async Task<Result<bool>> IsEmailNotTakenAsync(string email)
+    public async Task<Result> IsEmailNotTakenAsync(string email)
     {
         if (await _userManager.FindByEmailAsync(email) is not null)
             return Result.Failure<bool>(new Error("Validation error", "Invalid UserName Or Email", ErrorType.Validation));
         return Result.Success(true);
     }
-    public async Task<Result<bool>> IsUserNameNotTakenAsync(string userName)
+    public async Task<Result> IsUserNameNotTakenAsync(string userName)
     {
         if (await _userManager.FindByNameAsync(userName) is not null)
-            return Result.Failure<bool>(new Error("Validation error", "Invalid UserName Or Email", ErrorType.Validation));
+            return Result.Failure(new Error("Validation error", "Invalid UserName Or Email", ErrorType.Validation));
 
-        return Result.Success(true);
+        return Result.Success();
     }
     public async Task<Result> AssignUserToRoleAsync(Guid userId, UserRole role)
     {
@@ -260,16 +260,31 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
 
         return Result.Success();
     }
-    public async Task<Result<bool>> RemoveUserAsync(Guid userId)
+    public async Task<Result> RemoveUserAsync(string userId)
     {
-        AppUser? user = await _userManager.FindByIdAsync(userId.ToString());
+        AppUser? user = await _userManager.FindByIdAsync(userId);
         if (user == null)
-            return Result.Failure<bool>(new Error("(Delete User)", "Not Found", ErrorType.Conflict));
+            return Result.Failure(new Error("IAppUserService.RemoveUserAsync", "Not Found", ErrorType.Conflict));
         var deleteResult = await _userManager.DeleteAsync(user);
         if(deleteResult.Succeeded)
             return Result.Success(true);
 
-        return Result.Failure<bool>(new Error("(Delete User) Errors", string.Join(", ", deleteResult.Errors.Select(e => e.Description)), ErrorType.Delete));
+        return Result.Failure(new Error("IAppUserService.RemoveUserAsync", 
+            string.Join(", ", deleteResult.Errors.Select(e => e.Description)), ErrorType.Delete));
+    }
+    public async Task<Result<string>> RemoveUserImageAsync(string userId)
+    {
+        AppUser? user = await _userManager.FindByIdAsync(userId);
+        if (user == null)
+            return Result.Failure<string>(new Error("IAppUserService.RemoveUserImageAsync", "Not Found", ErrorType.Conflict));
+        var imageName = user.ImagePath;
+        user.ImagePath = null;
+        var UpdateResult = await _userManager.UpdateAsync(user);
+        if(UpdateResult.Succeeded)
+            return Result.Success(imageName)!;
+
+        return Result.Failure<string>(new Error("IAppUserService.RemoveUserImageAsync",
+            string.Join(", ", UpdateResult.Errors.Select(e => e.Description)), ErrorType.Delete));
     }
     public async Task<Result<string>> ResetPasswordAsync(string Email,string token, string Password)
     {
@@ -437,6 +452,7 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
     }
     public async Task<Result<List<GetUsersResponseDto>>> GetAllAsync(UserRole role = UserRole.User)
     {
+        //make it pagination
         var users = from u in _userManager.Users
                  join ur in context.UserRoles on u.Id equals ur.UserId
                  join r in context.Roles on ur.RoleId equals r.Id
