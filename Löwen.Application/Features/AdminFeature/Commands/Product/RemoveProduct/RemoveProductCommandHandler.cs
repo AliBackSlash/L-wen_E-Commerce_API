@@ -10,7 +10,7 @@ public class RemoveProductCommandHandler(IProductService productService) : IComm
        /* if(Guid.TryParse(command.Id,out Guid Id))
             return Result.Failure(new Error("Tag.Delete", "Invalid guid Id", ErrorType.Conflict));
 */
-        var tag = await productService.GetByIdAsync(command.Id, ct);
+        var tag = await productService.GetByIdAsync(Guid.Parse(command.Id), ct);
        
         if (tag == null)
             return Result.Failure(new Error("product.Delete", "product not found", ErrorType.Conflict));

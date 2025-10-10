@@ -31,6 +31,6 @@ public class ProductVariantConfiguration : IEntityTypeConfiguration<ProductVaria
             .WithMany(x => x.ProductVariants)
             .HasForeignKey(x => x.SizeId)
             .OnDelete(DeleteBehavior.SetNull)
-            .IsRequired();
+            .IsRequired(false);
     }
 }

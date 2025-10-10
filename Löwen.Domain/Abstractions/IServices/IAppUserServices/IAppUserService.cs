@@ -7,13 +7,13 @@ using Löwen.Domain.Pagination;
 namespace Löwen.Domain.Abstractions.IServices.IAppUserServices;
 public interface IAppUserService
 {
-    Task<Result<RegisterResponseDto>> RegisterAsync(RegisterUserDto dto, CancellationToken ct);
+    Task<Result<Guid>> RegisterAsync(RegisterUserDto dto, CancellationToken ct);
     Task<Result<GetUserResponseDto>> GetUserByIdAsync(string id,UserRole role = UserRole.User);
     Task<Result<List<GetUsersResponseDto>>> GetAllAsync(UserRole role = UserRole.User);
     Task<Result<PagedResult<GetUsersResponseDto>>> GetAllAsync(PaginationParams Params, UserRole role = UserRole.User);
     Task<Result<GetUserResponseDto>> GetUserByEmailAsync(string email,UserRole role = UserRole.User);
     Result<string> GetUserIdFromToken(string token);
-    Task<Result<LoginResponseDto>> LoginAsync(LoginDto dto, CancellationToken ct);
+    Task<Result<string>> LoginAsync(LoginDto dto, CancellationToken ct);
     Task<Result<UpdateUserInfoResponseDto>> UpdateUserInfoAsync(UpdateUserInfoDto dto);
     Task<Result<string>> ConfirmEmailAsync(string userId, string token);
     Task<Result<string>> ChangePasswordAsync(string Id, string CurrentPassword, string Password);
@@ -26,7 +26,7 @@ public interface IAppUserService
     Task<Result<Guid>> AddAdminAsync(AddAdminDto dto);
     Task<Result<string>> GenerateEmailConfirmationTokenAsync(string email);
     Task<Result<string>> GenerateRestPasswordTokenAsync(string email);
-    Task<Result<string>> ResetPasswordAsync(string Email, string token, string Password);
+    Task<Result> ResetPasswordAsync(string Email, string token, string Password);
     Task<Result> RemoveUserAsync(string userId);
     Task<Result<string>> RemoveUserImageAsync(string userId);
     Task<Result> UpdateProfileImageAsync(string userId,string path, string rootPath);

@@ -7,7 +7,7 @@ internal class AddOrderCommandHandler(IOrderService orderService) : ICommandHand
     {
         var createResult = await orderService.AddAsync(new Order
         {
-            UserId = Guid.Parse(command.UserId),
+            DeliveryId = Guid.Parse(command.deliveryId),
             Status = OrderStatus.Pending,
             OrderItems = command.items.Select(i => new OrderItem
             {

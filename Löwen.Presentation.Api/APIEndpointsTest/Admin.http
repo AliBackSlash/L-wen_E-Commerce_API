@@ -1,5 +1,5 @@
 @Löwen.Api_HostAddress = https://localhost:7197
-@tken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImE3NmIxNzRlLTgyMGItNGUwNS04YzRmLWI3MzVmZDk1NTExNCIsImp0aSI6ImZkZjk0M2NkLTdhYWYtNDQ4Zi1iNjAzLTNkYmNjNWJkNDk4MCIsImVtYWlsIjoiYWUxMzc4MDMyQGdtYWlsLmNvbSIsInVuaXF1ZV9uYW1lIjoiYWxpLTAxc2RmIiwicm9sZXMiOiJVc2VyIiwiZXhwIjoxNzU5NzY2NzgyLCJpc3MiOiJMb2NhbEhvc3QiLCJhdWQiOiJMb2NhbEhvc3QifQ._KyPZGIKgkgJ7Z1xM3Mqau6bfnF50W3Xm1--tKouScw
+@tken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImE3NmIxNzRlLTgyMGItNGUwNS04YzRmLWI3MzVmZDk1NTExNCIsImp0aSI6IjRlYjZkZjU4LTIwNTUtNGVjYS04YjA2LTAzMTk1Mjg5NmI1MiIsImVtYWlsIjoiYWUxMzc4MDMyQGdtYWlsLmNvbSIsInVuaXF1ZV9uYW1lIjoiYWxpLTAxc2RmIiwicm9sZXMiOiJVc2VyIiwiZXhwIjoxNzYwMDI5MzkwLCJpc3MiOiJMb2NhbEhvc3QiLCJhdWQiOiJMb2NhbEhvc3QifQ.V9zkiOmuypOvdyVKHXpiiSikvYPWzn89eStZUobrZiY
 
 
 //Admin Endpoints
@@ -49,6 +49,7 @@ Content-Type: application/json
   "description": "string",
   "status": 0,
   "categoryId": "90cf1501-d384-42ed-99b1-84b6b465e35e",
+  "tags" : "#ali #ahmed",
   "variantDtos": [
     {
       "colorId": "00000000-0000-0000-0000-000000000001",
@@ -57,14 +58,14 @@ Content-Type: application/json
       "stockQuantity": 0
     },
     {
-      "colorId": "00000000-0000-0000-0000-000000000001",
-      "sizeId": "f1a1f6a1-0001-4a6b-9b1a-000000000001",
+      "colorId": "00000000-0000-0000-0000-000000000002",
+      "sizeId": "f1a1f6a1-0002-4a6b-9b1a-000000000002",
       "price": 0,
       "stockQuantity": 0
     },
     {
-      "colorId": "00000000-0000-0000-0000-000000000001",
-      "sizeId": "f1a1f6a1-0001-4a6b-9b1a-000000000001",
+      "colorId": "00000000-0000-0000-0000-000000000003",
+      "sizeId": null,
       "price": 0,
       "stockQuantity": 0
     }

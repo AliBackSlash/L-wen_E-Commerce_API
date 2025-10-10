@@ -10,7 +10,7 @@ public class AddProductVariantCommandHandler(IProductService productService) : I
             new Domain.Layer_Dtos.Product.ProductVariantDto
             {
                 ColorId = Guid.Parse(command.ColorId),
-                SizeId = Guid.Parse(command.SizeId),
+                SizeId = command.SizeId is null ? null : Guid.Parse(command.SizeId),
                 StockQuantity = command.StockQuantity,
                 Price = command.Price,
             }, ct);

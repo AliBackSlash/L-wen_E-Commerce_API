@@ -47,7 +47,7 @@ public class AppUserConfiguration : IEntityTypeConfiguration<AppUser>
 
         builder.HasMany(o => o.Orders)
                .WithOne()
-               .HasForeignKey(o => o.UserId)
+               .HasForeignKey(o => o.DeliveryId)
                .OnDelete(DeleteBehavior.Cascade)
                .IsRequired();
 

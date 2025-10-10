@@ -31,7 +31,7 @@ public class ProductService(AppDbContext _context) : BasRepository<Product, Guid
         }
         catch (Exception ex)
         {
-            return Result.Failure(new Error($"IProductService.AddProductVariant", ex.Message, ErrorType.InternalServer));
+            return Result.Failure(new Error($"IProductService.AddProductVariant", ex.InnerException.Message, ErrorType.InternalServer));
         }
     }
     public async Task<Result> UpdateProductVariantAsync(Guid Id, UpdateProductVariantDto productVariantDto, CancellationToken ct)

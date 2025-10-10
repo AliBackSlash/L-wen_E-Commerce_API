@@ -89,7 +89,7 @@ public class OrderService(AppDbContext _context) : BasRepository<Order, Guid>(_c
     public async Task<Result<PagedResult<OrderDetailsDto>>> GetOrdersForUser(Guid userId,PaginationParams parm, CancellationToken ct)
     {
         var query = from order in _context.Orders
-                    where order.UserId == userId
+                    where order.DeliveryId == userId
                     select new OrderDetailsDto
                     {
                         OrderDate = order.OrderDate,

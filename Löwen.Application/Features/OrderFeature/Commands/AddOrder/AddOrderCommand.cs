@@ -2,4 +2,4 @@
 
 namespace Löwen.Application.Features.OrderFeature.Commands.AddOrder.AddOrder;
 
-public record AddOrderCommand(string UserId,IEnumerable<OrderItemDto> items) : ICommand;
+public record AddOrderCommand(string deliveryId, IEnumerable<OrderItemDto> items) : ICommand;

@@ -3,4 +3,4 @@
 namespace Löwen.Application.Features.AdminFeature.Commands.Product.UpdateProductVariant;
 
 public record UpdateProductVariantCommand
-    (string ProductId, string? ColorId, string? SizeId, decimal? Price, int? StockQuantity) : ICommand;
+    (string PVId, string? ColorId, string? SizeId, decimal? Price, int? StockQuantity) : ICommand;

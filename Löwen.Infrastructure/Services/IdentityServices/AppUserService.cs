@@ -7,7 +7,6 @@ using Löwen.Domain.ErrorHandleClasses;
 using Löwen.Domain.Layer_Dtos.AppUser.request;
 using Löwen.Domain.Layer_Dtos.AppUser.response;
 using Löwen.Domain.Pagination;
-using Löwen.Infrastructure.EFCore.Context;
 using Löwen.Infrastructure.EFCore.IdentityUser;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.WebUtilities;
@@ -15,14 +14,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
 namespace Löwen.Infrastructure.Services.IdentityServices;
 public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jwt, IOptions<ApiSettings> apiSettings,AppDbContext context) : IAppUserService
 {
-
-    public async Task<Result<RegisterResponseDto>> RegisterAsync(RegisterUserDto reg_info, CancellationToken ct)
+    private string GetError(IdentityResult identityResult) => string.Join(", ", identityResult.Errors.Select(e => e.Description));
+    public async Task<Result<Guid>> RegisterAsync(RegisterUserDto reg_info, CancellationToken ct)
     {
        
         AppUser user = new()
@@ -33,9 +31,9 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
 
         var createResult = await _userManager.CreateAsync(user, reg_info.Password);
         if (!createResult.Succeeded)
-            return Result.Failure<RegisterResponseDto>(new Error("AppUserService.RegisterAsync", string.Join(", ", createResult.Errors.Select(e => e.Description)), ErrorType.Create));
+            return Result.Failure<Guid>(new Error("IAppUserService.RegisterAsync", GetError(createResult), ErrorType.Create));
 
-        return Result.Success(new RegisterResponseDto(user.Id, await _CreateJWTToken(user)));
+        return Result.Success(user.Id);
     }
     private async Task<string> _CreateJWTToken(AppUser appUser)
     {
@@ -107,27 +105,26 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
             return Result.Failure<string>(new Error("Invalid Token", $"Message: {ex}", ErrorType.Validation));
         }
     }
-    public async Task<Result<LoginResponseDto>> LoginAsync(LoginDto dto, CancellationToken ct)
+    public async Task<Result<string>> LoginAsync(LoginDto dto, CancellationToken ct)
     {
         var user = await _userManager.FindByEmailAsync(dto.UserNameOrEmail)
                    ?? await _userManager.FindByNameAsync(dto.UserNameOrEmail);
 
         if (user is null)
-            return Result.Failure<LoginResponseDto>(
+            return Result.Failure<string>(
              new Error("User.InvalidCredentials", "Invalid username or password", ErrorType.Unauthorized));            
 
         if (!await _userManager.IsEmailConfirmedAsync(user))
-            return Result.Failure<LoginResponseDto>(
+            return Result.Failure<string>(
                 new Error("User.EmailNotConfirmed", "You must confirm your email before logging in", ErrorType.Unauthorized));
 
         if (await _userManager.CheckPasswordAsync(user, dto.Password!))
         {
             string token = await _CreateJWTToken(user);
-            var tokenInfo = await _GetInfoFromToken(token);
-            return Result.Success(new LoginResponseDto(token, tokenInfo.Email!, tokenInfo.UserName!, tokenInfo.Roles, tokenInfo.Expiration));
+            return Result.Success(token);
         }
 
-        return Result.Failure<LoginResponseDto>(
+        return Result.Failure<string>(
             new Error("User.InvalidCredentials", "Invalid username or password", ErrorType.Unauthorized));
     }
     public async Task<Result<string>> ConfirmEmailAsync(string userId,string token)
@@ -142,11 +139,11 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
             var ConfirmResult = await _userManager.ConfirmEmailAsync(user, Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(token)));
 
             if (!ConfirmResult.Succeeded)
-                return Result.Failure<string>(new Error("Confirm Email Errors", string.Join(", ", ConfirmResult.Errors.Select(e => e.Description)), ErrorType.Create));
+                return Result.Failure<string>(new Error("Confirm Email Errors", GetError(ConfirmResult), ErrorType.Create));
 
             return Result.Success(await _CreateJWTToken(user));
         }
-        catch (Exception)
+        catch (FormatException)
         {
             return Result.Failure<string>(new Error("Invalid Token", "The input is not a valid Base-64 string as it contains a non-base 64 character", ErrorType.Validation));
         }
@@ -165,7 +162,7 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
         if (string.IsNullOrEmpty(encodedToken))
               return Result.Failure<string>(new Error("(Generate Email Confirmation) Error", "", ErrorType.Conflict));
 
-        return Result.Success($"{apiSettings.Value.BaseUrl}/confirm-email?userId={user.Id}&token={encodedToken}");
+        return Result.Success($"{apiSettings.Value.BaseUrl}/api/Auth/confirm-email?userId={user.Id}&confirmEmailToken={encodedToken}");
     }
     public async Task<Result> IsEmailNotTakenAsync(string email)
     {
@@ -189,7 +186,7 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
         var roleResult = await _userManager.AddToRoleAsync(user, role.ToString());
         if (!roleResult.Succeeded)
         {
-            return Result.Failure<RegisterResponseDto>(new Error("Role Errors", string.Join(", ", roleResult.Errors.Select(e => e.Description)), ErrorType.Conflict));
+            return Result.Failure(new Error("Role Errors", GetError(roleResult), ErrorType.Conflict));
         }
 
         return Result.Success();
@@ -208,7 +205,7 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
         var roleResult = await _userManager.RemoveFromRoleAsync(user, role.ToString());
         if (!roleResult.Succeeded)
         {
-            return Result.Failure<RegisterResponseDto>(new Error("Role Errors", string.Join(", ", roleResult.Errors.Select(e => e.Description)), ErrorType.Conflict));
+            return Result.Failure(new Error("Role Errors", GetError(roleResult) , ErrorType.Conflict));
         }
 
         return Result.Success();
@@ -232,7 +229,7 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
 
         var updateResult = await _userManager.UpdateAsync(user);
         if (!updateResult.Succeeded)
-            return Result.Failure(new Error("(Mark As Deleted)", string.Join(", ", updateResult.Errors.Select(e => e.Description)), ErrorType.Create));
+            return Result.Failure(new Error("(Mark As Deleted)", GetError(updateResult), ErrorType.Create));
 
         return Result.Success();
     }
@@ -256,7 +253,7 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
 
         var updateResult = await _userManager.UpdateAsync(user);
         if (!updateResult.Succeeded)
-            return Result.Failure(new Error("(Activate Marked As Deleted)", string.Join(", ", updateResult.Errors.Select(e => e.Description)), ErrorType.Create));
+            return Result.Failure(new Error("(Activate Marked As Deleted)", GetError(updateResult) , ErrorType.Create));
 
         return Result.Success();
     }
@@ -269,8 +266,8 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
         if(deleteResult.Succeeded)
             return Result.Success(true);
 
-        return Result.Failure(new Error("IAppUserService.RemoveUserAsync", 
-            string.Join(", ", deleteResult.Errors.Select(e => e.Description)), ErrorType.Delete));
+        return Result.Failure(new Error("IAppUserService.RemoveUserAsync",
+          GetError(deleteResult), ErrorType.Delete));
     }
     public async Task<Result<string>> RemoveUserImageAsync(string userId)
     {
@@ -284,26 +281,26 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
             return Result.Success(imageName)!;
 
         return Result.Failure<string>(new Error("IAppUserService.RemoveUserImageAsync",
-            string.Join(", ", UpdateResult.Errors.Select(e => e.Description)), ErrorType.Delete));
+           GetError(UpdateResult) , ErrorType.Delete));
     }
-    public async Task<Result<string>> ResetPasswordAsync(string Email,string token, string Password)
+    public async Task<Result> ResetPasswordAsync(string Email,string token, string Password)
     {
         var user = await  _userManager.FindByEmailAsync(Email);
         if (user is null)
-            return Result.Failure<string>(Error.NotFound("Not Found", $"User with email {Email} not found"));
+            return Result.Failure(Error.NotFound("Not Found", $"User with email {Email} not found"));
 
         try
         {
             var ChangeResult = await _userManager.ResetPasswordAsync(user, Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(token)), Password);
 
             if (!ChangeResult.Succeeded)
-                return Result.Failure<string>(new Error("Reset password Errors", string.Join(", ", ChangeResult.Errors.Select(e => e.Description)), ErrorType.Create));
+                return Result.Failure(new Error("Reset password Errors", GetError(ChangeResult) , ErrorType.Create));
 
-            return Result.Success(await _CreateJWTToken(user));
+            return Result.Success();
         }
         catch (Exception  ex)
         {
-            return Result.Failure<string>(new Error("Reset password Error", ex.Message, ErrorType.Validation));
+            return Result.Failure(new Error("Reset password Error", ex.Message, ErrorType.Validation));
         }
 
     }
@@ -320,7 +317,7 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
         if (string.IsNullOrEmpty(encodedToken))
             return Result.Failure<string>(new Error("(Generate Email Confirmation) Error", "", ErrorType.Conflict));
        
-        return Result.Success($"{apiSettings.Value.BaseUrl}/confirm-email?userId={user.Id}&token={encodedToken}");
+        return Result.Success(encodedToken);
     }
     public async Task<Result<string>> ChangePasswordAsync(string Id,string CurrentPassword, string Password)
     {
@@ -333,7 +330,7 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
             var ChangeResult = await _userManager.ChangePasswordAsync(user, CurrentPassword, Password);
 
             if (!ChangeResult.Succeeded)
-                return Result.Failure<string>(new Error("Change password Errors", string.Join(", ", ChangeResult.Errors.Select(e => e.Description)), ErrorType.Create));
+                return Result.Failure<string>(new Error("Change password Errors", GetError(ChangeResult), ErrorType.Create));
 
             return Result.Success(await _CreateJWTToken(user));
         }
@@ -357,7 +354,7 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
         await _userManager.UpdateAsync(user);
         var updateResult = await _userManager.UpdateAsync(user);
         if (!updateResult.Succeeded)
-            return Result.Failure<UpdateUserInfoResponseDto>(new Error("Update Errors", string.Join(", ", updateResult.Errors.Select(e => e.Description)), ErrorType.Create));
+            return Result.Failure<UpdateUserInfoResponseDto>(new Error("Update Errors", GetError(updateResult) , ErrorType.Create));
 
         return Result.Success();
 
@@ -378,7 +375,7 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
 
         var updateResult = await _userManager.UpdateAsync(user);
         if (!updateResult.Succeeded)
-            return Result.Failure<UpdateUserInfoResponseDto>(new Error("Update.Errors", string.Join(", ", updateResult.Errors.Select(e => e.Description)), ErrorType.Create));
+            return Result.Failure<UpdateUserInfoResponseDto>(new Error("Update.Errors", GetError(updateResult) , ErrorType.Create));
 
         return Result.Success(new UpdateUserInfoResponseDto(await _CreateJWTToken(user)));
 
@@ -446,7 +443,7 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
 
         var createResult = await _userManager.CreateAsync(user, dto.Password);
         if (!createResult.Succeeded)
-            return Result.Failure<Guid>(new Error("Create Errors", string.Join(", ", createResult.Errors.Select(e => e.Description)), ErrorType.Create));
+            return Result.Failure<Guid>(new Error("Create Errors", GetError(createResult) , ErrorType.Create));
 
         return Result.Success(user.Id);
     }
@@ -469,8 +466,8 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
                      u.IsDeleted
                  };
 
-        if (users == null)
-            return Result.Failure<List<GetUsersResponseDto>>(new Error("AppUserService.GetAllAsync", "Not Found", ErrorType.Conflict));
+        //if (users == null)
+        //    return Result.Failure<List<GetUsersResponseDto>>(new Error("AppUserService.GetAllAsync", "Not Found", ErrorType.Conflict));
         
         return Result.Success(
         users.Select(u => new GetUsersResponseDto

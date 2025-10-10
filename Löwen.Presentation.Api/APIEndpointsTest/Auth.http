@@ -1,9 +1,9 @@
-@Löwen_Api_HostAddress = https://localhost:7197
+@Löwen_Api_HostAddress = https://localhost:7197/api/Auth
 
 
 //Auth Endpoints
 ###
-POST {{Löwen_Api_HostAddress}}/api/Auth/Register
+POST {{Löwen_Api_HostAddress}}/Register
 Content-Type: application/json
 {
   "email": "ae1378032@gmail.com",
@@ -12,11 +12,29 @@ Content-Type: application/json
 }
 
 ###
-POST https://localhost:7197/api/auth/login
+POST {{Löwen_Api_HostAddress}}/login
 Content-Type: application/json
 
 {
   "userNameOrEmail": "ali-01sdf",
-  "password": "Ali1@.com1"
+  "password": "Ali1@.com2"
+}
+
+###
+POST {{Löwen_Api_HostAddress}}/confirm-email
+Content-Type: application/json
+
+{
+  "userId": "b998d48f-61fa-4019-b454-795cb100fc49",
+  "confirmEmailToken": "Q2ZESjhNL0lzOGIyelpWRW9kSm9NNjRWQUJVWnVZTW5aRk9JTWF2cUFoalFnSWJKVmFsdVNvSFdBazhyQ3lUNW9Ga0tTcHhtQXBhUlFMck1VUWd1aGdiRzlETnhRTUJucXBOR0U4VHQwQlpFNE0rdHQ4Q0VqbUxLZGRpUnlGQnJHRHYxRVplQldqb01YeUFKZlB4VktzY0t5YmtQblpIVWo2Z29tWVdMcUlCTmNGMTBSb3NNR2I4VUlTMEkvS0xyZldRVHBhUktTQUkvMWFtc1BlZkZycERtbENhVmhBUHlLRFpjQUFzUng3eVk5aThmWS84Ykl3SzlWcTdCNFFhZTFjZ2tldz09"
+}
+
+###
+PUT {{Löwen_Api_HostAddress}}/reset-password
+Content-Type: application/json
+
+{
+  "email": "ae1378032@gmail.com",
+  "password": "Ali1@.com2"
 }
 

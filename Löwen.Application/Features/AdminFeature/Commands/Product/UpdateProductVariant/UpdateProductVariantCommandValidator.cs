@@ -6,12 +6,12 @@ public class UpdateProductVariantCommandValidator
 {
     public UpdateProductVariantCommandValidator()
     {
-        RuleFor(x => x.ProductId).NotEmpty().WithMessage("ProductId is required")
-        .Must(x => Guid.TryParse(x, out _)).WithMessage("Enter a valid Guid ProductId");
-        RuleFor(x => x.ColorId).NotEmpty().WithMessage("ColorId is required")
-         .Must(x => Guid.TryParse(x, out _)).WithMessage("Enter a valid Guid ColorId");
+        RuleFor(x => x.PVId).NotEmpty().WithMessage("Id is required")
+        .Must(x => Guid.TryParse(x, out _)).WithMessage("Enter a valid Guid Id");
+        RuleFor(x => x.ColorId)
+         .Must(x => x == null || Guid.TryParse(x, out _)).WithMessage("Enter a valid Guid ColorId");
         RuleFor(x => x.SizeId)
-            .Must(x => Guid.TryParse(x, out _)).WithMessage("Enter a valid Guid ProductId").When(x => x != null);
+            .Must(x => x == null || Guid.TryParse(x, out _)).WithMessage("Enter a valid Guid ProductId");
 
     }
 }

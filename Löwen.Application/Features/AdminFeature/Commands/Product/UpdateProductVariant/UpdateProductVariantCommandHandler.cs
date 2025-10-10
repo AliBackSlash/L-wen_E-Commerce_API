@@ -7,7 +7,7 @@ public class UpdateProductVariantCommandHandler(IProductService productService) 
     public async Task<Result> Handle(UpdateProductVariantCommand command, CancellationToken ct)
     {
 
-        return await productService.UpdateProductVariantAsync(Guid.Parse(command.ProductId),
+        return await productService.UpdateProductVariantAsync(Guid.Parse(command.PVId),
             new Domain.Layer_Dtos.Product.UpdateProductVariantDto
             {
                 ColorId = command.ColorId is null ? null : Guid.Parse(command.ColorId),

@@ -4,14 +4,16 @@ using Löwen.Domain.Abstractions.IServices.IAppUserServices;
 
 namespace Löwen.Application.Features.AuthFeature.Commands.ResetPasswordCommand;
 
-public class ResetPasswordCommandHandler(IAppUserService userService) : ICommandHandler<ResetPasswordCommand, ResetPasswordCommandResponse>
+public class ResetPasswordCommandHandler(IAppUserService userService) : ICommandHandler<ResetPasswordCommand>
 {
-    public async Task<Result<ResetPasswordCommandResponse>> Handle(ResetPasswordCommand command, CancellationToken ct)
+    public async Task<Result> Handle(ResetPasswordCommand command, CancellationToken ct)
     {
-        var ResetResult = await userService.ResetPasswordAsync(command.Email, command.token, command.Password);
-        if (ResetResult.IsFailure)
-            return Result.Failure<ResetPasswordCommandResponse>(ResetResult.Errors);
+        var R_P_token = await userService.GenerateRestPasswordTokenAsync(command.Email);
+        if(R_P_token.IsFailure)
+            return Result.Failure(R_P_token.Errors);
 
-        return Result.Success(new ResetPasswordCommandResponse {token  = ResetResult.Value });
+        return await userService.ResetPasswordAsync(command.Email, R_P_token.Value, command.Password);
+  
+
     }
 }

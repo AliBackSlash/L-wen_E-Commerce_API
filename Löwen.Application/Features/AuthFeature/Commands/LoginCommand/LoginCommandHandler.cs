@@ -13,12 +13,7 @@ public class LoginCommandHandler(IAppUserService userService) : ICommandHandler<
         if(result.IsSuccess)
             return Result.Success(new LoginCommandResponse 
             { 
-                Token = result.Value.Token ,
-                Email = result.Value.Email,
-                UserName = result.Value.UserName,
-                Roles = result.Value.Roles,
-                Expiration = result.Value.Expiration
-               
+                token = result.Value      
             });
 
         return Result.Failure<LoginCommandResponse>(result.Errors);

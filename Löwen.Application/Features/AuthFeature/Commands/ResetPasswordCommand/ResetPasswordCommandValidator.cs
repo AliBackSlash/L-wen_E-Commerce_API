@@ -16,8 +16,6 @@ public class ResetPasswordCommandValidator : AbstractValidator<ResetPasswordComm
             .Matches(@"\d").WithMessage("Password must contain at least one number.")
             .Matches(@"[\W_]").WithMessage("Password must contain at least one special character.");
 
-        RuleFor(x => x.ConfermPassword)
-            .Equal(x => x.Password).WithMessage("Confirm Password must match Password.");
 
     }
 }

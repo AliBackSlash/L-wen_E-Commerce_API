@@ -2,7 +2,7 @@
 
 public class UpdateProductVariantModel
 {
-    public required string ProductId { get;  set; }
+    public required string Id { get;  set; }
     public string? ColorId { get; set; }
     public string? SizeId { get; set; }
     public decimal? Price { get; set; }

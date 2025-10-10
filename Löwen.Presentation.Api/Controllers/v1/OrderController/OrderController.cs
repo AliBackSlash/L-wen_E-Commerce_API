@@ -20,17 +20,8 @@ namespace Löwen.Presentation.Api.Controllers.v1.OrderController
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> AddOrder([FromBody] OrderItemModel model)
-        {
-            if (model is null)
-                return Result.Failure(new Error("api/Order/add-order", "no order items found", ErrorType.BadRequest)).ToActionResult();
-
-            var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            if (string.IsNullOrEmpty(id))
-                return Result.Failure(new Error("api/Order/add-order", "Valid token is required", ErrorType.Unauthorized)).ToActionResult();
-
-            Result result = await sender.Send(new AddOrderCommand(id, model.Items));
-
+        {            
+            Result result = await sender.Send(new AddOrderCommand(model.deliveryId, model.Items));
             return result.ToActionResult();
         }
 
@@ -40,7 +31,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.OrderController
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetOrderDetails([FromBody] UpdateOrderItemModel model)
         {
-            Result result = await sender.Send(new UpdateOrderItemCommand(model.OrderId, model.ProductId, model.Quantity, model.PriceAtPurchase));
+            Result result = await sender.Send(new UpdateOrderItemCommand(model.OrderId,model.deliveryId, model.ProductId, model.Quantity, model.PriceAtPurchase));
 
             return result.ToActionResult();
         }

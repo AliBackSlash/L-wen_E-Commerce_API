@@ -50,6 +50,30 @@ namespace Löwen.Presentation.Api.Controllers.v1.CouponController
             return result.ToActionResult();
         }
 
+
+        [HttpPost("apply-coupon-to-order/{CouponCode},{OrderId}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> ApplyCouponToOrder(string CouponCode,string OrderId)
+        {
+            Result result = await sender.Send(new ApplyCouponToOrderCommand(CouponCode, OrderId));
+
+            return result.ToActionResult();
+        }
+
+        [HttpDelete("remove-coupon-from-order/{CouponCode},{OrderId}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> RemoveCouponFromOrder(string CouponCode, string OrderId)
+        {
+            Result result = await sender.Send(new RemoveCouponFromOrderCommand(CouponCode, OrderId));
+
+            return result.ToActionResult();
+        }
+
+
         [HttpGet("get-coupon-by-id")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
@@ -75,28 +99,6 @@ namespace Löwen.Presentation.Api.Controllers.v1.CouponController
         public async Task<IActionResult> GetAllCouponsPaged()
         {
             throw new NotImplementedException();
-        }
-
-        [HttpPost("apply-coupon-to-order/{CouponCode},{OrderId}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> ApplyCouponToOrder(string CouponCode,string OrderId)
-        {
-            Result result = await sender.Send(new ApplyCouponToOrderCommand(CouponCode, OrderId));
-
-            return result.ToActionResult();
-        }
-
-        [HttpDelete("remove-coupon-from-order/{CouponCode},{OrderId}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> RemoveCouponFromOrder(string CouponCode, string OrderId)
-        {
-            Result result = await sender.Send(new RemoveCouponFromOrderCommand(CouponCode, OrderId));
-
-            return result.ToActionResult();
         }
 
     }
