@@ -3,4 +3,4 @@ using Löwen.Domain.Layer_Dtos.Order;
 
 namespace Löwen.Application.Features.CartFeature.Commands.AddToCart;
 
-public record AddToCartCommand(string UserId,IEnumerable<CartItemsDto> items) : ICommand;
+public record AddToCartCommand(string UserId, string ProductId, short Quantity = 1) : ICommand;

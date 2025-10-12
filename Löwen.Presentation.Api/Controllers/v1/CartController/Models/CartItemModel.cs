@@ -4,5 +4,6 @@ namespace Löwen.Presentation.Api.Controllers.v1.CartController.Models;
 
 public class CartItemModel
 {
-  public IEnumerable<CartItemsDto> items { get; set; } = [];
+    public required string ProductId { get; set; }
+    public short Quantity { get; set; }
 }

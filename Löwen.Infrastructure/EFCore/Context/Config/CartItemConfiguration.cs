@@ -16,7 +16,10 @@ public class CartItemConfiguration : IEntityTypeConfiguration<CartItem>
         builder.Property(ci => ci.CartId).HasColumnType("uuid");
         builder.Property(ci => ci.ProductId).HasColumnType("uuid");
         builder.Property(ci => ci.Quantity).IsRequired().HasColumnType("smallint");
-
+        builder.Property(c => c.CreatedAt)
+              .IsRequired()
+              .HasColumnType("timestamp with time zone")
+              .HasDefaultValueSql("NOW() AT TIME ZONE 'utc'");
         // Relationships
         builder.HasOne(ci => ci.Cart)
                .WithMany(c => c.CartItems)

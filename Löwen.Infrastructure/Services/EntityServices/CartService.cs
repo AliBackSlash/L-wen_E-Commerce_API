@@ -1,29 +1,63 @@
 ﻿using Löwen.Domain.Abstractions.IServices.IEntitiesServices;
+using Löwen.Domain.ConfigurationClasses.ApiSettings;
+using Löwen.Domain.ConfigurationClasses.StaticFilesHelpersClasses;
 using Löwen.Domain.ErrorHandleClasses;
 using Löwen.Domain.Layer_Dtos.Cart;
 using Löwen.Domain.Pagination;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace Löwen.Infrastructure.Services.EntityServices;
 
-public class CartService(AppDbContext _context) : BasRepository<Cart, Guid>(_context), ICartService
+public class CartService(AppDbContext _context,IOptions<StaticFilesSettings> FilesSettings ,IOptions<ApiSettings> apiSettings) : BasRepository<Cart, Guid>(_context), ICartService
 {
-    public Task<PagedResult<GetCartItemDto>> GetCartForUser(Guid userId, CancellationToken ct)
+    public async Task<Result> AddToCartAsync(CartItem cartItem, CancellationToken ct)
     {
-        //var query = from c in  _context.Carts
-        //            join ci in _context.CartItems on c.Id equals ci.CartId
-        //            join p in _context.Products on ci.ProductId equals p.Id
-        //           // join pi in _context.ProductImages on p.Id equals pi.ProductId
-        //            join i in _context.Images on pi.ImageId equals i.Id orderby i.IsMain descending 
-        //            where c.UserId == userId 
-        //            select new
-        //            {
-        //                ProductImage = i.
-        //            }
-                    throw new NotImplementedException();
+        try
+        {
+            await _context.CartItems.AddAsync(cartItem, ct);
+            await _context.SaveChangesAsync(ct);
+            return Result.Success();
+        }
+        catch (Exception ex)
+        {
+            return Result.Failure(new Error($"ICartService.AddToCart", ex.Message, ErrorType.InternalServer));
+        }
     }
 
-    public async Task<bool> IsFound(Guid UserId, CancellationToken ct) => await _dbSet.AnyAsync(t => t.UserId == UserId, ct);
+    public async Task<Result<PagedResult<GetCartItemDto>>> GetCartForUser(Guid userId,PaginationParams pram, CancellationToken ct)
+    {
+        //make sure that return the main image only and one varaint 
+        var qury = from cart in _context.Carts join cartItem in _context.CartItems on cart.Id equals cartItem.CartId
+                   join product in _context.Products on cartItem.ProductId equals product.Id
+                   join image in _context.Images on product.Id equals image.ProductId 
+                   join productVariant in _context.ProductVariants on product.Id equals productVariant.ProductId
+                   where cart.UserId == userId
+                   orderby cartItem.CreatedAt descending
+                   select new
+                   {
+                       ProductName = product.Name,
+                       ProductImageUrl = image.Path,
+                       productVariant.Price,
+                       cartItem.Quantity
+                   };
+       
+        var totalCount = await qury.CountAsync();
+        var itens = await qury.Select(i => new GetCartItemDto
+        {
+            ProductName = i.ProductName,
+            ProductImageUrl =  i.ProductImageUrl,
+            Price = i.Price,
+            Quantity = i.Quantity,
+        }).Skip(pram.Skip).Take(pram.Take).ToListAsync();
+
+        return Result.Success(PagedResult<GetCartItemDto>.Create(itens, totalCount, pram.PageNumber, pram.Take));
+    }
+
+    public async Task<Guid?> GetCartIdByUserId(Guid userId, CancellationToken ct)
+        => await _dbSet.Where(x => x.UserId == userId).Select(x => x.Id).FirstOrDefaultAsync(ct);
+
+    public async Task<bool> IsUserHasCart(Guid UserId, CancellationToken ct) => await _dbSet.AnyAsync(t => t.UserId == UserId, ct);
 
     public async Task<Result> RemoveCartItem(Guid cartId, Guid productId, CancellationToken ct)
     {
@@ -63,4 +97,5 @@ public class CartService(AppDbContext _context) : BasRepository<Cart, Guid>(_con
             return Result.Failure(new Error($"ICartService.UpdateCartItemQuantity", ex.Message, ErrorType.InternalServer));
         }
     }
+
 }

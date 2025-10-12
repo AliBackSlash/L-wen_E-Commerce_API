@@ -1,0 +1,70 @@
+@Löwen.Api_HostAddress = https://localhost:7197/api/Coupon
+@token = your_jwt_token_here
+
+### Add coupon
+POST {{Löwen.Api_HostAddress}}/add-coupon
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "code": "DISCOUNT25",
+  "description": "25% off on all products",
+  "discountPercentage": 25,
+  "validFrom": "2025-10-01T00:00:00Z",
+  "validTo": "2025-10-31T23:59:59Z",
+  "isActive": true
+}
+
+###
+
+### Update coupon
+PUT {{Löwen.Api_HostAddress}}/update-coupon
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "id": "b5b3a1e8-91ab-4d6c-981a-6e612ccf0455",
+  "code": "DISCOUNT25",
+  "description": "Updated 25% discount for October",
+  "discountPercentage": 25,
+  "validFrom": "2025-10-01T00:00:00Z",
+  "validTo": "2025-10-31T23:59:59Z",
+  "isActive": true
+}
+
+###
+
+### Remove coupon
+DELETE {{Löwen.Api_HostAddress}}/remove-coupon/b5b3a1e8-91ab-4d6c-981a-6e612ccf0455
+Authorization: Bearer {{token}}
+
+###
+
+### Apply coupon to order
+POST {{Löwen.Api_HostAddress}}/apply-coupon-to-order/DISCOUNT25,9f5d3a2e-4b6c-8e9f-0a1b-2c3d4e5f6a7b
+Authorization: Bearer {{token}}
+
+###
+
+### Remove coupon from order
+DELETE {{Löwen.Api_HostAddress}}/remove-coupon-from-order/DISCOUNT25,9f5d3a2e-4b6c-8e9f-0a1b-2c3d4e5f6a7b
+Authorization: Bearer {{token}}
+
+###
+
+### Get coupon by ID
+GET {{Löwen.Api_HostAddress}}/get-coupon-by-id?id=b5b3a1e8-91ab-4d6c-981a-6e612ccf0455
+Authorization: Bearer {{token}}
+
+###
+
+### Get coupon by code
+GET {{Löwen.Api_HostAddress}}/get-coupon-by-code?code=DISCOUNT25
+Authorization: Bearer {{token}}
+
+###
+
+### Get all coupons (paged)
+GET {{Löwen.Api_HostAddress}}/get-all-coupons-paged?pageNumber=1&pageSize=10
+Authorization: Bearer {{token}}
+# For more info on HTTP files go to https://aka.ms/vs/httpfile

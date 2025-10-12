@@ -5,7 +5,6 @@ public class Cart
 {
     public Guid Id { get; set; }
     public Guid UserId { get; set; }
-    public DateTime CreatedAt { get; set; }
 
     // Navigation properties
     public ICollection<CartItem> CartItems { get; set; } = new List<CartItem>();

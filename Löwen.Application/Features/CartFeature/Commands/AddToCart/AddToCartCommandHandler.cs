@@ -5,27 +5,25 @@ internal class AddToCartCommandHandler(ICartService cartService) : ICommandHandl
 {
     public async Task<Result> Handle(AddToCartCommand command, CancellationToken ct)
     {
+        
         Guid userId = Guid.Parse(command.UserId);
-        if (!await cartService.IsFound(userId, ct))
+        if (!await cartService.IsUserHasCart(userId, ct))
             await cartService.AddAsync(new Cart
             {
                 UserId = userId,
 
             }, ct);
 
-        var createResult = await cartService.AddAsync(new Cart
-        {
-            UserId = Guid.Parse(command.UserId),
-            CartItems = command.items.Select(i => new CartItem
-            {
-                ProductId = i.ProductId,
-                Quantity = i.Quantity,
-            }).ToList()
+        var cartId = await cartService.GetCartIdByUserId(userId, ct);
+        if(cartId is null)
+            return Result.Failure(Error.NotFound("ICartService.AddToCart",$"Cart for user id {userId} not found"));
+
+
+        return await cartService.AddToCartAsync(new CartItem {
+            CartId = cartId.Value,
+            ProductId = Guid.Parse(command.ProductId),
+            Quantity = command.Quantity
         }, ct);
 
-        if (createResult.IsFailure)
-            return Result.Failure(createResult.Errors);
-
-        return Result.Success();
     }
 }

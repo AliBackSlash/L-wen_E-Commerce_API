@@ -1,6 +1,7 @@
 ﻿using Löwen.Application.Features.CartFeature.Commands.AddToCart;
 using Löwen.Application.Features.CartFeature.Commands.RemoveFromCartItem;
 using Löwen.Application.Features.CartFeature.Commands.UpdateCartItemQuantity;
+using Löwen.Application.Features.CartFeature.Queries.GetCartByUser;
 using Löwen.Domain.Entities;
 using Löwen.Presentation.Api.Controllers.v1.CartController.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -23,7 +24,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.CartController
             if (string.IsNullOrEmpty(id))
                 return Result.Failure(new Error("api/users/get-user-info", "Valid token is required", ErrorType.Unauthorized)).ToActionResult();
 
-            Result result = await sender.Send(new AddToCartCommand(id, model.items));
+            Result result = await sender.Send(new AddToCartCommand(id, model.ProductId,model.Quantity));
 
             return result.ToActionResult();
         }
@@ -50,13 +51,19 @@ namespace Löwen.Presentation.Api.Controllers.v1.CartController
             return result.ToActionResult();
         }
 
-        [HttpGet("get-cart-by-user")]
+        [HttpGet("get-cart-by-user/{PageNumber},{PageSize}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetCartByUser()
+        public async Task<IActionResult> GetCartByUser(int PageNumber, byte PageSize)
         {
-            throw new NotImplementedException();
+            var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (string.IsNullOrEmpty(id))
+                return Result.Failure(new Error("api/users/get-user-info", "Valid token is required", ErrorType.Unauthorized)).ToActionResult();
+            Result<PagedResult<GetCartByUserQueryresponse>> result = await sender.Send(new GetCartByUserQuery(id, PageNumber, PageSize));
+
+            return result.ToActionResult();
         }
 
     }

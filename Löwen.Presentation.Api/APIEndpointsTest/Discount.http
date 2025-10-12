@@ -1,0 +1,65 @@
+@Löwen.Api_HostAddress = https://localhost:7197/api/Discount
+@token = your_jwt_token_here
+
+### Add discount
+POST {{Löwen.Api_HostAddress}}/add-discount
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "code": "SUMMER2025",
+  "description": "20% off on all summer products",
+  "discountType": "Percentage",
+  "discountValue": 20,
+  "startDate": "2025-06-01T00:00:00Z",
+  "endDate": "2025-09-01T00:00:00Z",
+  "isActive": true
+}
+
+###
+
+### Update discount
+PUT {{Löwen.Api_HostAddress}}/update-discount
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "id": "b5b3a1e8-91ab-4d6c-981a-6e612ccf0455",
+  "code": "SUMMER25",
+  "description": "25% off updated promo",
+  "discountType": "Percentage",
+  "discountValue": 25,
+  "startDate": "2025-06-15T00:00:00Z",
+  "endDate": "2025-09-15T00:00:00Z",
+  "isActive": true
+}
+
+###
+
+### Remove discount
+DELETE {{Löwen.Api_HostAddress}}/remove-discount/b5b3a1e8-91ab-4d6c-981a-6e612ccf0455
+Authorization: Bearer {{token}}
+
+###
+
+### Get discount by ID
+GET {{Löwen.Api_HostAddress}}/get-discount-by-id/b5b3a1e8-91ab-4d6c-981a-6e612ccf0455
+Authorization: Bearer {{token}}
+
+###
+
+### Get all discounts (paged)
+GET {{Löwen.Api_HostAddress}}/get-all-discounts-paged/1,10
+Authorization: Bearer {{token}}
+
+###
+
+### Assign discount to product
+POST {{Löwen.Api_HostAddress}}/assign-discount-to-product/8a56d232-5b5e-4e3d-9df5-61c92d36a77e,9f6b2031-bc6c-4f58-b39c-8f6db7bb4bde
+Authorization: Bearer {{token}}
+
+###
+
+### Remove discount from product
+DELETE {{Löwen.Api_HostAddress}}/remove-discount-from-product/8a56d232-5b5e-4e3d-9df5-61c92d36a77e,9f6b2031-bc6c-4f58-b39c-8f6db7bb4bde
+Authorization: Bearer {{token}}

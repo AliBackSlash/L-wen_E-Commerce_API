@@ -1,0 +1,30 @@
+@Löwen.Api_HostAddress = https://localhost:7197/api/Cart
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImVkNDExZmM5LTdlZGMtNDM4Yy04MmRkLTcwZWM3OTAwMDY4MSIsImp0aSI6IjQyNjNjMzgyLTk4YTktNDQ5Ni05NGZjLWZkZDljMGUyMTQ5NiIsImVtYWlsIjoiYWUxMzc4MDMyQGdtYWlsLmNvbSIsInVuaXF1ZV9uYW1lIjoiYWxpLTAxc2RmIiwicm9sZXMiOiJVc2VyIiwiZXhwIjoxNzYwMjc1ODMyLCJpc3MiOiJMb2NhbEhvc3QiLCJhdWQiOiJMb2NhbEhvc3QifQ.1dd0v6QtOd01HvPoiBXbmEsjYQwBLKQ5H50-CWq6KfQ
+
+### Add item to cart
+POST {{Löwen.Api_HostAddress}}/add-to-cart
+Content-Type: application/json
+Authorization: Bearer {{token}}
+{
+  "productId" : "3a61f106-7610-43ad-bb32-b5ec5dd92305",
+  "quantity" : 2
+}
+
+
+###
+
+### Remove item from cart
+DELETE {{Löwen.Api_HostAddress}}/remove-from-cart/b5b3a1e8-91ab-4d6c-981a-6e612ccf0455,8a56d232-5b5e-4e3d-9df5-61c92d36a77e
+Authorization: Bearer {{token}}
+
+###
+
+### Update cart item quantity
+PUT {{Löwen.Api_HostAddress}}/update-cart-item-quantity/b5b3a1e8-91ab-4d6c-981a-6e612ccf0455,8a56d232-5b5e-4e3d-9df5-61c92d36a77e,5
+Authorization: Bearer {{token}}
+
+###
+
+### Get cart by user (paginated)
+GET {{Löwen.Api_HostAddress}}/get-cart-by-user/1,1
+Authorization: Bearer {{token}}

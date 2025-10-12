@@ -1,0 +1,33 @@
+@Löwen.Api_HostAddress = https://localhost:7197/api/Notification
+@token = your_jwt_token_here
+
+### Create notification
+POST {{Löwen.Api_HostAddress}}/create-notification
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "userId": "8a56d232-5b5e-4e3d-9df5-61c92d36a77e",
+  "title": "New Message",
+  "message": "You have a new message from admin.",
+  "isRead": false,
+  "createdAt": "2025-10-12T12:30:00Z"
+}
+
+###
+
+### Get notification by ID
+GET {{Löwen.Api_HostAddress}}/get-notification-by-id?id=b5b3a1e8-91ab-4d6c-981a-6e612ccf0455
+Authorization: Bearer {{token}}
+
+###
+
+### Get notifications by user
+GET {{Löwen.Api_HostAddress}}/get-notifications-by-user?userId=8a56d232-5b5e-4e3d-9df5-61c92d36a77e
+Authorization: Bearer {{token}}
+
+###
+
+### Delete notification
+DELETE {{Löwen.Api_HostAddress}}/delete-notification?id=b5b3a1e8-91ab-4d6c-981a-6e612ccf0455
+Authorization: Bearer {{token}}

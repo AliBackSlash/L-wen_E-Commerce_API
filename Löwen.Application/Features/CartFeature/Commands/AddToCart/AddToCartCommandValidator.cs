@@ -7,8 +7,8 @@ public class AddToCartCommandValidator : AbstractValidator<AddToCartCommand>
     RuleFor(x => x.UserId)
         .NotEmpty().WithMessage("Id is required")
         .Must(x => Guid.TryParse(x, out _)).WithMessage("Enter a valid Guid user id");
-
-    RuleFor(x => x.items)
-        .Must(items => items != null && items.Any()).WithMessage("At least one item is required in the cart");
+    RuleFor(x => x.ProductId)
+        .NotEmpty().WithMessage("ProductId is required")
+        .Must(x => Guid.TryParse(x, out _)).WithMessage("Enter a valid Guid ProductId");
   }
 }

@@ -2,6 +2,8 @@
 
 public class GetCartItemDto
 {
-    public required string ProductImage { get; set; }
+    public required string ProductImageUrl { get; set; }
+    public required string ProductName { get; set; }
+    public decimal Price { get; set; }
     public short Quantity { get; set; }
 }

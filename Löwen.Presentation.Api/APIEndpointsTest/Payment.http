@@ -1,0 +1,33 @@
+@Löwen.Api_HostAddress = https://localhost:7197/api/Payment
+@token = your_jwt_token_here
+
+### Add payment
+POST {{Löwen.Api_HostAddress}}/add-payment
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "orderId": "b5b3a1e8-91ab-4d6c-981a-6e612ccf0455",
+  "amount": 250.00,
+  "paymentMethod": "CreditCard",
+  "transactionId": "txn_123456789",
+  "status": "Pending"
+}
+
+###
+
+### Get payment by ID
+GET {{Löwen.Api_HostAddress}}/get-payment-by-id?id=b5b3a1e8-91ab-4d6c-981a-6e612ccf0455
+Authorization: Bearer {{token}}
+
+###
+
+### Get payments by order
+GET {{Löwen.Api_HostAddress}}/get-payments-by-order?orderId=4eeb9e61-9ff1-4b65-8121-1c5a3cb6d3a1
+Authorization: Bearer {{token}}
+
+###
+
+### Update payment status
+PUT {{Löwen.Api_HostAddress}}/update-payment-status/b5b3a1e8-91ab-4d6c-981a-6e612ccf0455,Completed
+Authorization: Bearer {{token}}
