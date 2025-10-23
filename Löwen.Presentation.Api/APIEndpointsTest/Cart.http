@@ -1,12 +1,12 @@
 @Löwen.Api_HostAddress = https://localhost:7197/api/Cart
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImVkNDExZmM5LTdlZGMtNDM4Yy04MmRkLTcwZWM3OTAwMDY4MSIsImp0aSI6IjQyNjNjMzgyLTk4YTktNDQ5Ni05NGZjLWZkZDljMGUyMTQ5NiIsImVtYWlsIjoiYWUxMzc4MDMyQGdtYWlsLmNvbSIsInVuaXF1ZV9uYW1lIjoiYWxpLTAxc2RmIiwicm9sZXMiOiJVc2VyIiwiZXhwIjoxNzYwMjc1ODMyLCJpc3MiOiJMb2NhbEhvc3QiLCJhdWQiOiJMb2NhbEhvc3QifQ.1dd0v6QtOd01HvPoiBXbmEsjYQwBLKQ5H50-CWq6KfQ
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImVkNDExZmM5LTdlZGMtNDM4Yy04MmRkLTcwZWM3OTAwMDY4MSIsImp0aSI6ImZkMzA4YWMwLWY5NzEtNDNjOC1iZTA4LTBkZDU3ZDMzNTZjZiIsImVtYWlsIjoiYWUxMzc4MDMyQGdtYWlsLmNvbSIsInVuaXF1ZV9uYW1lIjoiYWxpLTAxc2RmIiwicm9sZXMiOiJVc2VyIiwiZXhwIjoxNzYxMjUxNTAxLCJpc3MiOiJMb2NhbEhvc3QiLCJhdWQiOiJMb2NhbEhvc3QifQ._UfB4_vKLQV2jTrebKpjkK0ML2zPpblZQCQbhL2AtwQ
 
 ### Add item to cart
 POST {{Löwen.Api_HostAddress}}/add-to-cart
 Content-Type: application/json
 Authorization: Bearer {{token}}
 {
-  "productId" : "3a61f106-7610-43ad-bb32-b5ec5dd92305",
+  "productId" : "4135429f-ad84-40bc-a232-5cc7240e378a",
   "quantity" : 2
 }
 
@@ -26,5 +26,5 @@ Authorization: Bearer {{token}}
 ###
 
 ### Get cart by user (paginated)
-GET {{Löwen.Api_HostAddress}}/get-cart-by-user/1,1
+GET {{Löwen.Api_HostAddress}}/get-cart-by-user/1,2
 Authorization: Bearer {{token}}

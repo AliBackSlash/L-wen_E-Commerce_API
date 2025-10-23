@@ -27,31 +27,38 @@ public class CartService(AppDbContext _context,IOptions<StaticFilesSettings> Fil
 
     public async Task<Result<PagedResult<GetCartItemDto>>> GetCartForUser(Guid userId,PaginationParams pram, CancellationToken ct)
     {
-        //make sure that return the main image only and one varaint 
-        var qury = from cart in _context.Carts join cartItem in _context.CartItems on cart.Id equals cartItem.CartId
-                   join product in _context.Products on cartItem.ProductId equals product.Id
-                   join image in _context.Images on product.Id equals image.ProductId 
-                   join productVariant in _context.ProductVariants on product.Id equals productVariant.ProductId
-                   where cart.UserId == userId
-                   orderby cartItem.CreatedAt descending
-                   select new
-                   {
-                       ProductName = product.Name,
-                       ProductImageUrl = image.Path,
-                       productVariant.Price,
-                       cartItem.Quantity
-                   };
-       
-        var totalCount = await qury.CountAsync();
-        var itens = await qury.Select(i => new GetCartItemDto
+        //make sure that return the main image only and one ProductVariants
+        var query = from cart in _context.Carts
+                    join cartItem in _context.CartItems on cart.Id equals cartItem.CartId
+                    join product in _context.Products on cartItem.ProductId equals product.Id
+                    where cart.UserId == userId
+                    orderby cartItem.CreatedAt descending
+                    select new
+                    {
+                        ProductName = product.Name,
+                        ProductImageUrl = (from image in _context.Images
+                                           where product.Id == image.ProductId
+                                           where image.IsMain == true
+                                           select image.Path)
+                                            .Take(1).Single(),
+                        Price = (from productVariant in _context.ProductVariants
+                                 where product.Id == productVariant.ProductId
+                                 select productVariant.Price).Take(1).Single(),
+                        cartItem.Quantity
+                    };
+
+
+        var s = query.ToQueryString();
+        var totalCount = await query.CountAsync();
+        var items = await query.Select(i => new GetCartItemDto
         {
             ProductName = i.ProductName,
-            ProductImageUrl =  i.ProductImageUrl,
+            ProductImageUrl = Path.Combine( FilesSettings.Value.ProductImages_FileName , i.ProductImageUrl),
             Price = i.Price,
             Quantity = i.Quantity,
         }).Skip(pram.Skip).Take(pram.Take).ToListAsync();
 
-        return Result.Success(PagedResult<GetCartItemDto>.Create(itens, totalCount, pram.PageNumber, pram.Take));
+        return Result.Success(PagedResult<GetCartItemDto>.Create(items, totalCount, pram.PageNumber, pram.Take));
     }
 
     public async Task<Guid?> GetCartIdByUserId(Guid userId, CancellationToken ct)

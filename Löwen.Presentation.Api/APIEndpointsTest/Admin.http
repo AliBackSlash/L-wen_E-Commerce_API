@@ -1,5 +1,5 @@
 @Löwen.Api_HostAddress = https://localhost:7197
-@tken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImVkNDExZmM5LTdlZGMtNDM4Yy04MmRkLTcwZWM3OTAwMDY4MSIsImp0aSI6IjZhZjJjZTljLTNhYTctNGYyZS1iNDkzLTY3MjE0MmFlNDljOSIsImVtYWlsIjoiYWUxMzc4MDMyQGdtYWlsLmNvbSIsInVuaXF1ZV9uYW1lIjoiYWxpLTAxc2RmIiwicm9sZXMiOiJVc2VyIiwiZXhwIjoxNzYwMjcyNTA2LCJpc3MiOiJMb2NhbEhvc3QiLCJhdWQiOiJMb2NhbEhvc3QifQ.VSErcSr05SSP2JyLR0XuvLHpVu_ssJJlPlXR81L78T0
+@tken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImVkNDExZmM5LTdlZGMtNDM4Yy04MmRkLTcwZWM3OTAwMDY4MSIsImp0aSI6IjFiZmMyMTBkLTNiYzUtNDdlYS1hNzZhLWM2ZDJiMmIyYTVhMiIsImVtYWlsIjoiYWUxMzc4MDMyQGdtYWlsLmNvbSIsInVuaXF1ZV9uYW1lIjoiYWxpLTAxc2RmIiwicm9sZXMiOiJVc2VyIiwiZXhwIjoxNzYxMjQ5MjU3LCJpc3MiOiJMb2NhbEhvc3QiLCJhdWQiOiJMb2NhbEhvc3QifQ.sC80ZtfifUN9U5lRTgxA0HGcOyrcyGE4wB0q52HLfWk
 
 
 //Admin Endpoints
@@ -93,7 +93,7 @@ GET {{Löwen.Api_HostAddress}}/api/Admin/get-user-by-id/97eece48-71cb-4f31-b7be-b
 ###
 GET {{Löwen.Api_HostAddress}}/api/Admin/get-user-by-email/ae1378032@gmail3.com
 ###
-GET {{Löwen.Api_HostAddress}}/api/Admin/get-users-paged/3,2
+GET {{Löwen.Api_HostAddress}}/api/Admin/get-users-paged/1,2
 
 
 ###

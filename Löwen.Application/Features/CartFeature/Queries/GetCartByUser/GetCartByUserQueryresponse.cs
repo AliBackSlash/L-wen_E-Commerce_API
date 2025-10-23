@@ -7,8 +7,6 @@ namespace Löwen.Application.Features.CartFeature.Queries.GetCartByUser;
 
 public class GetCartByUserQueryresponse
 {
-    private static readonly IOptions<StaticFilesSettings> FilesSettings;
-    private static readonly IOptions<ApiSettings> apiSettings;
     public required string ProductImageUrl {  get; set; }
     public required string ProductName {  get; set; }
     public decimal Price { get; set; }
@@ -20,7 +18,7 @@ public class GetCartByUserQueryresponse
     public static GetCartByUserQueryresponse map(GetCartItemDto dto)
         => new GetCartByUserQueryresponse
         { 
-            ProductImageUrl = apiSettings.Value.BaseUrl + FilesSettings.Value.ProductImages_FileName + dto.ProductImageUrl,
+            ProductImageUrl = dto.ProductImageUrl,
             ProductName = dto.ProductName,
             Price = dto.Price,
             Quantity = dto.Quantity,

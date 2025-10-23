@@ -17,7 +17,7 @@ Content-Type: application/json
   "gender": "M"
 }
 ###
-POST {{Löwen.Api_HostAddress}}/api/RootAdmin/assign-role/7d68f512-05e3-49c6-8cc9-5fbeed6b00fc,2
+POST {{Löwen.Api_HostAddress}}/api/RootAdmin/assign-role/f3c81270-9e40-40e9-96dd-d60931699583,2
 
 ###
 DELETE {{Löwen.Api_HostAddress}}/api/RootAdmin/Remove-Role-From-User-admin/7d68f512-05e3-49c6-8cc9-5fbeed6b00fc,2

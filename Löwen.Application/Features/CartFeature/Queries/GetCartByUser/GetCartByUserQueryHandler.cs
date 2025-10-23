@@ -15,6 +15,7 @@ internal class GetCartByUserQueryHandler(ICartService cartService, IOptions<Pagi
             {
                 maxPageSize = options.Value.maxPageSize,
                 PageNumber = command.PageNumber,
+                Take = command.PageSize,
             }, ct);
 
         return Result.Success(PagedResult<GetCartByUserQueryresponse>.Create(GetCartByUserQueryresponse.map(items.Value.Items)
