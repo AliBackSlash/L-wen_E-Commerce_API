@@ -1,12 +1,4 @@
-﻿using Löwen.Application.Features.CouponFeature.Commands.AddCoupon;
-using Löwen.Application.Features.CouponFeature.Commands.ApplyCouponToOrder;
-using Löwen.Application.Features.CouponFeature.Commands.RemoveCoupon;
-using Löwen.Application.Features.CouponFeature.Commands.RemoveCouponFromOrder;
-using Löwen.Application.Features.CouponFeature.Commands.UpdateCoupon;
-using Löwen.Domain.Entities;
-using Löwen.Presentation.Api.Controllers.v1.CouponController.Models;
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
+﻿
 
 namespace Löwen.Presentation.Api.Controllers.v1.CouponController
 {
@@ -33,8 +25,8 @@ namespace Löwen.Presentation.Api.Controllers.v1.CouponController
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> UpdateCoupon([FromBody] UpdateCouponModel model)
         {
-            Result result = await sender.Send(new UpdateCouponCommand(model.CouponId,model.Code, model.DiscountType,
-                                                 model.DiscountValue, model.StartDate, model.EndDate, model.IsActive, model.UsageLimit));
+            Result result = await sender.Send(new UpdateCouponCommand(model.CouponId,model.Code, model.DiscountType,model.DiscountValue,
+                model.StartDate, model.EndDate, model.IsActive, model.UsageLimit));
 
             return result.ToActionResult();
         }
@@ -74,31 +66,37 @@ namespace Löwen.Presentation.Api.Controllers.v1.CouponController
         }
 
 
-        [HttpGet("get-coupon-by-id")]
+        [HttpGet("get-coupon-by-id/{Id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetCouponById()
+        public async Task<IActionResult> GetCouponById(string Id)
         {
-            throw new NotImplementedException();
+            Result<GetCouponQueryResponse> result = await sender.Send(new GetCouponByIdQuery(Id));
+
+            return result.ToActionResult();
         }
 
-        [HttpGet("get-coupon-by-code")]
+        [HttpGet("get-coupon-by-code/{Code}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetCouponByCode()
+        public async Task<IActionResult> GetCouponByCode(string Code)
         {
-            throw new NotImplementedException();
+            Result<GetCouponQueryResponse> result = await sender.Send(new GetCouponByCodeQuery(Code));
+
+            return result.ToActionResult();
         }
 
-        [HttpGet("get-all-coupons-paged")]
+        [HttpGet("get-all-coupons-paged/{PageNumber},{PageSize}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetAllCouponsPaged()
+        public async Task<IActionResult> GetAllCouponsPaged(int PageNumber, byte PageSize)
         {
-            throw new NotImplementedException();
+            Result<PagedResult<GetCouponQueryResponse>> result = await sender.Send(new GetAllCouponsQuery(PageNumber, PageSize));
+
+            return result.ToActionResult();
         }
 
     }

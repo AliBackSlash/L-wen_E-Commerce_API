@@ -7,12 +7,13 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "code": "DISCOUNT25",
-  "description": "25% off on all products",
-  "discountPercentage": 25,
-  "validFrom": "2025-10-01T00:00:00Z",
-  "validTo": "2025-10-31T23:59:59Z",
-  "isActive": true
+  "code": "DISCOUNT35",
+  "DiscountType": 1,
+  "DiscountValue": 25,
+  "StartDate": "2025-10-01T00:00:00Z",
+  "EndDate": "2025-10-31T23:59:59Z",
+  "isActive": true,
+  "usageLimit" : 100
 }
 
 ###
@@ -23,19 +24,20 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "id": "b5b3a1e8-91ab-4d6c-981a-6e612ccf0455",
+  "CouponId" : "1ded628d-c3eb-4f00-a4a2-64f9a3ee8820",
   "code": "DISCOUNT25",
-  "description": "Updated 25% discount for October",
-  "discountPercentage": 25,
-  "validFrom": "2025-10-01T00:00:00Z",
-  "validTo": "2025-10-31T23:59:59Z",
-  "isActive": true
+  "DiscountType": 1,
+  "DiscountValue": 244,
+  "StartDate": "2025-10-01T00:00:00Z",
+  "EndDate": "2025-10-31T23:59:59Z",
+  "isActive": true,
+  "usageLimit" : 100
 }
 
 ###
 
 ### Remove coupon
-DELETE {{Löwen.Api_HostAddress}}/remove-coupon/b5b3a1e8-91ab-4d6c-981a-6e612ccf0455
+DELETE {{Löwen.Api_HostAddress}}/remove-coupon/1ded628d-c3eb-4f00-a4a2-64f9a3ee8820
 Authorization: Bearer {{token}}
 
 ###
@@ -53,18 +55,17 @@ Authorization: Bearer {{token}}
 ###
 
 ### Get coupon by ID
-GET {{Löwen.Api_HostAddress}}/get-coupon-by-id?id=b5b3a1e8-91ab-4d6c-981a-6e612ccf0455
-Authorization: Bearer {{token}}
+GET {{Löwen.Api_HostAddress}}/get-coupon-by-id/c5ba66ab-7c16-41a6-801c-8b6669341e5b
 
 ###
 
 ### Get coupon by code
-GET {{Löwen.Api_HostAddress}}/get-coupon-by-code?code=DISCOUNT25
+GET {{Löwen.Api_HostAddress}}/get-coupon-by-code/DISCOUNT15
 Authorization: Bearer {{token}}
 
 ###
 
 ### Get all coupons (paged)
-GET {{Löwen.Api_HostAddress}}/get-all-coupons-paged?pageNumber=1&pageSize=10
+GET {{Löwen.Api_HostAddress}}/get-all-coupons-paged/1,2
 Authorization: Bearer {{token}}
 # For more info on HTTP files go to https://aka.ms/vs/httpfile

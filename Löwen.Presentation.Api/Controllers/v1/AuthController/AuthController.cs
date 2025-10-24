@@ -1,10 +1,4 @@
-﻿using Löwen.Application.Features.AuthFeature.Commands.ConfirmEmailCommand;
-using Löwen.Application.Features.AuthFeature.Commands.LoginCommand;
-using Löwen.Application.Features.AuthFeature.Commands.RegisterCommand;
-using Löwen.Application.Features.AuthFeature.Commands.ResetPasswordCommand;
-using Löwen.Presentation.API.Controllers.v1.AuthController.Models;
-using Microsoft.AspNetCore.Authorization;
-
+﻿
 namespace Löwen.Presentation.API.Controllers.v1.AuthController
 {
     [Route("api/Auth")]

@@ -11,7 +11,7 @@ internal class UpdateCouponCommandHandler(ICouponService couponService) : IComma
 
         coupon.DiscountType = command.DiscountType ?? coupon.DiscountType;
         coupon.DiscountValue = command.DiscountValue ?? coupon.DiscountValue;
-        coupon.Code = command.CouponId ?? coupon.Code;
+        coupon.Code = command.Code ?? coupon.Code;
         coupon.StartDate = command.StartDate ?? coupon.StartDate;
         coupon.EndDate = command.EndDate ?? coupon.EndDate;
         coupon.IsActive = command.IsActive ?? coupon.IsActive;

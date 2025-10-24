@@ -522,6 +522,7 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
                 PhoneNumber = u.PhoneNumber,
                 IsActive = !u.IsDeleted
             })
+            .AsNoTracking()
             .ToListAsync();
 
         return Result.Success(PagedResult<GetUsersResponseDto>.Create(users, totalCount, Params.PageNumber, Params.Take));

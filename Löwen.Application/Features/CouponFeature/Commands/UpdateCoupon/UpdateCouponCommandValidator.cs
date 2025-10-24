@@ -4,14 +4,14 @@ public class UpdateCouponCommandValidator : AbstractValidator<UpdateCouponComman
 {
   public UpdateCouponCommandValidator()
   {
-        RuleFor(x => x.CouponId)
+        RuleFor(x => x.Id)
        .NotEmpty().WithMessage("CouponId is required")
        .Must(x => Guid.TryParse(x, out _)).WithMessage("Enter a valid Guid CouponId");
 
-        RuleFor(c => c.CouponId)
-            .NotEmpty().When(c => c.CouponId != null)
+        RuleFor(c => c.Code)
+            .NotEmpty().When(c => c.Code != null)
             .WithMessage("Coupon code is required.")
-            .MaximumLength(50).When(c => c.CouponId != null)
+            .MaximumLength(50).When(c => c.Code != null)
             .WithMessage("Coupon code must not exceed 50 characters.");
 
         RuleFor(c => c.DiscountType)

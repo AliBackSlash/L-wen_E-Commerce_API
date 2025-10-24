@@ -18,8 +18,8 @@ internal class GetCartByUserQueryHandler(ICartService cartService, IOptions<Pagi
                 Take = command.PageSize,
             }, ct);
 
-        return Result.Success(PagedResult<GetCartByUserQueryresponse>.Create(GetCartByUserQueryresponse.map(items.Value.Items)
-            , items.Value.TotalPages
-            , items.Value.PageNumber, items.Value.PageSize));
+        return Result.Success(PagedResult<GetCartByUserQueryresponse>.Create(GetCartByUserQueryresponse.map(items.Items)
+            , items.TotalCount
+            , items.PageNumber, items.PageSize));
     }
 }

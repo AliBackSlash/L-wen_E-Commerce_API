@@ -11,7 +11,7 @@ public interface ICartService : IBasRepository<Cart,Guid>
     Task<Guid?> GetCartIdByUserId(Guid userId, CancellationToken ct);
     Task<Result> RemoveCartItem(Guid cartId, Guid productId, CancellationToken ct);
     Task<Result> UpdateCartItemQuantity(Guid cartId, Guid productId,short quantity, CancellationToken ct);
-    Task<Result<PagedResult<GetCartItemDto>>> GetCartForUser(Guid userId,PaginationParams parm, CancellationToken ct);
+    Task<PagedResult<GetCartItemDto>> GetCartForUser(Guid userId,PaginationParams parm, CancellationToken ct);
 
 
 }

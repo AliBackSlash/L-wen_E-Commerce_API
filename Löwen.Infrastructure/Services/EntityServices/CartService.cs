@@ -9,7 +9,8 @@ using Microsoft.Extensions.Options;
 
 namespace Löwen.Infrastructure.Services.EntityServices;
 
-public class CartService(AppDbContext _context,IOptions<StaticFilesSettings> FilesSettings ,IOptions<ApiSettings> apiSettings) : BasRepository<Cart, Guid>(_context), ICartService
+public class CartService(AppDbContext _context,IOptions<StaticFilesSettings> FilesSettings ,IOptions<ApiSettings> apiSettings)
+    : BasRepository<Cart, Guid>(_context), ICartService
 {
     public async Task<Result> AddToCartAsync(CartItem cartItem, CancellationToken ct)
     {
@@ -25,7 +26,7 @@ public class CartService(AppDbContext _context,IOptions<StaticFilesSettings> Fil
         }
     }
 
-    public async Task<Result<PagedResult<GetCartItemDto>>> GetCartForUser(Guid userId,PaginationParams pram, CancellationToken ct)
+    public async Task<PagedResult<GetCartItemDto>> GetCartForUser(Guid userId,PaginationParams parm, CancellationToken ct)
     {
         //make sure that return the main image only and one ProductVariants
         var query = from cart in _context.Carts
@@ -56,9 +57,11 @@ public class CartService(AppDbContext _context,IOptions<StaticFilesSettings> Fil
             ProductImageUrl = Path.Combine( FilesSettings.Value.ProductImages_FileName , i.ProductImageUrl),
             Price = i.Price,
             Quantity = i.Quantity,
-        }).Skip(pram.Skip).Take(pram.Take).ToListAsync();
+        }).Skip(parm.Skip).Take(parm.Take)
+        .AsNoTracking()
+        .ToListAsync();
 
-        return Result.Success(PagedResult<GetCartItemDto>.Create(items, totalCount, pram.PageNumber, pram.Take));
+        return PagedResult<GetCartItemDto>.Create(items, totalCount, parm.PageNumber, parm.Take);
     }
 
     public async Task<Guid?> GetCartIdByUserId(Guid userId, CancellationToken ct)
