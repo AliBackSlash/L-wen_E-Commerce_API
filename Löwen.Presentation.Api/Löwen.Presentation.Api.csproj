@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\v1\DeliveryController\Models\**" />
+    <Content Remove="Controllers\v1\DeliveryController\Models\**" />
+    <EmbeddedResource Remove="Controllers\v1\DeliveryController\Models\**" />
+    <None Remove="Controllers\v1\DeliveryController\Models\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.1.0" />
@@ -27,7 +34,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\v1\DeliveryController\Models\" />
     <Folder Include="Controllers\v1\NotificationController\Models\" />
     <Folder Include="Controllers\v1\ProductController\Models\" />
     <Folder Include="wwwroot\" />

@@ -46,7 +46,7 @@ public class UsersController(ISender _sender, IFileService fileService) : Contro
 
 
         Result<UpdateUserInfoCommandResponse> result = await _sender.Send(new UpdateUserInfoCommand
-            (id, request.FName, request.MName, request.LName,request.DateOfBirth, request.PhoneNumber,request.Gender));
+            (id, request.FName, request.MName, request.LName, request.DateOfBirth, request.PhoneNumber, request.Gender, request.AddressDetails));
 
         return result.ToActionResult();
     }

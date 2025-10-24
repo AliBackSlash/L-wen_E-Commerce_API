@@ -1,5 +1,4 @@
-﻿using Löwen.Domain.Entities;
-using Löwen.Domain.Entities.EntityForMapFunctionsResultOnly.Product;
+﻿using Löwen.Domain.Entities.EntityForMapFunctionsResultOnly.Product;
 using Löwen.Infrastructure.EFCore.Context.Config;
 using Löwen.Infrastructure.EFCore.IdentityUser;
 using Microsoft.AspNetCore.Identity;
@@ -23,7 +22,6 @@ public class AppDbContext : IdentityDbContext<AppUser, IdentityRole<Guid>, Guid>
     public DbSet<CartItem> CartItems => Set<CartItem>();
     public DbSet<OrderItem> OrderItems => Set<OrderItem>();
     public DbSet<Image> Images => Set<Image>();
-    public DbSet<ProductTag> ProductTags => Set<ProductTag>();
     public DbSet<ProductVariant> ProductVariants => Set<ProductVariant>();
     public DbSet<ProductReview> ProductReviews => Set<ProductReview>();
     public DbSet<Wishlist> Wishlist => Set<Wishlist>();

@@ -369,6 +369,7 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
         user.FName = dto.FName ?? user.FName;
         user.MName = dto.MName ?? user.MName;
         user.LName = dto.LName ?? user.LName;
+        user.AddressDetails = dto.AddressDetails ?? user.AddressDetails;
         user.PhoneNumber = dto.phoneNumber ?? user.PhoneNumber;
         user.DateOfBirth = dto.DateOfBirth ?? user.DateOfBirth;
         user.Gender = dto.Gender ?? user.Gender;

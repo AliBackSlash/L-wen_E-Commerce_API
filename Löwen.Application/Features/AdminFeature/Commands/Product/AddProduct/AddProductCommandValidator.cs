@@ -6,7 +6,8 @@ public class AddProductCommandValidator : AbstractValidator<AddProductCommand>
     public AddProductCommandValidator()
     {
         RuleFor(x => x.Name).NotEmpty().WithMessage("Product name is required")
-    .MaximumLength(70).WithMessage("the max Product name length is 70 chars");
+            .MaximumLength(70).WithMessage("the max Product name length is 70 chars");
+        RuleFor(x => x.Tags).MaximumLength(70).WithMessage("the max Tags length is 70 chars");
 
         RuleFor(x => x.Description).NotEmpty().WithMessage("Product Description is required")
             .MaximumLength(1200).WithMessage("the max Description length is 1200 chars");
@@ -17,9 +18,9 @@ public class AddProductCommandValidator : AbstractValidator<AddProductCommand>
             .Must(v => v == null || v.Count() <= 10).WithMessage("the max number of variants is 10");
 
         RuleFor(x => x.CategoryId).NotEmpty().WithMessage("Id is required")
-    .Must(x => Guid.TryParse(x, out _)).WithMessage("Enter a valid Guid Category Id");
+            .Must(x => Guid.TryParse(x, out _)).WithMessage("Enter a valid Guid Category Id");
 
         RuleFor(x => x.CreatedBy).NotEmpty().WithMessage("CreatedBy is required")
-    .Must(x => Guid.TryParse(x, out _)).WithMessage("Enter a valid Guid CreatedBy Id");
+            .Must(x => Guid.TryParse(x, out _)).WithMessage("Enter a valid Guid CreatedBy Id");
     }
 }

@@ -12,9 +12,12 @@ public class AppUserConfiguration : IEntityTypeConfiguration<AppUser>
         builder.Property(x => x.Id).HasColumnType("uuid").HasDefaultValueSql("gen_random_uuid()");
         builder.Property(u => u.FName).HasMaxLength(50).HasColumnType("varchar");
         builder.Property(u => u.MName).HasMaxLength(50).HasColumnType("varchar");
+        builder.Property(ca => ca.AddressDetails).IsRequired().HasColumnType("text");
         builder.Property(u => u.LName).HasMaxLength(50).HasColumnType("varchar");
+        builder.Property(u => u.PhoneNumber).IsRequired().HasMaxLength(15).HasColumnType("varchar");
         builder.Property(u => u.Gender).HasColumnType("Char(1)").HasDefaultValue("M");
         builder.Property(u => u.DateOfBirth).HasColumnType("Date");
+
         builder.Property(u => u.ImagePath).HasMaxLength(2048).HasColumnType("varchar");
         builder.Property(u => u.IsDeleted).HasColumnType("Boolean").HasDefaultValue(false);
         builder.Property(u => u.DeletedAt).HasColumnType("timestamp with time zone").IsRequired(false);

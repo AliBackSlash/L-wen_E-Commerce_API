@@ -51,6 +51,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
 
             return result.ToActionResult();
         }*/
+        /*
         [HttpPut("update-tag/{productId},{tagName}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
@@ -62,7 +63,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
             return result.ToActionResult();
         }
 
-        /*[HttpDelete("remove-tag/{Id}")]
+        *//*[HttpDelete("remove-tag/{Id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
@@ -84,7 +85,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
             if (string.IsNullOrEmpty(createdBy))
                 return Result.Failure(new Error("api/Admin/add-product", "Valid token is required", ErrorType.Unauthorized)).ToActionResult();
 
-            Result<Guid> result = await sender.Send(new AddProductCommand(model.Name, model.Description,model.Status, model.CategoryId, 
+            Result<AddProductCommandResponse> result = await sender.Send(new AddProductCommand(model.Name, model.Description,model.Status, model.CategoryId, 
                 createdBy ,model.Tags, model.VariantDtos));
 
             return result.ToActionResult();
@@ -94,8 +95,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> UploadProductImages(Guid ProductId, [FromForm] UploudPruductImagesModel model
-           )
+        public async Task<IActionResult> UploadProductImages(Guid ProductId, [FromForm] UploudPruductImagesModel model)
         {
            /* if (model.Uplouds.Count(x => x.IsMain) != 1)
                 return Result.Failure(new Error("Admin.UploadProductImages", 

@@ -12,6 +12,7 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
         builder.HasKey(p => p.Id);
         builder.Property(x => x.Id).HasColumnType("uuid").HasDefaultValueSql("gen_random_uuid()");
         builder.Property(p => p.Name).IsRequired().HasMaxLength(70).HasColumnType("varchar");
+        builder.Property(p => p.Tags).IsRequired(false).HasMaxLength(70).HasColumnType("varchar");
         builder.Property(p => p.Description).IsRequired().HasMaxLength(1200).HasColumnType("varchar");
         builder.Property(p => p.Status).IsRequired().HasColumnType("smallint");
         builder.Property(p => p.LoveCount).IsRequired().HasColumnType("double precision").HasDefaultValueSql("0");
@@ -23,10 +24,5 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
                .HasForeignKey(p => p.CategoryId)
                .IsRequired();
 
-        // One-to-many relationship with ProductTag
-        builder.HasOne(pt => pt.Tag)
-               .WithOne(p => p.Product)
-               .HasForeignKey<ProductTag>(p => p.ProductId)
-               .IsRequired(false);
     }
 }

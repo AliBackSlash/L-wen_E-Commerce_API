@@ -5,7 +5,7 @@ internal class UpdateUserInfoCommandHandler(IAppUserService userService) : IComm
     public async Task<Result<UpdateUserInfoCommandResponse>> Handle(UpdateUserInfoCommand command, CancellationToken ct)
     {
         var createResult = await userService.UpdateUserInfoAsync
-            (new(command.Id, command.fName,command.mName,command.lName,command.DateOfBirth,command.PhoneNumber, command.Gender));
+            (new(command.Id, command.fName,command.mName,command.lName,command.DateOfBirth,command.PhoneNumber, command.Gender,command.AddressDetails));
 
         if (createResult.IsFailure)
             return Result.Failure<UpdateUserInfoCommandResponse>(createResult.Errors);

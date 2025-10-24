@@ -14,6 +14,10 @@ public class AppUser : IdentityUser<Guid>
     public bool IsDeleted { get; set; }
     public DateTime? DeletedAt { get; set; }
 
+    //this field simple in future the customer can have many address and i already made CustomerAddress for this 
+    //but for v1 not impelemented
+    public string? AddressDetails {  get; set; }
+
     public ICollection<DeliveryOrder> DeliveryOrders { get; set; } = [];
     public ICollection<CustomerAddress> CustomerAddresses { get; set; } = [];
     public ICollection<Cart> Carts { get; set; } = [];
