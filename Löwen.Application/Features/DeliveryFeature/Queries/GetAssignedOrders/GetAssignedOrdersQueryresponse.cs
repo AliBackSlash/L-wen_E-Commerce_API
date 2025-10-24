@@ -7,12 +7,10 @@ namespace Löwen.Application.Features.DeliveryFeature.Queries.GetAssignedOrders;
 
 public class GetAssignedOrdersQueryresponse
 {
-    public required string ProductImageUrl { get; set; }
-    public required string ProductName { get; set; }
+    public required string CustomerName { get; set; }
     public required string AddressDetails { get; set; }
     public required string CustomerPhoneNum { get; set; }
-    public decimal Price { get; set; }
-    public short Quantity {  get; set; }
-    public decimal PriceTotal { get { return Price * Quantity; } }
+    public decimal Total { get; set; }
+    public OrderStatus Status { get; set; }
 
 }

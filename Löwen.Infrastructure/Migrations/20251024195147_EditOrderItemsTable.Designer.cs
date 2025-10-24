@@ -3,6 +3,7 @@ using System;
 using Löwen.Infrastructure.EFCore.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Löwen.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251024195147_EditOrderItemsTable")]
+    partial class EditOrderItemsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -836,6 +839,7 @@ namespace Löwen.Infrastructure.Migrations
                         .HasColumnType("integer");
 
                     b.Property<string>("AddressDetails")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -899,7 +903,9 @@ namespace Löwen.Infrastructure.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("PhoneNumber")
-                        .HasColumnType("text");
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("varchar");
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("boolean");

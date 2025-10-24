@@ -18,7 +18,7 @@ internal class UpdateOrderItemCommandHandler(IOrderService orderService,IOrderIt
             if(order is null)
                 return Result.Failure(new Error("Order.UpdateOrderItem", "Order not found", ErrorType.BadRequest));
 
-            order.DeliveryId = Guid.Parse(command.deliveryId);
+            order.CustomerId = Guid.Parse(command.deliveryId);
 
            var re = await orderService.UpdateAsync(order, ct);
             if (re.IsFailure)
@@ -26,7 +26,7 @@ internal class UpdateOrderItemCommandHandler(IOrderService orderService,IOrderIt
         }
 
         orderitem.Quantity = command.Quantity ?? orderitem.Quantity;
-        orderitem.PriceAtPurchase = command.PriceAtPurchase ?? orderitem.PriceAtPurchase;
+        orderitem.Price = command.PriceAtPurchase ?? orderitem.Price;
 
         var updateResult = await orderItemService.UpdateAsync(orderitem, ct);
 

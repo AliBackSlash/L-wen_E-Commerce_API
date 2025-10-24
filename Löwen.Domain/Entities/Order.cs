@@ -6,7 +6,7 @@ namespace Löwen.Domain.Entities;
 public class Order
 {
     public Guid Id { get; set; }
-    public Guid DeliveryId { get; set; }// => Delivery is a normal user with role Delivery
+    public Guid CustomerId { get; set; }// => Delivery is a normal user with role Delivery
     public DateTime OrderDate { get; set; }
     public OrderStatus Status { get; set; }
 

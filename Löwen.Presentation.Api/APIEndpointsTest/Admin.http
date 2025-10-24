@@ -71,7 +71,22 @@ Content-Type: application/json
     }
   ]
 }
+###
+PUT {{Löwen.Api_HostAddress}}/api/admin/assigned-orders-to-delivery
+Content-Type: application/json
 
+{
+  "deliveryOrders": [
+    {
+      "deliveryId": "d5ecc457-27fe-4174-aac1-1e397a337226",
+      "orderId": "ca88afe1-9e7b-4caf-bbc2-97cc772b12cc"
+    },
+    {
+      "deliveryId": "d5ecc457-27fe-4174-aac1-1e397a337226",
+      "orderId": "392ee13a-7ccb-48ad-82b0-f0cba29b7b75"
+    }
+  ]
+}
 ###
 PUT {{Löwen.Api_HostAddress}}/api/Admin/update-product
 Content-Type: application/json

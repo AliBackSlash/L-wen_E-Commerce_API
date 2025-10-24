@@ -3,32 +3,56 @@
   "WorkspaceRootPath": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{862DA835-FE60-4657-B32E-EA3A6E9D18F3}|L\u00F6wen.Infrastructure\\L\u00F6wen.Infrastructure.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.infrastructure\\efcore\\context\\config\\appuserconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{862DA835-FE60-4657-B32E-EA3A6E9D18F3}|L\u00F6wen.Infrastructure\\L\u00F6wen.Infrastructure.csproj|solutionrelative:l\u00F6wen.infrastructure\\efcore\\context\\config\\appuserconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Infrastructure\\Migrations\\20251024190753_AddUserAddressForSimple3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:L\u00F6wen.Infrastructure\\Migrations\\20251024190753_AddUserAddressForSimple3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.application\\features\\deliveryfeature\\queries\\getassignedorders\\getassignedordersqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|solutionrelative:l\u00F6wen.application\\features\\deliveryfeature\\queries\\getassignedorders\\getassignedordersqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.presentation.api\\apiendpointstest\\delivery.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|solutionrelative:l\u00F6wen.presentation.api\\apiendpointstest\\delivery.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{862DA835-FE60-4657-B32E-EA3A6E9D18F3}|L\u00F6wen.Infrastructure\\L\u00F6wen.Infrastructure.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.infrastructure\\services\\entityservices\\deliveryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{862DA835-FE60-4657-B32E-EA3A6E9D18F3}|L\u00F6wen.Infrastructure\\L\u00F6wen.Infrastructure.csproj|solutionrelative:l\u00F6wen.infrastructure\\services\\entityservices\\deliveryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{862DA835-FE60-4657-B32E-EA3A6E9D18F3}|L\u00F6wen.Infrastructure\\L\u00F6wen.Infrastructure.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.infrastructure\\services\\entityservices\\wishlistservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{862DA835-FE60-4657-B32E-EA3A6E9D18F3}|L\u00F6wen.Infrastructure\\L\u00F6wen.Infrastructure.csproj|solutionrelative:l\u00F6wen.infrastructure\\services\\entityservices\\wishlistservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.presentation.api\\apiendpointstest\\order.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|solutionrelative:l\u00F6wen.presentation.api\\apiendpointstest\\order.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.presentation.api\\apiendpointstest\\admin.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|solutionrelative:l\u00F6wen.presentation.api\\apiendpointstest\\admin.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.application\\features\\deliveryfeature\\queries\\getassignedorders\\getassignedordersqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|solutionrelative:l\u00F6wen.application\\features\\deliveryfeature\\queries\\getassignedorders\\getassignedordersqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.presentation.api\\controllers\\v1\\admincontroller\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|solutionrelative:l\u00F6wen.presentation.api\\controllers\\v1\\admincontroller\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{862DA835-FE60-4657-B32E-EA3A6E9D18F3}|L\u00F6wen.Infrastructure\\L\u00F6wen.Infrastructure.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.infrastructure\\efcore\\context\\config\\appuserconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{862DA835-FE60-4657-B32E-EA3A6E9D18F3}|L\u00F6wen.Infrastructure\\L\u00F6wen.Infrastructure.csproj|solutionrelative:l\u00F6wen.infrastructure\\efcore\\context\\config\\appuserconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.presentation.api\\controllers\\v1\\ordercontroller\\models\\orderitemmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|solutionrelative:l\u00F6wen.presentation.api\\controllers\\v1\\ordercontroller\\models\\orderitemmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.presentation.api\\controllers\\v1\\ordercontroller\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|solutionrelative:l\u00F6wen.presentation.api\\controllers\\v1\\ordercontroller\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.presentation.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|solutionrelative:l\u00F6wen.presentation.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.application\\features\\orderfeature\\commands\\assignedorderstodelivery\\assignedorderstodeliverycommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|solutionrelative:l\u00F6wen.application\\features\\orderfeature\\commands\\assignedorderstodelivery\\assignedorderstodeliverycommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.domain\\abstractions\\iservices\\ientitiesservices\\ideliveryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|solutionrelative:l\u00F6wen.domain\\abstractions\\iservices\\ientitiesservices\\ideliveryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.domain\\abstractions\\iservices\\ientitiesservices\\icartservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|solutionrelative:l\u00F6wen.domain\\abstractions\\iservices\\ientitiesservices\\icartservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.presentation.api\\controllers\\v1\\deliverycontroller\\deliverycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|solutionrelative:l\u00F6wen.presentation.api\\controllers\\v1\\deliverycontroller\\deliverycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.application\\features\\deliveryfeature\\queries\\getassignedorders\\getassignedordersquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -37,6 +61,46 @@
     {
       "AbsoluteMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.application\\features\\deliveryfeature\\queries\\getassignedorders\\getassignedordersqueryvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|solutionrelative:l\u00F6wen.application\\features\\deliveryfeature\\queries\\getassignedorders\\getassignedordersqueryvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.application\\features\\deliveryfeature\\queries\\getassignedorders\\getassignedordersqueryresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|solutionrelative:l\u00F6wen.application\\features\\deliveryfeature\\queries\\getassignedorders\\getassignedordersqueryresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.application\\features\\couponfeature\\queries\\getcouponqueryresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|solutionrelative:l\u00F6wen.application\\features\\couponfeature\\queries\\getcouponqueryresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.application\\features\\couponfeature\\queries\\getallcoupons\\getallcouponsqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|solutionrelative:l\u00F6wen.application\\features\\couponfeature\\queries\\getallcoupons\\getallcouponsqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.application\\features\\couponfeature\\queries\\getcouponbycode\\getcouponbycodequeryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|solutionrelative:l\u00F6wen.application\\features\\couponfeature\\queries\\getcouponbycode\\getcouponbycodequeryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{862DA835-FE60-4657-B32E-EA3A6E9D18F3}|L\u00F6wen.Infrastructure\\L\u00F6wen.Infrastructure.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.infrastructure\\services\\entityservices\\cartservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{862DA835-FE60-4657-B32E-EA3A6E9D18F3}|L\u00F6wen.Infrastructure\\L\u00F6wen.Infrastructure.csproj|solutionrelative:l\u00F6wen.infrastructure\\services\\entityservices\\cartservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.application\\features\\orderfeature\\commands\\addorder\\addordercommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|solutionrelative:l\u00F6wen.application\\features\\orderfeature\\commands\\addorder\\addordercommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.application\\features\\orderfeature\\commands\\addorder\\addordercommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|solutionrelative:l\u00F6wen.application\\features\\orderfeature\\commands\\addorder\\addordercommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Infrastructure\\Migrations\\20251024190753_AddUserAddressForSimple3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:L\u00F6wen.Infrastructure\\Migrations\\20251024190753_AddUserAddressForSimple3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{862DA835-FE60-4657-B32E-EA3A6E9D18F3}|L\u00F6wen.Infrastructure\\L\u00F6wen.Infrastructure.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.infrastructure\\services\\entityservices\\wishlistservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{862DA835-FE60-4657-B32E-EA3A6E9D18F3}|L\u00F6wen.Infrastructure\\L\u00F6wen.Infrastructure.csproj|solutionrelative:l\u00F6wen.infrastructure\\services\\entityservices\\wishlistservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.domain\\abstractions\\iservices\\ientitiesservices\\icartservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|solutionrelative:l\u00F6wen.domain\\abstractions\\iservices\\ientitiesservices\\icartservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,125 +110,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 11,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "20251024190753_AddUserAddressForSimple3.cs",
-              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Infrastructure\\Migrations\\20251024190753_AddUserAddressForSimple3.cs",
-              "RelativeDocumentMoniker": "L\u00F6wen.Infrastructure\\Migrations\\20251024190753_AddUserAddressForSimple3.cs",
-              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Infrastructure\\Migrations\\20251024190753_AddUserAddressForSimple3.cs",
-              "RelativeToolTip": "L\u00F6wen.Infrastructure\\Migrations\\20251024190753_AddUserAddressForSimple3.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-24T19:07:53.901Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AppUserConfiguration.cs",
-              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Infrastructure\\EFCore\\Context\\Config\\AppUserConfiguration.cs",
-              "RelativeDocumentMoniker": "L\u00F6wen.Infrastructure\\EFCore\\Context\\Config\\AppUserConfiguration.cs",
-              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Infrastructure\\EFCore\\Context\\Config\\AppUserConfiguration.cs",
-              "RelativeToolTip": "L\u00F6wen.Infrastructure\\EFCore\\Context\\Config\\AppUserConfiguration.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAA5AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-24T19:06:56.637Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "DeliveryService.cs",
-              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Infrastructure\\Services\\EntityServices\\DeliveryService.cs",
-              "RelativeDocumentMoniker": "L\u00F6wen.Infrastructure\\Services\\EntityServices\\DeliveryService.cs",
-              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Infrastructure\\Services\\EntityServices\\DeliveryService.cs",
-              "RelativeToolTip": "L\u00F6wen.Infrastructure\\Services\\EntityServices\\DeliveryService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-24T19:05:46.225Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "IDeliveryService.cs",
-              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Domain\\Abstractions\\IServices\\IEntitiesServices\\IDeliveryService.cs",
-              "RelativeDocumentMoniker": "L\u00F6wen.Domain\\Abstractions\\IServices\\IEntitiesServices\\IDeliveryService.cs",
-              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Domain\\Abstractions\\IServices\\IEntitiesServices\\IDeliveryService.cs",
-              "RelativeToolTip": "L\u00F6wen.Domain\\Abstractions\\IServices\\IEntitiesServices\\IDeliveryService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-24T19:04:38.576Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "WishlistService.cs",
-              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Infrastructure\\Services\\EntityServices\\WishlistService.cs",
-              "RelativeDocumentMoniker": "L\u00F6wen.Infrastructure\\Services\\EntityServices\\WishlistService.cs",
-              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Infrastructure\\Services\\EntityServices\\WishlistService.cs",
-              "RelativeToolTip": "L\u00F6wen.Infrastructure\\Services\\EntityServices\\WishlistService.cs",
-              "ViewState": "AgIAACMAAAAAAAAAAAAowC0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-24T19:03:14.417Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "ICartService.cs",
-              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Domain\\Abstractions\\IServices\\IEntitiesServices\\ICartService.cs",
-              "RelativeDocumentMoniker": "L\u00F6wen.Domain\\Abstractions\\IServices\\IEntitiesServices\\ICartService.cs",
-              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Domain\\Abstractions\\IServices\\IEntitiesServices\\ICartService.cs",
-              "RelativeToolTip": "L\u00F6wen.Domain\\Abstractions\\IServices\\IEntitiesServices\\ICartService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-24T18:54:06.321Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "GetAssignedOrdersQueryValidator.cs",
-              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\DeliveryFeature\\Queries\\GetAssignedOrders\\GetAssignedOrdersQueryValidator.cs",
-              "RelativeDocumentMoniker": "L\u00F6wen.Application\\Features\\DeliveryFeature\\Queries\\GetAssignedOrders\\GetAssignedOrdersQueryValidator.cs",
-              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\DeliveryFeature\\Queries\\GetAssignedOrders\\GetAssignedOrdersQueryValidator.cs",
-              "RelativeToolTip": "L\u00F6wen.Application\\Features\\DeliveryFeature\\Queries\\GetAssignedOrders\\GetAssignedOrdersQueryValidator.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-24T18:50:36.919Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "GetAssignedOrdersQueryHandler.cs",
-              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\DeliveryFeature\\Queries\\GetAssignedOrders\\GetAssignedOrdersQueryHandler.cs",
-              "RelativeDocumentMoniker": "L\u00F6wen.Application\\Features\\DeliveryFeature\\Queries\\GetAssignedOrders\\GetAssignedOrdersQueryHandler.cs",
-              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\DeliveryFeature\\Queries\\GetAssignedOrders\\GetAssignedOrdersQueryHandler.cs",
-              "RelativeToolTip": "L\u00F6wen.Application\\Features\\DeliveryFeature\\Queries\\GetAssignedOrders\\GetAssignedOrdersQueryHandler.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAowAwAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-24T18:50:17.848Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "GetAssignedOrdersQuery.cs",
-              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\DeliveryFeature\\Queries\\GetAssignedOrders\\GetAssignedOrdersQuery.cs",
-              "RelativeDocumentMoniker": "L\u00F6wen.Application\\Features\\DeliveryFeature\\Queries\\GetAssignedOrders\\GetAssignedOrdersQuery.cs",
-              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\DeliveryFeature\\Queries\\GetAssignedOrders\\GetAssignedOrdersQuery.cs",
-              "RelativeToolTip": "L\u00F6wen.Application\\Features\\DeliveryFeature\\Queries\\GetAssignedOrders\\GetAssignedOrdersQuery.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-24T18:49:59.397Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:132:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
@@ -208,6 +155,328 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Delivery.http",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\APIEndpointsTest\\Delivery.http",
+              "RelativeDocumentMoniker": "L\u00F6wen.Presentation.Api\\APIEndpointsTest\\Delivery.http",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\APIEndpointsTest\\Delivery.http",
+              "RelativeToolTip": "L\u00F6wen.Presentation.Api\\APIEndpointsTest\\Delivery.http",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2025-10-24T20:34:15.427Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Admin.http",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\APIEndpointsTest\\Admin.http",
+              "RelativeDocumentMoniker": "L\u00F6wen.Presentation.Api\\APIEndpointsTest\\Admin.http",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\APIEndpointsTest\\Admin.http",
+              "RelativeToolTip": "L\u00F6wen.Presentation.Api\\APIEndpointsTest\\Admin.http",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAAwFUAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2025-10-24T20:29:00.315Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Order.http",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\APIEndpointsTest\\Order.http",
+              "RelativeDocumentMoniker": "L\u00F6wen.Presentation.Api\\APIEndpointsTest\\Order.http",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\APIEndpointsTest\\Order.http",
+              "RelativeToolTip": "L\u00F6wen.Presentation.Api\\APIEndpointsTest\\Order.http",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2025-10-24T20:17:33.877Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DeliveryService.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Infrastructure\\Services\\EntityServices\\DeliveryService.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Infrastructure\\Services\\EntityServices\\DeliveryService.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Infrastructure\\Services\\EntityServices\\DeliveryService.cs",
+              "RelativeToolTip": "L\u00F6wen.Infrastructure\\Services\\EntityServices\\DeliveryService.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA8AAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-24T20:14:51.651Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\Controllers\\v1\\AdminController\\AdminController.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Presentation.Api\\Controllers\\v1\\AdminController\\AdminController.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\Controllers\\v1\\AdminController\\AdminController.cs",
+              "RelativeToolTip": "L\u00F6wen.Presentation.Api\\Controllers\\v1\\AdminController\\AdminController.cs",
+              "ViewState": "AgIAALEAAAAAAAAAAAAIwMcAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-24T20:13:41.483Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "DeliveryController.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\Controllers\\v1\\DeliveryController\\DeliveryController.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Presentation.Api\\Controllers\\v1\\DeliveryController\\DeliveryController.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\Controllers\\v1\\DeliveryController\\DeliveryController.cs",
+              "RelativeToolTip": "L\u00F6wen.Presentation.Api\\Controllers\\v1\\DeliveryController\\DeliveryController.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAxwCQAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-24T20:10:23.709Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "GetCouponQueryResponse.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\CouponFeature\\Queries\\GetCouponQueryResponse.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Application\\Features\\CouponFeature\\Queries\\GetCouponQueryResponse.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\CouponFeature\\Queries\\GetCouponQueryResponse.cs",
+              "RelativeToolTip": "L\u00F6wen.Application\\Features\\CouponFeature\\Queries\\GetCouponQueryResponse.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAxwBAAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-24T20:09:45.55Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "GetAllCouponsQueryHandler.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\CouponFeature\\Queries\\GetAllCoupons\\GetAllCouponsQueryHandler.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Application\\Features\\CouponFeature\\Queries\\GetAllCoupons\\GetAllCouponsQueryHandler.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\CouponFeature\\Queries\\GetAllCoupons\\GetAllCouponsQueryHandler.cs",
+              "RelativeToolTip": "L\u00F6wen.Application\\Features\\CouponFeature\\Queries\\GetAllCoupons\\GetAllCouponsQueryHandler.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAACIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-24T20:09:02.417Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "GetCouponByCodeQueryHandler.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\CouponFeature\\Queries\\GetCouponByCode\\GetCouponByCodeQueryHandler.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Application\\Features\\CouponFeature\\Queries\\GetCouponByCode\\GetCouponByCodeQueryHandler.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\CouponFeature\\Queries\\GetCouponByCode\\GetCouponByCodeQueryHandler.cs",
+              "RelativeToolTip": "L\u00F6wen.Application\\Features\\CouponFeature\\Queries\\GetCouponByCode\\GetCouponByCodeQueryHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-24T20:08:01.121Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "GetAssignedOrdersQueryresponse.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\DeliveryFeature\\Queries\\GetAssignedOrders\\GetAssignedOrdersQueryresponse.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Application\\Features\\DeliveryFeature\\Queries\\GetAssignedOrders\\GetAssignedOrdersQueryresponse.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\DeliveryFeature\\Queries\\GetAssignedOrders\\GetAssignedOrdersQueryresponse.cs",
+              "RelativeToolTip": "L\u00F6wen.Application\\Features\\DeliveryFeature\\Queries\\GetAssignedOrders\\GetAssignedOrdersQueryresponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-24T20:02:36.609Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AppUserConfiguration.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Infrastructure\\EFCore\\Context\\Config\\AppUserConfiguration.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Infrastructure\\EFCore\\Context\\Config\\AppUserConfiguration.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Infrastructure\\EFCore\\Context\\Config\\AppUserConfiguration.cs",
+              "RelativeToolTip": "L\u00F6wen.Infrastructure\\EFCore\\Context\\Config\\AppUserConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAowA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-24T19:06:56.637Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "OrderItemModel.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\Controllers\\v1\\OrderController\\Models\\OrderItemModel.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Presentation.Api\\Controllers\\v1\\OrderController\\Models\\OrderItemModel.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\Controllers\\v1\\OrderController\\Models\\OrderItemModel.cs",
+              "RelativeToolTip": "L\u00F6wen.Presentation.Api\\Controllers\\v1\\OrderController\\Models\\OrderItemModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-24T20:19:45.338Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "CartService.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Infrastructure\\Services\\EntityServices\\CartService.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Infrastructure\\Services\\EntityServices\\CartService.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Infrastructure\\Services\\EntityServices\\CartService.cs",
+              "RelativeToolTip": "L\u00F6wen.Infrastructure\\Services\\EntityServices\\CartService.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAowD4AAABhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-24T19:57:11.872Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "GetAssignedOrdersQueryHandler.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\DeliveryFeature\\Queries\\GetAssignedOrders\\GetAssignedOrdersQueryHandler.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Application\\Features\\DeliveryFeature\\Queries\\GetAssignedOrders\\GetAssignedOrdersQueryHandler.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\DeliveryFeature\\Queries\\GetAssignedOrders\\GetAssignedOrdersQueryHandler.cs",
+              "RelativeToolTip": "L\u00F6wen.Application\\Features\\DeliveryFeature\\Queries\\GetAssignedOrders\\GetAssignedOrdersQueryHandler.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAowA0AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-24T18:50:17.848Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "AssignedOrdersToDeliveryCommandHandler.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\OrderFeature\\Commands\\AssignedOrdersToDelivery\\AssignedOrdersToDeliveryCommandHandler.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Application\\Features\\OrderFeature\\Commands\\AssignedOrdersToDelivery\\AssignedOrdersToDeliveryCommandHandler.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\OrderFeature\\Commands\\AssignedOrdersToDelivery\\AssignedOrdersToDeliveryCommandHandler.cs",
+              "RelativeToolTip": "L\u00F6wen.Application\\Features\\OrderFeature\\Commands\\AssignedOrdersToDelivery\\AssignedOrdersToDeliveryCommandHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-24T20:13:22.389Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\Program.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Presentation.Api\\Program.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\Program.cs",
+              "RelativeToolTip": "L\u00F6wen.Presentation.Api\\Program.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAAAgwDcAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-24T20:16:28.167Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "GetAssignedOrdersQueryValidator.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\DeliveryFeature\\Queries\\GetAssignedOrders\\GetAssignedOrdersQueryValidator.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Application\\Features\\DeliveryFeature\\Queries\\GetAssignedOrders\\GetAssignedOrdersQueryValidator.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\DeliveryFeature\\Queries\\GetAssignedOrders\\GetAssignedOrdersQueryValidator.cs",
+              "RelativeToolTip": "L\u00F6wen.Application\\Features\\DeliveryFeature\\Queries\\GetAssignedOrders\\GetAssignedOrdersQueryValidator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAABOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-24T18:50:36.919Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "OrderController.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\Controllers\\v1\\OrderController\\OrderController.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Presentation.Api\\Controllers\\v1\\OrderController\\OrderController.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\Controllers\\v1\\OrderController\\OrderController.cs",
+              "RelativeToolTip": "L\u00F6wen.Presentation.Api\\Controllers\\v1\\OrderController\\OrderController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABUAAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-24T19:32:40.744Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "IDeliveryService.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Domain\\Abstractions\\IServices\\IEntitiesServices\\IDeliveryService.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Domain\\Abstractions\\IServices\\IEntitiesServices\\IDeliveryService.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Domain\\Abstractions\\IServices\\IEntitiesServices\\IDeliveryService.cs",
+              "RelativeToolTip": "L\u00F6wen.Domain\\Abstractions\\IServices\\IEntitiesServices\\IDeliveryService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-24T19:04:38.576Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "AddOrderCommandHandler.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\OrderFeature\\Commands\\AddOrder\\AddOrderCommandHandler.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Application\\Features\\OrderFeature\\Commands\\AddOrder\\AddOrderCommandHandler.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\OrderFeature\\Commands\\AddOrder\\AddOrderCommandHandler.cs",
+              "RelativeToolTip": "L\u00F6wen.Application\\Features\\OrderFeature\\Commands\\AddOrder\\AddOrderCommandHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAABUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-24T19:34:17.247Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "AddOrderCommand.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\OrderFeature\\Commands\\AddOrder\\AddOrderCommand.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Application\\Features\\OrderFeature\\Commands\\AddOrder\\AddOrderCommand.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\OrderFeature\\Commands\\AddOrder\\AddOrderCommand.cs",
+              "RelativeToolTip": "L\u00F6wen.Application\\Features\\OrderFeature\\Commands\\AddOrder\\AddOrderCommand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-24T19:34:00.862Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "GetAssignedOrdersQuery.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\DeliveryFeature\\Queries\\GetAssignedOrders\\GetAssignedOrdersQuery.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Application\\Features\\DeliveryFeature\\Queries\\GetAssignedOrders\\GetAssignedOrdersQuery.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\DeliveryFeature\\Queries\\GetAssignedOrders\\GetAssignedOrdersQuery.cs",
+              "RelativeToolTip": "L\u00F6wen.Application\\Features\\DeliveryFeature\\Queries\\GetAssignedOrders\\GetAssignedOrdersQuery.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-24T18:49:59.397Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "ICartService.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Domain\\Abstractions\\IServices\\IEntitiesServices\\ICartService.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Domain\\Abstractions\\IServices\\IEntitiesServices\\ICartService.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Domain\\Abstractions\\IServices\\IEntitiesServices\\ICartService.cs",
+              "RelativeToolTip": "L\u00F6wen.Domain\\Abstractions\\IServices\\IEntitiesServices\\ICartService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-24T18:54:06.321Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "WishlistService.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Infrastructure\\Services\\EntityServices\\WishlistService.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Infrastructure\\Services\\EntityServices\\WishlistService.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Infrastructure\\Services\\EntityServices\\WishlistService.cs",
+              "RelativeToolTip": "L\u00F6wen.Infrastructure\\Services\\EntityServices\\WishlistService.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAowC0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-24T19:03:14.417Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "20251024190753_AddUserAddressForSimple3.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Infrastructure\\Migrations\\20251024190753_AddUserAddressForSimple3.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Infrastructure\\Migrations\\20251024190753_AddUserAddressForSimple3.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Infrastructure\\Migrations\\20251024190753_AddUserAddressForSimple3.cs",
+              "RelativeToolTip": "L\u00F6wen.Infrastructure\\Migrations\\20251024190753_AddUserAddressForSimple3.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-24T19:07:53.901Z"
             }
           ]
         }

@@ -197,7 +197,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
             return result.ToActionResult();
         }
 
-        [HttpDelete("assigned-orders-to-delivery")]
+        [HttpPut("assigned-orders-to-delivery")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]

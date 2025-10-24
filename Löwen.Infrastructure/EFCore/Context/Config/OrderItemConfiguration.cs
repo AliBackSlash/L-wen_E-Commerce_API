@@ -16,7 +16,7 @@ public class OrderItemConfiguration : IEntityTypeConfiguration<OrderItem>
         builder.Property(oi => oi.OrderId).HasColumnType("uuid");
         builder.Property(oi => oi.ProductId).HasColumnType("uuid");
         builder.Property(oi => oi.Quantity).IsRequired().HasColumnType("smallint");
-        builder.Property(oi => oi.PriceAtPurchase).IsRequired().HasColumnType("numeric(18, 2)");
+        builder.Property(oi => oi.Price).IsRequired().HasColumnType("numeric(18, 2)");
 
         // Relationships
         builder.HasOne(oi => oi.Order)

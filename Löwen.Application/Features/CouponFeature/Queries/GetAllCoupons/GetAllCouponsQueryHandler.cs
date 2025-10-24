@@ -18,7 +18,17 @@ internal class GetAllCouponsQueryHandler(ICouponService couponService, IOptions<
         }, ct);
 
        
-        return Result.Success(PagedResult<GetCouponQueryResponse>.Create(GetCouponQueryResponse.map(coupon.Items)
-            ,coupon.TotalCount,coupon.PageNumber,coupon.PageSize));
+        return Result.Success(PagedResult<GetCouponQueryResponse>.Create(coupon.Items.Select(i => new GetCouponQueryResponse
+        {
+            Code = i.Code,
+            DiscountType = i.DiscountType,
+            DiscountValue = i.DiscountValue,
+            StartDate = i.StartDate,
+            EndDate = i.EndDate,
+            IsActive = i.IsActive,
+            UsageLimit = i.UsageLimit,
+
+        })
+        ,coupon.TotalCount,coupon.PageNumber,coupon.PageSize));
     }
 }

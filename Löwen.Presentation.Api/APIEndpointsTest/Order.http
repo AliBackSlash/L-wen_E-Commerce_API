@@ -1,5 +1,5 @@
 @Löwen_Api_HostAddress = https://localhost:7197/api/Order
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjhmMmVmZDEwLTJkMWMtNDFlZS05YzRkLTJmN2Y1NDMxY2IxOCIsImp0aSI6IjQ1ZDk0YzRmLWY2MDctNDRjMC1iMDc5LWQ1OTFlNThhMDU1NSIsImVtYWlsIjoiYWUxMzc4MDMyQGdtYWlsMS5jb20iLCJ1bmlxdWVfbmFtZSI6ImFsaS0wMSIsInJvbGVzIjoiVXNlciIsImV4cCI6MTc1ODkwMDk0NSwiaXNzIjoiTG9jYWxIb3N0IiwiYXVkIjoiTG9jYWxIb3N0In0.-_BiuvaNWyoGVs-XN6Xgtesbr-OfOlQRf2b8h3V0_No
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImQ1ZWNjNDU3LTI3ZmUtNDE3NC1hYWMxLTFlMzk3YTMzNzIyNiIsImp0aSI6IjliYzdkMjY1LWYxYmUtNDkzNS1iYTFkLTM3NWQ2ZTI4YmNiMSIsImVtYWlsIjoiYWUxMzc4MDMyQGdtYWlsMTExLmNvbSIsInVuaXF1ZV9uYW1lIjoiYWxpLTAxc2RmMTExIiwicm9sZXMiOiJVc2VyIiwiZXhwIjoxNzYxMzM5NDU1LCJpc3MiOiJMb2NhbEhvc3QiLCJhdWQiOiJMb2NhbEhvc3QifQ.Oy77khHLaP-rsrlGZ1cG9hFX9npWSRBaamBUSfCMBaI
 //Order Endpoints
 
 ###
@@ -10,17 +10,17 @@ Content-Type : application/json
 {
   "items": [
     {
-      "productId": "128ebf90-5896-4e53-8a97-826c8173830a",
+      "productId": "3a61f106-7610-43ad-bb32-b5ec5dd92305",
       "quantity": 1,
       "priceAtPurchase":110
     },
     {
-      "productId": "15649724-b6df-46b3-bab7-0121fe0841f6",
+      "productId": "4135429f-ad84-40bc-a232-5cc7240e378a",
       "quantity": 1,
       "priceAtPurchase":110
     },
     {
-      "productId": "2d701353-4fac-4001-ae9a-35eda49eb1c0",
+      "productId": "fc5ae1fd-4608-4918-bc24-87a3e85eff7e",
       "quantity": 1,
       "priceAtPurchase":110
     }

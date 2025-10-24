@@ -20,8 +20,13 @@ namespace Löwen.Presentation.Api.Controllers.v1.OrderController
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> AddOrder([FromBody] OrderItemModel model)
-        {            
-            Result result = await sender.Send(new AddOrderCommand(model.deliveryId, model.Items));
+        {
+            var CustomerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (string.IsNullOrEmpty(CustomerId))
+                return Result.Failure(new Error("api/Order/add-order", "Valid token is required", ErrorType.Unauthorized)).ToActionResult();
+
+            Result result = await sender.Send(new AddOrderCommand(CustomerId, model.Items));
             return result.ToActionResult();
         }
 

@@ -49,7 +49,6 @@ public class CartService(AppDbContext _context,IOptions<StaticFilesSettings> Fil
                     };
 
 
-        var s = query.ToQueryString();
         var totalCount = await query.CountAsync();
         var items = await query.Select(i => new GetCartItemDto
         {

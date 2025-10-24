@@ -53,6 +53,7 @@ builder.Services.AddScoped<ICartService, CartService>();
 builder.Services.AddScoped<ICouponService, CouponService>();
 builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.AddScoped<IProductImges, ProductImges>();
+builder.Services.AddScoped<IDeliveryService, DeliveryService>();
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.Configure<StaticFilesSettings>(

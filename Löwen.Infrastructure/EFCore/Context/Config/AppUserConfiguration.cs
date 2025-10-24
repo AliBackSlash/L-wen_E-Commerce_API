@@ -12,9 +12,7 @@ public class AppUserConfiguration : IEntityTypeConfiguration<AppUser>
         builder.Property(x => x.Id).HasColumnType("uuid").HasDefaultValueSql("gen_random_uuid()");
         builder.Property(u => u.FName).HasMaxLength(50).HasColumnType("varchar");
         builder.Property(u => u.MName).HasMaxLength(50).HasColumnType("varchar");
-        builder.Property(ca => ca.AddressDetails).IsRequired().HasColumnType("text");
         builder.Property(u => u.LName).HasMaxLength(50).HasColumnType("varchar");
-        builder.Property(u => u.PhoneNumber).IsRequired().HasMaxLength(15).HasColumnType("varchar");
         builder.Property(u => u.Gender).HasColumnType("Char(1)").HasDefaultValue("M");
         builder.Property(u => u.DateOfBirth).HasColumnType("Date");
 
@@ -50,7 +48,7 @@ public class AppUserConfiguration : IEntityTypeConfiguration<AppUser>
 
         builder.HasMany(o => o.Orders)
                .WithOne()
-               .HasForeignKey(o => o.DeliveryId)
+               .HasForeignKey(o => o.CustomerId)
                .OnDelete(DeleteBehavior.Cascade)
                .IsRequired();
 

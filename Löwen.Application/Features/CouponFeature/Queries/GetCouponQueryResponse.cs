@@ -16,20 +16,4 @@ public class GetCouponQueryResponse
     public bool IsActive { get; set; }
     public int? UsageLimit { get; set; }
 
-
-    public static GetCouponQueryResponse map(CouponDto dto)
-        => new GetCouponQueryResponse
-        {
-            Code = dto.Code,
-            DiscountType = dto.DiscountType,  
-            DiscountValue = dto.DiscountValue,
-            StartDate = dto.StartDate,
-            EndDate = dto.EndDate,
-            IsActive = dto.IsActive,
-            UsageLimit = dto.UsageLimit,
-            
-        };
-
-    public static IEnumerable<GetCouponQueryResponse> map(IEnumerable<CouponDto> dtos) => dtos.Select(i => map(i)).ToList();
-
 }

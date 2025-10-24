@@ -1,12 +1,12 @@
 @Löwen.Api_HostAddress = https://localhost:7197/api/Delivery
-@token = your_jwt_token_here
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImQ1ZWNjNDU3LTI3ZmUtNDE3NC1hYWMxLTFlMzk3YTMzNzIyNiIsImp0aSI6IjliYzdkMjY1LWYxYmUtNDkzNS1iYTFkLTM3NWQ2ZTI4YmNiMSIsImVtYWlsIjoiYWUxMzc4MDMyQGdtYWlsMTExLmNvbSIsInVuaXF1ZV9uYW1lIjoiYWxpLTAxc2RmMTExIiwicm9sZXMiOiJVc2VyIiwiZXhwIjoxNzYxMzM5NDU1LCJpc3MiOiJMb2NhbEhvc3QiLCJhdWQiOiJMb2NhbEhvc3QifQ.Oy77khHLaP-rsrlGZ1cG9hFX9npWSRBaamBUSfCMBaI
 
 ### Get assigned orders
-GET {{Löwen.Api_HostAddress}}/get-assigned-orders
+GET {{Löwen.Api_HostAddress}}/get-assigned-orders/1,2
 Authorization: Bearer {{token}}
 
 ###
 
 ### Update order status
-PUT {{Löwen.Api_HostAddress}}/update-order-status/1a2b3c4d-5e6f-7890-abcd-1234567890ef,Delivered
+PUT {{Löwen.Api_HostAddress}}/update-order-status/392ee13a-7ccb-48ad-82b0-f0cba29b7b75,2
 Authorization: Bearer {{token}}

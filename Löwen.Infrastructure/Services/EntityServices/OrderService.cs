@@ -39,7 +39,7 @@ public class OrderService(AppDbContext _context) : BasRepository<Order, Guid>(_c
                                  {
                                      ProductId = item.ProductId,
                                      Quantity = item.Quantity,
-                                     PriceAtPurchase = item.PriceAtPurchase,
+                                     PriceAtPurchase = item.Price,
                                      Path = (from pi in _context.Images
                                              join img in _context.Images on pi.Id equals img.Id
                                              //where pi.ProductId == item.ProductId
@@ -67,7 +67,7 @@ public class OrderService(AppDbContext _context) : BasRepository<Order, Guid>(_c
                                  {
                                      ProductId = item.ProductId,
                                      Quantity = item.Quantity,
-                                     PriceAtPurchase = item.PriceAtPurchase,
+                                     PriceAtPurchase = item.Price,
                                      Path = (from pi in _context.Images
                                              join img in _context.Images on pi.Id equals img.Id
                                           //   where pi.ProductId == item.ProductId
@@ -89,7 +89,7 @@ public class OrderService(AppDbContext _context) : BasRepository<Order, Guid>(_c
     public async Task<Result<PagedResult<OrderDetailsDto>>> GetOrdersForUser(Guid userId,PaginationParams parm, CancellationToken ct)
     {
         var query = from order in _context.Orders
-                    where order.DeliveryId == userId
+                    where order.CustomerId == userId
                     select new OrderDetailsDto
                     {
                         OrderDate = order.OrderDate,
@@ -100,7 +100,7 @@ public class OrderService(AppDbContext _context) : BasRepository<Order, Guid>(_c
                                  {
                                      ProductId = item.ProductId,
                                      Quantity = item.Quantity,
-                                     PriceAtPurchase = item.PriceAtPurchase,
+                                     PriceAtPurchase = item.Price,
                                      Path = (from pi in _context.Images
                                              join img in _context.Images on pi.Id equals img.Id
                                             // where pi.ProductId == item.ProductId
