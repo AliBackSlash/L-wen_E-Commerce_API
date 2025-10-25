@@ -1,6 +1,7 @@
 ﻿using Löwen.Application.Features.DiscountFeature.Queries.Response;
 using Löwen.Domain.Abstractions.IServices.IEntitiesServices;
 using Löwen.Domain.ConfigurationClasses.Pagination;
+using Löwen.Domain.Entities;
 using Löwen.Domain.ErrorHandleClasses;
 using Microsoft.Extensions.Options;
 
@@ -17,7 +18,17 @@ internal class GetAllDiscountQueryHandler(IDiscountService discountService, IOpt
             Take = query.PageSize
         }, ct);
 
-        return Result.Success(PagedResult<DiscountResponse>.Create( DiscountResponse.map(result.Value.Items),result.Value.TotalCount,
-            result.Value.PageNumber,result.Value.PageSize));
+        return Result.Success(PagedResult<DiscountResponse>.Create(result.Items.Select(discount => new DiscountResponse
+        {
+            Id = discount.Id,
+            Name = discount.Name,
+            DiscountType = discount.DiscountType,
+            DiscountValue = discount.DiscountValue,
+            StartDate = discount.StartDate,
+            EndDate = discount.EndDate,
+            IsActive = discount.IsActive,
+
+        }),result.TotalCount,
+            result.PageNumber,result.PageSize));
     }
 }

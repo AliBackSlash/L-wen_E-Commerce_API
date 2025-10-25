@@ -20,7 +20,7 @@ public class BasRepository<TEntity, IdType>(AppDbContext _context) : IBasReposit
         }
         catch (Exception ex)
         {
-            return Result.Failure<TEntity>(new Error($"{nameof(TEntity)}.Add", ex.Message, ErrorType.InternalServer));
+            return Result.Failure<TEntity>(new Error($"{typeof(TEntity)}.Add", ex.Message, ErrorType.InternalServer));
         }
         
     }
@@ -34,7 +34,7 @@ public class BasRepository<TEntity, IdType>(AppDbContext _context) : IBasReposit
         }
         catch (Exception ex)
         {
-            return Result.Failure(new Error($"{nameof(TEntity)}.Update", ex.Message, ErrorType.InternalServer));
+            return Result.Failure(new Error($"{typeof(TEntity)}.Update", ex.Message, ErrorType.InternalServer));
         }
     }
     public async Task<Result> DeleteAsync(TEntity entity, CancellationToken ct)
@@ -47,7 +47,7 @@ public class BasRepository<TEntity, IdType>(AppDbContext _context) : IBasReposit
         }
         catch (Exception ex)
         {
-            return Result.Failure(new Error($"{nameof(TEntity)}.Delete", ex.Message, ErrorType.InternalServer));
+            return Result.Failure(new Error($"{typeof(TEntity)}.Delete", ex.Message, ErrorType.InternalServer));
         }
     }
 

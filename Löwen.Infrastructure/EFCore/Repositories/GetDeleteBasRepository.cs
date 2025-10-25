@@ -20,7 +20,7 @@ public class GetDeleteBasRepository<TEntity, IdType>(AppDbContext _context) : IG
         }
         catch (Exception ex)
         {
-            return Result.Failure(new Error($"{nameof(TEntity)}.Delete", ex.Message, ErrorType.InternalServer));
+            return Result.Failure(new Error($"{typeof(TEntity)}.Delete", ex.Message, ErrorType.InternalServer));
         }
     }
 

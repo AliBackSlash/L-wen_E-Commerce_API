@@ -8,6 +8,7 @@ namespace Löwen.Infrastructure.Services.EntityServices;
 
 public class DiscountService(AppDbContext _context) : BasRepository<Discount, Guid>(_context), IDiscountService
 {
+    public async Task<bool> IsHaveSameDisName(string DisName, CancellationToken ct) => await _dbSet.AnyAsync(x => x.Name == DisName);
     public async Task<Result> AssignDiscountToProduct(Guid discountId, Guid productId, CancellationToken ct)
     {
         try
@@ -26,9 +27,13 @@ public class DiscountService(AppDbContext _context) : BasRepository<Discount, Gu
         }
     }
 
-    public async Task<Result<PagedResult<DiscountDto>>> GetAllPaged(PaginationParams prm, CancellationToken ct)
+    public async Task<PagedResult<DiscountDto>> GetAllPaged(PaginationParams prm, CancellationToken ct)
     {
-        var result = await _dbSet.Select(d => new DiscountDto
+        var query = from dis in _dbSet select dis;
+
+        
+        var totalCount = await query.CountAsync();
+        var items = await query.Select(d => new DiscountDto
         {
             Id = d.Id,
             Name = d.Name,
@@ -38,9 +43,7 @@ public class DiscountService(AppDbContext _context) : BasRepository<Discount, Gu
             EndDate = d.EndDate,
             IsActive = d.IsActive
         }).Skip(prm.Skip).Take(prm.Take).ToListAsync();
-
-        var totalCount = await _dbSet.CountAsync();
-        return Result.Success(PagedResult<DiscountDto>.Create(result, totalCount, prm.PageNumber, prm.Take));
+        return PagedResult<DiscountDto>.Create(items, totalCount, prm.PageNumber, prm.Take);
     }
 
     public async Task<bool> IsFound(Guid Id, CancellationToken ct) => await _dbSet.AnyAsync(t => t.Id == Id, ct);

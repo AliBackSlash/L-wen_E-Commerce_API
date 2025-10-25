@@ -11,7 +11,7 @@ public class DiscountConfiguration : IEntityTypeConfiguration<Discount>
     {
         builder.HasKey(d => d.Id);
         builder.Property(d => d.Id).HasColumnType("uuid").HasDefaultValueSql("gen_random_uuid()");
-
+        builder.HasIndex(x => x.Name).IsUnique();
         builder.Property(d => d.Name).IsRequired().HasMaxLength(50).HasColumnType("varchar");
         builder.Property(d => d.DiscountType).IsRequired().HasColumnType("smallint");
         builder.Property(d => d.DiscountValue).HasColumnType("numeric(18, 2)");

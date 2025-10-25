@@ -6,6 +6,8 @@ internal class AddDiscountCommandHandler(IDiscountService discountService) : ICo
 {
     public async Task<Result> Handle(AddDiscountCommand command, CancellationToken ct)
     {
+        if (await discountService.IsHaveSameDisName(command.Name, ct))
+            return Result.Failure(new Error("IDiscountService.Add", $"There already discount with name {command.Name}", ErrorType.Conflict));
         var discount = new Discount
         {
             Name = command.Name,

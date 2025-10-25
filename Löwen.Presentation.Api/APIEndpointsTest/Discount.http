@@ -7,9 +7,8 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "code": "SUMMER2025",
-  "description": "20% off on all summer products",
-  "discountType": "Percentage",
+  "name": "SUMMER2022",
+  "discountType": 1,
   "discountValue": 20,
   "startDate": "2025-06-01T00:00:00Z",
   "endDate": "2025-09-01T00:00:00Z",
@@ -24,32 +23,31 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "id": "b5b3a1e8-91ab-4d6c-981a-6e612ccf0455",
-  "code": "SUMMER25",
-  "description": "25% off updated promo",
-  "discountType": "Percentage",
-  "discountValue": 25,
-  "startDate": "2025-06-15T00:00:00Z",
-  "endDate": "2025-09-15T00:00:00Z",
+  "id": "3112e1f0-8d5e-48c3-9bc0-1a7d743331ab",
+  "name": "SUMMER2026",
+  "discountType": 1,
+  "discountValue": 20,
+  "startDate": "2025-06-01T00:00:00Z",
+  "endDate": "2025-09-01T00:00:00Z",
   "isActive": true
 }
 
 ###
 
 ### Remove discount
-DELETE {{Löwen.Api_HostAddress}}/remove-discount/b5b3a1e8-91ab-4d6c-981a-6e612ccf0455
+DELETE {{Löwen.Api_HostAddress}}/remove-discount/0ceab03a-2e6d-41bc-bcb3-ab6514811e23
 Authorization: Bearer {{token}}
 
 ###
 
 ### Get discount by ID
-GET {{Löwen.Api_HostAddress}}/get-discount-by-id/b5b3a1e8-91ab-4d6c-981a-6e612ccf0455
+GET {{Löwen.Api_HostAddress}}/get-discount-by-id/f7ae7f7f-0d41-4fe3-9931-6cc27aaf49db
 Authorization: Bearer {{token}}
 
 ###
 
 ### Get all discounts (paged)
-GET {{Löwen.Api_HostAddress}}/get-all-discounts-paged/1,10
+GET {{Löwen.Api_HostAddress}}/get-all-discounts-paged/1,1
 Authorization: Bearer {{token}}
 
 ###

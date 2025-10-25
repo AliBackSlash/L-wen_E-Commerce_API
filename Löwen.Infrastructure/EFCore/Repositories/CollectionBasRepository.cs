@@ -20,7 +20,7 @@ public class CollectionBasRepository<TEntity, IdType>(AppDbContext _context) : I
         }
         catch (Exception ex)
         {
-            return Result.Failure<TEntity>(new Error($"{nameof(TEntity)}.AddRange", ex.Message, ErrorType.InternalServer));
+            return Result.Failure<TEntity>(new Error($"{typeof(TEntity)}.AddRange", ex.Message, ErrorType.InternalServer));
         }
 
     }
@@ -34,7 +34,7 @@ public class CollectionBasRepository<TEntity, IdType>(AppDbContext _context) : I
         }
         catch (Exception ex)
         {
-            return Result.Failure(new Error($"{nameof(TEntity)}.UpdateRange", ex.Message, ErrorType.InternalServer));
+            return Result.Failure(new Error($"{typeof(TEntity)}.UpdateRange", ex.Message, ErrorType.InternalServer));
         }
     }
     public async Task<Result> DeleteAsync(IEnumerable<TEntity> entity, CancellationToken ct)
@@ -47,7 +47,7 @@ public class CollectionBasRepository<TEntity, IdType>(AppDbContext _context) : I
         }
         catch (Exception ex)
         {
-            return Result.Failure(new Error($"{nameof(TEntity)}.RemoveRange", ex.Message, ErrorType.InternalServer));
+            return Result.Failure(new Error($"{typeof(TEntity)}.RemoveRange", ex.Message, ErrorType.InternalServer));
         }
     }
 }

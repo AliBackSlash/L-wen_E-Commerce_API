@@ -17,19 +17,5 @@ namespace Löwen.Application.Features.DiscountFeature.Queries.Response
         public DateTime EndDate { get; set; }
         public bool IsActive { get; set; }
 
-
-        public static DiscountResponse map(DiscountDto discount) => new DiscountResponse
-        {
-            Id = discount.Id,
-            Name = discount.Name,
-            DiscountType = discount.DiscountType,
-            DiscountValue = discount.DiscountValue,
-            StartDate = discount.StartDate,
-            EndDate = discount.EndDate,
-            IsActive = discount.IsActive,
-
-        };
-        public static IEnumerable<DiscountResponse> map(IEnumerable<DiscountDto> discounts) => discounts.Select(d => map(d));
-
     }
 }
