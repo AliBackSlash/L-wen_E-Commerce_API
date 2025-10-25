@@ -24,5 +24,4 @@ public class Product
     public ICollection<OrderItem> OrderItems { get; set; } = [];
     public ICollection<Wishlist> Wishlists { get; set; } = [];
     public ICollection<LoveProductUser> Loves { get; set; } = [];
-    public ICollection<ProductDiscount> ProductDiscounts { get; set; } = [];
 }

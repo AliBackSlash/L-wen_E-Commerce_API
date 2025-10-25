@@ -1,12 +1,4 @@
-﻿using Löwen.Application.Features.DiscountFeature.Commands.AddDiscount;
-using Löwen.Application.Features.DiscountFeature.Commands.AssignDiscountToProduct;
-using Löwen.Application.Features.DiscountFeature.Commands.DeleteDiscount;
-using Löwen.Application.Features.DiscountFeature.Commands.RemoveDiscountFromProduct;
-using Löwen.Application.Features.DiscountFeature.Commands.UpdateDiscount;
-using Löwen.Application.Features.DiscountFeature.Queries.GetAll;
-using Löwen.Application.Features.DiscountFeature.Queries.GetById;
-using Löwen.Application.Features.DiscountFeature.Queries.Response;
-using Löwen.Presentation.Api.Controllers.v1.DiscountController.Models;
+﻿
 
 namespace Löwen.Presentation.Api.Controllers.v1.DiscountController
 {
@@ -72,27 +64,6 @@ namespace Löwen.Presentation.Api.Controllers.v1.DiscountController
             return result.ToActionResult();
         }
 
-        [HttpPost("assign-discount-to-product/{discountId},{productId}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> AssignDiscountToProduct(string discountId, string productId)
-        {
-            Result result = await sender.Send(new AssignDiscountToProductCommand(discountId, productId));
-
-            return result.ToActionResult();
-        }
-
-        [HttpDelete("remove-discount-from-product/{discountId},{productId}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> RemoveDiscountFromProduct(string discountId, string productId)
-        {
-            Result result = await sender.Send(new RemoveDiscountFromProductCommand(discountId, productId));
-
-            return result.ToActionResult();
-        }
 
     }
 }

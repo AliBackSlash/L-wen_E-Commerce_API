@@ -90,3 +90,14 @@ global using Microsoft.EntityFrameworkCore;
 global using Microsoft.IdentityModel.Tokens;
 global using System.Security.Claims;
 global using System.Text;
+
+
+//Discount
+
+global using Löwen.Application.Features.DiscountFeature.Commands.AddDiscount;
+global using Löwen.Application.Features.DiscountFeature.Commands.DeleteDiscount;
+global using Löwen.Application.Features.DiscountFeature.Commands.UpdateDiscount;
+global using Löwen.Application.Features.DiscountFeature.Queries.GetAll;
+global using Löwen.Application.Features.DiscountFeature.Queries.GetById;
+global using Löwen.Application.Features.DiscountFeature.Queries.Response;
+global using Löwen.Presentation.Api.Controllers.v1.DiscountController.Models;

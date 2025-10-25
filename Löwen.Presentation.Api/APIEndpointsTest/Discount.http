@@ -7,12 +7,12 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "name": "SUMMER2022",
+  "name": "SUMMER202",
   "discountType": 1,
   "discountValue": 20,
   "startDate": "2025-06-01T00:00:00Z",
   "endDate": "2025-09-01T00:00:00Z",
-  "isActive": true
+  "isActive": false
 }
 
 ###
@@ -47,17 +47,5 @@ Authorization: Bearer {{token}}
 ###
 
 ### Get all discounts (paged)
-GET {{Löwen.Api_HostAddress}}/get-all-discounts-paged/1,1
-Authorization: Bearer {{token}}
-
-###
-
-### Assign discount to product
-POST {{Löwen.Api_HostAddress}}/assign-discount-to-product/8a56d232-5b5e-4e3d-9df5-61c92d36a77e,9f6b2031-bc6c-4f58-b39c-8f6db7bb4bde
-Authorization: Bearer {{token}}
-
-###
-
-### Remove discount from product
-DELETE {{Löwen.Api_HostAddress}}/remove-discount-from-product/8a56d232-5b5e-4e3d-9df5-61c92d36a77e,9f6b2031-bc6c-4f58-b39c-8f6db7bb4bde
+GET {{Löwen.Api_HostAddress}}/get-all-discounts-paged/1,10
 Authorization: Bearer {{token}}

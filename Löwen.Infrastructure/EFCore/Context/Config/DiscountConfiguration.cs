@@ -25,10 +25,6 @@ public class DiscountConfiguration : IEntityTypeConfiguration<Discount>
 
         builder.ToTable(tb => tb.HasCheckConstraint("CK_Discount_StartDate_EndDate", "\"StartDate\" < \"EndDate\""));
 
-        // Many-to-many relationship with Product (via ProductDiscount)
-        builder.HasMany(d => d.ProductDiscounts)
-               .WithOne(pd => pd.Discount)
-               .HasForeignKey(pd => pd.DiscountId)
-               .IsRequired();
+       
     }
 }

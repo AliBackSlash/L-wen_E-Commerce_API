@@ -9,6 +9,4 @@ public class Discount
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
     public bool IsActive { get; set; } = true;
-
-    public ICollection<ProductDiscount> ProductDiscounts { get; set; } = new List<ProductDiscount>();
 }
