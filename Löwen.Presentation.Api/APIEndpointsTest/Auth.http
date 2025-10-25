@@ -6,8 +6,8 @@
 POST {{Löwen_Api_HostAddress}}/Register
 Content-Type: application/json
 {
-  "email": "ae1378032@gmail111.com",
-  "userName": "ali-01sdf111",
+  "email": "ae1378032@gmail.com",
+  "userName": "ali-01sdfut1",
   "password": "Ali1@.com111"
 }
 

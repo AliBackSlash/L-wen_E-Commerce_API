@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>تحديث حالة الطلب - Löwen Fashion</title>
+
+    <!-- Google Font: Tajawal -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap"
+          rel="stylesheet" />
+
+    <style>
+        body {
+            font-family: "Tajawal", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            direction: rtl;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background: #ffffff;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5);
+        }
+
+        .header {
+            background: linear-gradient(90deg, #000, #1a1a1a, #000);
+            padding: 25px;
+            text-align: center;
+        }
+
+            .header img {
+                max-height: 70px;
+                border-radius: 50%;
+                color: #f4f4f4;
+            }
+
+        .content {
+            padding: 40px 30px;
+            text-align: center;
+            color: #222;
+        }
+
+            .content h2 {
+                font-size: 25px;
+                margin-bottom: 20px;
+                color: #000;
+                font-weight: 700;
+                letter-spacing: 0.5px;
+            }
+
+            .content p {
+                font-size: 18px;
+                line-height: 1.9;
+                font-weight: 800;
+                color: #333;
+                margin: 0 0 20px;
+            }
+
+        .status {
+            font-size: 18px;
+            font-weight: bold;
+            color: #000;
+            margin: 25px 0;
+        }
+
+            .status span {
+                color: #b8860b; /* ذهبي فاخر */
+            }
+
+        .btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 14px 36px;
+            background: linear-gradient(90deg, #000, #2e2e2e, #000);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+            transition: 0.3s;
+        }
+
+            .btn:hover {
+                background: linear-gradient(90deg, #1c1c1c, #000, #1c1c1c);
+                transform: translateY(-3px);
+                box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+            }
+
+        .footer {
+            background: linear-gradient(90deg, #000, #111, #000);
+            padding: 20px;
+            font-size: 13px;
+            color: #ccc;
+            text-align: center;
+            border-top: 1px solid #222;
+            font-weight: 600;
+        }
+
+            .footer p {
+                margin: 5px 0;
+            }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="./photo_2025-09-03_23-02-20.jpg" alt="شعار Löwen" />
+        </div>
+
+        <div class="content">
+            <h2>تحديث حالة طلبك</h2>
+            <p>
+                عزيزي <strong>{{customerName}}</strong>،
+                <br />
+                نشكرك على تسوّقك من <strong>Löwen Fashion</strong>.
+                <br />
+                نود إعلامك بأن حالة طلبك قد تم تحديثها.
+            </p>
+
+            <p class="status">الحالة الحالية: <span>{{orderStatus}}</span></p>
+
+            <a href="{{orderLink}}" class="btn">عرض تفاصيل الطلب</a>
+        </div>
+
+        <div class="footer">
+            <p>
+                إذا لم تقم بهذا الطلب، يُرجى تجاهل هذه الرسالة أو التواصل مع فريق
+                الدعم لدينا.
+            </p>
+            <p>&copy; 2025 <strong>Löwen</strong>. جميع الحقوق محفوظة.</p>
+        </div>
+    </div>
+</body>
+</html>

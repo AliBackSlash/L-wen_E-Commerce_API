@@ -1,7 +1,8 @@
-﻿using Löwen.Domain.Abstractions.IServices.IEntitiesServices;
+﻿using Löwen.Domain.Abstractions.IServices.IEmailServices;
+using Löwen.Domain.Abstractions.IServices.IEntitiesServices;
 namespace Löwen.Application.Features.OrderFeature.Commands.UpdateOrderSataus.UpdateOrderStatus;
 
-internal class UpdateOrderStatusCommandHandler(IOrderService orderService) : ICommandHandler<UpdateOrderStatusCommand>
+internal class UpdateOrderStatusCommandHandler(IOrderService orderService, IEmailService emailService, IAppUserService appUserService) : ICommandHandler<UpdateOrderStatusCommand>
 {
     public async Task<Result> Handle(UpdateOrderStatusCommand command, CancellationToken ct)
     {
@@ -16,6 +17,7 @@ internal class UpdateOrderStatusCommandHandler(IOrderService orderService) : ICo
         if (updateResult.IsFailure)
             return Result.Failure(updateResult.Errors);
 
+        var sendEmail = emailService.SendOrderStatusAsync()
         return Result.Success();
     }
 }

@@ -1,11 +1,10 @@
 ﻿
-using Löwen.Application.Features.OrderFeature.Queries.OrderDetailsResponse;
 using Löwen.Application.Features.OrderFeature.Commands.AddOrder.AddOrder;
 using Löwen.Application.Features.OrderFeature.Commands.UpdateOrderItem.UpdateOrderItem;
-using Löwen.Application.Features.OrderFeature.Commands.UpdateOrderSataus.UpdateOrderStatus;
 using Löwen.Application.Features.OrderFeature.Queries.GetAllOrders;
 using Löwen.Application.Features.OrderFeature.Queries.GetOrderDetails;
 using Löwen.Application.Features.OrderFeature.Queries.GetOrdersForUser;
+using Löwen.Application.Features.OrderFeature.Queries.OrderDetailsResponse;
 using Löwen.Presentation.Api.Controllers.v1.OrderController.Models;
 
 namespace Löwen.Presentation.Api.Controllers.v1.OrderController
@@ -13,6 +12,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.OrderController
     [ApiController]
     [ApiVersion("1.0")]
     [Route("api/Order")]
+    //make sure use send order status email every oper
     public class OrderController(ISender sender) : ControllerBase
     {
         [HttpPost("add-order")]

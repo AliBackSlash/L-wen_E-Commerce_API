@@ -1,15 +1,20 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
-
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Email Confirmation - Löwen Fashion</title>
+    <title>تأكيد البريد الإلكتروني - Löwen Fashion</title>
+
+    <!-- خط Tajawal من Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700&display=swap"
+          rel="stylesheet" />
+
     <style>
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: "Tajawal", Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #f4f4f4;
         }
 
         .container {
@@ -18,12 +23,11 @@
             background: #ffffff;
             border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
         }
 
         .header {
             background: linear-gradient(90deg, #000, #222, #000);
-            color: #ffffff;
             padding: 25px;
             text-align: center;
         }
@@ -34,28 +38,37 @@
             }
 
         .content {
-            padding: 35px 25px;
+            padding: 35px;
             text-align: center;
-            color: #333333;
-            line-height: 1.6;
+            color: #222;
         }
 
             .content h2 {
-                margin-top: 0;
+                font-size: 24px;
+                margin-bottom: 15px;
                 color: #000;
+                font-weight: 700;
+            }
+
+            .content p {
+                font-size: 17px;
+                line-height: 1.9;
+                font-weight: 600;
+                color: #333;
             }
 
         .btn {
             display: inline-block;
             margin-top: 25px;
-            padding: 14px 28px;
+            padding: 14px 32px;
             background: linear-gradient(90deg, #000, #444, #000);
             color: #ffffff;
             text-decoration: none;
             border-radius: 30px;
-            font-weight: bold;
-            font-size: 15px;
-            transition: 0.3s ease;
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+            transition: 0.3s;
         }
 
             .btn:hover {
@@ -67,53 +80,54 @@
         .token {
             word-break: break-word;
             background: #f4f4f4;
-            border-left: 4px solid #000;
+            border-right: 4px solid #000;
             padding: 12px;
             border-radius: 8px;
             margin-top: 25px;
-            font-size: 13px;
+            font-size: 14px;
             text-align: left;
             color: #333;
+            direction: ltr;
+            font-weight: 600;
         }
 
         .footer {
             background: linear-gradient(90deg, #000, #111, #000);
-            padding: 20px;
+            padding: 18px;
             font-size: 13px;
             color: #bbb;
             text-align: center;
             border-top: 1px solid #222;
+            font-weight: 600;
         }
-
-            .footer p {
-                margin: 5px 0;
-            }
     </style>
 </head>
 
 <body>
     <div class="container">
         <div class="header">
-            <img src="./photo_2025-09-03_23-02-20.jpg" alt="Löwen Logo" />
+            <img src="./photo_2025-09-03_23-02-20.jpg" alt="شعار Löwen" />
         </div>
+
         <div class="content">
-            <h2>Confirm your email address</h2>
-            <p>
-                Thanks for joining <strong>Löwen</strong>! Please confirm your email address by clicking the
-                button below:
+            <h2>تأكيد عنوان بريدك الإلكتروني</h2>
+            <p>شكرًا لانضمامك إلى <strong>Löwen</strong></p>
+            <p>يرجى تأكيد عنوان بريدك الإلكتروني من خلال الضغط على الزر أدناه:</p>
+            <a href="{{confirmationLink}}" class="btn">تأكيد البريد الإلكتروني</a>
+
+            <p style="margin-top: 30px; font-size: 15px; color: #666">
+                إذا لم يعمل الزر، انسخ الرابط التالي وضعه في متصفحك:
             </p>
-            <a href="{{confirmationLink}}" class="btn">Confirm Email</a>
-            <p style="margin-top: 30px; font-size: 14px; color: #666;">
-                If the button doesn’t work, copy and paste this link into your browser:<br>
-            </p>
+
             <div class="token">{{confirmationLink}}</div>
-            <p>This link will expire in <strong>1 hour</strong>.</p>
+
+            <p>سينتهي صلاحية هذا الرابط خلال <strong>ساعة واحدة</strong>.</p>
         </div>
+
         <div class="footer">
-            <p>If you didn’t create this account, you can safely ignore this email.</p>
-            <p>&copy; 2025 <strong>Löwen</strong>. All rights reserved.</p>
+            <p>إذا لم تقم بإنشاء هذا الحساب، يمكنك تجاهل هذه الرسالة بأمان.</p>
+            <p>&copy; 2025 <strong>Löwen</strong>. جميع الحقوق محفوظة.</p>
         </div>
     </div>
 </body>
-
 </html>

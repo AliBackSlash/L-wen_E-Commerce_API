@@ -17,7 +17,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 namespace Löwen.Infrastructure.Services.IdentityServices;
-public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jwt, IOptions<ApiSettings> apiSettings,AppDbContext context) : IAppUserService
+public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jwt, IOptions<ApiSettings> apiSettings, AppDbContext context) : IAppUserService
 {
     private string GetError(IdentityResult identityResult) => string.Join(", ", identityResult.Errors.Select(e => e.Description));
     public async Task<Result<Guid>> RegisterAsync(RegisterUserDto reg_info, CancellationToken ct)
@@ -529,5 +529,15 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
         return Result.Success(PagedResult<GetUsersResponseDto>.Create(users, totalCount, Params.PageNumber, Params.Take));
     }
 
+    public async Task<Result<(string Name, string Email)>> GetNameAndEmailByUserIdFromOrderId(Guid orderId, CancellationToken ct)
+    {
+        Guid? userId = await context.Orders.Where(x => x.Id == orderId).Select(x => x.CustomerId).FirstOrDefaultAsync();
+        if (userId == null)
+            return Result.Failure<(string Name, string Email)>(
+                new Error("AppUserService.GetNameAndEmailByUserIdFromOrderId", "No order found", ErrorType.Conflict));
+
+
+        throw new NotImplementedException();
+    }
 }
 

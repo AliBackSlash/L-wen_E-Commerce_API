@@ -1,4 +1,6 @@
 ﻿using Löwen.Domain.Abstractions.IServices.IEmailServices;
+using Löwen.Domain.Entities;
+using Löwen.Domain.Enums;
 using Löwen.Domain.ErrorHandleClasses;
 using Microsoft.Extensions.Configuration;
 using System.Net;
@@ -50,7 +52,7 @@ public class EmailService(IConfiguration _config) : IEmailService
             return Result.Failure(new Error("(Send Email) Error accorded when send email", ex.Message, ErrorType.Failure));
         }
     }
-    private async Task<Result<string>> PrepareHTMLBodyAsync(string  folder,string file,string replaceFrom,string replaceTo)
+    private async Task<Result<string>> PrepareHTMLBodyAsync(string folder,string file,string replaceFrom,string replaceTo)
     {
         try
         {
@@ -65,7 +67,7 @@ public class EmailService(IConfiguration _config) : IEmailService
        
     }
 
-    public async Task<Result<int>> SendOTPCodeAsync(string To, CancellationToken ct, string Subject = "Löwen – Your Password Reset Code")
+    public async Task<Result<int>> SendOTPCodeAsync(string To, CancellationToken ct, string Subject = "Löwen – رمز إعادة تعيين كلمة المرور")
     {
         int OTPCode = Random.Shared.Next(100000, 999999);
         var result = await PrepareHTMLBodyAsync("EmailTemplates", "OTPCode.html", "{{otpCode}}", OTPCode.ToString());
@@ -80,7 +82,7 @@ public class EmailService(IConfiguration _config) : IEmailService
 
         return Result.Success(OTPCode);
     }
-    public async Task<Result<int>> SendRestPasswordTokenAsync(string To,string token, CancellationToken ct, string Subject = "Löwen – Reset Your Password")
+    public async Task<Result<int>> SendRestPasswordTokenAsync(string To,string token, CancellationToken ct, string Subject = "Löwen – إعادة تعيين كلمة المرور")
     {
         int OTPCode = Random.Shared.Next(100000, 999999);
         var result = await PrepareHTMLBodyAsync("EmailTemplates", "ChangePassword.html", "{{resetPasswordLink}}", token);
@@ -95,7 +97,7 @@ public class EmailService(IConfiguration _config) : IEmailService
         
         return Result.Success(OTPCode);
     }
-    public async Task<Result> SendVerificationEmailAsync(string To, string Token, CancellationToken ct, string Subject = "Confirm your account")
+    public async Task<Result> SendVerificationEmailAsync(string To, string Token, CancellationToken ct, string Subject = "Löwen – تأكيد حسابك")
     {
 
         var result = await PrepareHTMLBodyAsync("EmailTemplates", "ConfirmEmail.html", "{{confirmationLink}}", Token);
@@ -105,4 +107,49 @@ public class EmailService(IConfiguration _config) : IEmailService
 
         return await SendEmailAsync(To, Subject, result.Value, ct);
     }
+
+    private static string TranslateOrderStatusToArabic(OrderStatus status)
+    {
+        return status switch
+        {
+            OrderStatus.Pending => "قيد الانتظار",
+            OrderStatus.Processing => "قيد التجهيز",
+            OrderStatus.Shipped => "تم الشحن",
+            OrderStatus.Delivered => "تم التسليم",
+            OrderStatus.Cancelled => "ملغى",
+            OrderStatus.Returned => "تم الإرجاع",
+            OrderStatus.Refunded => "تم استرداد المبلغ",
+            OrderStatus.OnHold => "معلق",
+            OrderStatus.Failed => "فشل",
+            _ => "غير معروف"
+        };
+    }
+
+    public async Task<Result> SendOrderStatusAsync(string To, OrderStatus status, string CustomerName, CancellationToken ct, string Subject = "Löwen – تحديث حالة الطلب")
+    {
+        try
+        {
+            var arabicStatus = TranslateOrderStatusToArabic(status);
+
+            var templatePath = Path.Combine(Directory.GetCurrentDirectory(), "EmailTemplates", "OrderStuts.html");
+            var htmlBody = await File.ReadAllTextAsync(templatePath, ct);
+
+            var populatedBody = htmlBody
+                .Replace("{{orderStatus}}", arabicStatus)
+                .Replace("{{customerName}}", CustomerName);
+
+            var sendResult = await SendEmailAsync(To, Subject, populatedBody, ct);
+
+            if (sendResult.IsFailure)
+                return Result.Failure(sendResult.Errors);
+
+            return Result.Success();
+        }
+        catch (Exception ex)
+        {
+            return Result.Failure(Error.InternalServer("Read Template Error", $"Error Message: {ex.Message}"));
+        }
+    }
+
+
 }
