@@ -35,13 +35,13 @@ public class AppDbContext : IdentityDbContext<AppUser, IdentityRole<Guid>, Guid>
 
 
     #region Entities for map functions result
-    public DbSet<GetProductResult> getProductResults => Set<GetProductResult>();
+    public DbSet<GetProductDto> getProductResults => Set<GetProductDto>();
     #endregion
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppUserConfiguration).Assembly);
-        modelBuilder.Entity<GetProductResult>().HasNoKey().ToView(null);
+        modelBuilder.Entity<GetProductDto>().HasNoKey().ToView(null);
         base.OnModelCreating(modelBuilder);
 
     }

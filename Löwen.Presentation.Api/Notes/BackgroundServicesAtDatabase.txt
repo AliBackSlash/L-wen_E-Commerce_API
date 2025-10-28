@@ -1,7 +1,7 @@
 ﻿- increase_product_love_count & decrease_product_love_count (Trigger) ☑️
 - check_main_image_count (Trigger) ☑️
 - deactivate_other_discounts (Trigger) ☑️
+- CK_Coupon_StartDate_EndDate (Check) ☑️
+- CK_Coupon_StartDate_EndDate (Check) ☑️
 - DeleteCanceledOrders (background services)   ✖️
-
-- CK_Coupon_StartDate_EndDate (Check) ☑️
-- CK_Coupon_StartDate_EndDate (Check) ☑️
+- DeactiveDescountWhereHasEndDateWasDone (background services)   ✖️

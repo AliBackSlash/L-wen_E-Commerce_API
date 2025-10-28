@@ -19,11 +19,11 @@ public class UpdateProductCommandHandler(IProductService productService,IProduct
             else
                 product.CategoryId = Guid.Parse(command.CategoryId);
 
-        product.Name = command.Name ?? product.Name;  
-        product.Description = command.Description ?? product.Description;  
-/*        product.Price = command.Price ?? product.Price;  
-        product.StockQuantity = command.StockQuantity ?? product.StockQuantity;  */
-        product.Status = command.Status ?? product.Status;  
+        product.Name = command.Name ?? product.Name;
+        product.Description = command.Description ?? product.Description;
+        product.MainPrice = command.MainPrice ?? product.MainPrice;  
+        /* product.StockQuantity = command.StockQuantity ?? product.StockQuantity;  */
+        product.Status = command.Status ?? product.Status;
 
 
         var updateResult = await productService.UpdateAsync(product, ct);

@@ -1,5 +1,5 @@
 ﻿namespace Löwen.Domain.Entities.EntityForMapFunctionsResultOnly.Product;
-public class GetProductResult
+public class GetProductDto
 {
     public required string Name { get; set; }
     public string? Description { get; set; }

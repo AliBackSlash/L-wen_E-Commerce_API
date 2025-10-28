@@ -32,7 +32,7 @@ Authorization: Bearer {{token}}
 ###
 
 ### Get product by id
-GET {{Löwen.Api_HostAddress}}/get-product-by-id?id=8a56d232-5b5e-4e3d-9df5-61c92d36a77e
+GET {{Löwen.Api_HostAddress}}/get-product-by-id/0e897bbd-ecb0-4fc6-865e-c65279c08e7d
 Authorization: Bearer {{token}}
 
 ###

@@ -13,6 +13,7 @@ public class Product
     public string? Tags { get; set; }
     public Guid CategoryId { get; set; }
     public Guid CreatedBy { get; set; }
+    public double MainPrice {  get; set; }
 
 
     // Navigation properties

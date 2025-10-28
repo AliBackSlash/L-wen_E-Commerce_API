@@ -6,9 +6,9 @@ using Microsoft.Extensions.Options;
 namespace Löwen.Application.Features.ProductFeature.Queries.GetAllProductPaged;
 
 public class GetAllProductPagedQueryHandler(IProductService productService,IOptions<PaginationSettings> options)
-    : IQueryHandler<GetAllProductPagedQuery, PagedResult<GetAllProductPagedQueryResponse>>
+    : IQueryHandler<GetAllProductPagedQuery, PagedResult<GetProductQueryResponse>>
 {
-    public async Task<Result<PagedResult<GetAllProductPagedQueryResponse>>> Handle(GetAllProductPagedQuery query, CancellationToken ct)
+    public async Task<Result<PagedResult<GetProductQueryResponse>>> Handle(GetAllProductPagedQuery query, CancellationToken ct)
     {
         var result = await productService.GetProductsPaged(new PaginationParams
         {
@@ -18,9 +18,9 @@ public class GetAllProductPagedQueryHandler(IProductService productService,IOpti
         }, ct);
 
         if (result.IsFailure)
-            return Result.Failure<PagedResult<GetAllProductPagedQueryResponse>>(result.Errors);
+            return Result.Failure<PagedResult<GetProductQueryResponse>>(result.Errors);
 
-        return Result.Success(PagedResult<GetAllProductPagedQueryResponse>.Create(GetAllProductPagedQueryResponse.Map(result.Value.Items)
+        return Result.Success(PagedResult<GetProductQueryResponse>.Create(GetProductQueryResponse.Map(result.Value.Items)
             ,result.Value.TotalCount,result.Value.PageNumber,result.Value.PageSize));
     }
 }

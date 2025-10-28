@@ -86,7 +86,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
                 return Result.Failure(new Error("api/Admin/add-product", "Valid token is required", ErrorType.Unauthorized)).ToActionResult();
 
             Result<AddProductCommandResponse> result = await sender.Send(new AddProductCommand(model.Name, model.Description,model.Status, model.CategoryId, 
-                createdBy ,model.Tags, model.VariantDtos));
+                createdBy ,model.Tags,model.MainPrice, model.VariantDtos));
 
             return result.ToActionResult();
         }
@@ -147,8 +147,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> UpdateProduct([FromBody] UpdateProductModel model)
         {
-            Result result = await sender.Send(new UpdateProductCommand(model.Id,model.Name, model.Description, model.Price,
-                model.StockQuantity, model.Status, model.CategoryId));
+            Result result = await sender.Send(new UpdateProductCommand(model.Id,model.Name, model.Description,model.MainPrice, model.Status, model.CategoryId));
 
             return result.ToActionResult();
         }

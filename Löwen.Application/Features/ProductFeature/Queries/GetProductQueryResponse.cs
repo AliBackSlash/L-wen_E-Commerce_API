@@ -2,33 +2,34 @@
 
 namespace Löwen.Application.Features.ProductFeature.Queries;
 
-public class GetAllProductPagedQueryResponse
+public class GetProductQueryResponse
 {
+    public Guid ProductId { get; set; }
     public required string Name { get; set; }
     public string? Description { get; set; }
     public decimal Price { get; set; }
     public ProductStatus Status { get; set; }
     public double LoveCount { get; set; }
-    public decimal? Discount {  get; set; }
+    public decimal? PriceAfterDiscount {  get; set; }
     public double? Rating { get; set; }
-    public string? ProductImages {  get; set; }
+    public string? ProductImage { get; set; }
 
-    private GetAllProductPagedQueryResponse() { }
+    private GetProductQueryResponse() { }
 
-    public static GetAllProductPagedQueryResponse Map(GetProductResult dto) => new GetAllProductPagedQueryResponse
+    public static GetProductQueryResponse Map(GetProductDto dto) => new GetProductQueryResponse
     {
         Name = dto.Name,
         Description = dto.Description,
         Price = dto.Price,
         Status = dto.Status,
         LoveCount = dto.LoveCount,
-        Discount = dto.Discount,
-        ProductImages = dto.ProductImages,
+        PriceAfterDiscount = dto.Discount,
+        ProductImage = dto.ProductImages,
         Rating = dto.Rating,
 
     };
 
-    public static IEnumerable<GetAllProductPagedQueryResponse> Map(IEnumerable<GetProductResult> dto)
+    public static IEnumerable<GetProductQueryResponse> Map(IEnumerable<GetProductDto> dto)
     {
         if (dto == null)
             return [];
@@ -36,3 +37,5 @@ public class GetAllProductPagedQueryResponse
         return dto.Select(x => Map(x));
     }
 }
+
+

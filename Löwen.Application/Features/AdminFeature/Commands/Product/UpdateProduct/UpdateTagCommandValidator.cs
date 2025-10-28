@@ -8,7 +8,6 @@ public class UpdateProductCommandValidator : AbstractValidator<UpdateProductComm
             .Must(x => Guid.TryParse(x,out _)).WithMessage("Enter a valid Guid id");
         RuleFor(x => x.Name).Must(x => x is null || x.Length <= 70).WithMessage("the max Product name length is 70 chars");
         RuleFor(x => x.Description).Must(x => x is null || x.Length <= 1200).WithMessage("the max Description length is 1200 chars");
-        RuleFor(x => x.StockQuantity).Must(x => x is null || x <= 32767).WithMessage("the max Stock Quantity is 32,767");
         RuleFor(x => x.CategoryId).Must(x => Guid.TryParse(x, out _)).WithMessage("Enter a valid Guid Category Id");
     }
 }

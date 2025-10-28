@@ -6,9 +6,9 @@ using Microsoft.Extensions.Options;
 namespace Löwen.Application.Features.ProductFeature.Queries.GetAllProductPagedForRegisteredUsers;
 
 public class GetAllProductPagedForRegisteredUsersQueryHandler(IProductService productService,IOptions<PaginationSettings> options)
-    : IQueryHandler<GetAllProductPagedForRegisteredUsersQuery, PagedResult<GetAllProductPagedQueryResponse>>
+    : IQueryHandler<GetAllProductPagedForRegisteredUsersQuery, PagedResult<GetProductQueryResponse>>
 {
-    public async Task<Result<PagedResult<GetAllProductPagedQueryResponse>>> Handle(GetAllProductPagedForRegisteredUsersQuery query, CancellationToken ct)
+    public async Task<Result<PagedResult<GetProductQueryResponse>>> Handle(GetAllProductPagedForRegisteredUsersQuery query, CancellationToken ct)
     {
         var result = await productService.GetAllProductPagedForRegisteredUsers(query.userId, new PaginationParams
         {
@@ -18,9 +18,9 @@ public class GetAllProductPagedForRegisteredUsersQueryHandler(IProductService pr
         }, ct);
 
         if (result.IsFailure)
-            return Result.Failure<PagedResult<GetAllProductPagedQueryResponse>>(result.Errors);
+            return Result.Failure<PagedResult<GetProductQueryResponse>>(result.Errors);
 
-        return Result.Success(PagedResult<GetAllProductPagedQueryResponse>.Create(GetAllProductPagedQueryResponse.Map(result.Value.Items)
+        return Result.Success(PagedResult<GetProductQueryResponse>.Create(GetProductQueryResponse.Map(result.Value.Items)
             ,result.Value.TotalCount,result.Value.PageNumber,result.Value.PageSize));
     }
 }

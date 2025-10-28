@@ -1,5 +1,6 @@
 ﻿using Löwen.Application.Features.ProductFeature.Queries;
 using Löwen.Application.Features.ProductFeature.Queries.GetAllProductPaged;
+using Löwen.Application.Features.ProductFeature.Queries.GetProductById;
 
 namespace Löwen.Presentation.Api.Controllers.v1.ProductController
 {
@@ -9,12 +10,12 @@ namespace Löwen.Presentation.Api.Controllers.v1.ProductController
     public class ProductController(ISender sender) : ControllerBase
     {
         [HttpGet("get-all-products-paged/{PageNumber},{PageSize}")]
-        [ProducesResponseType<PagedResult<GetAllProductPagedQueryResponse>>(StatusCodes.Status200OK)]
+        [ProducesResponseType<PagedResult<GetProductQueryResponse>>(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetAllProductsPaged(int PageNumber,byte PageSize)
         {
-            Result<PagedResult<GetAllProductPagedQueryResponse>> result = await sender.Send(new GetAllProductPagedQuery(PageNumber, PageSize));
+            Result<PagedResult<GetProductQueryResponse>> result = await sender.Send(new GetAllProductPagedQuery(PageNumber, PageSize));
 
             return result.ToActionResult();
         }
@@ -57,13 +58,15 @@ namespace Löwen.Presentation.Api.Controllers.v1.ProductController
         }
 
 
-        [HttpGet("get-product-by-id")]
+        [HttpGet("get-product-by-id/{productId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetProductById()
+        public async Task<IActionResult> GetProductById(string productId)
         {
-            throw new NotImplementedException();
+            Result<GetProductByIdQueryResponse> result = await sender.Send(new GetProductByIdQuery(productId));
+
+            return result.ToActionResult();
         }
 
         [HttpGet("get-products-by-category")]

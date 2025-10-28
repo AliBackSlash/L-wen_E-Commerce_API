@@ -1,5 +1,6 @@
 @Löwen.Api_HostAddress = https://localhost:7197
-@tken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImVkNDExZmM5LTdlZGMtNDM4Yy04MmRkLTcwZWM3OTAwMDY4MSIsImp0aSI6IjFiZmMyMTBkLTNiYzUtNDdlYS1hNzZhLWM2ZDJiMmIyYTVhMiIsImVtYWlsIjoiYWUxMzc4MDMyQGdtYWlsLmNvbSIsInVuaXF1ZV9uYW1lIjoiYWxpLTAxc2RmIiwicm9sZXMiOiJVc2VyIiwiZXhwIjoxNzYxMjQ5MjU3LCJpc3MiOiJMb2NhbEhvc3QiLCJhdWQiOiJMb2NhbEhvc3QifQ.sC80ZtfifUN9U5lRTgxA0HGcOyrcyGE4wB0q52HLfWk
+@tken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImQ1ZWNjNDU3LTI3ZmUtNDE3NC1hYWMxLTFlMzk3YTMzNzIyNiIsImp0aSI6ImEyMDc3YWMyLWZiMjgtNGU1YS04NzcyLWUxZTYzOGE2YTk5NyIsImVtYWlsIjoiYWUxMzc4MDMyQGdtYWlsMTExLmNvbSIsInVuaXF1ZV9uYW1lIjoiYWxpLTAxc2RmMTExIiwicm9sZXMiOiJVc2VyIiwiZXhwIjoxNzYxNjU0ODY0LCJpc3MiOiJMb2NhbEhvc3QiLCJhdWQiOiJMb2NhbEhvc3QifQ.eO6Sf8Kzecrlnv31ZgukXeWCPSBzsvr6jOGtngChWCA
+
 
 
 //Admin Endpoints
@@ -50,6 +51,7 @@ Content-Type: application/json
   "status": 0,
   "categoryId": "90cf1501-d384-42ed-99b1-84b6b465e35e",
   "tags" : "#ali #ahmed",
+  "MainPrice": 123.23,
   "variantDtos": [
     {
       "colorId": "00000000-0000-0000-0000-000000000001",

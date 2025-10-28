@@ -8,8 +8,9 @@ namespace Löwen.Domain.Abstractions.IServices.IEntitiesServices;
 public interface IProductService : IBasRepository<Product,Guid>
 {
     Task<bool> IsFound(Guid Id,CancellationToken ct);
-    Task<Result<PagedResult<GetProductResult>>> GetProductsPaged(PaginationParams prm, CancellationToken ct);
-    Task<Result<PagedResult<GetProductResult>>> GetAllProductPagedForRegisteredUsers(Guid userId, PaginationParams prm, CancellationToken ct);
+    Task<Result<GetProductByIdDto>> GetProductByIdAsync(Guid ProductId, CancellationToken ct);
+    Task<Result<PagedResult<GetProductDto>>> GetProductsPaged(PaginationParams prm, CancellationToken ct);
+    Task<Result<PagedResult<GetProductDto>>> GetAllProductPagedForRegisteredUsers(Guid userId, PaginationParams prm, CancellationToken ct);
     Task<Result> AddProductVariantAsync(Guid productId, ProductVariantDto productVariantDto, CancellationToken ct);
     Task<Result> UpdateProductVariantAsync(Guid Id, UpdateProductVariantDto productVariantDto, CancellationToken ct);
     Task<Result> DeleteProductVariantAsync(Guid productVId , CancellationToken ct);

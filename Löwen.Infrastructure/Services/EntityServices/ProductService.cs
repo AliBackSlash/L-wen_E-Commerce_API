@@ -55,7 +55,6 @@ public class ProductService(AppDbContext _context) : BasRepository<Product, Guid
             return Result.Failure(new Error($"IProductService.UpdateProductVariant", ex.Message, ErrorType.InternalServer));
         }
     }
-
     public async Task<Result> DeleteProductVariantAsync(Guid productVId, CancellationToken ct)
     {
         var pv = await _context.ProductVariants.Where(x => x.Id == productVId).FirstOrDefaultAsync(ct);
@@ -73,12 +72,76 @@ public class ProductService(AppDbContext _context) : BasRepository<Product, Guid
         }
     }
 
-    public Task<Result<PagedResult<GetProductResult>>> GetAllProductPagedForRegisteredUsers(Guid userId, PaginationParams prm, CancellationToken ct)
+    /*
+     
+    Name 
+    Description 
+    Price 
+    Status 
+    LoveCount 
+    PriceAfterDiscount 
+    ProductImage[] 
+    Reviews[];
+            UserImage 
+            string UserName 
+            Rating 
+            Review 
+            CreatedAt 
+     */
+    public async Task<Result<GetProductByIdDto>> GetProductByIdAsync(Guid productId,CancellationToken ct)
+    {
+        var product = await (
+            from p in _context.Products
+            where p.Id == productId
+            select new GetProductByIdDto
+            {
+                Name = p.Name,
+                Description = p.Description,
+                Price = p.MainPrice,
+                Status = p.Status,
+                LoveCount = p.LoveCount,
+                PriceAfterDiscount = _context.Discounts
+                    .Where(d => d.IsActive && d.EndDate > DateTime.UtcNow)
+                    .Select(d => d.DiscountValue)
+                    .FirstOrDefault()
+            }
+        ).AsNoTracking().FirstOrDefaultAsync(ct);
+
+        if (product is null)
+            return Result.Failure<GetProductByIdDto>(new Error("IProductService.GetProductByIdAsync", $"no product with id {productId}",ErrorType.Conflict));
+
+        product.ProductImage = await  _context.Images
+            .Where(i => i.ProductId == productId)
+            .Select(i => i.Path)
+            .AsNoTracking()
+            .ToListAsync(ct);
+
+        product.Rating = _context.ProductReviews.Where(x => x.ProductId == productId).AsNoTracking().Average(i => i.Rating);
+
+        product.Reviews = await (
+            from rev in _context.ProductReviews
+            join user in _context.Users on rev.UserId equals user.Id into Rev_Users
+            from user in Rev_Users.DefaultIfEmpty()
+            where rev.ProductId == productId
+            select new ProductReviewsDto
+            {
+                UserImage = user.ImagePath,
+                UserName = user.UserName!,
+                Rating = rev.Rating,
+                Review = rev.Review,
+                CreatedAt = rev.CreatedAt
+            }
+        ).Skip(0).Take(10).AsNoTracking().ToListAsync(ct);
+
+        return Result.Success(product);
+
+    }
+    public Task<Result<PagedResult<GetProductDto>>> GetAllProductPagedForRegisteredUsers(Guid userId, PaginationParams prm, CancellationToken ct)
     {
         throw new NotImplementedException();
     }
 
-    public async Task<Result<PagedResult<GetProductResult>>> GetProductsPaged(PaginationParams prm, CancellationToken ct)
+    public async Task<Result<PagedResult<GetProductDto>>> GetProductsPaged(PaginationParams prm, CancellationToken ct)
     {
         var query = await _dbSet.ToListAsync();/*from p in _context.Products
                     join pd in _context.ProductDiscounts on p.Id equals pd.ProductId into productDiscounts
@@ -106,7 +169,7 @@ public class ProductService(AppDbContext _context) : BasRepository<Product, Guid
                         ProductImagePath = i != null ? i.Path : null
                     };*/
         var TotalCount = 0 /*await query.CountAsync(ct)*/;
-        IEnumerable<GetProductResult> products = [];/* await  query.Skip(prm.Skip)
+        IEnumerable<GetProductDto> products = [];/* await  query.Skip(prm.Skip)
             .Take(prm.Take)
             .Select(p => new GetProductResult
             {
@@ -119,7 +182,7 @@ public class ProductService(AppDbContext _context) : BasRepository<Product, Guid
                 Rating = p.Rating,
                 ProductImages = p.ProductImagePath
             }).ToListAsync();*/
-        return Result.Success(PagedResult<GetProductResult>.Create(products, TotalCount, prm.PageNumber, prm.Take));
+        return Result.Success(PagedResult<GetProductDto>.Create(products, TotalCount, prm.PageNumber, prm.Take));
 
     }
 

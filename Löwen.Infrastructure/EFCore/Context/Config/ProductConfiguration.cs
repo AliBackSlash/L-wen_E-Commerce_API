@@ -16,6 +16,7 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
         builder.Property(p => p.Description).IsRequired().HasMaxLength(1200).HasColumnType("varchar");
         builder.Property(p => p.Status).IsRequired().HasColumnType("smallint");
         builder.Property(p => p.LoveCount).IsRequired().HasColumnType("double precision").HasDefaultValueSql("0");
+        builder.Property(p => p.MainPrice).IsRequired().HasDefaultValueSql("0");
         builder.Property(x => x.CreatedBy).HasColumnType("uuid").IsRequired();
       
         // One-to-many relationship with ProductCategory

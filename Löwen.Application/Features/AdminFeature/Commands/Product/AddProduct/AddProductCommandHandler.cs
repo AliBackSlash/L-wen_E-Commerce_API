@@ -17,6 +17,7 @@ public class AddProductCommandHandler(IProductCategoryService categoryService,IP
             Name = command.Name,
             CategoryId = CategoryId,
             Description = command.Description,
+            MainPrice = command.MainPrice,
             Status = command.Status,
             CreatedBy = Guid.Parse(command.CreatedBy),
             Tags = command.Tags,
