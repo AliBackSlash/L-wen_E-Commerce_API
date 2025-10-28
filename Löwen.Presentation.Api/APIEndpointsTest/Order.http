@@ -1,5 +1,5 @@
 @Löwen_Api_HostAddress = https://localhost:7197/api/Order
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImQ1ZWNjNDU3LTI3ZmUtNDE3NC1hYWMxLTFlMzk3YTMzNzIyNiIsImp0aSI6IjliYzdkMjY1LWYxYmUtNDkzNS1iYTFkLTM3NWQ2ZTI4YmNiMSIsImVtYWlsIjoiYWUxMzc4MDMyQGdtYWlsMTExLmNvbSIsInVuaXF1ZV9uYW1lIjoiYWxpLTAxc2RmMTExIiwicm9sZXMiOiJVc2VyIiwiZXhwIjoxNzYxMzM5NDU1LCJpc3MiOiJMb2NhbEhvc3QiLCJhdWQiOiJMb2NhbEhvc3QifQ.Oy77khHLaP-rsrlGZ1cG9hFX9npWSRBaamBUSfCMBaI
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImQ1ZWNjNDU3LTI3ZmUtNDE3NC1hYWMxLTFlMzk3YTMzNzIyNiIsImp0aSI6IjMyYmJmMDgyLTY2NGMtNDE1My05M2IzLWY0MTJmNTBmYjIyOCIsImVtYWlsIjoiYWUxMzc4MDMyQGdtYWlsMTExLmNvbSIsInVuaXF1ZV9uYW1lIjoiYWxpLTAxc2RmMTExIiwicm9sZXMiOiJVc2VyIiwiZXhwIjoxNzYxNTg5NDI3LCJpc3MiOiJMb2NhbEhvc3QiLCJhdWQiOiJMb2NhbEhvc3QifQ.nZWLwUeoqVzhPLVBQ-n3957WsUq7w60HWFO2Tm2-dJg
 //Order Endpoints
 
 ###
@@ -42,12 +42,12 @@ Content-Type : application/json
   "priceAtPurchase": 0
 }
 ###
-GET {{Löwen_Api_HostAddress}}/get-order-details/e3185c73-9555-40c9-a5ca-fc518cb1bce2
+GET {{Löwen_Api_HostAddress}}/get-order-details/392ee13a-7ccb-48ad-82b0-f0cba29b7b72
 
 ###
-GET {{Löwen_Api_HostAddress}}/get-orders-by-user/1,2
+GET {{Löwen_Api_HostAddress}}/get-orders-by-user/1,3
 Authorization : Bearer {{token}}
 
 ###
-GET {{Löwen_Api_HostAddress}}/get-orders-paged/1,2
+GET {{Löwen_Api_HostAddress}}/get-orders-paged/1,1
 Authorization : Bearer {{token}}

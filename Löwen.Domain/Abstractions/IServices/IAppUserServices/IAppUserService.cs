@@ -30,5 +30,5 @@ public interface IAppUserService
     Task<Result> RemoveUserAsync(string userId);
     Task<Result<string>> RemoveUserImageAsync(string userId);
     Task<Result> UpdateProfileImageAsync(string userId,string path, string rootPath);
-    Task<Result<(string Name, string Email)>> GetNameAndEmailByUserIdFromOrderId(Guid orderId, CancellationToken ct);
+    Task<Result<UserEmailInfoDto>> GetNameAndEmailByUserIdFromOrderId(Guid orderId, CancellationToken ct);
 }

@@ -7,7 +7,10 @@ internal class GetOrderDetailsQueryHandler(IOrderService orderIService) : IQuery
 {
     public async Task<Result<GetOrderDetailsQueryResponse>> Handle(GetOrderDetailsQuery query, CancellationToken ct)
     {
-        var result = await orderIService.GetOrderDetails(Guid.Parse(query.orderId), ct);
+        Guid orderId = Guid.Parse(query.orderId);
+        if (!await orderIService.IsFound(orderId, ct))
+           return Result.Failure<GetOrderDetailsQueryResponse>(new Error("IOrderService.GetOrderDetails", $"Order With Id {query.orderId} not found", ErrorType.Conflict));
+        var result = await orderIService.GetOrderDetails(orderId, ct);
 
         return result.IsFailure ? Result.Failure<GetOrderDetailsQueryResponse>(result.Errors)
             : Result.Success(GetOrderDetailsQueryResponse.map(result.Value));

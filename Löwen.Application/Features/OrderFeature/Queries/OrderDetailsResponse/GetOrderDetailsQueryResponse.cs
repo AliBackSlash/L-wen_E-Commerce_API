@@ -7,7 +7,7 @@ public class GetOrderDetailsQueryResponse
     public DateTime OrderDate { get; set; }
     public OrderStatus Status { get; set; }
     public IEnumerable<OrderDetailsItems> items { get; set; } = [];
-
+    public decimal Total => items.Sum(x => x.Quantity * x.Price);
     private GetOrderDetailsQueryResponse() { }
 
     public static GetOrderDetailsQueryResponse map(OrderDetailsDto dto)
@@ -18,10 +18,11 @@ public class GetOrderDetailsQueryResponse
             Status = dto.Status,
             items = dto.items.Select(item => new OrderDetailsItems
             {
-                Path = item.Path,
                 ProductId = item.ProductId,
+                ProductName = item.ProductName,
                 Quantity = item.Quantity,
-                PriceAtPurchase = item.PriceAtPurchase
+                Price = item.Price,
+                Path = item.Path,
             }).AsEnumerable()
         };
     }

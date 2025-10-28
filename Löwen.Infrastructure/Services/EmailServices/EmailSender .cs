@@ -2,13 +2,14 @@
 using Löwen.Domain.Entities;
 using Löwen.Domain.Enums;
 using Löwen.Domain.ErrorHandleClasses;
+using Löwen.Infrastructure.Services.EntityServices;
 using Microsoft.Extensions.Configuration;
 using System.Net;
 using System.Net.Mail;
 
 namespace Löwen.Infrastructure.Services.EmailServices;
 
-public class EmailService(IConfiguration _config) : IEmailService
+public class EmailService(IConfiguration _config, IConvertorEnumService convertorEnumService) : IEmailService
 {
     private async Task<Result> SendEmailAsync(string to, string subject, string body, CancellationToken ct = default)
     {
@@ -108,37 +109,21 @@ public class EmailService(IConfiguration _config) : IEmailService
         return await SendEmailAsync(To, Subject, result.Value, ct);
     }
 
-    private static string TranslateOrderStatusToArabic(OrderStatus status)
-    {
-        return status switch
-        {
-            OrderStatus.Pending => "قيد الانتظار",
-            OrderStatus.Processing => "قيد التجهيز",
-            OrderStatus.Shipped => "تم الشحن",
-            OrderStatus.Delivered => "تم التسليم",
-            OrderStatus.Cancelled => "ملغى",
-            OrderStatus.Returned => "تم الإرجاع",
-            OrderStatus.Refunded => "تم استرداد المبلغ",
-            OrderStatus.OnHold => "معلق",
-            OrderStatus.Failed => "فشل",
-            _ => "غير معروف"
-        };
-    }
-
     public async Task<Result> SendOrderStatusAsync(string To, OrderStatus status, string CustomerName, CancellationToken ct, string Subject = "Löwen – تحديث حالة الطلب")
     {
         try
         {
-            var arabicStatus = TranslateOrderStatusToArabic(status);
+            var arabicStatus = convertorEnumService.TranslateOrderStatusToArabic(status);
 
             var templatePath = Path.Combine(Directory.GetCurrentDirectory(), "EmailTemplates", "OrderStuts.html");
             var htmlBody = await File.ReadAllTextAsync(templatePath, ct);
 
             var populatedBody = htmlBody
                 .Replace("{{orderStatus}}", arabicStatus)
-                .Replace("{{customerName}}", CustomerName);
+                .Replace("{{customerName}}", CustomerName)
+                .Replace("{{orderLink}}", _config["ApiSettings:OrderPageUrl"]);
 
-            var sendResult = await SendEmailAsync(To, Subject, populatedBody, ct);
+           var sendResult = await SendEmailAsync(To, Subject, populatedBody, ct);
 
             if (sendResult.IsFailure)
                 return Result.Failure(sendResult.Errors);

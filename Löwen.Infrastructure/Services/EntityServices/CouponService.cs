@@ -1,5 +1,4 @@
 ﻿using Löwen.Domain.Abstractions.IServices.IEntitiesServices;
-using Löwen.Domain.Entities;
 using Löwen.Domain.ErrorHandleClasses;
 using Löwen.Domain.Layer_Dtos.Coupon;
 using Löwen.Domain.Pagination;

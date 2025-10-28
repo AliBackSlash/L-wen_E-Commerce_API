@@ -4,5 +4,6 @@ public class OrderDetailsDto
 {
     public DateTime OrderDate { get; set; }
     public OrderStatus Status { get; set; }
-    public IEnumerable<OrderDetailsItems> items { get; set; } = [];
+    public IEnumerable<OrderDetailsItemsDto> items { get; set; } = [];
+    
 }

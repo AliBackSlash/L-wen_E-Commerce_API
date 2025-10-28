@@ -26,7 +26,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.OrderController
             if (string.IsNullOrEmpty(CustomerId))
                 return Result.Failure(new Error("api/Order/add-order", "Valid token is required", ErrorType.Unauthorized)).ToActionResult();
 
-            Result result = await sender.Send(new AddOrderCommand(CustomerId, model.Items));
+            Result result = await sender.Send(new AddOrderCommand(CustomerId, model.orders));
             return result.ToActionResult();
         }
 
@@ -36,7 +36,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.OrderController
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetOrderDetails([FromBody] UpdateOrderItemModel model)
         {
-            Result result = await sender.Send(new UpdateOrderItemCommand(model.OrderId,model.deliveryId, model.ProductId, model.Quantity, model.PriceAtPurchase));
+            Result result = await sender.Send(new UpdateOrderItemCommand(model.OrderId,model.deliveryId, model.ProductId, model.Quantity, model.Price));
 
             return result.ToActionResult();
         }

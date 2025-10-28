@@ -6,7 +6,8 @@ internal class UpdateOrderStatusCommandHandler(IOrderService orderService, IEmai
 {
     public async Task<Result> Handle(UpdateOrderStatusCommand command, CancellationToken ct)
     {
-        var order = await orderService.GetByIdAsync(Guid.Parse(command.OrderId), ct);
+        Guid orderId = Guid.Parse(command.OrderId);
+        var order = await orderService.GetByIdAsync(orderId, ct);
         if (order is null)
             return Result.Failure(new Error("Order.UpdateOrderStatus", "Order not found", ErrorType.BadRequest));
 
@@ -17,7 +18,11 @@ internal class UpdateOrderStatusCommandHandler(IOrderService orderService, IEmai
         if (updateResult.IsFailure)
             return Result.Failure(updateResult.Errors);
 
-        var sendEmail = emailService.SendOrderStatusAsync()
+        var userInfo = await appUserService.GetNameAndEmailByUserIdFromOrderId(orderId, ct);
+
+        if (userInfo is not null)
+            await emailService.SendOrderStatusAsync(userInfo.Value.Email, command.Status, userInfo.Value.Name, ct);
+
         return Result.Success();
     }
 }

@@ -1,6 +1,6 @@
-﻿namespace Löwen.Application.Features.OrderFeature.Queries.OrderDetailsResponse;
+﻿namespace Löwen.Domain.Layer_Dtos.Order;
 
-public class OrderDetailsItems
+public class OrderDetailsItemsDto
 {
     public Guid ProductId { get; set; }
     public required string ProductName { get; set; }
