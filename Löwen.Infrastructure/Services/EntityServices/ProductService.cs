@@ -1,4 +1,5 @@
-﻿using Löwen.Domain.Abstractions.IServices.IEntitiesServices;
+﻿using Löwen.Application.Features.ProductFeature.Queries;
+using Löwen.Domain.Abstractions.IServices.IEntitiesServices;
 using Löwen.Domain.ConfigurationClasses.StaticFilesHelpersClasses;
 using Löwen.Domain.Entities;
 using Löwen.Domain.Entities.EntityForMapFunctionsResultOnly.Product;
@@ -100,40 +101,76 @@ public class ProductService(AppDbContext _context) : BasRepository<Product, Guid
                 Price = p.MainPrice,
                 Status = p.Status,
                 LoveCount = p.LoveCount,
-                PriceAfterDiscount = _context.Discounts
-                    .Where(d => d.IsActive && d.EndDate > DateTime.UtcNow)
-                    .Select(d => d.DiscountValue)
-                    .FirstOrDefault()
+
             }
         ).AsNoTracking().FirstOrDefaultAsync(ct);
 
         if (product is null)
             return Result.Failure<GetProductByIdDto>(new Error("IProductService.GetProductByIdAsync", $"no product with id {productId}",ErrorType.Conflict));
-
+      
+        var disInfoIfFound = _context.Discounts
+                  .Where(d => d.IsActive && d.EndDate > DateTime.UtcNow)
+                  .Select(d => new { d.DiscountValue, d.DiscountType })
+                  .FirstOrDefault();
+        if (disInfoIfFound is not null)
+        {
+            product.Discount = disInfoIfFound.DiscountValue;
+            product.DiscountType = disInfoIfFound.DiscountType;
+        }
         product.ProductImage = await  _context.Images
             .Where(i => i.ProductId == productId)
+            .OrderByDescending(x => x.IsMain)
             .Select(i => i.Path)
             .AsNoTracking()
-            .ToListAsync(ct);
+            .ToListAsync(ct)!;
 
         product.Rating = _context.ProductReviews.Where(x => x.ProductId == productId).AsNoTracking().Average(i => i.Rating);
 
-        product.Reviews = await (
-            from rev in _context.ProductReviews
-            join user in _context.Users on rev.UserId equals user.Id into Rev_Users
-            from user in Rev_Users.DefaultIfEmpty()
-            where rev.ProductId == productId
-            select new ProductReviewsDto
-            {
-                UserImage = user.ImagePath,
-                UserName = user.UserName!,
-                Rating = rev.Rating,
-                Review = rev.Review,
-                CreatedAt = rev.CreatedAt
-            }
-        ).Skip(0).Take(10).AsNoTracking().ToListAsync(ct);
-
         return Result.Success(product);
+
+    }
+    public async Task<PagedResult<GetProductDto>> GetProductByCategoryAsync(Guid categoryId,PaginationParams prm, CancellationToken ct)
+    {
+        var products = await (
+            from p in _context.Products
+            where p.CategoryId == categoryId
+            select new GetProductDto
+            {
+                ProductId = p.Id,
+                Name = p.Name,
+                Description = p.Description!.Substring(0,30),
+                Price = p.MainPrice,
+                Status = p.Status,
+                LoveCount = p.LoveCount,
+                ProductImage =  _context.Images
+                                .Where(i => i.ProductId == p.Id && i.IsMain == true)
+                                .Select(i => i.Path).FirstOrDefault()!,
+                Rating = _context.ProductReviews.Where(x => x.ProductId == p.Id).Average(i => i.Rating)
+            }
+        ).AsNoTracking().Skip(prm.Skip).Take(prm.Take).OrderBy(x => x.Rating).ToListAsync(ct);
+
+        var total = await _dbSet.CountAsync(x => x.CategoryId == categoryId, ct);
+
+        if (products is null || products.Count <= 0)
+            return PagedResult<GetProductDto>.Create([], 0, 0, 0);
+
+        var disInfoIfFound = _context.Discounts
+                  .Where(d => d.IsActive && d.EndDate > DateTime.UtcNow)
+                  .Select(d => new { d.DiscountValue, d.DiscountType })
+                  .FirstOrDefault();
+        if (disInfoIfFound is not null)
+        {
+            foreach(var product in products)
+            {
+                product.Discount = disInfoIfFound.DiscountValue;
+                product.discountType = disInfoIfFound.DiscountType;
+            }
+            
+        }
+
+
+        return PagedResult<GetProductDto>.Create(products, total, prm.PageNumber, prm.Take);
+
 
     }
     public Task<Result<PagedResult<GetProductDto>>> GetAllProductPagedForRegisteredUsers(Guid userId, PaginationParams prm, CancellationToken ct)
@@ -183,6 +220,37 @@ public class ProductService(AppDbContext _context) : BasRepository<Product, Guid
                 ProductImages = p.ProductImagePath
             }).ToListAsync();*/
         return Result.Success(PagedResult<GetProductDto>.Create(products, TotalCount, prm.PageNumber, prm.Take));
+
+    }
+    public async Task<Result<PagedResult<ProductReviewsDto>>> GetProductReviewsPaged(Guid productId,PaginationParams prm, CancellationToken ct)
+    {
+        var query =
+            from rev in _context.ProductReviews
+            join user in _context.Users on rev.UserId equals user.Id into Rev_Users
+            from user in Rev_Users.DefaultIfEmpty()
+            where rev.ProductId == productId
+            select new
+            {
+                UserImage = user.ImagePath,
+                UserName = user.FName! + ' ' + user.LName,
+                rev.Rating,
+                rev.Review,
+                rev.CreatedAt
+            };
+
+        var TotalCount = await query.CountAsync(ct);
+
+        IEnumerable<ProductReviewsDto> reviews =  await  query.Skip(prm.Skip)
+            .Take(prm.Take)
+            .Select(p => new ProductReviewsDto
+            {
+                Rating = p.Rating,  
+                UserName = p.UserName,
+                Review = p.Review,
+                CreatedAt = p.CreatedAt
+                
+            }).ToListAsync();
+        return Result.Success(PagedResult<ProductReviewsDto>.Create(reviews, TotalCount, prm.PageNumber, prm.Take));
 
     }
 

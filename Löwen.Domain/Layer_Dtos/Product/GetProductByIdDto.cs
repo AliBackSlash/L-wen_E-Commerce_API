@@ -7,17 +7,8 @@ public class GetProductByIdDto
     public double Price { get; set; }
     public ProductStatus Status { get; set; }
     public double LoveCount { get; set; }
-    public double? PriceAfterDiscount { get; set; }
+    public double? Discount { get; set; }
+    public DiscountType? DiscountType { get; set; }
     public List<string>? ProductImage { get; set; }
     public double? Rating { get; set; }
-
-    public IEnumerable<ProductReviewsDto> Reviews { get; set; } = [];
-}
-public class ProductReviewsDto
-{
-    public string? UserImage { get; set; }
-    public required string UserName { get; set; }
-    public char Rating { get; set; }
-    public string? Review { get; set; }
-    public DateTime CreatedAt { get; set; }
 }

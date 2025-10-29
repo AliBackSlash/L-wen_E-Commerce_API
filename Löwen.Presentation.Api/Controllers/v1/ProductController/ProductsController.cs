@@ -1,6 +1,8 @@
 ﻿using Löwen.Application.Features.ProductFeature.Queries;
 using Löwen.Application.Features.ProductFeature.Queries.GetAllProductPaged;
+using Löwen.Application.Features.ProductFeature.Queries.GetAllProductReviewsPaged;
 using Löwen.Application.Features.ProductFeature.Queries.GetProductById;
+using Löwen.Application.Features.ProductFeature.Queries.GetProductsByCategoryPaged;
 
 namespace Löwen.Presentation.Api.Controllers.v1.ProductController
 {
@@ -69,13 +71,27 @@ namespace Löwen.Presentation.Api.Controllers.v1.ProductController
             return result.ToActionResult();
         }
 
-        [HttpGet("get-products-by-category")]
+
+        [HttpGet("get-product-review-by-product-id/{productId},{PageNumber},{PageSize}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetProductsByCategory()
+        public async Task<IActionResult> GetProductById(string productId,int PageNumber, byte PageSize)
         {
-            throw new NotImplementedException();
+            Result<PagedResult<ProductReviewsResponse>> result = await sender.Send(new GetAllProductReviewsPagedQuery(productId,PageNumber,PageSize));
+
+            return result.ToActionResult();
+        }
+
+        [HttpGet("get-products-by-category/{category},{PageNumber},{PageSize}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetProductsByCategory(string category,int PageNumber, byte PageSize)
+        {
+            Result<PagedResult<GetProductQueryResponse>> result = await sender.Send(new GetProductsByCategoryPagedQuery(category,PageNumber,PageSize));
+
+            return result.ToActionResult();
         }
 
         [HttpGet("get-products-by-tag")]

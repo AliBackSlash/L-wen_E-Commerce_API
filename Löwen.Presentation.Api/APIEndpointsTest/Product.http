@@ -36,9 +36,11 @@ GET {{Löwen.Api_HostAddress}}/get-product-by-id/0e897bbd-ecb0-4fc6-865e-c65279c0
 Authorization: Bearer {{token}}
 
 ###
+### Get product reviews (paged)
+GET {{Löwen.Api_HostAddress}}/get-product-review-by-product-id/0e897bbd-ecb0-4fc6-865e-c65279c08e7d,1,12
 
 ### Get products by category
-GET {{Löwen.Api_HostAddress}}/get-products-by-category?categoryId=4eeb9e61-9ff1-4b65-8121-1c5a3cb6d3a1&pageNumber=1&pageSize=10
+GET {{Löwen.Api_HostAddress}}/get-products-by-category/string1,1,12
 Authorization: Bearer {{token}}
 
 ###

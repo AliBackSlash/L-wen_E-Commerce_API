@@ -20,7 +20,7 @@ public class GetAllProductPagedForRegisteredUsersQueryHandler(IProductService pr
         if (result.IsFailure)
             return Result.Failure<PagedResult<GetProductQueryResponse>>(result.Errors);
 
-        return Result.Success(PagedResult<GetProductQueryResponse>.Create(GetProductQueryResponse.Map(result.Value.Items)
+        return Result.Success(PagedResult<GetProductQueryResponse>.Create(/*GetProductQueryResponse.Map(result.Value.Items)*/[]
             ,result.Value.TotalCount,result.Value.PageNumber,result.Value.PageSize));
     }
 }

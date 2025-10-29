@@ -21,18 +21,14 @@ public class GetProductByIdQueryHandler(IProductService productService)
             Description = result.Value.Description,
             LoveCount = result.Value.LoveCount,
             Price = result.Value.Price,
-            PriceAfterDiscount = result.Value.PriceAfterDiscount,
+            Discount = result.Value.Discount,
+            discountType = result.Value.DiscountType,
             ProductImage = result.Value.ProductImage,
             Status = result.Value.Status,
             Rating = result.Value.Rating,
-            Reviews = result.Value.Reviews.Select(x => new ProductReviewsRe
-            {
-                UserName = x.UserName,
-                UserImage = x.UserImage,
-                Rating = x.Rating,
-                Review = x.Review,
-                CreatedAt = x.CreatedAt, 
-            })
+            
         });
     }
+
+    
 }

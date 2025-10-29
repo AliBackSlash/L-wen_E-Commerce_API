@@ -4,37 +4,41 @@ namespace Löwen.Application.Features.ProductFeature.Queries;
 
 public class GetProductQueryResponse
 {
-    public Guid ProductId { get; set; }
+    public Guid? ProductId { get; set; }
     public required string Name { get; set; }
     public string? Description { get; set; }
-    public decimal Price { get; set; }
+    public double Price { get; set; }
     public ProductStatus Status { get; set; }
     public double LoveCount { get; set; }
-    public decimal? PriceAfterDiscount {  get; set; }
+    public double? Discount { get; set; }
+    public DiscountType? discountType { get; set; }
+
+    public double? PriceAfterDiscount
+    {
+        get
+        {
+            return GetDiscount(this.Price, this.Discount, this.discountType);
+        }
+    }
+    public required string? ProductImage { get; set; }
     public double? Rating { get; set; }
-    public string? ProductImage { get; set; }
+    public bool IsFreeShipping => discountType == DiscountType.FreeShipping;
 
-    private GetProductQueryResponse() { }
-
-    public static GetProductQueryResponse Map(GetProductDto dto) => new GetProductQueryResponse
+    private double? GetDiscount(double price, double? discount, DiscountType? discountType)
     {
-        Name = dto.Name,
-        Description = dto.Description,
-        Price = dto.Price,
-        Status = dto.Status,
-        LoveCount = dto.LoveCount,
-        PriceAfterDiscount = dto.Discount,
-        ProductImage = dto.ProductImages,
-        Rating = dto.Rating,
+        if (discount == null)
+            return null;
 
-    };
+        switch (discountType)
+        {
+            case DiscountType.Percentage:
+                return price - ((price / 100) * discount);
+            case DiscountType.FixedAmount:
+                return price - discount;
+            default:
+                return 0;
 
-    public static IEnumerable<GetProductQueryResponse> Map(IEnumerable<GetProductDto> dto)
-    {
-        if (dto == null)
-            return [];
-
-        return dto.Select(x => Map(x));
+        }
     }
 }
 

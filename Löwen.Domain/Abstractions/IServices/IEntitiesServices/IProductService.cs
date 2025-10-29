@@ -9,6 +9,8 @@ public interface IProductService : IBasRepository<Product,Guid>
 {
     Task<bool> IsFound(Guid Id,CancellationToken ct);
     Task<Result<GetProductByIdDto>> GetProductByIdAsync(Guid ProductId, CancellationToken ct);
+    Task<PagedResult<GetProductDto>> GetProductByCategoryAsync(Guid categoryId, PaginationParams prm, CancellationToken ct);
+    Task<Result<PagedResult<ProductReviewsDto>>> GetProductReviewsPaged(Guid productId, PaginationParams prm, CancellationToken ct);
     Task<Result<PagedResult<GetProductDto>>> GetProductsPaged(PaginationParams prm, CancellationToken ct);
     Task<Result<PagedResult<GetProductDto>>> GetAllProductPagedForRegisteredUsers(Guid userId, PaginationParams prm, CancellationToken ct);
     Task<Result> AddProductVariantAsync(Guid productId, ProductVariantDto productVariantDto, CancellationToken ct);
