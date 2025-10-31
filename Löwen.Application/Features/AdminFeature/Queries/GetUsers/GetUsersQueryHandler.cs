@@ -6,18 +6,26 @@ namespace Löwen.Application.Features.AdminFeature.Queries.GetUsers;
 
 public class GetUsersQueryHandler(IAppUserService userService,IOptions<PaginationSettings> PSettings ) : ICommandHandler<GetUsersQuery, PagedResult<GetUsersQueryResponse>>
 {
-    public async Task<Result<PagedResult<GetUsersQueryResponse>>> Handle(GetUsersQuery command, CancellationToken ct)
+    public async Task<Result<PagedResult<GetUsersQueryResponse>>> Handle(GetUsersQuery query, CancellationToken ct)
     {
         var users = await userService.GetAllAsync(new PaginationParams
         {
             maxPageSize = PSettings.Value.maxPageSize,
-            PageNumber = command.PageNumber,
-            Take = command.PageSize
-        });
+            PageNumber = query.PageNumber,
+            Take = query.PageSize
+        },ct);
         if (users.IsFailure)
             return Result.Failure<PagedResult<GetUsersQueryResponse>> (users.Errors);
 
-        return Result.Success(PagedResult<GetUsersQueryResponse>.Create(GetUsersQueryResponse.Map(users.Value.Items),users.Value.TotalCount,
+        return Result.Success(PagedResult<GetUsersQueryResponse>.Create(users.Value.Items.Select(x=> new GetUsersQueryResponse
+        {
+            Id = x.Id,
+            UserName = x.UserName,
+            Name = x.FName + (string.IsNullOrWhiteSpace(x.MName) ? " " : $" {x.MName} ") + x.LName,
+            PhoneNumber = x.PhoneNumber,
+            Gender = x.Gender,
+            IsActive = x.IsActive,
+        }),users.Value.TotalCount,
             users.Value.PageNumber,users.Value.PageSize));
     }
 }

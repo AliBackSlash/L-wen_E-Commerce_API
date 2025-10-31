@@ -1,5 +1,8 @@
 ﻿
 
+using Löwen.Application.Features.AdminFeature.Queries.GetProducts;
+using Löwen.Application.Features.AdminFeature.Queries.GetProductsByIdOrName;
+
 namespace Löwen.Presentation.Api.Controllers.v1.AdminController
 {
     [ApiController]
@@ -74,14 +77,28 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
             return result.ToActionResult();
         }*/
 
-        [HttpPost("get-products-paged//{PageNumber},{PageSize}")]
+        [HttpGet("get-products-paged/{PageNumber},{PageSize}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetAllProductsPaged(int PageNumber, byte PageSize)
         {
-           throw new NotImplementedException();
+            Result<PagedResult<GetProductsQueryResponse>> result = await sender.Send(new GetProductsQuery(PageNumber, PageSize));
+
+            return result.ToActionResult();
         }
+
+        [HttpGet("get-products-paged-filter-by-id-or-name/{IdOrName},{PageNumber},{PageSize}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetAllProductsPagedByIdOrName(string IdOrName,int PageNumber, byte PageSize)
+        {
+            Result<PagedResult<GetProductsQueryResponse>> result = await sender.Send(new GetProductsByIdOrNameQuery(IdOrName, PageNumber, PageSize));
+
+            return result.ToActionResult();
+        }
+
         [HttpPost("add-product")]
         [ProducesResponseType<Result<Guid>>(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]

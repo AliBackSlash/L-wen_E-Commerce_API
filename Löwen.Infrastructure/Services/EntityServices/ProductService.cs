@@ -72,7 +72,6 @@ public class ProductService(AppDbContext _context) : BasRepository<Product, Guid
             return Result.Failure(new Error("IProductService.DeleteProductVariant", ex.Message, ErrorType.InternalServer));
         }
     }
-
     /*
      
     Name 
@@ -177,7 +176,6 @@ public class ProductService(AppDbContext _context) : BasRepository<Product, Guid
     {
         throw new NotImplementedException();
     }
-
     public async Task<Result<PagedResult<GetProductDto>>> GetProductsPaged(PaginationParams prm, CancellationToken ct)
     {
         var query = await _dbSet.ToListAsync();/*from p in _context.Products
@@ -240,7 +238,7 @@ public class ProductService(AppDbContext _context) : BasRepository<Product, Guid
 
         var TotalCount = await query.CountAsync(ct);
 
-        IEnumerable<ProductReviewsDto> reviews =  await  query.Skip(prm.Skip)
+        var reviews =  await  query.Skip(prm.Skip)
             .Take(prm.Take)
             .Select(p => new ProductReviewsDto
             {
@@ -253,7 +251,77 @@ public class ProductService(AppDbContext _context) : BasRepository<Product, Guid
         return Result.Success(PagedResult<ProductReviewsDto>.Create(reviews, TotalCount, prm.PageNumber, prm.Take));
 
     }
-
     public async Task<bool> IsFound(Guid Id,CancellationToken ct) => await _dbSet.AnyAsync(t => t.Id == Id,ct);
+    /*
+     ProductId 
+     Name 
+     CountLove 
+     CreatedBy 
+     MainPrice 
+     Status 
 
+     */
+    public async Task<Result<PagedResult<GetProductsDto>>> GetAllProductPagedForRegisteredToShowForAdmins(PaginationParams prm, CancellationToken ct)
+    {
+        var query = from p in _dbSet
+                    join admin in _context.Users
+                    on p.CreatedBy equals admin.Id
+                    orderby p.LoveCount descending
+                    select new
+                    {
+                        p.Id,
+                        p.Name,
+                        p.LoveCount,
+                        p.MainPrice,
+                        p.Status,
+                        admin.UserName
+                    };
+        var TotalCount = await query.CountAsync(ct);
+
+        var products = await query.Skip(prm.Skip)
+            .Take(prm.Take)
+            .Select(p => new GetProductsDto
+            {
+                ProductId = p.Id,
+                Name = p.Name,
+                LoveCount = p.LoveCount,
+                MainPrice = p.MainPrice,
+                CreatedBy = p.UserName, 
+                Status = p.Status,
+            }).ToListAsync();
+        return Result.Success(PagedResult<GetProductsDto>.Create(products, TotalCount, prm.PageNumber, prm.Take));
+
+    }
+
+    public async Task<Result<PagedResult<GetProductsDto>>> GetAllProductPagedForRegisteredToShowForAdminsByIdOrName(string IdOrName, PaginationParams prm, CancellationToken ct)
+    {
+        var query = from p in _dbSet.Where(x => EF.Functions.Like(x.Id.ToString(),$"%{IdOrName}%")
+                                            || EF.Functions.Like(x.Name, $"%{IdOrName}%"))
+                    join admin in _context.Users
+                    on p.CreatedBy equals admin.Id
+                    orderby p.LoveCount descending
+                    select new
+                    {
+                        p.Id,
+                        p.Name,
+                        p.LoveCount,
+                        p.MainPrice,
+                        p.Status,
+                        admin.UserName
+                    };
+        var TotalCount = await query.CountAsync(ct);
+
+        var products = await query.Skip(prm.Skip)
+            .Take(prm.Take)
+            .Select(p => new GetProductsDto
+            {
+                ProductId = p.Id,
+                Name = p.Name,
+                LoveCount = p.LoveCount,
+                MainPrice = p.MainPrice,
+                CreatedBy = p.UserName,
+                Status = p.Status,
+            }).ToListAsync();
+        return Result.Success(PagedResult<GetProductsDto>.Create(products, TotalCount, prm.PageNumber, prm.Take));
+    }
 }

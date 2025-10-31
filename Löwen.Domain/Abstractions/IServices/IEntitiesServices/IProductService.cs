@@ -13,6 +13,8 @@ public interface IProductService : IBasRepository<Product,Guid>
     Task<Result<PagedResult<ProductReviewsDto>>> GetProductReviewsPaged(Guid productId, PaginationParams prm, CancellationToken ct);
     Task<Result<PagedResult<GetProductDto>>> GetProductsPaged(PaginationParams prm, CancellationToken ct);
     Task<Result<PagedResult<GetProductDto>>> GetAllProductPagedForRegisteredUsers(Guid userId, PaginationParams prm, CancellationToken ct);
+    Task<Result<PagedResult<GetProductsDto>>> GetAllProductPagedForRegisteredToShowForAdmins(PaginationParams prm, CancellationToken ct);
+    Task<Result<PagedResult<GetProductsDto>>> GetAllProductPagedForRegisteredToShowForAdminsByIdOrName(string IdOrName,PaginationParams prm, CancellationToken ct);
     Task<Result> AddProductVariantAsync(Guid productId, ProductVariantDto productVariantDto, CancellationToken ct);
     Task<Result> UpdateProductVariantAsync(Guid Id, UpdateProductVariantDto productVariantDto, CancellationToken ct);
     Task<Result> DeleteProductVariantAsync(Guid productVId , CancellationToken ct);

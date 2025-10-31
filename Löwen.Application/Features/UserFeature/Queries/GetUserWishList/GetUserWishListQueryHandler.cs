@@ -24,6 +24,6 @@ internal class GetUserWishListQueryHandler(IWishlistService wishlistService,IOpt
                 ProductName = x.ProductName,
                 Price = x.Price,
                 Image = x.Image,
-            }).AsEnumerable(),result.TotalCount ,result.PageNumber,result.PageSize));
+            }),result.TotalCount ,result.PageNumber,result.PageSize));
     }
 }

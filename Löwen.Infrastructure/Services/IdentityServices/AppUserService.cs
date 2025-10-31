@@ -483,7 +483,7 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
             IsActive = u.IsDeleted
         }).ToList());
     }
-    public async Task<Result<PagedResult<GetUsersResponseDto>>> GetAllAsync(PaginationParams Params,UserRole role = UserRole.User)
+    public async Task<Result<PagedResult<GetUsersResponseDto>>> GetAllAsync(PaginationParams Params, CancellationToken ct, UserRole role = UserRole.User)
     {
         var query =
             from u in _userManager.Users
@@ -503,7 +503,7 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
                 u.IsDeleted
             };
 
-        var totalCount = await query.CountAsync();
+        var totalCount = await query.CountAsync(ct);
 
        /* if (totalCount == 0)
             return Result.Failure<PagedResult<GetUsersResponseDto>>(
@@ -524,7 +524,7 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
                 IsActive = !u.IsDeleted
             })
             .AsNoTracking()
-            .ToListAsync();
+            .ToListAsync(ct);
 
         return Result.Success(PagedResult<GetUsersResponseDto>.Create(users, totalCount, Params.PageNumber, Params.Take));
     }
