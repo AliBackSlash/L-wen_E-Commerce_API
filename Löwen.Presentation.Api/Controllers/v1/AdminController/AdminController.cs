@@ -74,6 +74,14 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
             return result.ToActionResult();
         }*/
 
+        [HttpPost("get-products-paged//{PageNumber},{PageSize}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetAllProductsPaged(int PageNumber, byte PageSize)
+        {
+           throw new NotImplementedException();
+        }
         [HttpPost("add-product")]
         [ProducesResponseType<Result<Guid>>(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]

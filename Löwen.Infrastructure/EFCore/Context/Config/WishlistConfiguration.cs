@@ -15,6 +15,7 @@ public class WishlistConfiguration : IEntityTypeConfiguration<Wishlist>
         // Column types
         builder.Property(w => w.UserId).HasColumnType("uuid");
         builder.Property(w => w.ProductId).HasColumnType("uuid");
+        builder.Property(x => x.CreatedAt).HasColumnType("timestamp with time zone").HasDefaultValueSql("NOW() AT TIME ZONE 'utc'");
 
         // Relationships
 

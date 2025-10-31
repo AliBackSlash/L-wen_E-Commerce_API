@@ -133,7 +133,9 @@ public class ProductService(AppDbContext _context) : BasRepository<Product, Guid
     {
         var products = await (
             from p in _context.Products
+            join i in _context.Images on p.Id equals i.ProductId
             where p.CategoryId == categoryId
+            where i.IsMain == true
             select new GetProductDto
             {
                 ProductId = p.Id,
@@ -142,9 +144,7 @@ public class ProductService(AppDbContext _context) : BasRepository<Product, Guid
                 Price = p.MainPrice,
                 Status = p.Status,
                 LoveCount = p.LoveCount,
-                ProductImage =  _context.Images
-                                .Where(i => i.ProductId == p.Id && i.IsMain == true)
-                                .Select(i => i.Path).FirstOrDefault()!,
+                ProductImage = i.Path,
                 Rating = _context.ProductReviews.Where(x => x.ProductId == p.Id).Average(i => i.Rating)
             }
         ).AsNoTracking().Skip(prm.Skip).Take(prm.Take).OrderBy(x => x.Rating).ToListAsync(ct);

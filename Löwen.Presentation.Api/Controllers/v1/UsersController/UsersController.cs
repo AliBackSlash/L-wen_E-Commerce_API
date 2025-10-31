@@ -1,10 +1,13 @@
 ﻿using Löwen.Application.Features.AdminFeature.Commands.Product.DeleteProductImages;
+using Löwen.Application.Features.OrderFeature.Queries.OrderDetailsResponse;
 using Löwen.Application.Features.UserFeature.Commands.DeleteUserImage;
 using Löwen.Application.Features.UserFeature.Commands.ProductReviewOper.AddProductReview;
 using Löwen.Application.Features.UserFeature.Commands.ProductReviewOper.UpdateProductReview;
 using Löwen.Application.Features.UserFeature.Commands.UserInfoOper.ChangePassword;
 using Löwen.Application.Features.UserFeature.Commands.UserInfoOper.UpdateUserInfo;
 using Löwen.Application.Features.UserFeature.Commands.WishlistOper.RemoveProductReview;
+using Löwen.Application.Features.UserFeature.Queries.GetOrdersForUser;
+using Löwen.Application.Features.UserFeature.Queries.GetUserWishList;
 using Löwen.Domain.Entities;
 
 namespace Löwen.Presentation.Api.Controllers.v1.UsersController;
@@ -239,34 +242,46 @@ public class UsersController(ISender _sender, IFileService fileService) : Contro
 
         return result.ToActionResult();
     }
-
-
-    //Keep them after the order endpoint
-    [HttpGet("get-my-orders")]
+    
+    [HttpGet("get-orders-by-user/{PageNumber},{PageSize}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> GetMyOrders()
+    public async Task<IActionResult> GetOrdersByUser(int PageNumber, byte PageSize)
     {
-        throw new NotImplementedException();
+        var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        if (string.IsNullOrEmpty(id))
+            return Result.Failure(new Error("api/user/get-orders-by-user", "Valid token is required", ErrorType.Unauthorized)).ToActionResult();
+
+        Result<PagedResult<GetOrderDetailsQueryResponse>> result = await _sender.Send(new GetOrdersForUserQuery(id, PageNumber, PageSize));
+
+        return result.ToActionResult();
     }
 
-    [HttpGet("get-my-wishlist")]
+    [HttpGet("get-my-wishlist/{PageNumber},{PageSize}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> GetMyWishlist()
+    public async Task<IActionResult> GetMyWishlist(int PageNumber, byte PageSize)
     {
-        throw new NotImplementedException();
+        var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        if (string.IsNullOrEmpty(id))
+            return Result.Failure(new Error("api/usre/get-my-wishlist", "Valid token is required", ErrorType.Unauthorized)).ToActionResult();
+
+        Result<PagedResult<GetUserWishListQueryResponse>> result = await _sender.Send(new GetUserWishListQuery(id, PageNumber, PageSize));
+
+        return result.ToActionResult();
     }
 
-    [HttpGet("get-my-reviews")]
+  /*  [HttpGet("get-my-reviews{PageNumber},{PageSize}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> GetMyReviews()
     {
         throw new NotImplementedException();
-    }
+    }*/
 
 }

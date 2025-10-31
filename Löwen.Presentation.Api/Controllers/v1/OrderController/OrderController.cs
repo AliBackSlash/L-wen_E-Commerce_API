@@ -3,7 +3,6 @@ using Löwen.Application.Features.OrderFeature.Commands.AddOrder.AddOrder;
 using Löwen.Application.Features.OrderFeature.Commands.UpdateOrderItem.UpdateOrderItem;
 using Löwen.Application.Features.OrderFeature.Queries.GetAllOrders;
 using Löwen.Application.Features.OrderFeature.Queries.GetOrderDetails;
-using Löwen.Application.Features.OrderFeature.Queries.GetOrdersForUser;
 using Löwen.Application.Features.OrderFeature.Queries.OrderDetailsResponse;
 using Löwen.Presentation.Api.Controllers.v1.OrderController.Models;
 
@@ -53,21 +52,21 @@ namespace Löwen.Presentation.Api.Controllers.v1.OrderController
             return result.ToActionResult();
         }
 
-        [HttpGet("get-orders-by-user/{PageNumber},{PageSize}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetOrdersByUser(int PageNumber, byte PageSize)
-        {
-            var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        /*        [HttpGet("get-orders-by-user/{PageNumber},{PageSize}")]
+                [ProducesResponseType(StatusCodes.Status200OK)]
+                [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
+                [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+                public async Task<IActionResult> GetOrdersByUser(int PageNumber, byte PageSize)
+                {
+                    var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            if (string.IsNullOrEmpty(id))
-                return Result.Failure(new Error("api/Order/get-orders-by-user", "Valid token is required", ErrorType.Unauthorized)).ToActionResult();
+                    if (string.IsNullOrEmpty(id))
+                        return Result.Failure(new Error("api/Order/get-orders-by-user", "Valid token is required", ErrorType.Unauthorized)).ToActionResult();
 
-            Result<PagedResult<GetOrderDetailsQueryResponse>> result = await sender.Send(new GetOrdersForUserQuery(id, PageNumber, PageSize));
+                    Result<PagedResult<GetOrderDetailsQueryResponse>> result = await sender.Send(new GetOrdersForUserQuery(id, PageNumber, PageSize));
 
-            return result.ToActionResult();
-        }
+                    return result.ToActionResult();
+                }*/
 
         [HttpGet("get-orders-paged/{PageNumber},{PageSize}")]
         [ProducesResponseType(StatusCodes.Status200OK)]

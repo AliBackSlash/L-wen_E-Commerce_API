@@ -9,7 +9,7 @@ public class GetProductDto
     public double LoveCount { get; set; }
     public double? Discount { get; set; }
     public DiscountType? discountType { get; set; }
-    public double? Rating { get { if (this.Rating is null) return 0; else return this.Rating; } set {this.Rating = value; } }
+    public double? Rating { get; set; }
     public string? ProductImage { get; set; }
 
 }

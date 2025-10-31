@@ -1,8 +1,8 @@
-﻿namespace Löwen.Application.Features.OrderFeature.Queries.GetOrdersForUser;
+﻿namespace Löwen.Application.Features.UserFeature.Queries.GetUserWishList;
 
-public class GetOrdersForUserQueryValidator : AbstractValidator<GetOrdersForUserQuery>
+public class GetUserWishListQueryValidator : AbstractValidator<GetUserWishListQuery>
 {
-    public GetOrdersForUserQueryValidator()
+    public GetUserWishListQueryValidator()
     {
         RuleFor(x => x.userId).NotEmpty().WithMessage("Id is required")
           .Must(x => Guid.TryParse(x, out _)).WithMessage("Enter a valid Guid user id");
