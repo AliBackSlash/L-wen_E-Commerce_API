@@ -3,14 +3,14 @@ using Löwen.Domain.ConfigurationClasses.Pagination;
 using Löwen.Domain.Pagination;
 using Microsoft.Extensions.Options;
 
-namespace Löwen.Application.Features.ProductFeature.Queries.GetAllProductPaged;
+namespace Löwen.Application.Features.ProductFeature.Queries.GetAllMostLovedProductsPaged;
 
-public class GetAllProductPagedQueryHandler(IProductService productService,IOptions<PaginationSettings> options)
-    : IQueryHandler<GetAllProductPagedQuery, PagedResult<GetProductQueryResponse>>
+public class GetAllMostLovedProductsPagedQueryHandler(IProductService productService,IOptions<PaginationSettings> options)
+    : IQueryHandler<GetAllMostLovedProductsPagedQuery, PagedResult<GetProductQueryResponse>>
 {
-    public async Task<Result<PagedResult<GetProductQueryResponse>>> Handle(GetAllProductPagedQuery query, CancellationToken ct)
+    public async Task<Result<PagedResult<GetProductQueryResponse>>> Handle(GetAllMostLovedProductsPagedQuery query, CancellationToken ct)
     {
-        var result = await productService.GetProductsPaged(new PaginationParams
+        var result = await productService.GetMostLovedProductsPaged(new PaginationParams
         {
             maxPageSize = options.Value.maxPageSize,
             Take = query.PageSize,

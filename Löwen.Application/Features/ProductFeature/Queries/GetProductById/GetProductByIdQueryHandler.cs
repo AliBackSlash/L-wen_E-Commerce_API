@@ -10,13 +10,15 @@ public class GetProductByIdQueryHandler(IProductService productService)
 {
     public async Task<Result<GetProductByIdQueryResponse>> Handle(GetProductByIdQuery query, CancellationToken ct)
     {
-        var result = await productService.GetProductByIdAsync(Guid.Parse(query.productId), ct);
+        Guid PId = Guid.Parse(query.productId);
+        var result = await productService.GetProductByIdAsync(PId, ct);
 
         if (result.IsFailure)
             return Result.Failure<GetProductByIdQueryResponse>(result.Errors);
 
         return Result.Success(new GetProductByIdQueryResponse
         {
+            ProductId = PId,
             Name = result.Value.Name,
             Description = result.Value.Description,
             LoveCount = result.Value.LoveCount,

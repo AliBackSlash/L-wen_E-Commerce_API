@@ -3,60 +3,40 @@
   "WorkspaceRootPath": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.presentation.api\\apiendpointstest\\admin.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
-      "RelativeMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|solutionrelative:l\u00F6wen.presentation.api\\apiendpointstest\\admin.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+      "AbsoluteMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.presentation.api\\controllers\\v1\\notificationcontroller\\notificationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|solutionrelative:l\u00F6wen.presentation.api\\controllers\\v1\\notificationcontroller\\notificationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.presentation.api\\controllers\\v1\\admincontroller\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|solutionrelative:l\u00F6wen.presentation.api\\controllers\\v1\\admincontroller\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.presentation.api\\apiendpointstest\\product.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|solutionrelative:l\u00F6wen.presentation.api\\apiendpointstest\\product.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{862DA835-FE60-4657-B32E-EA3A6E9D18F3}|L\u00F6wen.Infrastructure\\L\u00F6wen.Infrastructure.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.infrastructure\\services\\entityservices\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{862DA835-FE60-4657-B32E-EA3A6E9D18F3}|L\u00F6wen.Infrastructure\\L\u00F6wen.Infrastructure.csproj|solutionrelative:l\u00F6wen.infrastructure\\services\\entityservices\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.application\\features\\adminfeature\\queries\\getusers\\getusersqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|solutionrelative:l\u00F6wen.application\\features\\adminfeature\\queries\\getusers\\getusersqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.application\\features\\adminfeature\\queries\\getproducts\\getproductsqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|solutionrelative:l\u00F6wen.application\\features\\adminfeature\\queries\\getproducts\\getproductsqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.application\\features\\adminfeature\\queries\\getproducts\\getproductsqueryresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|solutionrelative:l\u00F6wen.application\\features\\adminfeature\\queries\\getproducts\\getproductsqueryresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.application\\features\\adminfeature\\queries\\getproductsbyidorname\\getproductsbyidornamequeryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|solutionrelative:l\u00F6wen.application\\features\\adminfeature\\queries\\getproductsbyidorname\\getproductsbyidornamequeryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.domain\\abstractions\\iservices\\ientitiesservices\\iproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|solutionrelative:l\u00F6wen.domain\\abstractions\\iservices\\ientitiesservices\\iproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.application\\features\\adminfeature\\queries\\getproductsbyidorname\\getproductsqueryvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|solutionrelative:l\u00F6wen.application\\features\\adminfeature\\queries\\getproductsbyidorname\\getproductsqueryvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.application\\features\\productfeature\\queries\\getallproductpagedbygender\\getallproductpagedbygenderqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|solutionrelative:l\u00F6wen.application\\features\\productfeature\\queries\\getallproductpagedbygender\\getallproductpagedbygenderqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.application\\features\\adminfeature\\queries\\getproductsbyidorname\\getproductsbyidornamequery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|solutionrelative:l\u00F6wen.application\\features\\adminfeature\\queries\\getproductsbyidorname\\getproductsbyidornamequery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.presentation.api\\controllers\\v1\\productcontroller\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|solutionrelative:l\u00F6wen.presentation.api\\controllers\\v1\\productcontroller\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.domain\\abstractions\\iservices\\iappuserservices\\iappuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|solutionrelative:l\u00F6wen.domain\\abstractions\\iservices\\iappuserservices\\iappuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.application\\features\\productfeature\\queries\\getallproductpagedbygender\\getallproductpagedbygenderqueryvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|solutionrelative:l\u00F6wen.application\\features\\productfeature\\queries\\getallproductpagedbygender\\getallproductpagedbygenderqueryvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.domain\\layer_dtos\\product\\addproductimagesdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{04D4BF63-94E9-431C-810D-1956178F51B4}|L\u00F6wen.Domain\\L\u00F6wen.Domain.csproj|solutionrelative:l\u00F6wen.domain\\layer_dtos\\product\\addproductimagesdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.application\\features\\productfeature\\queries\\getallproductpagedbygender\\getallproductpagedbygenderquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|solutionrelative:l\u00F6wen.application\\features\\productfeature\\queries\\getallproductpagedbygender\\getallproductpagedbygenderquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.application\\features\\adminfeature\\queries\\getproducts\\getproductsqueryvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|solutionrelative:l\u00F6wen.application\\features\\adminfeature\\queries\\getproducts\\getproductsqueryvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.application\\features\\adminfeature\\queries\\getproducts\\getproductsquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|solutionrelative:l\u00F6wen.application\\features\\adminfeature\\queries\\getproducts\\getproductsquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.application\\features\\productfeature\\queries\\getallproductpagedbyname\\getallproductpagedbynamequeryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA32805B-36E1-47A5-8F38-B91F6370EC61}|L\u00F6wen.Application\\L\u00F6wen.Application.csproj|solutionrelative:l\u00F6wen.application\\features\\productfeature\\queries\\getallproductpagedbyname\\getallproductpagedbynamequeryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -66,8 +46,35 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 13,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Product.http",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\APIEndpointsTest\\Product.http",
+              "RelativeDocumentMoniker": "L\u00F6wen.Presentation.Api\\APIEndpointsTest\\Product.http",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\APIEndpointsTest\\Product.http",
+              "RelativeToolTip": "L\u00F6wen.Presentation.Api\\APIEndpointsTest\\Product.http",
+              "ViewState": "AgIAABAAAAAAAAAAAAAqwBsAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2025-11-01T09:02:27.524Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "NotificationController.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\Controllers\\v1\\NotificationController\\NotificationController.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Presentation.Api\\Controllers\\v1\\NotificationController\\NotificationController.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\Controllers\\v1\\NotificationController\\NotificationController.cs",
+              "RelativeToolTip": "L\u00F6wen.Presentation.Api\\Controllers\\v1\\NotificationController\\NotificationController.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAgwC4AAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-02T07:38:23.247Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:132:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
@@ -114,184 +121,93 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "GetProductsByIdOrNameQueryHandler.cs",
-              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\AdminFeature\\Queries\\GetProductsByIdOrName\\GetProductsByIdOrNameQueryHandler.cs",
-              "RelativeDocumentMoniker": "L\u00F6wen.Application\\Features\\AdminFeature\\Queries\\GetProductsByIdOrName\\GetProductsByIdOrNameQueryHandler.cs",
-              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\AdminFeature\\Queries\\GetProductsByIdOrName\\GetProductsByIdOrNameQueryHandler.cs",
-              "RelativeToolTip": "L\u00F6wen.Application\\Features\\AdminFeature\\Queries\\GetProductsByIdOrName\\GetProductsByIdOrNameQueryHandler.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-31T17:57:50.595Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "GetProductsByIdOrNameQuery.cs",
-              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\AdminFeature\\Queries\\GetProductsByIdOrName\\GetProductsByIdOrNameQuery.cs",
-              "RelativeDocumentMoniker": "L\u00F6wen.Application\\Features\\AdminFeature\\Queries\\GetProductsByIdOrName\\GetProductsByIdOrNameQuery.cs",
-              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\AdminFeature\\Queries\\GetProductsByIdOrName\\GetProductsByIdOrNameQuery.cs",
-              "RelativeToolTip": "L\u00F6wen.Application\\Features\\AdminFeature\\Queries\\GetProductsByIdOrName\\GetProductsByIdOrNameQuery.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAA4AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-31T17:57:46.642Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Admin.http",
-              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\APIEndpointsTest\\Admin.http",
-              "RelativeDocumentMoniker": "L\u00F6wen.Presentation.Api\\APIEndpointsTest\\Admin.http",
-              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\APIEndpointsTest\\Admin.http*",
-              "RelativeToolTip": "L\u00F6wen.Presentation.Api\\APIEndpointsTest\\Admin.http*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
-              "WhenOpened": "2025-10-31T17:52:40.908Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "IProductService.cs",
-              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Domain\\Abstractions\\IServices\\IEntitiesServices\\IProductService.cs",
-              "RelativeDocumentMoniker": "L\u00F6wen.Domain\\Abstractions\\IServices\\IEntitiesServices\\IProductService.cs",
-              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Domain\\Abstractions\\IServices\\IEntitiesServices\\IProductService.cs",
-              "RelativeToolTip": "L\u00F6wen.Domain\\Abstractions\\IServices\\IEntitiesServices\\IProductService.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAArwAcAAAAbAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-31T17:38:46.737Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
               "Title": "ProductService.cs",
               "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Infrastructure\\Services\\EntityServices\\ProductService.cs",
               "RelativeDocumentMoniker": "L\u00F6wen.Infrastructure\\Services\\EntityServices\\ProductService.cs",
               "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Infrastructure\\Services\\EntityServices\\ProductService.cs",
               "RelativeToolTip": "L\u00F6wen.Infrastructure\\Services\\EntityServices\\ProductService.cs",
-              "ViewState": "AgIAAB4BAAAAAAAAAAAAwDcBAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAqwEoAAABpAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-31T17:38:23.215Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "AddProductImagesDto.cs",
-              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Domain\\Layer_Dtos\\Product\\AddProductImagesDto.cs",
-              "RelativeDocumentMoniker": "L\u00F6wen.Domain\\Layer_Dtos\\Product\\AddProductImagesDto.cs",
-              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Domain\\Layer_Dtos\\Product\\AddProductImagesDto.cs",
-              "RelativeToolTip": "L\u00F6wen.Domain\\Layer_Dtos\\Product\\AddProductImagesDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-31T17:37:47.452Z",
+              "WhenOpened": "2025-11-02T07:16:46.752Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "GetUsersQueryHandler.cs",
-              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\AdminFeature\\Queries\\GetUsers\\GetUsersQueryHandler.cs",
-              "RelativeDocumentMoniker": "L\u00F6wen.Application\\Features\\AdminFeature\\Queries\\GetUsers\\GetUsersQueryHandler.cs",
-              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\AdminFeature\\Queries\\GetUsers\\GetUsersQueryHandler.cs",
-              "RelativeToolTip": "L\u00F6wen.Application\\Features\\AdminFeature\\Queries\\GetUsers\\GetUsersQueryHandler.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABcAAAAAAAAAA==",
+              "Title": "IProductService.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Domain\\Abstractions\\IServices\\IEntitiesServices\\IProductService.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Domain\\Abstractions\\IServices\\IEntitiesServices\\IProductService.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Domain\\Abstractions\\IServices\\IEntitiesServices\\IProductService.cs",
+              "RelativeToolTip": "L\u00F6wen.Domain\\Abstractions\\IServices\\IEntitiesServices\\IProductService.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAtwBAAAABJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-31T17:33:58.608Z",
+              "WhenOpened": "2025-11-02T07:09:04.044Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "GetProductsQueryValidator.cs",
-              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\AdminFeature\\Queries\\GetProducts\\GetProductsQueryValidator.cs",
-              "RelativeDocumentMoniker": "L\u00F6wen.Application\\Features\\AdminFeature\\Queries\\GetProducts\\GetProductsQueryValidator.cs",
-              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\AdminFeature\\Queries\\GetProducts\\GetProductsQueryValidator.cs",
-              "RelativeToolTip": "L\u00F6wen.Application\\Features\\AdminFeature\\Queries\\GetProducts\\GetProductsQueryValidator.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAwAAAAAAAAAA==",
+              "DocumentIndex": 6,
+              "Title": "GetAllProductPagedByGenderQueryValidator.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\ProductFeature\\Queries\\GetAllProductPagedByGender\\GetAllProductPagedByGenderQueryValidator.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Application\\Features\\ProductFeature\\Queries\\GetAllProductPagedByGender\\GetAllProductPagedByGenderQueryValidator.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\ProductFeature\\Queries\\GetAllProductPagedByGender\\GetAllProductPagedByGenderQueryValidator.cs",
+              "RelativeToolTip": "L\u00F6wen.Application\\Features\\ProductFeature\\Queries\\GetAllProductPagedByGender\\GetAllProductPagedByGenderQueryValidator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAABpAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-31T17:33:02.051Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "GetProductsQueryResponse.cs",
-              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\AdminFeature\\Queries\\GetProducts\\GetProductsQueryResponse.cs",
-              "RelativeDocumentMoniker": "L\u00F6wen.Application\\Features\\AdminFeature\\Queries\\GetProducts\\GetProductsQueryResponse.cs",
-              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\AdminFeature\\Queries\\GetProducts\\GetProductsQueryResponse.cs",
-              "RelativeToolTip": "L\u00F6wen.Application\\Features\\AdminFeature\\Queries\\GetProducts\\GetProductsQueryResponse.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-31T17:32:58.135Z",
+              "WhenOpened": "2025-11-02T07:07:41.685Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "GetProductsQueryHandler.cs",
-              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\AdminFeature\\Queries\\GetProducts\\GetProductsQueryHandler.cs",
-              "RelativeDocumentMoniker": "L\u00F6wen.Application\\Features\\AdminFeature\\Queries\\GetProducts\\GetProductsQueryHandler.cs",
-              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\AdminFeature\\Queries\\GetProducts\\GetProductsQueryHandler.cs",
-              "RelativeToolTip": "L\u00F6wen.Application\\Features\\AdminFeature\\Queries\\GetProducts\\GetProductsQueryHandler.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAABiAAAAAAAAAA==",
+              "Title": "GetAllProductPagedByGenderQueryHandler.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\ProductFeature\\Queries\\GetAllProductPagedByGender\\GetAllProductPagedByGenderQueryHandler.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Application\\Features\\ProductFeature\\Queries\\GetAllProductPagedByGender\\GetAllProductPagedByGenderQueryHandler.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\ProductFeature\\Queries\\GetAllProductPagedByGender\\GetAllProductPagedByGenderQueryHandler.cs",
+              "RelativeToolTip": "L\u00F6wen.Application\\Features\\ProductFeature\\Queries\\GetAllProductPagedByGender\\GetAllProductPagedByGenderQueryHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAABPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-31T17:32:54.421Z",
+              "WhenOpened": "2025-11-02T07:07:36.819Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AdminController.cs",
-              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\Controllers\\v1\\AdminController\\AdminController.cs",
-              "RelativeDocumentMoniker": "L\u00F6wen.Presentation.Api\\Controllers\\v1\\AdminController\\AdminController.cs",
-              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\Controllers\\v1\\AdminController\\AdminController.cs*",
-              "RelativeToolTip": "L\u00F6wen.Presentation.Api\\Controllers\\v1\\AdminController\\AdminController.cs*",
-              "ViewState": "AgIAACwAAAAAAAAAAAAwwFoAAAA6AAAAAAAAAA==",
+              "DocumentIndex": 7,
+              "Title": "GetAllProductPagedByGenderQuery.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\ProductFeature\\Queries\\GetAllProductPagedByGender\\GetAllProductPagedByGenderQuery.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Application\\Features\\ProductFeature\\Queries\\GetAllProductPagedByGender\\GetAllProductPagedByGenderQuery.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\ProductFeature\\Queries\\GetAllProductPagedByGender\\GetAllProductPagedByGenderQuery.cs",
+              "RelativeToolTip": "L\u00F6wen.Application\\Features\\ProductFeature\\Queries\\GetAllProductPagedByGender\\GetAllProductPagedByGenderQuery.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-31T17:51:21.782Z",
+              "WhenOpened": "2025-11-02T07:07:31.455Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "GetProductsQueryValidator.cs",
-              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\AdminFeature\\Queries\\GetProductsByIdOrName\\GetProductsQueryValidator.cs",
-              "RelativeDocumentMoniker": "L\u00F6wen.Application\\Features\\AdminFeature\\Queries\\GetProductsByIdOrName\\GetProductsQueryValidator.cs",
-              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\AdminFeature\\Queries\\GetProductsByIdOrName\\GetProductsQueryValidator.cs",
-              "RelativeToolTip": "L\u00F6wen.Application\\Features\\AdminFeature\\Queries\\GetProductsByIdOrName\\GetProductsQueryValidator.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Title": "GetAllProductPagedByNameQueryHandler.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\ProductFeature\\Queries\\GetAllProductPagedByName\\GetAllProductPagedByNameQueryHandler.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Application\\Features\\ProductFeature\\Queries\\GetAllProductPagedByName\\GetAllProductPagedByNameQueryHandler.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\ProductFeature\\Queries\\GetAllProductPagedByName\\GetAllProductPagedByNameQueryHandler.cs",
+              "RelativeToolTip": "L\u00F6wen.Application\\Features\\ProductFeature\\Queries\\GetAllProductPagedByName\\GetAllProductPagedByNameQueryHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-31T17:58:58.65Z",
+              "WhenOpened": "2025-11-02T06:59:59.942Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "IAppUserService.cs",
-              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Domain\\Abstractions\\IServices\\IAppUserServices\\IAppUserService.cs",
-              "RelativeDocumentMoniker": "L\u00F6wen.Domain\\Abstractions\\IServices\\IAppUserServices\\IAppUserService.cs",
-              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Domain\\Abstractions\\IServices\\IAppUserServices\\IAppUserService.cs",
-              "RelativeToolTip": "L\u00F6wen.Domain\\Abstractions\\IServices\\IAppUserServices\\IAppUserService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwA0AAABlAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "ProductsController.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\Controllers\\v1\\ProductController\\ProductsController.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Presentation.Api\\Controllers\\v1\\ProductController\\ProductsController.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\Controllers\\v1\\ProductController\\ProductsController.cs",
+              "RelativeToolTip": "L\u00F6wen.Presentation.Api\\Controllers\\v1\\ProductController\\ProductsController.cs",
+              "ViewState": "AgIAAEYAAAAAAAAAAAAcwIUAAAB3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-31T17:48:36.045Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "GetProductsQuery.cs",
-              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\AdminFeature\\Queries\\GetProducts\\GetProductsQuery.cs",
-              "RelativeDocumentMoniker": "L\u00F6wen.Application\\Features\\AdminFeature\\Queries\\GetProducts\\GetProductsQuery.cs",
-              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Application\\Features\\AdminFeature\\Queries\\GetProducts\\GetProductsQuery.cs",
-              "RelativeToolTip": "L\u00F6wen.Application\\Features\\AdminFeature\\Queries\\GetProducts\\GetProductsQuery.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-31T17:32:48.466Z",
+              "WhenOpened": "2025-11-02T06:46:14.988Z",
               "EditorCaption": ""
             }
           ]

@@ -10,7 +10,7 @@ public class GetProductsByIdOrNameQueryHandler(IProductService productService,IO
 {
     public async Task<Result<PagedResult<GetProductsQueryResponse>>> Handle(GetProductsByIdOrNameQuery query, CancellationToken ct)
     {
-        var users = await productService.GetAllProductPagedForRegisteredToShowForAdminsByIdOrName(query.IdOrName,new PaginationParams
+        var users = await productService.GetAllProductPagedToShowForAdminsByIdOrName(query.IdOrName,new PaginationParams
         {
             maxPageSize = PSettings.Value.maxPageSize,
             PageNumber = query.PageNumber,

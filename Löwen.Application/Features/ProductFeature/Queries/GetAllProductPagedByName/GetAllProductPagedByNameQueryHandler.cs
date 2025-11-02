@@ -3,14 +3,14 @@ using Löwen.Domain.ConfigurationClasses.Pagination;
 using Löwen.Domain.Pagination;
 using Microsoft.Extensions.Options;
 
-namespace Löwen.Application.Features.ProductFeature.Queries.GetAllProductPaged;
+namespace Löwen.Application.Features.ProductFeature.Queries.GetAllProductPagedByName;
 
-public class GetAllProductPagedQueryHandler(IProductService productService,IOptions<PaginationSettings> options)
-    : IQueryHandler<GetAllProductPagedQuery, PagedResult<GetProductQueryResponse>>
+public class GetAllProductPagedByNameQueryHandler(IProductService productService,IOptions<PaginationSettings> options)
+    : IQueryHandler<GetAllProductPagedByNameQuery, PagedResult<GetProductQueryResponse>>
 {
-    public async Task<Result<PagedResult<GetProductQueryResponse>>> Handle(GetAllProductPagedQuery query, CancellationToken ct)
+    public async Task<Result<PagedResult<GetProductQueryResponse>>> Handle(GetAllProductPagedByNameQuery query, CancellationToken ct)
     {
-        var result = await productService.GetProductsPaged(new PaginationParams
+        var result = await productService.GetProductsPagedByName(query.Name,new PaginationParams
         {
             maxPageSize = options.Value.maxPageSize,
             Take = query.PageSize,
@@ -32,6 +32,6 @@ public class GetAllProductPagedQueryHandler(IProductService productService,IOpti
             Rating = x.Rating,
 
         })
-            , result.TotalCount,result.PageNumber,result.PageSize));
+        , result.TotalCount,result.PageNumber,result.PageSize));
     }
 }

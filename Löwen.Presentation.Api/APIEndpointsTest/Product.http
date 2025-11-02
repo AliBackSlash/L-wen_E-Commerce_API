@@ -8,28 +8,13 @@ Authorization: Bearer {{token}}
 ###
 
 ### Get products by name (paged)
-GET {{Löwen.Api_HostAddress}}/get-products-by-name-paged?name=shirt&pageNumber=1&pageSize=10
+GET {{Löwen.Api_HostAddress}}/get-products-by-name-paged/al,1,10
 Authorization: Bearer {{token}}
-
-###
 
 ### Get products by gender (paged)
-GET {{Löwen.Api_HostAddress}}/get-products-by-gender-paged?gender=male&pageNumber=1&pageSize=10
+GET {{Löwen.Api_HostAddress}}/get-products-by-gender-paged/M,1,10
 Authorization: Bearer {{token}}
 
-###
-
-### Get products by age (paged)
-GET {{Löwen.Api_HostAddress}}/get-products-by-age-paged?ageGroup=kids&pageNumber=1&pageSize=10
-Authorization: Bearer {{token}}
-
-###
-
-### Get products by kind (paged)
-GET {{Löwen.Api_HostAddress}}/get-products-by-kind-paged?kind=shoes&pageNumber=1&pageSize=10
-Authorization: Bearer {{token}}
-
-###
 
 ### Get product by id
 GET {{Löwen.Api_HostAddress}}/get-product-by-id/0e897bbd-ecb0-4fc6-865e-c65279c08e7d
@@ -40,29 +25,31 @@ Authorization: Bearer {{token}}
 GET {{Löwen.Api_HostAddress}}/get-product-review-by-product-id/0e897bbd-ecb0-4fc6-865e-c65279c08e7d,1,12
 
 ### Get products by category
-GET {{Löwen.Api_HostAddress}}/get-products-by-category/string1,1,12
+GET {{Löwen.Api_HostAddress}}/get-products-by-category/Men,1,12
 Authorization: Bearer {{token}}
-
-###
-
-### Get products by tag
-GET {{Löwen.Api_HostAddress}}/get-products-by-tag?tag=summer&pageNumber=1&pageSize=10
-Authorization: Bearer {{token}}
-
-###
-
-### Get top rated products
-GET {{Löwen.Api_HostAddress}}/get-top-rated-products?pageNumber=1&pageSize=10
-Authorization: Bearer {{token}}
-
-###
 
 ### Get most loved products
-GET {{Löwen.Api_HostAddress}}/get-most-loved-products?pageNumber=1&pageSize=10
+GET {{Löwen.Api_HostAddress}}/get-most-loved-products/1,5
 Authorization: Bearer {{token}}
 
 ###
+# Get products by tag
+# GET {{Löwen.Api_HostAddress}}/get-products-by-tag?tag=summer&pageNumber=1&pageSize=10
+# Authorization: Bearer {{token}}
 
-### Get products with all filters
-GET {{Löwen.Api_HostAddress}}/get-products-with-all-filters?categoryId=4eeb9e61-9ff1-4b65-8121-1c5a3cb6d3a1&gender=female&ageGroup=adults&tag=winter&pageNumber=1&pageSize=10
-Authorization: Bearer {{token}}
+# Get top rated products
+# GET {{Löwen.Api_HostAddress}}/get-top-rated-products?pageNumber=1&pageSize=10
+# Authorization: Bearer {{token}}
+
+# Get products with all filters
+# GET {{Löwen.Api_HostAddress}}/get-products-with-all-filters?categoryId=4eeb9e61-9ff1-4b65-8121-1c5a3cb6d3a1&gender=female&ageGroup=adults&tag=winter&pageNumber=1&pageSize=10
+# Authorization: Bearer {{token}}
+
+# Get products by kind (paged)
+# GET {{Löwen.Api_HostAddress}}/get-products-by-kind-paged?kind=shoes&pageNumber=1&pageSize=10
+# Authorization: Bearer {{token}}
+
+
+# Get products by age (paged)
+# GET {{Löwen.Api_HostAddress}}/get-products-by-age-paged?ageGroup=kids&pageNumber=1&pageSize=10
+# Authorization: Bearer {{token}}

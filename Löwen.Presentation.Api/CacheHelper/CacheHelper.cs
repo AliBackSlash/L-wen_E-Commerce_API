@@ -11,7 +11,7 @@ public static class CacheHelper
     public static readonly string Users_prefix = "User";
     public static readonly string admins_prefix = "admins";
     public static readonly string RootAdmin_prefix = "RootAdmin";
-    public static readonly string OTP_prefix = "OTP";
+    public static readonly string Product_prefix = "Product";
 
     public static readonly int members_list_durationMinutes =  4;
     public static readonly int membership_list_durationMinutes = 2;

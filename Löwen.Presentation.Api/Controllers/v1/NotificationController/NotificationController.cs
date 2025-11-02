@@ -2,7 +2,7 @@
 
 namespace Löwen.Presentation.Api.Controllers.v1.NotificationController
 {
-    [ApiController]
+    /*[ApiController]
     [ApiVersion("1.0")]
     [Route("api/[controller]")]
     //not impelement for v1
@@ -44,5 +44,5 @@ namespace Löwen.Presentation.Api.Controllers.v1.NotificationController
             throw new NotImplementedException();
         }
 
-    }
+    }*/
 }

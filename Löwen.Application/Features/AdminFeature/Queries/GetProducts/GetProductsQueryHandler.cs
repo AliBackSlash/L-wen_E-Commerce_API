@@ -9,7 +9,7 @@ public class GetProductsQueryHandler(IProductService productService,IOptions<Pag
 {
     public async Task<Result<PagedResult<GetProductsQueryResponse>>> Handle(GetProductsQuery query, CancellationToken ct)
     {
-        var users = await productService.GetAllProductPagedForRegisteredToShowForAdmins(new PaginationParams
+        var users = await productService.GetAllProductPagedToShowForAdmins(new PaginationParams
         {
             maxPageSize = PSettings.Value.maxPageSize,
             PageNumber = query.PageNumber,
