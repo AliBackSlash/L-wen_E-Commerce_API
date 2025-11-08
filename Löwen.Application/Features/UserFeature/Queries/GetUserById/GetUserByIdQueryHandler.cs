@@ -1,6 +1,9 @@
-﻿namespace Löwen.Application.Features.UserFeature.Queries.GetUserById;
+﻿using Löwen.Application.Messaging.ICommand;
+using Löwen.Application.Messaging.IQuery;
 
-public class GetUserByIdQueryHandler(IAppUserService userService) : ICommandHandler<GetUserByIdQuery, GetUserByIdQueryResponse>
+namespace Löwen.Application.Features.UserFeature.Queries.GetUserById;
+
+public class GetUserByIdQueryHandler(IAppUserService userService) : IQueryWithCacheHandler<GetUserByIdQuery, GetUserByIdQueryResponse>
 {
     public async Task<Result<GetUserByIdQueryResponse>> Handle(GetUserByIdQuery command, CancellationToken ct)
     {

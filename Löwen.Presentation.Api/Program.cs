@@ -1,7 +1,9 @@
+using Löwen.Application.Common.Caching;
 using Löwen.Domain.Abstractions.IServices.IAppUserServices;
 using Löwen.Domain.Abstractions.IServices.IEmailServices;
 using Löwen.Domain.Abstractions.IServices.IEntitiesServices;
 using Löwen.Domain.Entities;
+using Löwen.Infrastructure.Caching;
 using Löwen.Infrastructure.Services.EntityServices;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -55,6 +57,7 @@ builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.AddScoped<IProductImges, ProductImges>();
 builder.Services.AddScoped<IDeliveryService, DeliveryService>();
 builder.Services.AddScoped<IConvertorEnumService, ConvertorEnumService>();
+builder.Services.AddSingleton<ICacheService, MemoryCacheService>();
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.Configure<StaticFilesSettings>(
@@ -102,6 +105,8 @@ builder.Services.AddApiVersioning(option =>
     option.ApiVersionReader = new MediaTypeApiVersionReader("v");
 });
 #endregion
+builder.Services.AddMemoryCache();
+
 
 var app = builder.Build();
 

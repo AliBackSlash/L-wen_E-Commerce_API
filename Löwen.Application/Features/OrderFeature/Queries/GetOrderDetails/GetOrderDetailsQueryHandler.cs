@@ -1,4 +1,5 @@
 ﻿using Löwen.Application.Features.OrderFeature.Queries.OrderDetailsResponse;
+using Löwen.Application.Messaging.IQuery;
 using Löwen.Domain.Abstractions.IServices.IEntitiesServices;
 
 namespace Löwen.Application.Features.OrderFeature.Queries.GetOrderDetails;

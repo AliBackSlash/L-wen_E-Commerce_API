@@ -1,4 +1,5 @@
-﻿using Löwen.Domain.Abstractions.IServices.IEntitiesServices;
+﻿using Löwen.Application.Messaging.IQuery;
+using Löwen.Domain.Abstractions.IServices.IEntitiesServices;
 using Löwen.Domain.ConfigurationClasses.Pagination;
 using Löwen.Domain.Pagination;
 using Microsoft.Extensions.Options;
@@ -6,7 +7,7 @@ using Microsoft.Extensions.Options;
 namespace Löwen.Application.Features.CartFeature.Queries.GetCartByUser;
 
 internal class GetCartByUserQueryHandler(ICartService cartService, IOptions<PaginationSettings> options)
-    : IQueryHandler<GetCartByUserQuery, PagedResult<GetCartByUserQueryresponse>>
+    : IQueryWithCacheHandler<GetCartByUserQuery, PagedResult<GetCartByUserQueryresponse>>
 {
     public async Task<Result<PagedResult<GetCartByUserQueryresponse>>> Handle(GetCartByUserQuery command, CancellationToken ct)
     {

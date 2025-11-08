@@ -1,7 +1,7 @@
 ﻿using MediatR;
 
 
-namespace Löwen.Application.Messaging;
+namespace Löwen.Application.Messaging.ICommand;
 
 public interface ICommand : IRequest<Result>, IBaseCommand;
 

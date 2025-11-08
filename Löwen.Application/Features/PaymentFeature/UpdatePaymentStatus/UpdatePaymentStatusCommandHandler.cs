@@ -1,4 +1,5 @@
-﻿using Löwen.Domain.Abstractions.IServices.IEntitiesServices;
+﻿using Löwen.Application.Messaging.ICommand;
+using Löwen.Domain.Abstractions.IServices.IEntitiesServices;
 namespace Löwen.Application.Features.PaymentFeature.UpdatePaymentStatus;
 
 internal class UpdatePaymentStatusCommandHandler(IPaymentService paymentService) : ICommandHandler<UpdatePaymentStatusCommand>

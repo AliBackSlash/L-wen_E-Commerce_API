@@ -1,4 +1,15 @@
-﻿namespace Löwen.Application.Features.UserFeature.Queries.GetUserByEmail;
+﻿using Löwen.Application.Messaging.ICache;
+using Löwen.Application.Messaging.ICommand;
+using Löwen.Application.Messaging.IQuery;
 
-public record GetUserByEmailQuery(string email) : ICommand<GetUserByEmailQueryResponse>;
+namespace Löwen.Application.Features.UserFeature.Queries.GetUserByEmail;
+
+public record GetUserByEmailQuery(string email) : IQueryWithCache<GetUserByEmailQueryResponse>
+{
+    public string CacheKey =>  $"get-user-by-email/{email}";
+
+    public string Prefix => PrefexesAndDurationsForCacheSettings.User_prefix;
+
+    public int DurationMinutes => PrefexesAndDurationsForCacheSettings.User_durationMinutes;
+}
 

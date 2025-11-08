@@ -1,4 +1,6 @@
-﻿namespace Löwen.Application.Features.AdminFeatures.Commands.ActivateMarkedAsDeleted;
+﻿using Löwen.Application.Messaging.ICommand;
+
+namespace Löwen.Application.Features.AdminFeatures.Commands.ActivateMarkedAsDeleted;
 public class ActivateMarkedUserAsDeletedCommandHandler(IAppUserService userService) : ICommandHandler<ActivateMarkedUserAsDeletedCommand>
 {
     public async Task<Result> Handle(ActivateMarkedUserAsDeletedCommand command, CancellationToken ct)

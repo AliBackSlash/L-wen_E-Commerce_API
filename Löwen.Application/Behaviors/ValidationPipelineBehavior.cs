@@ -1,5 +1,4 @@
-﻿
-using Löwen.Domain.ErrorHandleClasses;
+﻿using Löwen.Domain.ErrorHandleClasses;
 
 namespace Löwen.Application.Behaviors;
 
@@ -67,4 +66,3 @@ public class ValidationPipelineBehavior<TRequest, TResponse>(
         return validationFailures.Select(f => Error.BadRequest(f.PropertyName, f.ErrorMessage));
     }
 }
-

@@ -1,4 +1,5 @@
 ﻿using Löwen.Application.Features.CartFeature.Queries.GetCartByUser;
+using Löwen.Application.Messaging.IQuery;
 using Löwen.Domain.Abstractions.IServices.IEntitiesServices;
 using Löwen.Domain.ConfigurationClasses.Pagination;
 using Löwen.Domain.Pagination;

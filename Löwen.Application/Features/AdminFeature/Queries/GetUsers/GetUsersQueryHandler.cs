@@ -1,10 +1,12 @@
-﻿using Löwen.Domain.ConfigurationClasses.Pagination;
+﻿using Löwen.Application.Messaging.ICommand;
+using Löwen.Application.Messaging.IQuery;
+using Löwen.Domain.ConfigurationClasses.Pagination;
 using Löwen.Domain.Pagination;
 using Microsoft.Extensions.Options;
 
 namespace Löwen.Application.Features.AdminFeature.Queries.GetUsers;
 
-public class GetUsersQueryHandler(IAppUserService userService,IOptions<PaginationSettings> PSettings ) : ICommandHandler<GetUsersQuery, PagedResult<GetUsersQueryResponse>>
+public class GetUsersQueryHandler(IAppUserService userService,IOptions<PaginationSettings> PSettings ) : IQueryWithCacheHandler<GetUsersQuery, PagedResult<GetUsersQueryResponse>>
 {
     public async Task<Result<PagedResult<GetUsersQueryResponse>>> Handle(GetUsersQuery query, CancellationToken ct)
     {

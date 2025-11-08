@@ -1,4 +1,5 @@
-﻿using Löwen.Domain.Abstractions.IServices.IEntitiesServices;
+﻿using Löwen.Application.Messaging.ICommand;
+using Löwen.Domain.Abstractions.IServices.IEntitiesServices;
 namespace Löwen.Application.Features.CartFeature.Commands.UpdateCartItemQuantity;
 
 internal class UpdateCartItemQuantityCommandHandler(ICartService cartService) : ICommandHandler<UpdateCartItemQuantityCommand>

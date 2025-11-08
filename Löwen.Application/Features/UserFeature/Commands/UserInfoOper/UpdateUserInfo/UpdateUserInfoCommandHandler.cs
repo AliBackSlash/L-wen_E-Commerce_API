@@ -1,4 +1,6 @@
-﻿namespace Löwen.Application.Features.UserFeature.Commands.UserInfoOper.UpdateUserInfo;
+﻿using Löwen.Application.Messaging.ICommand;
+
+namespace Löwen.Application.Features.UserFeature.Commands.UserInfoOper.UpdateUserInfo;
 
 internal class UpdateUserInfoCommandHandler(IAppUserService userService) : ICommandHandler<UpdateUserInfoCommand, UpdateUserInfoCommandResponse>
 {

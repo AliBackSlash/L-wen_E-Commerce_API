@@ -1,6 +1,9 @@
-﻿namespace Löwen.Application.Features.UserFeature.Queries.GetUserByEmail;
+﻿using Löwen.Application.Messaging.ICommand;
+using Löwen.Application.Messaging.IQuery;
 
-public class GetUserByEmailQueryHandler(IAppUserService userService) : ICommandHandler<GetUserByEmailQuery, GetUserByEmailQueryResponse>
+namespace Löwen.Application.Features.UserFeature.Queries.GetUserByEmail;
+
+public class GetUserByEmailQueryHandler(IAppUserService userService) : IQueryWithCacheHandler<GetUserByEmailQuery, GetUserByEmailQueryResponse>
 {
     public async Task<Result<GetUserByEmailQueryResponse>> Handle(GetUserByEmailQuery command, CancellationToken ct)
     {

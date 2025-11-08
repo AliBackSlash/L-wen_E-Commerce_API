@@ -1,4 +1,5 @@
-﻿using Löwen.Domain.Abstractions.IServices.IEntitiesServices;
+﻿using Löwen.Application.Messaging.IQuery;
+using Löwen.Domain.Abstractions.IServices.IEntitiesServices;
 using Löwen.Domain.ConfigurationClasses.Pagination;
 using Löwen.Domain.Entities.EntityForMapFunctionsResultOnly.Product;
 using Löwen.Domain.Pagination;

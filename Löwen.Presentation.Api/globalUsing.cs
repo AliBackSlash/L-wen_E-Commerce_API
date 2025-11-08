@@ -1,6 +1,8 @@
 ﻿global using FluentValidation;
 global using Löwen.Application.Behaviors;
 //admin
+global using Löwen.Application.Features.AdminFeature.Queries.GetProducts;
+global using Löwen.Application.Features.AdminFeature.Queries.GetProductsByIdOrName;
 global using Löwen.Application.Features.AdminFeature.Commands.Category.AddCategory;
 global using Löwen.Application.Features.AdminFeature.Commands.Category.RemoveCategory;
 global using Löwen.Application.Features.AdminFeature.Commands.Category.UpdateCategory;
@@ -47,6 +49,12 @@ global using Löwen.Application.Features.RootAdminFeatures.Queries.GetAdminByEma
 global using Löwen.Application.Features.RootAdminFeatures.Queries.GetAdminById;
 global using Löwen.Application.Features.RootAdminFeatures.Queries.GetAdmins;
 //Users
+global using Löwen.Application.Features.UserFeature.Commands.DeleteUserImage;
+global using Löwen.Application.Features.UserFeature.Commands.ProductReviewOper.AddProductReview;
+global using Löwen.Application.Features.UserFeature.Commands.ProductReviewOper.UpdateProductReview;
+global using Löwen.Application.Features.UserFeature.Commands.WishlistOper.RemoveProductReview;
+global using Löwen.Application.Features.UserFeature.Queries.GetOrdersForUser;
+global using Löwen.Application.Features.UserFeature.Queries.GetUserWishList;
 global using Löwen.Application.Features.SendEmailFeature.EmailConfirmationTokenCommand;
 global using Löwen.Application.Features.UploadFeature.UpdateProfileImageCommand;
 global using Löwen.Application.Features.UserFeature.Commands.Love.AddLove;
@@ -101,3 +109,29 @@ global using Löwen.Application.Features.DiscountFeature.Queries.GetAll;
 global using Löwen.Application.Features.DiscountFeature.Queries.GetById;
 global using Löwen.Application.Features.DiscountFeature.Queries.Response;
 global using Löwen.Presentation.Api.Controllers.v1.DiscountController.Models;
+
+//order
+
+global using Löwen.Application.Features.OrderFeature.Commands.AddOrder.AddOrder;
+global using Löwen.Application.Features.OrderFeature.Commands.UpdateOrderItem.UpdateOrderItem;
+global using Löwen.Application.Features.OrderFeature.Queries.GetAllOrders;
+global using Löwen.Application.Features.OrderFeature.Queries.GetOrderDetails;
+global using Löwen.Application.Features.OrderFeature.Queries.OrderDetailsResponse;
+global using Löwen.Presentation.Api.Controllers.v1.OrderController.Models;
+
+//Payment
+
+global using Löwen.Application.Features.PaymentFeature.AddPayment;
+global using Löwen.Application.Features.PaymentFeature.UpdatePaymentStatus;
+global using Löwen.Presentation.Api.Controllers.v1.PaymentController.Models;
+
+//Product
+
+global using Löwen.Application.Features.ProductFeature.Queries;
+global using Löwen.Application.Features.ProductFeature.Queries.GetAllMostLovedProductsPaged;
+global using Löwen.Application.Features.ProductFeature.Queries.GetAllProductPaged;
+global using Löwen.Application.Features.ProductFeature.Queries.GetAllProductPagedByGender;
+global using Löwen.Application.Features.ProductFeature.Queries.GetAllProductPagedByName;
+global using Löwen.Application.Features.ProductFeature.Queries.GetAllProductReviewsPaged;
+global using Löwen.Application.Features.ProductFeature.Queries.GetProductById;
+global using Löwen.Application.Features.ProductFeature.Queries.GetProductsByCategoryPaged;

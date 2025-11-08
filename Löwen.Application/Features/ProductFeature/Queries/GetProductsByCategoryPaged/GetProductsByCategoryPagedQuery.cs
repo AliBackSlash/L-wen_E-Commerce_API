@@ -1,3 +1,5 @@
-﻿namespace Löwen.Application.Features.ProductFeature.Queries.GetProductsByCategoryPaged;
+﻿using Löwen.Application.Messaging.IQuery;
+
+namespace Löwen.Application.Features.ProductFeature.Queries.GetProductsByCategoryPaged;
 
 public record GetProductsByCategoryPagedQuery(string Category, int PageNumber,byte PageSize) : IQuery<PagedResult<GetProductQueryResponse>>;

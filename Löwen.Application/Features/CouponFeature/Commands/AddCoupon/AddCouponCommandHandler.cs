@@ -1,4 +1,5 @@
-﻿using Löwen.Domain.Abstractions.IServices.IEntitiesServices;
+﻿using Löwen.Application.Messaging.ICommand;
+using Löwen.Domain.Abstractions.IServices.IEntitiesServices;
 namespace Löwen.Application.Features.CouponFeature.Commands.AddCoupon;
 
 internal class AddCouponCommandHandler(ICouponService couponService) : ICommandHandler<AddCouponCommand>

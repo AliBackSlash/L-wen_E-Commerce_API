@@ -1,4 +1,5 @@
-﻿using Löwen.Domain.Layer_Dtos.Product;
+﻿using Löwen.Application.Messaging.ICommand;
+using Löwen.Domain.Layer_Dtos.Product;
 
 namespace Löwen.Application.Features.AdminFeature.Commands.Product.AddProduct;
 

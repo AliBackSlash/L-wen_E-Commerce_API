@@ -1,11 +1,13 @@
-﻿using Löwen.Domain.Abstractions.IServices.IEntitiesServices;
+﻿using Löwen.Application.Messaging.ICommand;
+using Löwen.Application.Messaging.IQuery;
+using Löwen.Domain.Abstractions.IServices.IEntitiesServices;
 using Löwen.Domain.ConfigurationClasses.Pagination;
 using Löwen.Domain.Pagination;
 using Microsoft.Extensions.Options;
 
 namespace Löwen.Application.Features.AdminFeature.Queries.GetProducts;
 
-public class GetProductsQueryHandler(IProductService productService,IOptions<PaginationSettings> PSettings ) : ICommandHandler<GetProductsQuery, PagedResult<GetProductsQueryResponse>>
+public class GetProductsQueryHandler(IProductService productService,IOptions<PaginationSettings> PSettings ) : IQueryWithCacheHandler<GetProductsQuery, PagedResult<GetProductsQueryResponse>>
 {
     public async Task<Result<PagedResult<GetProductsQueryResponse>>> Handle(GetProductsQuery query, CancellationToken ct)
     {
