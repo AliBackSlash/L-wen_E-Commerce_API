@@ -2,9 +2,12 @@ using Löwen.Application.Common.Caching;
 using Löwen.Domain.Abstractions.IServices.IAppUserServices;
 using Löwen.Domain.Abstractions.IServices.IEmailServices;
 using Löwen.Domain.Abstractions.IServices.IEntitiesServices;
-using Löwen.Domain.Entities;
 using Löwen.Infrastructure.Caching;
 using Löwen.Infrastructure.Services.EntityServices;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Microsoft.Extensions.Options;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +15,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
 builder.Services.AddIdentity<AppUser, IdentityRole<Guid>>(options =>
 {
     options.SignIn.RequireConfirmedEmail = true;
@@ -86,6 +88,7 @@ builder.Services.AddAuthentication(op =>
     {
         ValidateLifetime = true,
         ValidateIssuer = true,
+        ClockSkew = TimeSpan.Zero,
         ValidIssuer = JWTValues!.Issuer,
         ValidateAudience = true,
         ValidAudience = JWTValues!.Audience,
@@ -95,6 +98,7 @@ builder.Services.AddAuthentication(op =>
 });
 
 #endregion
+builder.Services.AddMemoryCache();
 
 #region API versioning
 builder.Services.AddApiVersioning(option =>
@@ -104,25 +108,76 @@ builder.Services.AddApiVersioning(option =>
     option.ReportApiVersions = true;
     option.ApiVersionReader = new MediaTypeApiVersionReader("v");
 });
-#endregion
-builder.Services.AddMemoryCache();
+builder.Services.AddVersionedApiExplorer(options =>
+{
+    options.GroupNameFormat = "'v'VVV"; // v1, v1.1, ...
+    options.SubstituteApiVersionInUrl = true;
+});
 
+#endregion
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(options =>
+{
+    // XML Documentation
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    if (File.Exists(xmlPath))
+        options.IncludeXmlComments(xmlPath);
+
+    // JWT Security
+    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Description = "Enter your Bearer token in the format **Bearer {token}**",
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.Http,
+        Scheme = "bearer",
+        BearerFormat = "JWT"
+    });
+
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            new string[] {}
+        }
+    });
+});
+
+//builder.Services.AddSwaggerWithApiVersioning();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
-    app.UseSwaggerUI(options => options.SwaggerEndpoint("/openapi/v1.json", "v1"));
 
-    var scop = app.Services.CreateAsyncScope();
-    using var dbcontext = scop.ServiceProvider.GetRequiredService<AppDbContext>();
+    app.UseSwagger();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "v1"); // رابط الـ JSON
+        c.RoutePrefix = string.Empty;
+    });
+
+    using var scope = app.Services.CreateScope();
+    var dbcontext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     dbcontext.Database.Migrate();
 }
 
-app.UseHttpsRedirection();
+else
+{
+    app.UseHsts();
+}
 
+app.UseHttpsRedirection();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

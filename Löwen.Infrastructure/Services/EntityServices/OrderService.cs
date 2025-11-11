@@ -37,6 +37,7 @@ public class OrderService(AppDbContext _context) : BasRepository<Order, Guid>(_c
                     orderby order.OrderDate ascending
                     select new OrderDetailsDto
                     {
+                        Id = order.Id,
                         OrderDate = order.OrderDate,
                         Status = order.Status,
                         items = (from orItems in _context.OrderItems
@@ -57,7 +58,7 @@ public class OrderService(AppDbContext _context) : BasRepository<Order, Guid>(_c
         var orders = await query.Skip(parm.Skip).Take(parm.Take).ToListAsync(ct);
      
         return Result.Success<PagedResult<OrderDetailsDto>>(PagedResult<OrderDetailsDto>.Create(orders, totalCount, parm.PageNumber, parm.Take));
-    }
+    }  
     public async Task<Result<OrderDetailsDto>> GetOrderDetails(Guid Id, CancellationToken ct)
     {
 
@@ -95,6 +96,7 @@ public class OrderService(AppDbContext _context) : BasRepository<Order, Guid>(_c
                     orderby order.OrderDate descending
                     select new OrderDetailsDto
                     {
+                        Id = order.Id,
                         OrderDate = order.OrderDate,
                         Status = order.Status,
                         items = (from orItems in _context.OrderItems

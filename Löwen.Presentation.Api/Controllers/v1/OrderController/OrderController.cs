@@ -1,4 +1,5 @@
-﻿namespace Löwen.Presentation.Api.Controllers.v1.OrderController
+﻿
+namespace Löwen.Presentation.Api.Controllers.v1.OrderController
 {
     /// <summary>
     /// Exposes Order-related HTTP endpoints (v1).
@@ -8,7 +9,7 @@
     [ApiController]
     [ApiVersion("1.0")]
     [Route("api/Order")]
-    //make sure use send order status email every oper
+    [Authorize(Roles = "User")]
     public class OrderController(ISender sender) : ControllerBase
     {
         /// <summary>
@@ -22,7 +23,7 @@
         /// 500 Internal Server Error on unexpected failures.
         /// </returns>
         [HttpPost("add-order")]
-        [ProducesResponseType(typeof(Result), StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status409Conflict)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
@@ -49,12 +50,12 @@
         /// 500 Internal Server Error on unexpected failures.
         /// </returns>
         [HttpPut("update-order-items")]
-        [ProducesResponseType(typeof(Result), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status404NotFound)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status409Conflict)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetOrderDetails([FromBody] UpdateOrderItemModel model)
+        public async Task<IActionResult> UpdateOrderItem([FromBody] UpdateOrderItemModel model)
         {
             Result result = await sender.Send(new UpdateOrderItemCommand(model.OrderId,model.deliveryId, model.ProductId, model.Quantity, model.Price));
 
@@ -73,7 +74,7 @@
         /// 500 Internal Server Error on unexpected failures.
         /// </returns>
         [HttpGet("get-order-details/{Id}")]
-        [ProducesResponseType(typeof(Result<GetOrderDetailsQueryResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(GetOrderDetailsQueryResponse), StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status404NotFound)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
@@ -84,21 +85,33 @@
             return result.ToActionResult();
         }
 
-        /*[HttpGet("get-orders-by-user/{PageNumber},{PageSize}")]
-                [ProducesResponseType(StatusCodes.Status200OK)]
-                [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
-                [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-                public async Task<IActionResult> GetOrdersByUser(int PageNumber, byte PageSize)
-                {
-                    var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        /// <summary>
+        /// Retrieve a paged list of User orders.
+        /// </summary>
+        /// <param name="PageNumber">Page number (1-based).</param>
+        /// <param name="PageSize">Number of items per page.</param>
+        /// <returns>
+        /// 200 OK with a Result containing a paged result when one or more orders are returned.
+        /// 204 No Content when the query returns no orders.
+        /// 400 Bad Request when paging parameters are invalid.
+        /// 500 Internal Server Error on unexpected failures.
+        /// </returns>
+        [HttpGet("get-orders-by-user-paged/{PageNumber},{PageSize}")]
+        [ProducesResponseType(typeof(PagedResult<GetOrderDetailsQueryResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetOrdersByUser(int PageNumber, byte PageSize)
+        {
+            var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-                    if (string.IsNullOrEmpty(id))
-                        return Result.Failure(new Error("api/Order/get-orders-by-user", "Valid token is required", ErrorType.Unauthorized)).ToActionResult();
+            if (string.IsNullOrEmpty(id))
+                return Result.Failure(new Error("api/Order/get-orders-by-user", "Valid token is required", ErrorType.Unauthorized)).ToActionResult();
 
-                    Result<PagedResult<GetOrderDetailsQueryResponse>> result = await sender.Send(new GetOrdersForUserQuery(id, PageNumber, PageSize));
+            Result<PagedResult<GetOrderDetailsQueryResponse>> result = await sender.Send(new GetOrdersForUserQuery(id, PageNumber, PageSize));
 
-                    return result.ToActionResult();
-                }*/
+            return result.ToActionResult();
+        }
 
         /// <summary>
         /// Retrieve a paged list of orders.
@@ -112,10 +125,12 @@
         /// 500 Internal Server Error on unexpected failures.
         /// </returns>
         [HttpGet("get-orders-paged/{PageNumber},{PageSize}")]
-        [ProducesResponseType(typeof(Result<PagedResult<GetOrderDetailsQueryResponse>>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(PagedResult<GetOrderDetailsQueryResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> GetOrdersPaged(int PageNumber, byte PageSize)
         {
             Result<PagedResult<GetOrderDetailsQueryResponse>> result = await sender.Send(new GetAllOrdersQuery(PageNumber, PageSize));

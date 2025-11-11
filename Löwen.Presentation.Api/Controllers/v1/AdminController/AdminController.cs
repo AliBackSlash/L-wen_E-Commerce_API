@@ -1,5 +1,4 @@
-﻿
-namespace Löwen.Presentation.Api.Controllers.v1.AdminController
+﻿namespace Löwen.Presentation.Api.Controllers.v1.AdminController
 {
     /// <summary>
     /// Admin API endpoints for managing categories, products, users and related resources.
@@ -9,6 +8,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
     [ApiVersion("1.0")]
     [Route("api/Admin")]
     [Produces("application/json", "application/xml")]
+    [Authorize(Roles ="Admin")]
     public class AdminController(ISender sender, IFileService fileService) : ControllerBase
     {
         /// <summary>
@@ -22,7 +22,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
         /// 500 Internal Server Error for unexpected failures.
         /// </returns>
         [HttpPost("add-category")]
-        [ProducesResponseType(typeof(Result), StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status409Conflict)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
@@ -44,7 +44,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
         /// 500 Internal Server Error for unexpected failures.
         /// </returns>
         [HttpPut("update-category")]
-        [ProducesResponseType(typeof(Result), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status404NotFound)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status409Conflict)]
@@ -74,7 +74,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
 
             return result.ToActionResult();
         }
-        
+
         /*[HttpPost("add-tag")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
@@ -108,7 +108,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
 
             return result.ToActionResult();
         }*/
-        
+
         /// <summary>
         /// Returns a paged list of products.
         /// </summary>
@@ -121,7 +121,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
         /// 500 Internal Server Error for unexpected failures.
         /// </returns>
         [HttpGet("get-products-paged/{PageNumber},{PageSize}")]
-        [ProducesResponseType(typeof(Result<PagedResult<GetProductsQueryResponse>>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(PagedResult<GetProductsQueryResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
@@ -144,7 +144,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
         /// 500 Internal Server Error for unexpected failures.
         /// </returns>
         [HttpGet("get-products-paged-filter-by-id-or-name/{IdOrName},{PageNumber},{PageSize}")]
-        [ProducesResponseType(typeof(Result<PagedResult<GetProductsQueryResponse>>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(PagedResult<GetProductsQueryResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
@@ -166,7 +166,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
         /// 500 Internal Server Error for unexpected failures.
         /// </returns>
         [HttpPost("add-product")]
-        [ProducesResponseType(typeof(Result<AddProductCommandResponse>), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(AddProductCommandResponse), StatusCodes.Status201Created)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<Error>(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status409Conflict)]
@@ -196,7 +196,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
         /// 500 Internal Server Error for unexpected failures.
         /// </returns>
         [HttpPost("upload-product-images/{ProductId}")]
-        [ProducesResponseType(typeof(Result), StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status409Conflict)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
@@ -262,7 +262,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
         /// 500 Internal Server Error for unexpected failures.
         /// </returns>
         [HttpPut("update-product")]
-        [ProducesResponseType(typeof(Result), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status404NotFound)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status409Conflict)]
@@ -284,7 +284,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
         /// 500 Internal Server Error for unexpected failures.
         /// </returns>
         [HttpPost("add-product-variant")]
-        [ProducesResponseType(typeof(Result), StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status409Conflict)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
@@ -306,7 +306,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
         /// 500 Internal Server Error for unexpected failures.
         /// </returns>
         [HttpPut("update-product-variant")]
-        [ProducesResponseType(typeof(Result), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status404NotFound)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status409Conflict)]
@@ -367,7 +367,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
         /// 500 Internal Server Error for unexpected failures.
         /// </returns>
         [HttpPut("assigned-orders-to-delivery")]
-        [ProducesResponseType(typeof(Result), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status404NotFound)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status409Conflict)]
@@ -389,7 +389,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
         /// 500 Internal Server Error for unexpected failures.
         /// </returns>
         [HttpGet("get-user-by-id/{Id}")]
-        [ProducesResponseType(typeof(Result<GetUserByIdQueryResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(GetUserByIdQueryResponse), StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status404NotFound)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
@@ -410,7 +410,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
         /// 500 Internal Server Error for unexpected failures.
         /// </returns>
         [HttpGet("get-user-by-email/{email}")]
-        [ProducesResponseType(typeof(Result<GetUserByEmailQueryResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(GetUserByEmailQueryResponse), StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status404NotFound)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
@@ -432,7 +432,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
         /// 500 Internal Server Error for unexpected failures.
         /// </returns>
         [HttpGet("get-users-paged/{PageNumber},{PageSize}")]
-        [ProducesResponseType(typeof(Result<PagedResult<GetUsersQueryResponse>>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(PagedResult<GetUsersQueryResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
@@ -454,7 +454,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
         /// 500 Internal Server Error for unexpected failures.
         /// </returns>
         [HttpPut("mark-user-as-deleted/{Id}")]
-        [ProducesResponseType(typeof(Result), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status404NotFound)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status409Conflict)]
@@ -477,7 +477,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.AdminController
         /// 500 Internal Server Error for unexpected failures.
         /// </returns>
         [HttpPut("activate-marked-user-as-deleted/{Id}")]
-        [ProducesResponseType(typeof(Result), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status404NotFound)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status409Conflict)]

@@ -10,6 +10,8 @@ namespace Löwen.Presentation.Api.Controllers.v1.DeliveryController
     [ApiController]
     [ApiVersion("1.0")]
     [Route("api/Delivery")]
+    [Authorize(Roles = "Delivery")]
+
     public class DeliveryController(ISender sender) : ControllerBase
     {
         /// <summary>
@@ -18,7 +20,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.DeliveryController
         /// <param name="PageNumber">The page number to retrieve (1-based).</param>
         /// <param name="PageSize">The number of items per page.</param>
         /// <returns>
-        /// Returns a <see cref="Result{PagedResult{GetAssignedOrdersQueryresponse}}"/> with the paged assigned orders on success.
+        /// Returns a <see cref="PagedResult{GetAssignedOrdersQueryresponse}"/> with the paged assigned orders on success.
         /// Possible HTTP responses:
         /// - 200 OK: Paged results returned.
         /// - 400 Bad Request: Invalid request parameters.
@@ -27,7 +29,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.DeliveryController
         /// - 500 Internal Server Error: Unexpected server error.
         /// </returns>
         [HttpGet("get-assigned-orders/{PageNumber},{PageSize}")]
-        [ProducesResponseType(typeof(Result<PagedResult<GetAssignedOrdersQueryresponse>>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(PagedResult<GetAssignedOrdersQueryresponse>), StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status404NotFound)]
@@ -50,7 +52,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.DeliveryController
         /// <param name="Id">The identifier of the order to update.</param>
         /// <param name="Status">The new <see cref="OrderStatus"/> value to set for the order.</param>
         /// <returns>
-        /// Returns a <see cref="Result"/> indicating whether the update succeeded.
+        /// Returns a indicating whether the update succeeded.
         /// Possible HTTP responses:
         /// - 200 OK: The order status was updated successfully.
         /// - 400 Bad Request: The request is invalid (e.g., malformed Id or invalid status).
@@ -59,7 +61,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.DeliveryController
         /// - 500 Internal Server Error: Unexpected server error.
         /// </returns>
         [HttpPut("update-order-status/{Id},{Status}")]
-        [ProducesResponseType(typeof(Result), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status404NotFound)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status409Conflict)]

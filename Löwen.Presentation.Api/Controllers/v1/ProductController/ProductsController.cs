@@ -6,6 +6,8 @@
     [ApiController]
     [ApiVersion("1.0")]
     [Route("api/Product")]
+    [Authorize(Roles = "User")]
+
     public class ProductController(ISender sender) : ControllerBase
     {
         /// <summary>
@@ -20,7 +22,7 @@
         /// 500 Internal Server Error for unexpected failures.
         /// </returns>
         [HttpGet("get-all-products-paged/{PageNumber},{PageSize}")]
-        [ProducesResponseType(typeof(Result), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(PagedResult<GetProductQueryResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status404NotFound)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
@@ -45,7 +47,7 @@
         /// 500 Internal Server Error for unexpected failures.
         /// </returns>
         [HttpGet("get-products-by-name-paged/{Name},{PageNumber},{PageSize}")]
-        [ProducesResponseType(typeof(Result), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(PagedResult<GetProductQueryResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status404NotFound)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
@@ -68,7 +70,7 @@
         /// 500 Internal Server Error for unexpected failures.
         /// </returns>
         [HttpGet("get-product-by-id/{productId}")]
-        [ProducesResponseType(typeof(Result), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(GetProductByIdQueryResponse), StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status404NotFound)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
@@ -93,7 +95,7 @@
         /// 500 Internal Server Error for unexpected failures.
         /// </returns>
         [HttpGet("get-product-review-by-product-id/{productId},{PageNumber},{PageSize}")]
-        [ProducesResponseType(typeof(Result), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(PagedResult<ProductReviewsResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status404NotFound)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
@@ -119,7 +121,7 @@
         /// 500 Internal Server Error for unexpected failures.
         /// </returns>
         [HttpGet("get-products-by-category/{category},{PageNumber},{PageSize}")]
-        [ProducesResponseType(typeof(Result), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(PagedResult<GetProductQueryResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status404NotFound)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
@@ -189,7 +191,7 @@
         /// 500 Internal Server Error for unexpected failures.
         /// </returns>
         [HttpGet("get-most-loved-products/{PageNumber},{PageSize}")]
-        [ProducesResponseType(typeof(Result), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(PagedResult<GetProductQueryResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status404NotFound)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
@@ -215,7 +217,7 @@
         /// 500 Internal Server Error for unexpected failures.
         /// </returns>
         [HttpGet("get-products-by-gender-paged/{Gender},{PageNumber},{PageSize}")]
-        [ProducesResponseType(typeof(Result), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(PagedResult<GetProductQueryResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status404NotFound)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]

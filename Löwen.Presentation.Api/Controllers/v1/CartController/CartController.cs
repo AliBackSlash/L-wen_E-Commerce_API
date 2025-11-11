@@ -6,6 +6,7 @@
     [ApiController]
     [ApiVersion("1.0")]
     [Route("api/Cart")]
+    [Authorize( Roles = "User")]
     public class CartController(ISender sender) : ControllerBase
     {
         /// <summary>
@@ -13,14 +14,14 @@
         /// </summary>
         /// <param name="model">The cart item payload containing the product identifier and quantity.</param>
         /// <returns>
-        /// Returns 201 Created with a <see cref="Result"/> when the item is added successfully.
+        /// Returns 201 Created when the item is added successfully.
         /// Returns 400 Bad Request with a collection of <see cref="Error"/> for validation or client errors.
         /// Returns 401 Unauthorized when the request does not contain a valid user token.
         /// Returns 409 Conflict with a collection of <see cref="Error"/> when a duplicate resource or business conflict occurs.
         /// Returns 500 Internal Server Error with a collection of <see cref="Error"/> for unexpected server errors.
         /// </returns>
         [HttpPost("add-to-cart")]
-        [ProducesResponseType(typeof(Result), StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status409Conflict)]
@@ -67,14 +68,14 @@
         /// <param name="ProductId">The identifier of the product whose quantity will be updated.</param>
         /// <param name="Quantity">The new quantity for the specified cart item.</param>
         /// <returns>
-        /// Returns 200 OK with a <see cref="Result"/> when the update succeeds.
+        /// Returns 200 OK when the update succeeds.
         /// Returns 400 Bad Request with a collection of <see cref="Error"/> for validation or client errors.
         /// Returns 404 Not Found with a collection of <see cref="Error"/> when the cart or item is not found.
         /// Returns 409 Conflict with a collection of <see cref="Error"/> when a concurrency or business conflict occurs.
         /// Returns 500 Internal Server Error with a collection of <see cref="Error"/> for unexpected server errors.
         /// </returns>
         [HttpPut("update-cart-item-quantity/{CartId},{ProductId},{Quantity}")]
-        [ProducesResponseType(typeof(Result), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status404NotFound)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status409Conflict)]
@@ -92,14 +93,14 @@
         /// <param name="PageNumber">The page number to retrieve (1-based).</param>
         /// <param name="PageSize">The number of items per page.</param>
         /// <returns>
-        /// Returns 200 OK with a <see cref="Result"/> wrapping a paged list of cart items when items are found.
+        /// Returns 200 OK with a <see cref="PagedResult{T}"/> wrapping a paged list of cart items when items are found.
         /// Returns 400 Bad Request with a collection of <see cref="Error"/> for invalid paging parameters or client errors.
         /// Returns 401 Unauthorized when the request does not contain a valid user token.
         /// Returns 404 Not Found with a collection of <see cref="Error"/> when the cart is not found for the user.
         /// Returns 500 Internal Server Error with a collection of <see cref="Error"/> for unexpected server errors.
         /// </returns>
         [HttpGet("get-cart-by-user/{PageNumber},{PageSize}")]
-        [ProducesResponseType(typeof(Result), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(PagedResult<GetCartByUserQueryresponse>), StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status404NotFound)]

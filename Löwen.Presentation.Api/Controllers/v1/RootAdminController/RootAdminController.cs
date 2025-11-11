@@ -8,6 +8,8 @@
     [ApiController]
     [ApiVersion("1.0")]
     [Route("api/RootAdmin")]
+    [Authorize(Roles = "RootAdmin")]
+
     public class RootAdminController(ISender sender) : ControllerBase
     {
         /// <summary>
@@ -21,7 +23,7 @@
         /// 500 Internal Server Error on unexpected failures.
         /// </returns>
         [HttpPost("add-admin")]
-        [ProducesResponseType(typeof(Result), StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status409Conflict)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
@@ -46,7 +48,7 @@
         /// 500 Internal Server Error on unexpected failures.
         /// </returns>
         [HttpPost("assign-role/{Id:guid},{role:max(4)}")]
-        [ProducesResponseType(typeof(Result), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status404NotFound)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status409Conflict)]
@@ -91,7 +93,7 @@
         /// 500 Internal Server Error on unexpected failures.
         /// </returns>
         [HttpPut("mark-admin-as-deleted/{Id:guid}")]
-        [ProducesResponseType(typeof(Result), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status404NotFound)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status409Conflict)]
@@ -115,7 +117,7 @@
         /// 500 Internal Server Error on unexpected failures.
         /// </returns>
         [HttpPut("activate-marked-as-deleted/{Id:guid}")]
-        [ProducesResponseType(typeof(Result), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status404NotFound)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status409Conflict)]
@@ -160,7 +162,7 @@
         /// 500 Internal Server Error on unexpected failures.
         /// </returns>
         [HttpGet("admin-by-id/{Id:guid},{role:max(4)}")]
-        [ProducesResponseType(typeof(Result), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(GetUserQueryResponse), StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status404NotFound)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
@@ -183,7 +185,7 @@
         /// 500 Internal Server Error on unexpected failures.
         /// </returns>
         [HttpGet("admin-by-email/{Email},{role:max(4)}")]
-        [ProducesResponseType(typeof(Result), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(GetUserQueryResponse), StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status404NotFound)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
@@ -205,7 +207,7 @@
         /// 500 Internal Server Error on unexpected failures.
         /// </returns>
         [HttpGet("admins/{role:max(4)}")]
-        [ProducesResponseType(typeof(Result), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(List<GetdminsQueryResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]

@@ -15,13 +15,13 @@
         /// </summary>
         /// <param name="request">Registration payload containing Email, UserName and Password.</param>
         /// <returns>
-        /// 201 Created with a Result when registration succeeds.
+        /// 201 Created when registration succeeds.
         /// 409 Conflict with a collection of <see cref="Error"/> if a duplicate user/resource exists.
         /// 400 Bad Request with a collection of <see cref="Error"/> for validation errors.
         /// 500 Internal Server Error with a collection of <see cref="Error"/> for unexpected failures.
         /// </returns>
         [HttpPost("register")]
-        [ProducesResponseType(typeof(Result), StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status409Conflict)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
@@ -37,12 +37,12 @@
         /// </summary>
         /// <param name="request">Login payload containing UserNameOrEmail and Password.</param>
         /// <returns>
-        /// 200 OK with <see cref="Result{LoginCommandResponse}"/> when authentication succeeds.
+        /// 200 OK with <see cref="LoginCommandResponse"/> when authentication succeeds.
         /// 400 Bad Request with a collection of <see cref="Error"/> for validation errors.
         /// 500 Internal Server Error with a collection of <see cref="Error"/> for unexpected failures.
         /// </returns>
         [HttpPost("login")]
-        [ProducesResponseType(typeof(Result<LoginCommandResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(LoginCommandResponse), StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> LoginAsync([FromBody]LoginModel request)
@@ -57,13 +57,13 @@
         /// </summary>
         /// <param name="request">Query payload containing userId and confirmEmailToken.</param>
         /// <returns>
-        /// 200 OK with <see cref="Result{ConfirmEmailResponse}"/> when confirmation succeeds.
+        /// 200 OK with <see cref="ConfirmEmailResponse"/> when confirmation succeeds.
         /// 404 Not Found with a collection of <see cref="Error"/> if the user or token was not found/invalid.
         /// 400 Bad Request with a collection of <see cref="Error"/> for validation errors.
         /// 500 Internal Server Error with a collection of <see cref="Error"/> for unexpected failures.
         /// </returns>
         [HttpGet("confirm-email")]
-        [ProducesResponseType(typeof(Result<ConfirmEmailResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ConfirmEmailResponse), StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status404NotFound)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
@@ -79,14 +79,14 @@
         /// </summary>
         /// <param name="request">Payload containing email and the new Password.</param>
         /// <returns>
-        /// 200 OK with a <see cref="Result"/> when password reset succeeds.
+        /// 200 OK when password reset succeeds.
         /// 404 Not Found with a collection of <see cref="Error"/> if the user/email is not found.
         /// 409 Conflict with a collection of <see cref="Error"/> if there is a conflict preventing the update.
         /// 400 Bad Request with a collection of <see cref="Error"/> for validation errors.
         /// 500 Internal Server Error with a collection of <see cref="Error"/> for unexpected failures.
         /// </returns>
         [HttpPut("reset-password")]
-        [ProducesResponseType(typeof(Result), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status404NotFound)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status409Conflict)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]

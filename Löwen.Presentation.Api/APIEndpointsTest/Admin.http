@@ -1,5 +1,5 @@
 @Löwen.Api_HostAddress = https://localhost:7197
-@tken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImQ1ZWNjNDU3LTI3ZmUtNDE3NC1hYWMxLTFlMzk3YTMzNzIyNiIsImp0aSI6ImEyMDc3YWMyLWZiMjgtNGU1YS04NzcyLWUxZTYzOGE2YTk5NyIsImVtYWlsIjoiYWUxMzc4MDMyQGdtYWlsMTExLmNvbSIsInVuaXF1ZV9uYW1lIjoiYWxpLTAxc2RmMTExIiwicm9sZXMiOiJVc2VyIiwiZXhwIjoxNzYxNjU0ODY0LCJpc3MiOiJMb2NhbEhvc3QiLCJhdWQiOiJMb2NhbEhvc3QifQ.eO6Sf8Kzecrlnv31ZgukXeWCPSBzsvr6jOGtngChWCA
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImQ1ZWNjNDU3LTI3ZmUtNDE3NC1hYWMxLTFlMzk3YTMzNzIyNiIsImp0aSI6ImFhYjUzZDFiLWNiM2QtNDljNS04ZTgzLTNiMjY0N2VkNzAxZCIsImVtYWlsIjoiYWUxMzc4MDMyQGdtYWlsMTExLmNvbSIsInVuaXF1ZV9uYW1lIjoiYWxpLTAxc2RmMTExIiwicm9sZXMiOiJVc2VyIiwiZXhwIjoxNzYyNjA0Mzk5LCJpc3MiOiJMb2NhbEhvc3QiLCJhdWQiOiJMb2NhbEhvc3QifQ.QH_B7IF6k2WPEHBmRDj6x-9xZ9y64qyo4g8hQKKU-lU
 
 
 
@@ -105,6 +105,7 @@ GET {{Löwen.Api_HostAddress}}/api/Admin/get-products-paged/1,1
 
 ###
 GET {{Löwen.Api_HostAddress}}/api/Admin/get-products-paged-filter-by-id-or-name/84,1,10
+Authorization : Bearer {{token}}
 
 ###
 DELETE {{Löwen.Api_HostAddress}}/api/Admin/remove-product/51a1018c-2029-46da-8044-6aa8f9ebc039

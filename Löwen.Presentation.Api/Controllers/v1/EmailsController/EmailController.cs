@@ -10,6 +10,8 @@
     [ApiController]
     [ApiVersion("1.0")]
     [Route("api/Email")]
+    [Authorize(Roles = "User,Admin")]
+
     public class EmailController(ISender _sender) : ControllerBase
     {
         /// <summary>
@@ -25,7 +27,7 @@
         ///  - 500 Internal Server Error: Unexpected failure (returns <see cref="IEnumerable{Error}"/>).
         /// </returns>
         [HttpPost("send-confirmation-email-token")]
-        [ProducesResponseType(typeof(Result), StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status409Conflict)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]

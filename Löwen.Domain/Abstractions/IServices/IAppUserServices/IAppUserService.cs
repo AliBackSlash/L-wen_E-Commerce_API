@@ -12,7 +12,6 @@ public interface IAppUserService
     Task<Result<List<GetUsersResponseDto>>> GetAllAsync(UserRole role = UserRole.User);
     Task<Result<PagedResult<GetUsersResponseDto>>> GetAllAsync(PaginationParams Params, CancellationToken ct, UserRole role = UserRole.User);
     Task<Result<GetUserResponseDto>> GetUserByEmailAsync(string email,UserRole role = UserRole.User);
-    Result<string> GetUserIdFromToken(string token);
     Task<Result<string>> LoginAsync(LoginDto dto, CancellationToken ct);
     Task<Result<UpdateUserInfoResponseDto>> UpdateUserInfoAsync(UpdateUserInfoDto dto);
     Task<Result<string>> ConfirmEmailAsync(string userId, string token);

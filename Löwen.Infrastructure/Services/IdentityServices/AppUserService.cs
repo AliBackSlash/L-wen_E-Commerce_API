@@ -1,22 +1,4 @@
-﻿using Löwen.Domain.Abstractions.IServices.IAppUserServices;
-using Löwen.Domain.ConfigurationClasses.ApiSettings;
-using Löwen.Domain.ConfigurationClasses.JWT;
-using Löwen.Domain.ConfigurationClasses.StaticFilesHelpersClasses;
-using Löwen.Domain.Enums;
-using Löwen.Domain.ErrorHandleClasses;
-using Löwen.Domain.Layer_Dtos.AppUser.request;
-using Löwen.Domain.Layer_Dtos.AppUser.response;
-using Löwen.Domain.Pagination;
-using Löwen.Infrastructure.EFCore.IdentityUser;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.WebUtilities;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-namespace Löwen.Infrastructure.Services.IdentityServices;
+﻿namespace Löwen.Infrastructure.Services.IdentityServices;
 public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jwt, IOptions<ApiSettings> apiSettings, AppDbContext context) : IAppUserService
 {
     private string GetError(IdentityResult identityResult) => string.Join(", ", identityResult.Errors.Select(e => e.Description));
@@ -65,46 +47,7 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
 
         return new JwtSecurityTokenHandler().WriteToken(token);
     }
-    private Task<(string? Email, string? UserName, List<string> Roles, DateTime Expiration)> _GetInfoFromToken(string token)
-    {
-        var handler = new JwtSecurityTokenHandler();
-        var jwtToken = handler.ReadJwtToken(token);
-
-        var userName = jwtToken.Claims
-            .FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.UniqueName)?.Value;
-
-        var email = jwtToken.Claims
-            .FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Email)?.Value;
-
-        var roles = jwtToken.Claims
-            .Where(c => c.Type == "roles")
-            .Select(c => c.Value)
-            .ToList();
-
-        var expiration = jwtToken.ValidTo;
-
-        return Task.FromResult((email, userName, roles, expiration));
-    }
-    public Result<string> GetUserIdFromToken(string token)
-    {
-        try
-        {
-            var handler = new JwtSecurityTokenHandler();
-            var jwtToken = handler.ReadJwtToken(token);
-            var userId = jwtToken.Claims
-            .FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.NameId)?.Value;
-
-            if (userId == null)
-                return Result.Failure<string>(new Error("Invalid Token", $"Can't take user id from token",ErrorType.Validation));
-
-            return Result.Success(userId);
-        }
-        catch (Exception ex)
-        {
-
-            return Result.Failure<string>(new Error("Invalid Token", $"Message: {ex}", ErrorType.Validation));
-        }
-    }
+    // make refreash token
     public async Task<Result<string>> LoginAsync(LoginDto dto, CancellationToken ct)
     {
         var user = await _userManager.FindByEmailAsync(dto.UserNameOrEmail)

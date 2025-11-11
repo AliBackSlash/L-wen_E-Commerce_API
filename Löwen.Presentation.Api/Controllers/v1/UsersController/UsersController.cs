@@ -2,7 +2,7 @@
 [ApiController]
 [ApiVersion("1.0")]
 [Route("api/users")]
-//[Authorize(Roles = "User")]
+[Authorize(Roles = "User")]
 /// <summary>
 /// Controller that exposes user-related endpoints (profile, password, images, wishlist, loves, reviews, orders).
 /// All actions return application results wrapped in the project's Result/Result{T} pattern and follow REST semantics
@@ -23,7 +23,6 @@ public class UsersController(ISender _sender, IFileService fileService) : Contro
     /// 500 Internal Server Error for unexpected failures.
     /// </returns>
     [HttpGet("get-user-info")]
-    [ProducesResponseType(typeof(Result), StatusCodes.Status200OK)]
     [ProducesResponseType<GetUserByIdQueryResponse>(StatusCodes.Status200OK)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(Result), StatusCodes.Status401Unauthorized)]
@@ -191,7 +190,7 @@ public class UsersController(ISender _sender, IFileService fileService) : Contro
     /// 500 Internal Server Error for unexpected failures.
     /// </returns>
     [HttpPost("verify-own-email/{email}")]
-    [ProducesResponseType(typeof(Result), StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status409Conflict)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
@@ -223,9 +222,9 @@ public class UsersController(ISender _sender, IFileService fileService) : Contro
     /// 500 Internal Server Error for unexpected failures.
     /// </returns>
     [HttpPost("add-product-to-wishlist/{productId}")]
-    [ProducesResponseType(typeof(Result), StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(typeof(Result), StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status409Conflict)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> AddProductToWishlist(string productId)
@@ -254,7 +253,7 @@ public class UsersController(ISender _sender, IFileService fileService) : Contro
     [HttpDelete("remove-product-from-wishlist/{productId}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(typeof(Result), StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status404NotFound)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> RemoveProductFromWishlist(string productId)
@@ -281,9 +280,9 @@ public class UsersController(ISender _sender, IFileService fileService) : Contro
     /// 500 Internal Server Error for unexpected failures.
     /// </returns>
     [HttpPost("add-love-for-product/{productId}")]
-    [ProducesResponseType(typeof(Result), StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(typeof(Result), StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status409Conflict)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> AddLoveForProduct(string productId)
@@ -312,7 +311,7 @@ public class UsersController(ISender _sender, IFileService fileService) : Contro
     [HttpDelete("remove-love-from-product/{productId}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(typeof(Result), StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType( StatusCodes.Status401Unauthorized)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status404NotFound)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> RemoveLoveFromProduct(string productId)
@@ -339,9 +338,9 @@ public class UsersController(ISender _sender, IFileService fileService) : Contro
     /// 500 Internal Server Error for unexpected failures.
     /// </returns>
     [HttpPost("add-review-for-product")]
-    [ProducesResponseType(typeof(Result), StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(typeof(Result), StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status409Conflict)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> AddReviewForProduct([FromBody] AddProductReviewModel model)
@@ -416,11 +415,11 @@ public class UsersController(ISender _sender, IFileService fileService) : Contro
     /// 500 Internal Server Error for unexpected failures.
     /// </returns>
     [HttpGet("get-orders-by-user/{PageNumber},{PageSize}")]
-    [ProducesResponseType(typeof(Result), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType<PagedResult<GetOrderDetailsQueryResponse>>(StatusCodes.Status200OK)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status204NoContent)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(typeof(Result), StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status404NotFound)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> GetOrdersByUser(int PageNumber, byte PageSize)
@@ -452,7 +451,7 @@ public class UsersController(ISender _sender, IFileService fileService) : Contro
     [ProducesResponseType<GetUserWishListQueryResponse>(StatusCodes.Status200OK)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status204NoContent)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(typeof(Result), StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status404NotFound)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> GetMyWishlist(int PageNumber, byte PageSize)

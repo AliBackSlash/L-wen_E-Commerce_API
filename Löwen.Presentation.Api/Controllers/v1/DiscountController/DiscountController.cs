@@ -8,6 +8,8 @@ namespace Löwen.Presentation.Api.Controllers.v1.DiscountController
     [ApiController]
     [ApiVersion("1.0")]
     [Route("api/Discount")]
+    [Authorize(Roles = "Admin")]
+
     public class DiscountController(ISender sender) : ControllerBase
     {
         /// <summary>
@@ -21,7 +23,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.DiscountController
         /// 500 Internal Server Error with a collection of <see cref="Error"/> for unexpected failures.
         /// </returns>
         [HttpPost("add-discount")]
-        [ProducesResponseType(typeof(Result), StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(IEnumerable<Error>), StatusCodes.Status409Conflict)]
         [ProducesResponseType(typeof(IEnumerable<Error>), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(IEnumerable<Error>), StatusCodes.Status500InternalServerError)]
@@ -45,7 +47,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.DiscountController
         /// 500 Internal Server Error with a collection of <see cref="Error"/> for unexpected failures.
         /// </returns>
         [HttpPut("update-discount")]
-        [ProducesResponseType(typeof(Result), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(IEnumerable<Error>), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(IEnumerable<Error>), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(IEnumerable<Error>), StatusCodes.Status409Conflict)]
@@ -89,7 +91,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.DiscountController
         /// 500 Internal Server Error with a collection of <see cref="Error"/> for unexpected failures.
         /// </returns>
         [HttpGet("get-discount-by-id/{Id}")]
-        [ProducesResponseType(typeof(Result<DiscountResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(DiscountResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(IEnumerable<Error>), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(IEnumerable<Error>), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(IEnumerable<Error>), StatusCodes.Status500InternalServerError)]
@@ -112,7 +114,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.DiscountController
         /// 500 Internal Server Error with a collection of <see cref="Error"/> for unexpected failures.
         /// </returns>
         [HttpGet("get-all-discounts-paged/{PageNumber},{PageSize}")]
-        [ProducesResponseType(typeof(Result<PagedResult<DiscountResponse>>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(PagedResult<DiscountResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(typeof(IEnumerable<Error>), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(IEnumerable<Error>), StatusCodes.Status500InternalServerError)]

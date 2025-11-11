@@ -10,6 +10,8 @@
     [ApiController]
     [ApiVersion("1.0")]
     [Route("api/Payment")]
+    [Authorize(Roles = "User, Admin")]
+
     public class PaymentController(ISender sender) : ControllerBase
     {
         
@@ -23,7 +25,7 @@
         /// 500 Internal Server Error with an enumerable of <see cref="Error"/> for unexpected failures.
         /// </returns>
         [HttpGet("get-payment-by-id")]
-        [ProducesResponseType(typeof(Result), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status404NotFound)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
@@ -45,7 +47,7 @@
         /// 500 Internal Server Error with an enumerable of <see cref="Error"/> for unexpected failures.
         /// </returns>
         [HttpGet("get-payments-by-order")]
-        [ProducesResponseType(typeof(Result), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
@@ -64,7 +66,7 @@
         /// 500 Internal Server Error with an enumerable of <see cref="Error"/> for unexpected failures.
         /// </returns>
         [HttpPost("add-payment")]
-        [ProducesResponseType(typeof(Result), StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status409Conflict)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
@@ -88,7 +90,7 @@
         /// 500 Internal Server Error with an enumerable of <see cref="Error"/> for unexpected failures.
         /// </returns>
         [HttpPut("update-payment-status/{Id},{status}")]
-        [ProducesResponseType(typeof(Result), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status404NotFound)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status409Conflict)]
