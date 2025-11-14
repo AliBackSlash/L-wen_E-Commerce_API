@@ -1,5 +1,5 @@
 @Löwen.Api_HostAddress = https://localhost:7197/api/Product
-@token = your_jwt_token_here
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImQ1ZWNjNDU3LTI3ZmUtNDE3NC1hYWMxLTFlMzk3YTMzNzIyNiIsImp0aSI6ImU2ZmM5OTU5LWQwMTEtNDZmZC1hMjhlLTU5ZGRjYjIzMTkyYyIsImVtYWlsIjoiYWUxMzc4MDMyQGdtYWlsMTExLmNvbSIsInVuaXF1ZV9uYW1lIjoiYWxpLTAxc2RmMTExIiwicm9sZXMiOiJVc2VyIiwiZXhwIjoxNzYyODUxNzE0LCJpc3MiOiJMb2NhbEhvc3QiLCJhdWQiOiJMb2NhbEhvc3QifQ.27kQFXeMD0r_Yn6kowjFqYUfRqk3aURHu-vu9cI-NIo
 
 ### Get all products (paged)
 GET {{Löwen.Api_HostAddress}}/get-all-products-paged/1,10

@@ -152,6 +152,15 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 //builder.Services.AddSwaggerWithApiVersioning();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngularDev",
+        policy => policy
+            .WithOrigins("http://localhost:4200")
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+    );
+});
 
 var app = builder.Build();
 
@@ -175,6 +184,7 @@ else
 {
     app.UseHsts();
 }
+app.UseCors("AllowAngularDev");
 
 app.UseHttpsRedirection();
 app.UseAuthentication();

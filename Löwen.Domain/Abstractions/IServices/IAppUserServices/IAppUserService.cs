@@ -9,10 +9,11 @@ public interface IAppUserService
 {
     Task<Result<Guid>> RegisterAsync(RegisterUserDto dto, CancellationToken ct);
     Task<Result<GetUserResponseDto>> GetUserByIdAsync(string id,UserRole role = UserRole.User);
-    Task<Result<List<GetUsersResponseDto>>> GetAllAsync(UserRole role = UserRole.User);
+    Task<Result<RefreshTokenResponseDto>> RefreshTokenAsync(string refreshToken, CancellationToken ct);
+        Task<Result<List<GetUsersResponseDto>>> GetAllAsync(UserRole role = UserRole.User);
     Task<Result<PagedResult<GetUsersResponseDto>>> GetAllAsync(PaginationParams Params, CancellationToken ct, UserRole role = UserRole.User);
     Task<Result<GetUserResponseDto>> GetUserByEmailAsync(string email,UserRole role = UserRole.User);
-    Task<Result<string>> LoginAsync(LoginDto dto, CancellationToken ct);
+    Task<Result<LoginResponseDto>> LoginAsync(LoginDto dto, CancellationToken ct);
     Task<Result<UpdateUserInfoResponseDto>> UpdateUserInfoAsync(UpdateUserInfoDto dto);
     Task<Result<string>> ConfirmEmailAsync(string userId, string token);
     Task<Result<string>> ChangePasswordAsync(string Id, string CurrentPassword, string Password);

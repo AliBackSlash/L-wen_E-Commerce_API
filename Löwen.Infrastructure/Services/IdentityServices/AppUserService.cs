@@ -1,4 +1,6 @@
-﻿namespace Löwen.Infrastructure.Services.IdentityServices;
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace Löwen.Infrastructure.Services.IdentityServices;
 public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jwt, IOptions<ApiSettings> apiSettings, AppDbContext context) : IAppUserService
 {
     private string GetError(IdentityResult identityResult) => string.Join(", ", identityResult.Errors.Select(e => e.Description));
@@ -47,28 +49,89 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
 
         return new JwtSecurityTokenHandler().WriteToken(token);
     }
-    // make refreash token
-    public async Task<Result<string>> LoginAsync(LoginDto dto, CancellationToken ct)
+    public async Task<Result<RefreshTokenResponseDto>> RefreshTokenAsync(string refreshToken, CancellationToken ct)
+    {
+        var userToken = await context.UserRefreshTokens
+            .FirstOrDefaultAsync(t => t.Token == refreshToken, ct);
+
+        if (userToken == null)
+            return Result.Failure<RefreshTokenResponseDto>(
+                new Error("Token.Invalid", "Invalid refresh token", ErrorType.Unauthorized));
+
+        if (userToken.ExpiresAt < DateTime.UtcNow)
+            return Result.Failure<RefreshTokenResponseDto>(
+                new Error("Token.Expired", "Refresh token has expired", ErrorType.Unauthorized));
+
+        var user = await _userManager.FindByIdAsync(userToken.UserId.ToString());
+        if (user == null)
+            return Result.Failure<RefreshTokenResponseDto>(
+                new Error("User.NotFound", "User not found", ErrorType.Unauthorized));
+
+        string newAccessToken = await _CreateJWTToken(user);
+
+
+        return Result.Success(new RefreshTokenResponseDto
+        {
+            accessToken = newAccessToken
+        });
+    }
+    public async Task<Result<LoginResponseDto>> LoginAsync(LoginDto dto, CancellationToken ct)
     {
         var user = await _userManager.FindByEmailAsync(dto.UserNameOrEmail)
                    ?? await _userManager.FindByNameAsync(dto.UserNameOrEmail);
 
         if (user is null)
-            return Result.Failure<string>(
+            return Result.Failure<LoginResponseDto>(
              new Error("User.InvalidCredentials", "Invalid username or password", ErrorType.Unauthorized));            
 
         if (!await _userManager.IsEmailConfirmedAsync(user))
-            return Result.Failure<string>(
+            return Result.Failure<LoginResponseDto>(
                 new Error("User.EmailNotConfirmed", "You must confirm your email before logging in", ErrorType.Unauthorized));
 
-        if (await _userManager.CheckPasswordAsync(user, dto.Password!))
+        if (!await _userManager.CheckPasswordAsync(user, dto.Password!))
+            return Result.Failure<LoginResponseDto>(
+                new Error("User.InvalidCredentials", "Invalid username or password", ErrorType.Unauthorized));
+
+
+        // Generate Access Token
+        string accessToken = await _CreateJWTToken(user);
+
+        var existingRefreshToken = await context.UserRefreshTokens
+            .FirstOrDefaultAsync(t => t.UserId == user.Id);
+
+        if (existingRefreshToken != null)
         {
-            string token = await _CreateJWTToken(user);
-            return Result.Success(token);
+            existingRefreshToken.Token = Guid.NewGuid().ToString("N");
+            existingRefreshToken.CreatedAt = DateTime.UtcNow;
+            existingRefreshToken.ExpiresAt = DateTime.UtcNow.AddDays(_jwt.Value.refreshTokenDuration);
+
+            context.UserRefreshTokens.Update(existingRefreshToken);
+            await context.SaveChangesAsync(ct);
+
+            return Result.Success(new LoginResponseDto
+            {
+                accessToken = accessToken,
+                refreshToken = existingRefreshToken.Token
+            });
         }
 
-        return Result.Failure<string>(
-            new Error("User.InvalidCredentials", "Invalid username or password", ErrorType.Unauthorized));
+        var userRefreshToken = new UserRefreshToken
+        {
+            UserId = user.Id,
+            Token = Guid.NewGuid().ToString("N"),
+            ExpiresAt = DateTime.UtcNow.AddDays(_jwt.Value.refreshTokenDuration),
+            DeviceName = dto.DeviceName,
+            IpAddress = dto.IpAddress
+        };
+
+        await context.UserRefreshTokens.AddAsync(userRefreshToken, ct);
+        await context.SaveChangesAsync(ct);
+
+        return Result.Success(new LoginResponseDto
+        {
+            accessToken = accessToken,
+            refreshToken = userRefreshToken.Token
+        });
     }
     public async Task<Result<string>> ConfirmEmailAsync(string userId,string token)
     {
@@ -492,5 +555,7 @@ public class AppUserService(UserManager<AppUser> _userManager, IOptions<JWT> _jw
         return Result.Success(userInfo);
 
     }
+
+  
 }
 

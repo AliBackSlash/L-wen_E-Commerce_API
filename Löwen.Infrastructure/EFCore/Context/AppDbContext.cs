@@ -1,4 +1,5 @@
-﻿using Löwen.Domain.Entities.EntityForMapFunctionsResultOnly.Product;
+﻿using Löwen.Domain.Entities;
+using Löwen.Domain.Entities.EntityForMapFunctionsResultOnly.Product;
 using Löwen.Infrastructure.EFCore.Context.Config;
 using Löwen.Infrastructure.EFCore.IdentityUser;
 using Microsoft.AspNetCore.Identity;
@@ -31,6 +32,8 @@ public class AppDbContext : IdentityDbContext<AppUser, IdentityRole<Guid>, Guid>
     public DbSet<Discount> Discounts => Set<Discount>();
     public DbSet<Coupon> Coupons => Set<Coupon>();
     public DbSet<OrderCoupon> OrderCoupons => Set<OrderCoupon>();
+    public DbSet<UserRefreshToken> UserRefreshTokens => Set<UserRefreshToken>();
+
 
 
 

@@ -14,4 +14,3 @@ public class AdminLog
     // Navigation properties
     public Product? Product { get; set; }
 }
-

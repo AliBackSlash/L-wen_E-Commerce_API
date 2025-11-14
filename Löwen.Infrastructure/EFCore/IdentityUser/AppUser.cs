@@ -18,6 +18,7 @@ public class AppUser : IdentityUser<Guid>
     //but for v1 not impelemented
     public string? AddressDetails {  get; set; }
 
+    public ICollection<UserRefreshToken> UserRefreshTokens { get; set; } = [];
     public ICollection<DeliveryOrder> DeliveryOrders { get; set; } = [];
     public ICollection<CustomerAddress> CustomerAddresses { get; set; } = [];
     public ICollection<Cart> Carts { get; set; } = [];

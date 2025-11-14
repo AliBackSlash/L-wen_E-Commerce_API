@@ -2,5 +2,7 @@
 
 public class LoginCommandResponse
 {
-    public required string  token { get; set; }
+    public required string  accessToken { get; set; }
+    public required string  refreshToken { get; set; }
+
 }
