@@ -12,7 +12,24 @@
         /// <summary>
         /// Add an item to the authenticated user's cart.
         /// </summary>
-        /// <param name="model">The cart item payload containing the product identifier and quantity.</param>
+        /// <remarks>
+        /// This action allows an authenticated user to add a new product to their shopping cart or increase the quantity
+        /// of an existing cart item. The product identifier and quantity are provided in the request body as a JSON payload.
+        /// 
+        /// Use this endpoint when:
+        /// - A user selects a product to purchase and wants to add it to their cart.
+        /// - A user wants to increase the quantity of a product already in their cart.
+        /// 
+        /// The authenticated user's identity is extracted from the bearer token in the Authorization header.
+        /// All requests must include a valid JWT token for a user with the "User" role.
+        /// </remarks>
+        /// <param name="model">
+        /// The request body containing the cart item details.
+        /// This is a JSON object with two required properties:
+        /// - ProductId (string): The unique identifier of the product to add to the cart.
+        /// - Quantity (short): The number of units to add to the cart. Must be a positive integer.
+        /// Retrieved from the request body via [FromBody] binding.
+        /// </param>
         /// <returns>
         /// Returns 201 Created when the item is added successfully.
         /// Returns 400 Bad Request with a collection of <see cref="Error"/> for validation or client errors.
@@ -41,8 +58,27 @@
         /// <summary>
         /// Remove an item from a cart.
         /// </summary>
-        /// <param name="CartId">The identifier of the cart containing the item to remove.</param>
-        /// <param name="ProductId">The identifier of the product to remove from the cart.</param>
+        /// <remarks>
+        /// This action removes a specific product from the authenticated user's shopping cart.
+        /// Both the cart identifier and product identifier are provided as route parameters in the URL path.
+        /// 
+        /// Use this endpoint when:
+        /// - A user wants to remove a product entirely from their cart.
+        /// - A user decides not to purchase a previously added product.
+        /// 
+        /// The authenticated user's identity is required to ensure that users can only remove items from their own cart.
+        /// A valid JWT token with the "User" role must be included in the Authorization header.
+        /// </remarks>
+        /// <param name="CartId">
+        /// The unique identifier of the cart from which the item will be removed.
+        /// Retrieved from the URL route parameter.
+        /// Example URL: /api/Cart/remove-from-cart/{CartId},{ProductId}
+        /// </param>
+        /// <param name="ProductId">
+        /// The unique identifier of the product to remove from the cart.
+        /// Retrieved from the URL route parameter.
+        /// Example URL: /api/Cart/remove-from-cart/{CartId},{ProductId}
+        /// </param>
         /// <returns>
         /// Returns 204 No Content when the item was removed successfully.
         /// Returns 400 Bad Request with a collection of <see cref="Error"/> for validation or client errors.
@@ -64,9 +100,32 @@
         /// <summary>
         /// Update the quantity of an existing cart item.
         /// </summary>
-        /// <param name="CartId">The identifier of the cart containing the item.</param>
-        /// <param name="ProductId">The identifier of the product whose quantity will be updated.</param>
-        /// <param name="Quantity">The new quantity for the specified cart item.</param>
+        /// <remarks>
+        /// This action modifies the quantity of a specific product already present in the authenticated user's shopping cart.
+        /// The cart identifier, product identifier, and new quantity are all provided as route parameters in the URL path.
+        /// 
+        /// Use this endpoint when:
+        /// - A user wants to change the quantity of a product in their cart (increase or decrease).
+        /// - A user wishes to adjust the number of units for an item before proceeding to checkout.
+        /// 
+        /// The authenticated user must have a valid JWT token with the "User" role in the Authorization header.
+        /// The quantity update is subject to business validation rules and inventory constraints.
+        /// </remarks>
+        /// <param name="CartId">
+        /// The unique identifier of the cart containing the item to update.
+        /// Retrieved from the URL route parameter.
+        /// Example URL: /api/Cart/update-cart-item-quantity/{CartId},{ProductId},{Quantity}
+        /// </param>
+        /// <param name="ProductId">
+        /// The unique identifier of the product whose quantity will be updated.
+        /// Retrieved from the URL route parameter.
+        /// Example URL: /api/Cart/update-cart-item-quantity/{CartId},{ProductId},{Quantity}
+        /// </param>
+        /// <param name="Quantity">
+        /// The new quantity for the specified cart item. Must be a positive integer represented as a short (16-bit integer).
+        /// Retrieved from the URL route parameter.
+        /// Example URL: /api/Cart/update-cart-item-quantity/{CartId},{ProductId},{Quantity}
+        /// </param>
         /// <returns>
         /// Returns 200 OK when the update succeeds.
         /// Returns 400 Bad Request with a collection of <see cref="Error"/> for validation or client errors.
@@ -90,8 +149,32 @@
         /// <summary>
         /// Retrieve the authenticated user's cart with paging.
         /// </summary>
-        /// <param name="PageNumber">The page number to retrieve (1-based).</param>
-        /// <param name="PageSize">The number of items per page.</param>
+        /// <remarks>
+        /// This action retrieves all items in the authenticated user's shopping cart with support for pagination.
+        /// The results are returned as a paged collection, allowing clients to fetch cart items in smaller batches
+        /// rather than retrieving the entire cart at once.
+        /// 
+        /// Use this endpoint when:
+        /// - A user needs to view the contents of their shopping cart.
+        /// - A client application requires paginated cart data for display or processing purposes.
+        /// - A user wants to review their selected items before proceeding to checkout.
+        /// 
+        /// The page number and page size are provided as route parameters in the URL path.
+        /// The authenticated user's identity is extracted from the bearer token in the Authorization header.
+        /// All requests must include a valid JWT token for a user with the "User" role.
+        /// </remarks>
+        /// <param name="PageNumber">
+        /// The page number to retrieve in a 1-based indexed pagination scheme.
+        /// Use 1 to retrieve the first page of results.
+        /// Retrieved from the URL route parameter.
+        /// Example URL: /api/Cart/get-cart-by-user/{PageNumber},{PageSize}
+        /// </param>
+        /// <param name="PageSize">
+        /// The maximum number of cart items to include in a single page of results.
+        /// Must be a positive integer represented as a byte (8-bit unsigned integer), limiting the maximum page size to 255 items.
+        /// Retrieved from the URL route parameter.
+        /// Example URL: /api/Cart/get-cart-by-user/{PageNumber},{PageSize}
+        /// </param>
         /// <returns>
         /// Returns 200 OK with a <see cref="PagedResult{T}"/> wrapping a paged list of cart items when items are found.
         /// Returns 400 Bad Request with a collection of <see cref="Error"/> for invalid paging parameters or client errors.
@@ -115,6 +198,5 @@
 
             return result.ToActionResult();
         }
-
     }
 }

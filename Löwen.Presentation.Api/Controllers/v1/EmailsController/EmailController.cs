@@ -15,16 +15,21 @@
     public class EmailController(ISender _sender) : ControllerBase
     {
         /// <summary>
-        /// Sends an email confirmation token to the specified email address.
+        /// Generates and queues an email confirmation token for the specified address.
         /// </summary>
-        /// <param name="email">The recipient email address where the confirmation token will be sent.</param>
+        /// <remarks>
+        /// Use this endpoint to start the email verification process. Common scenarios include:
+        /// - After account creation to confirm a user's email.
+        /// - When a user changes their email address and needs verification.
+        /// - Resending a token if the initial confirmation email was not received.
+        /// </remarks>
+        /// <param name="email">The recipient email address. This value is provided via the query string and must be a valid email.</param>
         /// <returns>
-        /// An <see cref="IActionResult"/> representing the outcome.
-        /// Possible responses:
-        ///  - 201 Created: Token successfully created and queued for sending (returns <see cref="Result"/>).
-        ///  - 400 Bad Request: Validation or input errors (returns <see cref="IEnumerable{Error}"/>).
-        ///  - 409 Conflict: Duplicate or conflicting resource detected when creating the token (returns <see cref="IEnumerable{Error}"/>).
-        ///  - 500 Internal Server Error: Unexpected failure (returns <see cref="IEnumerable{Error}"/>).
+        /// An <see cref="IActionResult"/> indicating the result:
+        /// - 201 Created: Token generated and queued for sending.
+        /// - 400 Bad Request: Validation or input errors (e.g., invalid or missing email).
+        /// - 409 Conflict: Duplicate or pending token or already-confirmed email.
+        /// - 500 Internal Server Error: Unexpected server error.
         /// </returns>
         [HttpPost("send-confirmation-email-token")]
         [ProducesResponseType(StatusCodes.Status201Created)]
