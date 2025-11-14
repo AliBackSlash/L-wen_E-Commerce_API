@@ -3,12 +3,32 @@
   "WorkspaceRootPath": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.presentation.api\\controllers\\v1\\ordercontroller\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|solutionrelative:l\u00F6wen.presentation.api\\controllers\\v1\\ordercontroller\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.presentation.api\\extensions\\ratelimiterconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|solutionrelative:l\u00F6wen.presentation.api\\extensions\\ratelimiterconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.presentation.api\\apiendpointstest\\auth.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|solutionrelative:l\u00F6wen.presentation.api\\apiendpointstest\\auth.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.presentation.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|solutionrelative:l\u00F6wen.presentation.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.presentation.api\\controllers\\v1\\authcontroller\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|solutionrelative:l\u00F6wen.presentation.api\\controllers\\v1\\authcontroller\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.presentation.api\\controllers\\v1\\emailscontroller\\emailcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|solutionrelative:l\u00F6wen.presentation.api\\controllers\\v1\\emailscontroller\\emailcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.presentation.api\\globalexceptionhandling\\exceptionhandlingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|solutionrelative:l\u00F6wen.presentation.api\\globalexceptionhandling\\exceptionhandlingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|d:\\04-github repos\\l\u00F6wen e-commerce\\l-wen_e-commerce_api\\l\u00F6wen.presentation.api\\l\u00F6wen.presentation.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{B46CED3A-D01F-CD2C-EBCF-AD5B6DF17FFA}|L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj|solutionrelative:l\u00F6wen.presentation.api\\l\u00F6wen.presentation.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,34 +38,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 241,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 14,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "OrderController.cs",
-              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\Controllers\\v1\\OrderController\\OrderController.cs",
-              "RelativeDocumentMoniker": "L\u00F6wen.Presentation.Api\\Controllers\\v1\\OrderController\\OrderController.cs",
-              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\Controllers\\v1\\OrderController\\OrderController.cs",
-              "RelativeToolTip": "L\u00F6wen.Presentation.Api\\Controllers\\v1\\OrderController\\OrderController.cs",
-              "ViewState": "AgIAAJEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-14T13:35:07.082Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "EmailController.cs",
-              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\Controllers\\v1\\EmailsController\\EmailController.cs",
-              "RelativeDocumentMoniker": "L\u00F6wen.Presentation.Api\\Controllers\\v1\\EmailsController\\EmailController.cs",
-              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\Controllers\\v1\\EmailsController\\EmailController.cs",
-              "RelativeToolTip": "L\u00F6wen.Presentation.Api\\Controllers\\v1\\EmailsController\\EmailController.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAqwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-14T13:32:21.47Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:132:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
@@ -89,6 +83,91 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Auth.http",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\APIEndpointsTest\\Auth.http",
+              "RelativeDocumentMoniker": "L\u00F6wen.Presentation.Api\\APIEndpointsTest\\Auth.http",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\APIEndpointsTest\\Auth.http",
+              "RelativeToolTip": "L\u00F6wen.Presentation.Api\\APIEndpointsTest\\Auth.http",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2025-11-14T14:09:16.41Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "EmailController.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\Controllers\\v1\\EmailsController\\EmailController.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Presentation.Api\\Controllers\\v1\\EmailsController\\EmailController.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\Controllers\\v1\\EmailsController\\EmailController.cs",
+              "RelativeToolTip": "L\u00F6wen.Presentation.Api\\Controllers\\v1\\EmailsController\\EmailController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-14T13:59:12.795Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\Controllers\\v1\\AuthController\\AuthController.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Presentation.Api\\Controllers\\v1\\AuthController\\AuthController.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\Controllers\\v1\\AuthController\\AuthController.cs",
+              "RelativeToolTip": "L\u00F6wen.Presentation.Api\\Controllers\\v1\\AuthController\\AuthController.cs",
+              "ViewState": "AgIAAOQAAAAAAAAAAAAIwPUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-14T13:58:37.294Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RateLimiterConfiguration.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\Extensions\\RateLimiterConfiguration.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Presentation.Api\\Extensions\\RateLimiterConfiguration.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\Extensions\\RateLimiterConfiguration.cs",
+              "RelativeToolTip": "L\u00F6wen.Presentation.Api\\Extensions\\RateLimiterConfiguration.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAgwC8AAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-14T13:55:17.925Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\Program.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Presentation.Api\\Program.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\Program.cs",
+              "RelativeToolTip": "L\u00F6wen.Presentation.Api\\Program.cs",
+              "ViewState": "AgIAAIAAAAAAAAAAAAAhwJoAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-14T13:52:54.553Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ExceptionHandlingMiddleware.cs",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\GlobalExceptionHandling\\ExceptionHandlingMiddleware.cs",
+              "RelativeDocumentMoniker": "L\u00F6wen.Presentation.Api\\GlobalExceptionHandling\\ExceptionHandlingMiddleware.cs",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\GlobalExceptionHandling\\ExceptionHandlingMiddleware.cs",
+              "RelativeToolTip": "L\u00F6wen.Presentation.Api\\GlobalExceptionHandling\\ExceptionHandlingMiddleware.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-14T13:51:06.353Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "L\u00F6wen.Presentation.Api.csproj",
+              "DocumentMoniker": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj",
+              "RelativeDocumentMoniker": "L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj",
+              "ToolTip": "D:\\04-GitHub Repos\\L\u00F6wen E-Commerce\\L-wen_E-Commerce_API\\L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj",
+              "RelativeToolTip": "L\u00F6wen.Presentation.Api\\L\u00F6wen.Presentation.Api.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-11-14T13:50:56.728Z"
             }
           ]
         }

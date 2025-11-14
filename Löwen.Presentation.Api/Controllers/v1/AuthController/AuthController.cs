@@ -1,5 +1,6 @@
 ﻿using Löwen.Application.Features.AuthFeature.Commands.RefreshToken;
 using MediatR;
+using Microsoft.AspNetCore.RateLimiting;
 
 namespace Löwen.Presentation.API.Controllers.v1.AuthController
 {
@@ -47,6 +48,7 @@ namespace Löwen.Presentation.API.Controllers.v1.AuthController
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status409Conflict)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status429TooManyRequests)]
         public async Task<IActionResult> RegisterAsync([FromBody] RegisterModel request)
         {
             Result result = await _sender.Send(new RegisterCommand(request.Email, request.UserName, request.Password));
@@ -83,10 +85,15 @@ namespace Löwen.Presentation.API.Controllers.v1.AuthController
         /// 401 Unauthorized with a collection of <see cref="Error"/> when credentials are invalid or user not found.
         /// 500 Internal Server Error with a collection of <see cref="Error"/> for unexpected failures.
         /// </returns>
+
+        [EnableRateLimiting("LoginPolicy")]
+
         [HttpPost("login")]
         [ProducesResponseType(typeof(LoginCommandResponse), StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status429TooManyRequests)]
+
         public async Task<IActionResult> LoginAsync([FromBody] LoginModel request)
         {
             Result<LoginCommandResponse> result = await _sender.Send(new LoginCommand(request.UserNameOrEmail, request.Password));
@@ -129,6 +136,8 @@ namespace Löwen.Presentation.API.Controllers.v1.AuthController
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status404NotFound)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status429TooManyRequests)]
+
         public async Task<IActionResult> ConfirmEmailAsync([FromQuery] ConfirmEmailModel request)
         {
             Result<ConfirmEmailResponse> result = await _sender.Send(new ConfirmEmailCommand(request.userId, request.confirmEmailToken));
@@ -174,6 +183,7 @@ namespace Löwen.Presentation.API.Controllers.v1.AuthController
         /// 409 Conflict if there are policy conflicts or concurrent modification issues.
         /// 500 Internal Server Error for unexpected server-side failures.
         /// </returns>
+        [EnableRateLimiting("ResetPasswordPolicy")]
 
         [HttpPut("reset-password")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -181,6 +191,8 @@ namespace Löwen.Presentation.API.Controllers.v1.AuthController
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status409Conflict)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status429TooManyRequests)]
+
         public async Task<IActionResult> RestPasswordAsync([FromBody] ResetPasswordModel request)
         {
             Result result = await _sender.Send(new ResetPasswordCommand(request.email,
@@ -230,6 +242,8 @@ namespace Löwen.Presentation.API.Controllers.v1.AuthController
         /// 409 Conflict with a collection of <see cref="Error"/> when token rotation or concurrency conflicts prevent issuing a token.
         /// 500 Internal Server Error with a collection of <see cref="Error"/> for unexpected server-side failures.
         /// </returns>
+        /// 
+
         [HttpPut("refresh-token/{refreshToken}")]
         [ProducesResponseType(typeof(RefreshTokenCommandResponse), StatusCodes.Status200OK)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
@@ -237,6 +251,8 @@ namespace Löwen.Presentation.API.Controllers.v1.AuthController
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status404NotFound)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status409Conflict)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status429TooManyRequests)]
+
         public async Task<IActionResult> RefreshToken(string refreshToken)
         {
             Result<RefreshTokenCommandResponse> result = await _sender.Send(new RefreshTokenCommand(refreshToken));

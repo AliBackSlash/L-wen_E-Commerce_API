@@ -1,4 +1,6 @@
-﻿namespace Löwen.Presentation.API.Controllers.v1.EmailsController
+﻿using Microsoft.AspNetCore.RateLimiting;
+
+namespace Löwen.Presentation.API.Controllers.v1.EmailsController
 {
     /// <summary>
     /// Handles email-related operations such as sending confirmation tokens.
@@ -31,11 +33,15 @@
         /// - 409 Conflict: Duplicate or pending token or already-confirmed email.
         /// - 500 Internal Server Error: Unexpected server error.
         /// </returns>
+        [EnableRateLimiting("VerifyEmailPolicy")]
+
         [HttpPost("send-confirmation-email-token")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status409Conflict)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status429TooManyRequests)]
+
         public async Task<IActionResult> ConfirmEmailAsync(string email)
         {
             Result result = await _sender.Send(new EmailConfirmationTokenCommand(email));

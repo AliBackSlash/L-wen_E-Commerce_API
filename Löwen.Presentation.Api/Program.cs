@@ -4,6 +4,7 @@ using Löwen.Domain.Abstractions.IServices.IEmailServices;
 using Löwen.Domain.Abstractions.IServices.IEntitiesServices;
 using Löwen.Infrastructure.Caching;
 using Löwen.Infrastructure.Services.EntityServices;
+using Löwen.Presentation.GlobalExceptionHandling;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
@@ -150,6 +151,8 @@ builder.Services.AddSwaggerGen(options =>
         }
     });
 });
+builder.Services.AddResponseCompression();
+builder.Services.AddRateLimiterPolicies();
 
 //builder.Services.AddSwaggerWithApiVersioning();
 builder.Services.AddCors(options =>
@@ -184,12 +187,16 @@ else
 {
     app.UseHsts();
 }
-app.UseCors("AllowAngularDev");
 
+
+
+app.UseResponseCompression();
+app.UseCors("AllowAngularDev");
+app.UseRateLimiter();
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.MapControllers();
 
 app.Run();
