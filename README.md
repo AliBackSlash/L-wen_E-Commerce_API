@@ -1,9 +1,3 @@
-أكيد، هنا README.md احترافي جدًا مكتوب بمهارة وبأسلوب GitHub-ready مع استخدام Markup منسّق، وعناوين واضحة، وإيموجيز مناسبة، وشكل يليق بمشروع كبير.
-تقدر تنسخه وتلصقه مباشرة في ملف README.md:
-
-
----
-
 # Löwen E-Commerce Platform API
 
 Enterprise-grade clothing commerce backend built on ASP.NET 9, CQRS, and Clean Architecture with an Angular 20 storefront companion.
@@ -39,24 +33,27 @@ Enterprise-grade clothing commerce backend built on ASP.NET 9, CQRS, and Clean A
 Angular 20 UI (Authentication, Catalog, Checkout)
             │
             ▼
-┌──────────────────────┐      CQRS (MediatR Pipelines)      ┌──────────────────────┐
+┌──────────────────────┐      CQRS (MediatR Pipelines)     ┌───────────────────────┐
 │ Löwen.Presentation   │  ───────────────────────────────► │ Löwen.Application     │
 │ ASP.NET 9 Web API    │  ◄─────────────────────────────── │ Commands & Queries    │
-└──────────┬───────────┘                                   └──────────┬───────────┘
-           │                                                        │
-           ▼                                                        ▼
+└──────────┬───────────┘                                   └───────────┬───────────┘
+           │                                                           │
+           ▼                                                           ▼
 ┌──────────────────────┐                                   ┌──────────────────────┐
 │ Global Middleware    │                                   │ Löwen.Domain         │
 │ Auth, Rate Limiting, │                                   │ Entities, Enums,     │
 │ Exception Handling   │                                   │ Value Objects, DTOs  │
 └──────────┬───────────┘                                   └──────────┬───────────┘
-           ▼                                                        ▼
-                              Löwen.Infrastructure
-                      EF Core, Identity, Repositories,
-                      Email/File Services, Cache Providers
-                               │
-                               ▼
-                           PostgreSQL
+           ▼                                                          ▼
+           └────────────────────────────┬─────────────────────────────┘
+                      ┌───────────────────────────────────────┐ 
+                      |        Löwen.Infrastructure           |
+                      |   EF Core, Identity, Repositories,    |
+                      | Email/File Services, Cache Providers  |
+                      └───────────────────┬───────────────────┘
+                                          │
+                                          ▼
+                                      PostgreSQL
 ```
 
 ---
