@@ -4,97 +4,223 @@
 
 ---
 
-# 🛒 E-Commerce Clothing Platform  
-### **ASP.NET 9 • Clean Architecture • CQRS • Angular 20**
+# Löwen E-Commerce Platform API
 
-A fully structured and scalable E-Commerce platform for selling ready-made clothing.  
-Designed with modern enterprise-grade architectural patterns to ensure high performance, maintainability, and future extensibility.
+Enterprise-grade clothing commerce backend built on ASP.NET 9, CQRS, and Clean Architecture with an Angular 20 storefront companion.
 
----
-
-## ⭐ Features
-- 🔹 Clean Architecture with full separation of concerns  
-- 🔹 CQRS + MediatR for scalable request management  
-- 🔹 EF Core (Code First) with PostgreSQL  
-- 🔹 Complete Authentication system using **JWT + Refresh Token**  
-- 🔹 Role-based Authorization with **ASP.NET Identity**  
-- 🔹 Centralized Logging, Error Handling & Validation Middlewares  
-- 🔹 Highly optimized structure with ongoing **Caching Layer**  
-- 🔹 RESTful API with full **Swagger / OpenAPI** documentation  
-- 🔹 Front-End being built with **Angular 20**
+## Table of Contents
+1. [Highlights](#highlights)
+2. [Architecture Overview](#architecture-overview)
+3. [Functional Scope](#functional-scope)
+4. [Project Layout](#project-layout)
+5. [Cross-Cutting Platform Services](#cross-cutting-platform-services)
+6. [Getting Started](#getting-started)
+7. [Configuration Reference](#configuration-reference)
+8. [API Exploration & Developer Workflow](#api-exploration--developer-workflow)
+9. [Roadmap](#roadmap)
+10. [Controller Reference (v1)](#controller-reference-v1)
 
 ---
 
-## 🧰 **Tech Stack**
-
-### 🔧 Back-End
-| Technology | Usage |
-|-----------|--------|
-| **ASP.NET 9** | Full API development |
-| **C#** | Core language |
-| **EF Core (Code First)** | ORM and DB migrations |
-| **PostgreSQL** | Database engine |
-| **MediatR** | CQRS pipeline |
-| **Repository Pattern** | Data access abstraction |
-| **SOLID Principles** | Clean, maintainable design |
-| **Dependency Injection** | Decoupled architecture |
-| **JWT Authentication** | Secure access |
-| **Refresh Token** | Extended sessions |
-| **Role-Based Authorization** | User privileges |
-| **ASP.NET Identity** | User & Role management |
-| **Swagger / OpenAPI** | API documentation |
-
-### 💻 Front-End
-- **Angular 20**  
-  Used to build a fast, modern, reactive UI connected to the API.
+## Highlights
+- Clean Architecture solution (Domain → Application → Infrastructure → Presentation) with strict separation of concerns.
+- CQRS + MediatR orchestration, FluentValidation pipelines, and cache-aware behaviors for predictable read/write flows.
+- ASP.NET Identity with JWT + refresh tokens, configurable rate limiting, and role-based authorization across Admin/User/Delivery/RootAdmin profiles.
+- EF Core (Code First) targeting PostgreSQL with 70+ migrations, covering catalog, orders, payments, discounts, and user activity.
+- Memory caching, centralized exception middleware, response compression, and versioned Swagger (OpenAPI) for production-ready APIs.
+- Angular 20 SPA (see sibling folder `../L-wen_E-Commerce_Frontend`) communicating over HTTPS with CORS policy `AllowAngularDev`.
+- Developer ergonomics: `.http` scratch files, reusable email templates, file-upload services, and documented paging/result patterns.
 
 ---
 
-## 🗄️ **Database Schema**
-Entity-rich database designed using EF Core Code First, including:
+## Architecture Overview
 
-- Users & Roles  
-- Products, Categories & Tags  
-- Orders & Order Items  
-- Shopping Cart & Wishlist  
-- Reviews & Ratings  
-- Discounts & Coupons  
-- Addresses & Shipping  
-- Product Media (Images, Galleries)
-
-📌 *Full ERD diagram available in the repository.*
-
----
-
-## 📁 **Project Structure (Clean Architecture)**
-
-src/ ├── Domain/            # Entities, Interfaces, Aggregates, Enums ├── Application/       # CQRS, Handlers, DTOs, Mappings, Validators ├── Infrastructure/    # EF Core, Repositories, Identity, DB Context └── WebAPI/            # Controllers, Middlewares, Auth, DI, Swagger
-
----
-
-## 🔐 **Authentication & Authorization**
-- ✔ JWT Access Token  
-- ✔ Refresh Token workflow  
-- ✔ ASP.NET Identity integration  
-- ✔ Role-based authorization  
-- ✔ Secure password hashing + token signing  
+```
+Angular 20 UI (Authentication, Catalog, Checkout)
+            │
+            ▼
+┌──────────────────────┐      CQRS (MediatR Pipelines)      ┌──────────────────────┐
+│ Löwen.Presentation   │  ───────────────────────────────► │ Löwen.Application     │
+│ ASP.NET 9 Web API    │  ◄─────────────────────────────── │ Commands & Queries    │
+└──────────┬───────────┘                                   └──────────┬───────────┘
+           │                                                        │
+           ▼                                                        ▼
+┌──────────────────────┐                                   ┌──────────────────────┐
+│ Global Middleware    │                                   │ Löwen.Domain         │
+│ Auth, Rate Limiting, │                                   │ Entities, Enums,     │
+│ Exception Handling   │                                   │ Value Objects, DTOs  │
+└──────────┬───────────┘                                   └──────────┬───────────┘
+           ▼                                                        ▼
+                              Löwen.Infrastructure
+                      EF Core, Identity, Repositories,
+                      Email/File Services, Cache Providers
+                               │
+                               ▼
+                           PostgreSQL
+```
 
 ---
 
-# v1 API Controller Reference
+## Functional Scope
+- **Catalog Management**: Products, variants, categories, tags, media, loves, and reviews handled through Admin/User controllers with rich filtering.
+- **Promotions & Pricing**: Coupons, discounts, and automatic order recalculations; configurable discount and coupon lifecycles.
+- **Cart & Checkout**: Authenticated carts, order drafting, delivery assignment, wishlists, and loves to support personalized storefront flows.
+- **Fulfillment**: Delivery controller for rider workloads, order status transitions, and admin assignment batching.
+- **Payments**: Initial payment registration and status updates with enum-backed workflow (pending → captured → failed/refunded).
+- **Identity & Accounts**: Email confirmation flows, password reset, refresh tokens, RootAdmin for privilege escalation, and per-user profile management.
+- **Communications**: Razor-free HTML email templates for password resets, confirmations, OTP, and order status change notifications.
+- **Utilities**: Upload service for profile/product imagery with extension/size validation, global result wrapper, pagination helpers, and rate-limited sensitive endpoints.
 
-Documentation for every controller under `Controllers/v1`. Use this as a quick reference when exercising the HTTP endpoints from Swagger, REST clients (Hoppscotch, VS Code REST, Postman), or automated tests.
+---
 
-## Quick Usage Notes
+## Project Layout
 
-- **Base URL**: All routes below are relative to the ASP.NET host root (e.g. `https://localhost:5001/`).
-- **Versioning**: Controllers are tagged with `ApiVersion("1.0")`; routes already include `api/{Resource}` so you do not add `/v1` explicitly.
-- **Authentication**: Unless otherwise noted, endpoints expect a valid JWT Bearer token. Roles come from the `[Authorize]` attribute on the controller/action.
-- **Result wrapper**: Actions return the solution-wide `Result`/`Result<T>` shape. On success the payload is mapped into standard HTTP responses (`200`, `201`, `204`). On failure the response body contains one or more `Error` objects.
-- **Paging pattern**: Paged routes encode comma-separated route parameters: `/api/Admin/get-products-paged/{PageNumber},{PageSize}` → `/api/Admin/get-products-paged/1,10`.
-- **Rate limiting**: Where present (`[EnableRateLimiting]`), respect the named policy configured in `Program.cs`.
+```
+L-wen_E-Commerce_API/
+├─ Löwen.Api.sln
+├─ Löwen.Domain/             # Entities, value objects, enums, result & pagination helpers
+├─ Löwen.Application/        # CQRS features, DTOs, pipeline behaviors, cache abstractions
+├─ Löwen.Infrastructure/     # EF Core DbContext, repositories, migrations, services
+└─ Löwen.Presentation.Api/   # ASP.NET 9 host, controllers, middleware, configs, .http files
+```
 
-## Controller Index
+Supporting assets:
+- `APIEndpointsTest/*.http` – executable REST collections for each controller.
+- `EmailTemplates/*.html` – templated transactional emails rendered by the email service.
+- `UploadFilesServices/` – strongly validated file uploads for user avatars and product media.
+- `Notes/*.txt` – design considerations & background service ideas.
+
+---
+
+## Cross-Cutting Platform Services
+- **Authentication & Authorization**: ASP.NET Identity + JWT bearer auth with refresh tokens, configurable issuer/audience, and role isolation for `Admin`, `RootAdmin`, `User`, and `Delivery`.
+- **Rate Limiting**: Fixed-window policies (`LoginPolicy`, `ResetPasswordPolicy`, `VerifyEmailPolicy`, `RefreshTokenPolicy`) throttling sensitive operations through `AddRateLimiterPolicies`.
+- **Caching**: `QueryCachingBehavior` & `InvalidateCacheBehavior` coordinate with `ICacheService` (memory-based tokenized prefix invalidation) for read-heavy endpoints.
+- **Validation Pipeline**: FluentValidation automatically enforces request contracts via `ValidationPipelineBehavior<TRequest, TResponse>`.
+- **Error Handling**: `ExceptionHandlingMiddleware` standardizes failures into the Domain `Result/Error` envelope; paired with domain-level `ErrorCodes` for traceability.
+- **Observability & Performance**: Response compression, paging guards (`PaginationSettings.maxPageSize`), strongly typed configuration objects, and consistent result wrappers.
+- **Static Assets**: `StaticFilesSettings` centralize upload destinations and image rules; `FileService` enforces quotas/extensions.
+
+---
+
+## Getting Started
+
+### Prerequisites
+- [.NET 9 SDK](https://dotnet.microsoft.com/download)
+- [PostgreSQL 15+](https://www.postgresql.org/download/)
+- [Node.js 20 LTS](https://nodejs.org/) + `npm install -g @angular/cli@20` (if running the Angular front-end)
+- `dotnet-ef` CLI tool: `dotnet tool install --global dotnet-ef`
+
+### 1. Clone & Restore
+```bash
+git clone https://github.com/<org>/L-wen_E-Commerce_API.git
+cd L-wen_E-Commerce_API
+dotnet restore Löwen.Api.sln
+```
+
+### 2. Configure Secrets
+Update `Löwen.Presentation.Api/appsettings.Development.json` (or use `dotnet user-secrets`) with:
+- `ConnectionStrings:DefaultConnection`
+- `JWT` issuer/audience/signing key
+- `StaticFilesSettings` paths and quotas
+- `ApiSettings` host URLs
+
+### 3. Apply Database Migrations
+```bash
+dotnet ef database update \
+  --project Löwen.Infrastructure \
+  --startup-project Löwen.Presentation.Api \
+  --context AppDbContext
+```
+
+### 4. Run the API
+```bash
+dotnet run --project Löwen.Presentation.Api
+```
+Browse to `https://localhost:7197/swagger` for versioned OpenAPI docs. Development mode automatically applies migrations and hosts Swagger at the root route.
+
+### 5. (Optional) Run the Angular Client
+```bash
+cd ../L-wen_E-Commerce_Frontend
+npm install
+ng serve --open
+```
+
+---
+
+## Configuration Reference
+
+```json
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Host=localhost;Port=5432;Database=löwendb;Username=postgres;Password=***"
+  },
+  "JWT": {
+    "Issuer": "LocalHost",
+    "Audience": "LocalHost",
+    "Duration": 30,
+    "RefreshTokenDuration": 7,
+    "SigningKey": "<64-char dev key>"
+  },
+  "StaticFilesSettings": {
+    "ProfileImages_FileName": "Uploades/Profiles_Images/",
+    "ProductImages_FileName": "Uploades/Products_Image/",
+    "MaxProfileImageSize": 2048,
+    "MaxProductImageSize": 2048,
+    "AllowedImageExtensions": [ ".jpg", ".png", ".jpeg", ".gif", ".bmp", ".webp" ]
+  },
+  "PaginationSettings": {
+    "MaxPageSize": 50
+  },
+  "ApiSettings": {
+    "BaseUrl": "https://localhost:7197",
+    "OrderPageUrl": "https://localhost:7197/Orders"
+  }
+}
+```
+
+> Production deployments should move secrets to secure stores (KeyVault, AWS Secrets Manager, etc.) and replace the sample signing key.
+
+---
+
+## API Exploration & Developer Workflow
+- **Swagger / OpenAPI**: Enabled in Development with XML comments; supports multiple versions via `AddVersionedApiExplorer`.
+- **`.http` Scratch Files**: `APIEndpointsTest/*.http` mirror each controller and include example payloads plus bearer token placeholders for quick manual tests (Hoppscotch/Postman compatible).
+- **Result & Error Pattern**: Every action returns `Result`/`Result<T>` ensuring consistent envelope, status mapping, and error aggregation. Failed validations automatically populate `ErrorCodes`.
+- **Pagination**: Route parameters follow the `/{PageNumber},{PageSize}` convention with server-side caps; invalid params trigger `400 BadRequest`.
+- **Authentication Flow**: Register/Login → receive JWT/refresh token → call protected routes with `Authorization: Bearer {token}`. Refresh endpoints are rate limited and leverage persisted `UserRefreshToken`.
+- **File Uploads**: Multipart routes (profile/product images) enforce file settings via `FileService`. Responses include `UploadResponse` metadata.
+- **Email Templates**: Located under `EmailTemplates/`, consumed by `EmailService` for OTP, password reset, confirmation, and order status notifications.
+- **Developer Commands**
+  - `dotnet watch --project Löwen.Presentation.Api` for hot reload.
+  - `dotnet format Löwen.Api.sln` to enforce code style.
+  - `dotnet test` *(tests are planned; add once test projects are introduced)*.
+
+---
+
+## Roadmap
+- Expand `PaymentController` with query endpoints and integrations (Stripe, PayPal, local gateways).
+- Implement `NotificationController` real-time endpoints (SignalR/WebPush) and background workers outlined in `Notes/BackgroundServicesAtDatabase.txt`.
+- Add integration/unit test suites plus automated quality gates (GitHub Actions).
+- Introduce cache invalidation policies per aggregate, plus distributed cache providers (Redis) for horizontal scaling.
+- Harden upload storage (Azure Blob/S3) and switch from local filesystem to cloud buckets.
+- Extend catalog filters (tags, ratings, age/kind) and advanced search endpoints currently stubbed in `ProductsController`.
+
+---
+
+## Controller Reference (v1)
+
+Documentation for every controller under `Controllers/v1`. Use this as a quick reference when exercising HTTP endpoints from Swagger, Hoppscotch, Postman, or automated tests.
+
+### Quick Usage Notes
+- **Base URL**: Routes are relative to the ASP.NET host root (e.g., `https://localhost:7197/`).
+- **Versioning**: Controllers expose `ApiVersion("1.0")`; routes already include `api/{Resource}` so `/v1` is implicit.
+- **Authentication**: Unless otherwise noted, endpoints require a valid JWT bearer token and appropriate role (`[Authorize(Roles = "...")]`).
+- **Result Wrapper**: Successful actions return `Result/Result<T>` envelopes mapped to `200/201/204`. Failures return one or more `Error` items.
+- **Paging Pattern**: Paged routes expect `/api/<resource>/<action>/{PageNumber},{PageSize}` (`/api/Admin/get-products-paged/1,10`).
+- **Rate Limiting**: Policies such as `LoginPolicy`, `ResetPasswordPolicy`, `VerifyEmailPolicy`, and `RefreshTokenPolicy` are enforced where attributes are present.
+
+### Controller Index
 
 | Controller | Base Route | Roles | Purpose |
 | --- | --- | --- | --- |
@@ -128,7 +254,7 @@ Documentation for every controller under `Controllers/v1`. Use this as a quick r
 | `DELETE` | `/remove-product-image/{imagePath}` | route path | Delete a product image (also removes file). |
 | `PUT` | `/update-product` | `UpdateProductModel` | Update product metadata (name, description, price, status, category). |
 | `POST` | `/add-product-variant` | `AddProductVariantModel` | Add a variant (color/size/price/stock). |
-| `PUT` | `/update-product-variant` | `UpdateProductVariantModel` | Edit variant attributes. |
+| `PUT` | `/update-product-variant` | `UpdateProductModel` | Edit variant attributes. |
 | `DELETE` | `/remove-product-variant/{Id}` | route id | Delete variant. |
 | `DELETE` | `/remove-product/{Id}` | route id | Delete product and related data. |
 | `PUT` | `/assigned-orders-to-delivery` | `AssignedOrdersToDeliveryModel` | Batch-assign orders to delivery entities. |
@@ -230,7 +356,7 @@ Controller default role: `Admin`. The two order-level routes override to `[Autho
 | `GET` | `/get-most-loved-products/{PageNumber},{PageSize}` | Paged list of most-loved items. |
 | `GET` | `/get-products-by-gender-paged/{Gender},{PageNumber},{PageSize}` | Filter by gender flag. |
 
-> The source file also contains commented stubs for future filters (tags, ratings, age, kind, combined filters).
+> Source file also contains commented stubs for future filters (tags, ratings, age, kind, combined filters).
 
 ### RootAdminController (`/api/RootAdmin`, role: `RootAdmin`)
 
@@ -244,7 +370,7 @@ Controller default role: `Admin`. The two order-level routes override to `[Autho
 | `DELETE` | `/remove-admin/{Id:guid}` | Hard-delete admin. |
 | `GET` | `/admin-by-id/{Id:guid},{role}` | Query admin by ID + role. |
 | `GET` | `/admin-by-email/{Email},{role}` | Query admin by email + role. |
-| `GET` | `/admins/{role}` | List admins filtered by role (returns `List<GetdminsQueryResponse>`). |
+| `GET` | `/admins/{role}` | List admins filtered by role (returns `List<GetAdminsQueryResponse>`). |
 
 ### UsersController (`/api/users`, role: `User`)
 
@@ -272,14 +398,11 @@ Self-service endpoints for authenticated customers.
 
 ---
 
-## Testing the Endpoints Quickly
-
-1. **Swagger/OpenAPI**: Run the API project (`dotnet run` or from Visual Studio) and open `/swagger`. Each controller above appears under its tag; the summaries from the XML comments match what is described here.
-2. **HTTP scratch files**: Use the ready-to-run `.http` scripts under `APIEndpointsTest/` (e.g., `APIEndpointsTest/Admin.http`) to exercise the endpoints with sample payloads and bearer tokens.
-3. **Authentication**: Obtain JWTs via `POST /api/Auth/login` or `register` → `EmailController` → `confirm-email` flow. Include the token in `Authorization: Bearer {token}` for any secured route.
+### Testing the Endpoints Quickly
+1. **Swagger/OpenAPI**: Run the API (`dotnet run` or Visual Studio) and open `/swagger`. Each controller above appears under its tag; XML summaries mirror this document.
+2. **HTTP scratch files**: Use `.http` scripts under `APIEndpointsTest/` (e.g., `APIEndpointsTest/Admin.http`) to exercise endpoints with sample payloads and bearer tokens.
+3. **Authentication**: Obtain JWTs via `POST /api/Auth/login` or the `register → EmailController → confirm-email` flow. Include `Authorization: Bearer {token}` for secured routes.
 4. **File uploads**: Endpoints like `/api/Admin/upload-product-images/{ProductId}` and `/api/users/update-profile-image` expect `multipart/form-data`. Use REST clients that support file selection.
-5. **Paging**: Provide both `PageNumber` and `PageSize` route segments separated by a comma (e.g., `/api/Product/get-all-products-paged/1,20`). Supplying invalid values results in `400 Bad Request`.
+5. **Paging**: Provide both `PageNumber` and `PageSize` route segments separated by a comma (e.g., `/api/Product/get-all-products-paged/1,20`). Invalid values return `400 Bad Request`.
 
-This README should be kept in sync with any new controllers or endpoints added under `Controllers/v1`.
-
-
+_This README should stay in sync with any new controllers, behaviors, or infrastructure changes under `Controllers/v1`._
