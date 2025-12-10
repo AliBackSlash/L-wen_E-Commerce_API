@@ -3,7 +3,10 @@
 Enterprise-grade clothing commerce backend built on ASP.NET 9, CQRS, and Clean Architecture with an Angular 20 storefront companion.
 
 ## Table of Contents
+<<<<<<< HEAD
 
+=======
+>>>>>>> dada74d645dbb12bce95c34a7dba6ea8a0551547
 1. [Highlights](#highlights)
 2. [Architecture Overview](#architecture-overview)
 3. [Functional Scope](#functional-scope)
@@ -18,7 +21,10 @@ Enterprise-grade clothing commerce backend built on ASP.NET 9, CQRS, and Clean A
 ---
 
 ## Highlights
+<<<<<<< HEAD
 
+=======
+>>>>>>> dada74d645dbb12bce95c34a7dba6ea8a0551547
 - Clean Architecture solution (Domain → Application → Infrastructure → Presentation) with strict separation of concerns.
 - CQRS + MediatR orchestration, FluentValidation pipelines, and cache-aware behaviors for predictable read/write flows.
 - ASP.NET Identity with JWT + refresh tokens, configurable rate limiting, and role-based authorization across Admin/User/Delivery/RootAdmin profiles.
@@ -31,6 +37,7 @@ Enterprise-grade clothing commerce backend built on ASP.NET 9, CQRS, and Clean A
 
 ## Architecture Overview
 
+<<<<<<< HEAD
 ```text
 Angular 20 UI (Authentication, Catalog, Checkout)
             │
@@ -41,11 +48,24 @@ Angular 20 UI (Authentication, Catalog, Checkout)
 └──────────┬───────────┘                                   └──────────┬───────────┘
            │                                                        │
            ▼                                                        ▼
+=======
+```
+Angular 20 UI (Authentication, Catalog, Checkout)
+            │
+            ▼
+┌──────────────────────┐      CQRS (MediatR Pipelines)     ┌───────────────────────┐
+│ Löwen.Presentation   │  ───────────────────────────────► │ Löwen.Application     │
+│ ASP.NET 9 Web API    │  ◄─────────────────────────────── │ Commands & Queries    │
+└──────────┬───────────┘                                   └───────────┬───────────┘
+           │                                                           │
+           ▼                                                           ▼
+>>>>>>> dada74d645dbb12bce95c34a7dba6ea8a0551547
 ┌──────────────────────┐                                   ┌──────────────────────┐
 │ Global Middleware    │                                   │ Löwen.Domain         │
 │ Auth, Rate Limiting, │                                   │ Entities, Enums,     │
 │ Exception Handling   │                                   │ Value Objects, DTOs  │
 └──────────┬───────────┘                                   └──────────┬───────────┘
+<<<<<<< HEAD
            ▼                                                        ▼
                               Löwen.Infrastructure
                       EF Core, Identity, Repositories,
@@ -53,12 +73,27 @@ Angular 20 UI (Authentication, Catalog, Checkout)
                                │
                                ▼
                            PostgreSQL
+=======
+           ▼                                                          ▼
+           └────────────────────────────┬─────────────────────────────┘
+                      ┌───────────────────────────────────────┐ 
+                      |        Löwen.Infrastructure           |
+                      |   EF Core, Identity, Repositories,    |
+                      | Email/File Services, Cache Providers  |
+                      └───────────────────┬───────────────────┘
+                                          │
+                                          ▼
+                                      PostgreSQL
+>>>>>>> dada74d645dbb12bce95c34a7dba6ea8a0551547
 ```
 
 ---
 
 ## Functional Scope
+<<<<<<< HEAD
 
+=======
+>>>>>>> dada74d645dbb12bce95c34a7dba6ea8a0551547
 - **Catalog Management**: Products, variants, categories, tags, media, loves, and reviews handled through Admin/User controllers with rich filtering.
 - **Promotions & Pricing**: Coupons, discounts, and automatic order recalculations; configurable discount and coupon lifecycles.
 - **Cart & Checkout**: Authenticated carts, order drafting, delivery assignment, wishlists, and loves to support personalized storefront flows.
@@ -72,7 +107,11 @@ Angular 20 UI (Authentication, Catalog, Checkout)
 
 ## Project Layout
 
+<<<<<<< HEAD
 ```text
+=======
+```
+>>>>>>> dada74d645dbb12bce95c34a7dba6ea8a0551547
 L-wen_E-Commerce_API/
 ├─ Löwen.Api.sln
 ├─ Löwen.Domain/             # Entities, value objects, enums, result & pagination helpers
@@ -82,7 +121,10 @@ L-wen_E-Commerce_API/
 ```
 
 Supporting assets:
+<<<<<<< HEAD
 
+=======
+>>>>>>> dada74d645dbb12bce95c34a7dba6ea8a0551547
 - `APIEndpointsTest/*.http` – executable REST collections for each controller.
 - `EmailTemplates/*.html` – templated transactional emails rendered by the email service.
 - `UploadFilesServices/` – strongly validated file uploads for user avatars and product media.
@@ -91,7 +133,10 @@ Supporting assets:
 ---
 
 ## Cross-Cutting Platform Services
+<<<<<<< HEAD
 
+=======
+>>>>>>> dada74d645dbb12bce95c34a7dba6ea8a0551547
 - **Authentication & Authorization**: ASP.NET Identity + JWT bearer auth with refresh tokens, configurable issuer/audience, and role isolation for `Admin`, `RootAdmin`, `User`, and `Delivery`.
 - **Rate Limiting**: Fixed-window policies (`LoginPolicy`, `ResetPasswordPolicy`, `VerifyEmailPolicy`, `RefreshTokenPolicy`) throttling sensitive operations through `AddRateLimiterPolicies`.
 - **Caching**: `QueryCachingBehavior` & `InvalidateCacheBehavior` coordinate with `ICacheService` (memory-based tokenized prefix invalidation) for read-heavy endpoints.
@@ -105,14 +150,20 @@ Supporting assets:
 ## Getting Started
 
 ### Prerequisites
+<<<<<<< HEAD
 
+=======
+>>>>>>> dada74d645dbb12bce95c34a7dba6ea8a0551547
 - [.NET 9 SDK](https://dotnet.microsoft.com/download)
 - [PostgreSQL 15+](https://www.postgresql.org/download/)
 - [Node.js 20 LTS](https://nodejs.org/) + `npm install -g @angular/cli@20` (if running the Angular front-end)
 - `dotnet-ef` CLI tool: `dotnet tool install --global dotnet-ef`
 
 ### 1. Clone & Restore
+<<<<<<< HEAD
 
+=======
+>>>>>>> dada74d645dbb12bce95c34a7dba6ea8a0551547
 ```bash
 git clone https://github.com/<org>/L-wen_E-Commerce_API.git
 cd L-wen_E-Commerce_API
@@ -120,16 +171,23 @@ dotnet restore Löwen.Api.sln
 ```
 
 ### 2. Configure Secrets
+<<<<<<< HEAD
 
 Update `Löwen.Presentation.Api/appsettings.Development.json` (or use `dotnet user-secrets`) with:
 
+=======
+Update `Löwen.Presentation.Api/appsettings.Development.json` (or use `dotnet user-secrets`) with:
+>>>>>>> dada74d645dbb12bce95c34a7dba6ea8a0551547
 - `ConnectionStrings:DefaultConnection`
 - `JWT` issuer/audience/signing key
 - `StaticFilesSettings` paths and quotas
 - `ApiSettings` host URLs
 
 ### 3. Apply Database Migrations
+<<<<<<< HEAD
 
+=======
+>>>>>>> dada74d645dbb12bce95c34a7dba6ea8a0551547
 ```bash
 dotnet ef database update \
   --project Löwen.Infrastructure \
@@ -138,6 +196,7 @@ dotnet ef database update \
 ```
 
 ### 4. Run the API
+<<<<<<< HEAD
 
 ```bash
 dotnet run --project Löwen.Presentation.Api
@@ -147,6 +206,14 @@ Browse to `https://localhost:7197/swagger` for versioned OpenAPI docs. Developme
 
 ### 5. (Optional) Run the Angular Client
 
+=======
+```bash
+dotnet run --project Löwen.Presentation.Api
+```
+Browse to `https://localhost:7197/swagger` for versioned OpenAPI docs. Development mode automatically applies migrations and hosts Swagger at the root route.
+
+### 5. (Optional) Run the Angular Client
+>>>>>>> dada74d645dbb12bce95c34a7dba6ea8a0551547
 ```bash
 cd ../L-wen_E-Commerce_Frontend
 npm install
@@ -191,7 +258,10 @@ ng serve --open
 ---
 
 ## API Exploration & Developer Workflow
+<<<<<<< HEAD
 
+=======
+>>>>>>> dada74d645dbb12bce95c34a7dba6ea8a0551547
 - **Swagger / OpenAPI**: Enabled in Development with XML comments; supports multiple versions via `AddVersionedApiExplorer`.
 - **`.http` Scratch Files**: `APIEndpointsTest/*.http` mirror each controller and include example payloads plus bearer token placeholders for quick manual tests (Hoppscotch/Postman compatible).
 - **Result & Error Pattern**: Every action returns `Result`/`Result<T>` ensuring consistent envelope, status mapping, and error aggregation. Failed validations automatically populate `ErrorCodes`.
@@ -200,7 +270,10 @@ ng serve --open
 - **File Uploads**: Multipart routes (profile/product images) enforce file settings via `FileService`. Responses include `UploadResponse` metadata.
 - **Email Templates**: Located under `EmailTemplates/`, consumed by `EmailService` for OTP, password reset, confirmation, and order status notifications.
 - **Developer Commands**
+<<<<<<< HEAD
 
+=======
+>>>>>>> dada74d645dbb12bce95c34a7dba6ea8a0551547
   - `dotnet watch --project Löwen.Presentation.Api` for hot reload.
   - `dotnet format Löwen.Api.sln` to enforce code style.
   - `dotnet test` *(tests are planned; add once test projects are introduced)*.
@@ -208,7 +281,10 @@ ng serve --open
 ---
 
 ## Roadmap
+<<<<<<< HEAD
 
+=======
+>>>>>>> dada74d645dbb12bce95c34a7dba6ea8a0551547
 - Expand `PaymentController` with query endpoints and integrations (Stripe, PayPal, local gateways).
 - Implement `NotificationController` real-time endpoints (SignalR/WebPush) and background workers outlined in `Notes/BackgroundServicesAtDatabase.txt`.
 - Add integration/unit test suites plus automated quality gates (GitHub Actions).
@@ -223,7 +299,10 @@ ng serve --open
 Documentation for every controller under `Controllers/v1`. Use this as a quick reference when exercising HTTP endpoints from Swagger, Hoppscotch, Postman, or automated tests.
 
 ### Quick Usage Notes
+<<<<<<< HEAD
 
+=======
+>>>>>>> dada74d645dbb12bce95c34a7dba6ea8a0551547
 - **Base URL**: Routes are relative to the ASP.NET host root (e.g., `https://localhost:7197/`).
 - **Versioning**: Controllers expose `ApiVersion("1.0")`; routes already include `api/{Resource}` so `/v1` is implicit.
 - **Authentication**: Unless otherwise noted, endpoints require a valid JWT bearer token and appropriate role (`[Authorize(Roles = "...")]`).
@@ -410,11 +489,18 @@ Self-service endpoints for authenticated customers.
 ---
 
 ### Testing the Endpoints Quickly
+<<<<<<< HEAD
 
+=======
+>>>>>>> dada74d645dbb12bce95c34a7dba6ea8a0551547
 1. **Swagger/OpenAPI**: Run the API (`dotnet run` or Visual Studio) and open `/swagger`. Each controller above appears under its tag; XML summaries mirror this document.
 2. **HTTP scratch files**: Use `.http` scripts under `APIEndpointsTest/` (e.g., `APIEndpointsTest/Admin.http`) to exercise endpoints with sample payloads and bearer tokens.
 3. **Authentication**: Obtain JWTs via `POST /api/Auth/login` or the `register → EmailController → confirm-email` flow. Include `Authorization: Bearer {token}` for secured routes.
 4. **File uploads**: Endpoints like `/api/Admin/upload-product-images/{ProductId}` and `/api/users/update-profile-image` expect `multipart/form-data`. Use REST clients that support file selection.
 5. **Paging**: Provide both `PageNumber` and `PageSize` route segments separated by a comma (e.g., `/api/Product/get-all-products-paged/1,20`). Invalid values return `400 Bad Request`.
 
+<<<<<<< HEAD
 *This README should stay in sync with any new controllers, behaviors, or infrastructure changes under `Controllers/v1`.*
+=======
+_This README should stay in sync with any new controllers, behaviors, or infrastructure changes under `Controllers/v1`._
+>>>>>>> dada74d645dbb12bce95c34a7dba6ea8a0551547
