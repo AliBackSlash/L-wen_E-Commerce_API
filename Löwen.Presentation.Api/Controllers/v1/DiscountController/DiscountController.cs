@@ -44,7 +44,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.DiscountController
             Result result = await sender.Send(new AddDiscountCommand(model.Name, model.DiscountType,
                                 model.DiscountValue, model.StartDate, model.EndDate, model.IsActive));
 
-            return result.ToActionResult();
+            return result.ToActionResult(StatusCodes.Status201Created);
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.DiscountController
         [ProducesResponseType(typeof(IEnumerable<Error>), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> UpdateDiscount([FromBody] UpdateDiscountModel model)
         {
-            Result result = await sender.Send(new UpdateDiscountCommand(model.Id,model.Name, model.DiscountType,
+            Result result = await sender.Send(new UpdateDiscountCommand(model.Id, model.Name, model.DiscountType,
                                  model.DiscountValue, model.StartDate, model.EndDate, model.IsActive));
 
             return result.ToActionResult();
@@ -106,7 +106,7 @@ namespace Löwen.Presentation.Api.Controllers.v1.DiscountController
         {
             Result result = await sender.Send(new RemoveDiscountCommand(Id));
 
-            return result.ToActionResult();
+            return result.ToActionResult(StatusCodes.Status204NoContent);
         }
 
         /// <summary>

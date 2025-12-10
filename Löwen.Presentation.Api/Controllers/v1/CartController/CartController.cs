@@ -6,7 +6,7 @@
     [ApiController]
     [ApiVersion("1.0")]
     [Route("api/Cart")]
-    [Authorize( Roles = "User")]
+    [Authorize(Roles = "User")]
     public class CartController(ISender sender) : ControllerBase
     {
         /// <summary>
@@ -15,11 +15,11 @@
         /// <remarks>
         /// This action allows an authenticated user to add a new product to their shopping cart or increase the quantity
         /// of an existing cart item. The product identifier and quantity are provided in the request body as a JSON payload.
-        /// 
+        ///
         /// Use this endpoint when:
         /// - A user selects a product to purchase and wants to add it to their cart.
         /// - A user wants to increase the quantity of a product already in their cart.
-        /// 
+        ///
         /// The authenticated user's identity is extracted from the bearer token in the Authorization header.
         /// All requests must include a valid JWT token for a user with the "User" role.
         /// </remarks>
@@ -50,9 +50,9 @@
             if (string.IsNullOrEmpty(id))
                 return Result.Failure(new Error("api/users/get-user-info", "Valid token is required", ErrorType.Unauthorized)).ToActionResult();
 
-            Result result = await sender.Send(new AddToCartCommand(id, model.ProductId,model.Quantity));
+            Result result = await sender.Send(new AddToCartCommand(id, model.ProductId, model.Quantity));
 
-            return result.ToActionResult();
+            return result.ToActionResult(StatusCodes.Status201Created);
         }
 
         /// <summary>
@@ -94,7 +94,7 @@
         {
             Result result = await sender.Send(new RemoveFromCartItemCommand(CartId, ProductId));
 
-            return result.ToActionResult();
+            return result.ToActionResult(StatusCodes.Status204NoContent);
         }
 
         /// <summary>
@@ -141,7 +141,7 @@
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> UpdateCartItemQuantity(string CartId, string ProductId, short Quantity)
         {
-            Result result = await sender.Send(new UpdateCartItemQuantityCommand(CartId, ProductId,Quantity));
+            Result result = await sender.Send(new UpdateCartItemQuantityCommand(CartId, ProductId, Quantity));
 
             return result.ToActionResult();
         }

@@ -32,7 +32,7 @@
             Result result = await sender.Send(new AddAdminCommand(request.Email, request.UserName, request.Password,
                     request.FName, request.MName, request.LName, request.DateOfBirth, request.PhoneNumber, request.Gender));
 
-            return result.ToActionResult();
+            return result.ToActionResult(StatusCodes.Status201Created);
         }
 
         /// <summary>
@@ -53,11 +53,11 @@
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status404NotFound)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status409Conflict)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> AssignRole(Guid Id,UserRole role)
+        public async Task<IActionResult> AssignRole(Guid Id, UserRole role)
         {
             Result result = await sender.Send(new AssignRoleCommand(Id, role));
 
-            return result.ToActionResult(); 
+            return result.ToActionResult();
         }
 
         /// <summary>
@@ -74,11 +74,11 @@
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status404NotFound)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> RemoveRoleFromUser(Guid Id,UserRole role)
+        public async Task<IActionResult> RemoveRoleFromUser(Guid Id, UserRole role)
         {
             Result result = await sender.Send(new RemoveRoleFromUserCommand(Id, role));
 
-            return result.ToActionResult(); 
+            return result.ToActionResult(StatusCodes.Status204NoContent);
         }
 
         /// <summary>
@@ -146,7 +146,7 @@
         {
             Result result = await sender.Send(new RemoveAdminCommand(Id));
 
-            return result.ToActionResult();
+            return result.ToActionResult(StatusCodes.Status204NoContent);
         }
 
 
@@ -166,7 +166,7 @@
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status404NotFound)]
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetAdminById(Guid Id,UserRole role)
+        public async Task<IActionResult> GetAdminById(Guid Id, UserRole role)
         {
             Result<GetUserQueryResponse> result = await sender.Send(new GetAdminByIdQuery(Id, role));
 

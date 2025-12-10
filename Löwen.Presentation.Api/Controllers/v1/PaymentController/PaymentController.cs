@@ -14,7 +14,7 @@
 
     public class PaymentController(ISender sender) : ControllerBase
     {
-        
+
         /// <summary>
         /// Retrieves a single payment by its identifier.
         /// </summary>
@@ -74,7 +74,7 @@
         {
             Result result = await sender.Send(new AddPaymentCommand(model.OrderId, model.Amount,
                                                 model.PaymentMethod, model.TransactionId, model.Status));
-            return result.ToActionResult();
+            return result.ToActionResult(StatusCodes.Status201Created);
         }
 
         /// <summary>
@@ -97,7 +97,7 @@
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> UpdatePaymentStatus(string Id, PaymentStatus status)
         {
-            Result result = await sender.Send(new UpdatePaymentStatusCommand(Id,status));
+            Result result = await sender.Send(new UpdatePaymentStatusCommand(Id, status));
 
             return result.ToActionResult();
         }

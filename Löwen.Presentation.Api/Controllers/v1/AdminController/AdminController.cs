@@ -8,7 +8,7 @@
     [ApiVersion("1.0")]
     [Route("api/Admin")]
     [Produces("application/json", "application/xml")]
-    [Authorize(Roles ="Admin")]
+    [Authorize(Roles = "Admin")]
     public class AdminController(ISender sender, IFileService fileService) : ControllerBase
     {
         /// <summary>
@@ -34,7 +34,7 @@
         public async Task<IActionResult> AddCategory([FromBody] AddCategoryModel request)
         {
             Result result = await sender.Send(new AddCategoryCommand(request.Category, request.Gender));
-            return result.ToActionResult();
+            return result.ToActionResult(StatusCodes.Status201Created);
         }
 
         /// <summary>
@@ -87,7 +87,7 @@
         {
             Result result = await sender.Send(new RemoveCategoryCommand(Id));
 
-            return result.ToActionResult();
+            return result.ToActionResult(StatusCodes.Status204NoContent);
         }
 
         /*[HttpPost("add-tag")]
@@ -215,7 +215,7 @@
             Result<AddProductCommandResponse> result = await sender.Send(new AddProductCommand(model.Name, model.Description, model.Status, model.CategoryId,
                 createdBy, model.Tags, model.MainPrice, model.VariantDtos));
 
-            return result.ToActionResult();
+            return result.ToActionResult(StatusCodes.Status201Created);
         }
 
         /// <summary>
@@ -265,7 +265,7 @@
             if (result.IsFailure)
                 fileService.DeleteFiles(UploudResult.Value.Select(x => x.Path));
 
-            return result.ToActionResult();
+            return result.ToActionResult(StatusCodes.Status201Created);
         }
 
         /// <summary>
@@ -294,7 +294,7 @@
             if (result.IsSuccess)
                 fileService.DeleteFile(imagePath);
 
-            return result.ToActionResult();
+            return result.ToActionResult(StatusCodes.Status204NoContent);
         }
 
         /// <summary>
@@ -350,7 +350,7 @@
         public async Task<IActionResult> AddProductVariant([FromBody] AddProductVariantModel model)
         {
             Result result = await sender.Send(new AddProductVariantCommand(model.ProductId, model.ColorId, model.SizeId, model.Price, model.StockQuantity));
-            return result.ToActionResult();
+            return result.ToActionResult(StatusCodes.Status201Created);
         }
 
         /// <summary>
@@ -404,7 +404,7 @@
         public async Task<IActionResult> RemoveProductVariant(string Id)
         {
             Result result = await sender.Send(new RemoveProductVariantCommand(Id));
-            return result.ToActionResult();
+            return result.ToActionResult(StatusCodes.Status204NoContent);
         }
 
         /// <summary>
@@ -429,7 +429,7 @@
         public async Task<IActionResult> RemoveProduct(string Id)
         {
             Result result = await sender.Send(new RemoveProductCommand(Id));
-            return result.ToActionResult();
+            return result.ToActionResult(StatusCodes.Status204NoContent);
         }
 
         /// <summary>

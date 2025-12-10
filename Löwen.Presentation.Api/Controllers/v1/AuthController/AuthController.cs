@@ -53,7 +53,7 @@ namespace Löwen.Presentation.API.Controllers.v1.AuthController
         {
             Result result = await _sender.Send(new RegisterCommand(request.Email, request.UserName, request.Password));
 
-            return result.ToActionResult();
+            return result.ToActionResult(StatusCodes.Status201Created);
         }
 
         /// <summary>

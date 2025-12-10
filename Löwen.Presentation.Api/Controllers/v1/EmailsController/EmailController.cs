@@ -46,7 +46,7 @@ namespace Löwen.Presentation.API.Controllers.v1.EmailsController
         {
             Result result = await _sender.Send(new EmailConfirmationTokenCommand(email));
 
-            return result.ToActionResult();
+            return result.ToActionResult(StatusCodes.Status201Created);
         }
 
     }

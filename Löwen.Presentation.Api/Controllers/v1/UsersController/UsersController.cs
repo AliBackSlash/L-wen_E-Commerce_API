@@ -32,9 +32,9 @@ public class UsersController(ISender _sender, IFileService fileService) : Contro
     {
         var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-        if (string.IsNullOrEmpty(id))      
+        if (string.IsNullOrEmpty(id))
             return Result.Failure(new Error("api/users/get-user-info", "Valid token is required", ErrorType.Unauthorized)).ToActionResult();
-        
+
 
         Result<GetUserByIdQueryResponse> result = await _sender.Send(new GetUserByIdQuery(id));
 
@@ -64,7 +64,7 @@ public class UsersController(ISender _sender, IFileService fileService) : Contro
     {
         var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-        if (string.IsNullOrEmpty(id))        
+        if (string.IsNullOrEmpty(id))
             return Result.Failure(new Error("api/users/update", "Valid token is required", ErrorType.Unauthorized)).ToActionResult();
 
 
@@ -134,7 +134,7 @@ public class UsersController(ISender _sender, IFileService fileService) : Contro
         var UploadResult = await fileService.UploadProfileImageAsync(Image);
 
         if (UploadResult is null)
-            return Result.Failure(new Error("api/users/update-profile-image", "Profile image not uploaded",ErrorType.BadRequest)).ToActionResult();
+            return Result.Failure(new Error("api/users/update-profile-image", "Profile image not uploaded", ErrorType.BadRequest)).ToActionResult();
 
         if (UploadResult.IsFailure)
             return UploadResult.ToActionResult();
@@ -142,7 +142,7 @@ public class UsersController(ISender _sender, IFileService fileService) : Contro
         Result result = await _sender.Send(new UpdateProfileImageCommand(id, UploadResult.Value.ImageName, UploadResult.Value.CurrentRootPath));
 
         if (result.IsFailure)
-            fileService.DeleteFile(UploadResult.Value.ImageName,false);
+            fileService.DeleteFile(UploadResult.Value.ImageName, false);
 
         return result.ToActionResult();
 
@@ -177,7 +177,7 @@ public class UsersController(ISender _sender, IFileService fileService) : Contro
         if (result.IsSuccess)
             fileService.DeleteFile(result.Value, false);
 
-        return result.ToActionResult();
+        return result.ToActionResult(StatusCodes.Status204NoContent);
     }
     /// <summary>
     /// Sends an email confirmation token for the supplied email address (verify own email).
@@ -198,7 +198,7 @@ public class UsersController(ISender _sender, IFileService fileService) : Contro
     {
         Result result = await _sender.Send(new EmailConfirmationTokenCommand(email));
 
-        return result.ToActionResult();
+        return result.ToActionResult(StatusCodes.Status201Created);
     }
 
     //[HttpPost("verify-phone-number")]
@@ -234,9 +234,9 @@ public class UsersController(ISender _sender, IFileService fileService) : Contro
         if (string.IsNullOrEmpty(id))
             return Result.Failure(new Error("api/users/add-product-to-wishlist", "Valid token is required", ErrorType.Unauthorized)).ToActionResult();
 
-        Result result = await _sender.Send(new AddToWishlistCommand(id,productId));
+        Result result = await _sender.Send(new AddToWishlistCommand(id, productId));
 
-        return result.ToActionResult();
+        return result.ToActionResult(StatusCodes.Status201Created);
     }
 
     /// <summary>
@@ -265,7 +265,7 @@ public class UsersController(ISender _sender, IFileService fileService) : Contro
 
         Result result = await _sender.Send(new RemoveFromWishlistCommand(id, productId));
 
-        return result.ToActionResult();
+        return result.ToActionResult(StatusCodes.Status204NoContent);
     }
 
     /// <summary>
@@ -294,7 +294,7 @@ public class UsersController(ISender _sender, IFileService fileService) : Contro
 
         Result result = await _sender.Send(new AddLoveCommand(id, productId));
 
-        return result.ToActionResult();
+        return result.ToActionResult(StatusCodes.Status201Created);
     }
 
     /// <summary>
@@ -311,7 +311,7 @@ public class UsersController(ISender _sender, IFileService fileService) : Contro
     [HttpDelete("remove-love-from-product/{productId}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType( StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status404NotFound)]
     [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> RemoveLoveFromProduct(string productId)
@@ -323,7 +323,7 @@ public class UsersController(ISender _sender, IFileService fileService) : Contro
 
         Result result = await _sender.Send(new RemoveLoveCommand(id, productId));
 
-        return result.ToActionResult();
+        return result.ToActionResult(StatusCodes.Status204NoContent);
     }
 
     /// <summary>
@@ -352,7 +352,7 @@ public class UsersController(ISender _sender, IFileService fileService) : Contro
 
         Result result = await _sender.Send(new AddProductReviewCommand(id, model.productId, model.Rating, model.Review));
 
-        return result.ToActionResult();
+        return result.ToActionResult(StatusCodes.Status201Created);
     }
 
     /// <summary>
@@ -398,9 +398,9 @@ public class UsersController(ISender _sender, IFileService fileService) : Contro
     {
         Result result = await _sender.Send(new RemoveProductReviewCommand(Id));
 
-        return result.ToActionResult();
+        return result.ToActionResult(StatusCodes.Status204NoContent);
     }
-    
+
     /// <summary>
     /// Gets paged orders for the authenticated user.
     /// </summary>
@@ -466,13 +466,13 @@ public class UsersController(ISender _sender, IFileService fileService) : Contro
         return result.ToActionResult();
     }
 
-  /*  [HttpGet("get-my-reviews{PageNumber},{PageSize}")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> GetMyReviews()
-    {
-        throw new NotImplementedException();
-    }*/
+    /*  [HttpGet("get-my-reviews{PageNumber},{PageSize}")]
+      [ProducesResponseType(StatusCodes.Status200OK)]
+      [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status400BadRequest)]
+      [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
+      public async Task<IActionResult> GetMyReviews()
+      {
+          throw new NotImplementedException();
+      }*/
 
 }

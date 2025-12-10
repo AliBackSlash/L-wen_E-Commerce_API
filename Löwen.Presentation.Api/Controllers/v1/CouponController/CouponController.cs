@@ -7,7 +7,7 @@
     [ApiController]
     [ApiVersion("1.0")]
     [Route("api/Coupon")]
-    [Authorize( Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class CouponController(ISender sender) : ControllerBase
     {
         /// <summary>
@@ -37,10 +37,10 @@
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> AddCoupon([FromBody] AddCouponModel model)
         {
-            Result result = await sender.Send(new AddCouponCommand(model.Code,model.DiscountType,
+            Result result = await sender.Send(new AddCouponCommand(model.Code, model.DiscountType,
                                                  model.DiscountValue, model.StartDate, model.EndDate, model.IsActive, model.UsageLimit));
 
-            return result.ToActionResult();
+            return result.ToActionResult(StatusCodes.Status201Created);
         }
 
         /// <summary>
@@ -72,7 +72,7 @@
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> UpdateCoupon([FromBody] UpdateCouponModel model)
         {
-            Result result = await sender.Send(new UpdateCouponCommand(model.CouponId,model.Code, model.DiscountType,model.DiscountValue,
+            Result result = await sender.Send(new UpdateCouponCommand(model.CouponId, model.Code, model.DiscountType, model.DiscountValue,
                 model.StartDate, model.EndDate, model.IsActive, model.UsageLimit));
 
             return result.ToActionResult();
@@ -104,7 +104,7 @@
         {
             Result result = await sender.Send(new RemoveCouponCommand(Id));
 
-            return result.ToActionResult();
+            return result.ToActionResult(StatusCodes.Status204NoContent);
         }
 
 
@@ -137,11 +137,11 @@
         [ProducesResponseType<IEnumerable<Error>>(StatusCodes.Status500InternalServerError)]
         [Authorize(Roles = "User")]
 
-        public async Task<IActionResult> ApplyCouponToOrder(string CouponCode,string OrderId)
+        public async Task<IActionResult> ApplyCouponToOrder(string CouponCode, string OrderId)
         {
             Result result = await sender.Send(new ApplyCouponToOrderCommand(CouponCode, OrderId));
 
-            return result.ToActionResult();
+            return result.ToActionResult(StatusCodes.Status201Created);
         }
 
         /// <summary>
@@ -175,7 +175,7 @@
         {
             Result result = await sender.Send(new RemoveCouponFromOrderCommand(CouponCode, OrderId));
 
-            return result.ToActionResult();
+            return result.ToActionResult(StatusCodes.Status204NoContent);
         }
 
 
