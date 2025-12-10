@@ -42,7 +42,7 @@ Angular 20 UI (Authentication, Catalog, Checkout)
            │                                                        │
            ▼                                                        ▼
 
-```
+
 Angular 20 UI (Authentication, Catalog, Checkout)
             │
             ▼
@@ -94,7 +94,7 @@ Angular 20 UI (Authentication, Catalog, Checkout)
 ## Project Layout
 
 ```text
-```
+
 L-wen_E-Commerce_API/
 ├─ Löwen.Api.sln
 ├─ Löwen.Domain/             # Entities, value objects, enums, result & pagination helpers
@@ -448,6 +448,5 @@ Self-service endpoints for authenticated customers.
 4. **File uploads**: Endpoints like `/api/Admin/upload-product-images/{ProductId}` and `/api/users/update-profile-image` expect `multipart/form-data`. Use REST clients that support file selection.
 5. **Paging**: Provide both `PageNumber` and `PageSize` route segments separated by a comma (e.g., `/api/Product/get-all-products-paged/1,20`). Invalid values return `400 Bad Request`.
 
-
 *This README should stay in sync with any new controllers, behaviors, or infrastructure changes under `Controllers/v1`.*
-_This README should stay in sync with any new controllers, behaviors, or infrastructure changes under `Controllers/v1`._
+_This README should stay in sync with any new controllers, behaviors, or infrastructure changes under `Controllers/v1`.
