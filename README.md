@@ -41,7 +41,7 @@ Angular 20 UI (Authentication, Catalog, Checkout)
 └──────────┬───────────┘                                   └──────────┬───────────┘
            │                                                        │
            ▼                                                        ▼
-=======
+
 ```
 Angular 20 UI (Authentication, Catalog, Checkout)
             │
@@ -105,7 +105,7 @@ L-wen_E-Commerce_API/
 
 Supporting assets:
 
-=======
+
 - `APIEndpointsTest/*.http` – executable REST collections for each controller.
 - `EmailTemplates/*.html` – templated transactional emails rendered by the email service.
 - `UploadFilesServices/` – strongly validated file uploads for user avatars and product media.
@@ -171,7 +171,7 @@ Browse to `https://localhost:7197/swagger` for versioned OpenAPI docs. Developme
 
 ### 5. (Optional) Run the Angular Client
 
-=======
+
 ```bash
 dotnet run --project Löwen.Presentation.Api
 ```
