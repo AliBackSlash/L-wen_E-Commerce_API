@@ -1,6 +1,0 @@
-services:
-  lwen.presentation.api:
-    image: ${DOCKER_REGISTRY-}lwenpresentationapi
-    build:
-      context: .
-      dockerfile: Löwen.Presentation.Api/Dockerfile
